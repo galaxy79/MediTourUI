@@ -1,54 +1,105 @@
 /* ================================================
 ----------------- Simple Main.js ------------- */
 //Global Variables
-var GLOBAL_VARIABLES={
-	"Language":"en",
-	"Currency":"dollar"
+var GLOBAL_VARIABLES = {
+	"Language": "en",
+	"Currency": "dollar"
 }
-function loadPage(){
-document.getElementsByClassName('main')[0].innerHTML='<object type="text/html" data="~/homepage.html" ></object>';
+var TAGCLOUD_ITEMS = {
+	"Hospital": "index.html",
+	"Tour": "index.html",
+	"Package": "index.html",
+	"Awesome": "index.html",
+	"Affordable": "index.html",
+	"Peaceful": "index.html",
+	"Node": "index.html",
+	"Express": "index.html",
+	"Gulp": "index.html",
+	"Sass": "index.html",
+	"Bootstrap": "index.html",
+	"Html5": "index.html",
+	"Css3": "index.html",
+	"Node": "index.html",
+	"Retina": "index.html",
+	"Sprites": "index.html",
+	"Html5": "index.html",
+	"Css3": "index.html",
+	"Node": "index.html",
+	"Seo": "index.html",
+	"jQuery": "index.html",
+	"Sass": "index.html",
+};
+
+var officeAddress="No:12/35, Bangalore Street, Bangalore Main Road, Bangalore, Katnataka-123456";
+
+var whyIndia="Because India.";
+
+function loadPage() {
+	document.getElementsByClassName('main')[0].innerHTML = '<object type="text/html" data="~/homepage.html" ></object>';
 }
 
 function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en'}, 'pageLanguage');
+	new google.translate.TranslateElement({
+		pageLanguage: 'en'
+	}, 'pageLanguage');
 }
+
 (function ($) {
 	"use strict";
-	$('.main').load("homepage.html");
-	   $('#google_translate_element').on("click", function () {
+	//load for Master Page
 
-        // Change font family and color
-        $("iframe").contents().find(".goog-te-menu2-item div, .goog-te-menu2-item:link div, .goog-te-menu2-item:visited div, .goog-te-menu2-item:active div, .goog-te-menu2 *")
-            .css({
-                'color': '#32CD32',
-                'font-family': 'tahoma'
-            });
+	//Load TagCloud Contents
+	var htmlString = ""
+	for (var key in TAGCLOUD_ITEMS) {
+		if (TAGCLOUD_ITEMS.hasOwnProperty(key)) {
+			htmlString += "<a href=" + TAGCLOUD_ITEMS[key] + ">" + key + "</a>"
+		}
+	}
+	document.querySelector('.tagcloud').innerHTML=htmlString;
 
-        // Change hover effects
-        $("iframe").contents().find(".goog-te-menu2-item div").hover(function () {
-            $(this).css('background-color', '#F38256').find('span.text').css('color', 'white');
-        }, function () {
-            $(this).css('background-color', 'white').find('span.text').css('color', '#544F4B');
-        });
+	//Load Office Address
+	document.querySelector('p.office-address').innerHTML=officeAddress;
+	document.querySelector('p.why-india').innerHTML=whyIndia;
 
-        // Change Google's default blue border
-        $("iframe").contents().find('.goog-te-menu2').css('border', '1px solid #F38256');
 
-        // Change the iframe's box shadow
-        $(".goog-te-menu-frame").css({
-            '-moz-box-shadow': '0 3px 8px 2px #666666',
-            '-webkit-box-shadow': '0 3px 8px 2px #666',
-            'box-shadow': '0 3px 8px 2px #666'
-        });
-    });
+
+
+
+	$('.main').load("hospitalzone.html");
+	$('#google_translate_element').on("click", function () {
+
+		// Change font family and color
+		$("iframe").contents().find(".goog-te-menu2-item div, .goog-te-menu2-item:link div, .goog-te-menu2-item:visited div, .goog-te-menu2-item:active div, .goog-te-menu2 *")
+			.css({
+				'color': '#32CD32',
+				'font-family': 'tahoma'
+			});
+
+		// Change hover effects
+		$("iframe").contents().find(".goog-te-menu2-item div").hover(function () {
+			$(this).css('background-color', '#F38256').find('span.text').css('color', 'white');
+		}, function () {
+			$(this).css('background-color', 'white').find('span.text').css('color', '#544F4B');
+		});
+
+		// Change Google's default blue border
+		$("iframe").contents().find('.goog-te-menu2').css('border', '1px solid #F38256');
+
+		// Change the iframe's box shadow
+		$(".goog-te-menu-frame").css({
+			'-moz-box-shadow': '0 3px 8px 2px #666666',
+			'-webkit-box-shadow': '0 3px 8px 2px #666',
+			'box-shadow': '0 3px 8px 2px #666'
+		});
+	});
 	var Simple = {
 		initialised: false,
 		mobile: false,
-		container : $('#portfolio-item-container'),
-		blogContainer : $('#blog-item-container'),
+		container: $('#portfolio-item-container'),
+		blogContainer: $('#blog-item-container'),
 		init: function () {
 
-			if(!this.initialised) {
+			if (!this.initialised) {
 				this.initialised = true;
 			} else {
 				return;
@@ -76,7 +127,7 @@ function googleTranslateElementInit() {
 			this.popover();
 
 			/* Call function if Owl Carousel plugin is included */
-			if ( $.fn.owlCarousel ) {
+			if ($.fn.owlCarousel) {
 				this.owlCarousels();
 			}
 
@@ -85,23 +136,23 @@ function googleTranslateElementInit() {
 
 			/* Call function if noUiSlider plugin is included */
 			if (typeof noUiSlider === "object") {
-				this.filterSliders();	
+				this.filterSliders();
 			}
 
 			/* Call function if Light Gallery plugin is included */
-			if ( $.fn.lightGallery) {
+			if ($.fn.lightGallery) {
 				this.lightBox();
 			}
 
 			/* Matchheight for products / shop - category pares*/
-			if ( $.fn.matchHeight ) {
+			if ($.fn.matchHeight) {
 				this.matchProducts();
 			}
 
 			var self = this;
 			/* Imagesloaded plugin included in isotope.pkgd.min.js */
 			/* Portfolio isotope + Blog masonry with images loaded plugin */
-			if ( typeof imagesLoaded === 'function' ) {
+			if (typeof imagesLoaded === 'function') {
 				self.container.imagesLoaded(function () {
 					self.isotopeActivate();
 					// recall for plugin support
@@ -116,13 +167,13 @@ function googleTranslateElementInit() {
 		},
 		checkMobile: function () {
 			/* Mobile Detect*/
-			if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test( navigator.userAgent ) ) {
+			if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 				this.mobile = true;
 			} else {
 				this.mobile = false;
 			}
 		},
-		pageLoadAnim: function() {
+		pageLoadAnim: function () {
 			// Page Loader Animation
 			if ($('#page-loader').length) {
 				$('#page-loader').delay(700).fadeOut(800, function () {
@@ -134,19 +185,19 @@ function googleTranslateElementInit() {
 			if (typeof Modernizr === "object" && Modernizr.mq('only all and (min-width: 768px)') && !Modernizr.touchevents) {
 				if ($.fn.hoverIntent) {
 					$('.header').find('.navbar-nav').not('.nav-overlay').hoverIntent({
-						over: function() {
-							var  $this = $(this);
-							
+						over: function () {
+							var $this = $(this);
+
 							$this.addClass('open');
-							if($this.find('ul, div').length) {
+							if ($this.find('ul, div').length) {
 								$this.find('.dropdown-toggle').addClass('disabled');
 							}
 						},
-						out: function() {
-							var  $this = $(this);
+						out: function () {
+							var $this = $(this);
 
 							$this.removeClass('open');
-							if($this.hasClass('open')) {
+							if ($this.hasClass('open')) {
 								$this.find('.dropdown-toggle').removeClass('disabled');
 							}
 						},
@@ -157,27 +208,27 @@ function googleTranslateElementInit() {
 				}
 			}
 		},
-		mobileMenuDropdownFix : function () {
-			if ( typeof Modernizr === "object" && (Modernizr.mq('only all and (max-width: 767px)') || Modernizr.touchevents) ) {
+		mobileMenuDropdownFix: function () {
+			if (typeof Modernizr === "object" && (Modernizr.mq('only all and (max-width: 767px)') || Modernizr.touchevents)) {
 				$('.navbar-nav').not('.nav-overlay').find('.dropdown-toggle').on('click', function (e) {
 					var parent = $(this).closest('li');
-	                // close all the siblings and their children
-	                parent.siblings().removeClass('open').find('li').removeClass('open');
-	                // open which one is clicked
-	                parent.toggleClass('open');
+					// close all the siblings and their children
+					parent.siblings().removeClass('open').find('li').removeClass('open');
+					// open which one is clicked
+					parent.toggleClass('open');
 
-	                // prevent
-	                e.preventDefault();
-	                e.stopPropagation();
+					// prevent
+					e.preventDefault();
+					e.stopPropagation();
 				});
 			}
 		},
-		menuOnClick: function() {
+		menuOnClick: function () {
 			var self = this;
 			// Menu on click scroll animation for onepages
 			$('.onepage-nav').find('a').on('click', function (e) {
 				var target = $(this).attr('href');
-				if ( target.indexOf('#') === -1 || !$(target).length ) {
+				if (target.indexOf('#') === -1 || !$(target).length) {
 					return;
 				}
 
@@ -185,14 +236,14 @@ function googleTranslateElementInit() {
 					targetPos = elem.offset().top;
 
 				$('html, body').animate({
-		            'scrollTop': targetPos
-		        }, 1200);
-		        e.preventDefault();
+					'scrollTop': targetPos
+				}, 1200);
+				e.preventDefault();
 			});
 		},
 		stickyHeader: function () {
 			// Sticky header - calls if sticky-header class is added to the header
-			if ( $('.sticky-header').length && $(window).width() >= 992 ) {
+			if ($('.sticky-header').length && $(window).width() >= 992) {
 				var sticky = new Waypoint.Sticky({
 					element: $('.sticky-header')[0],
 					stuckClass: 'fixed',
@@ -207,18 +258,18 @@ function googleTranslateElementInit() {
 				e.preventDefault();
 			});
 		},
-		overlayMenuDropdownFix: function() {
+		overlayMenuDropdownFix: function () {
 			// Overlay menu sub dropdown toggle fix
 			$('.nav-overlay').find('.dropdown-toggle').on('click', function (e) {
 				var parent = $(this).closest('li');
-                // close all the siblings and their children
-                parent.siblings().removeClass('open').find('li').removeClass('open');
-                // open which one is clicked
-                parent.toggleClass('open');
+				// close all the siblings and their children
+				parent.siblings().removeClass('open').find('li').removeClass('open');
+				// open which one is clicked
+				parent.toggleClass('open');
 
-                // prevent
-                e.preventDefault();
-                e.stopPropagation();
+				// prevent
+				e.preventDefault();
+				e.stopPropagation();
 			});
 		},
 		sideMenu: function () {
@@ -237,921 +288,921 @@ function googleTranslateElementInit() {
 
 			/* index2.html - Boxed news Carousel */
 			$('.boxed-news-carousel.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:25,
-				responsiveClass:true,
-				nav:false,
+				loop: false,
+				margin: 25,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 12000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					768: {
-						items:2
+						items: 2
 					},
 					1200: {
-						items:3
+						items: 3
 					}
 				}
-	        });
+			});
 
-	        /* Index3 - Portfolio Carousel */
-	        $('.portfolio-carousel.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:20,
-				responsiveClass:true,
-				nav:false,
+			/* Index3 - Portfolio Carousel */
+			$('.portfolio-carousel.owl-carousel').owlCarousel({
+				loop: false,
+				margin: 20,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					420: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					992: {
-						items:4
+						items: 4
 					}
 				}
-	        });
+			});
 
-	        /* Index4 - Latest Posts Carousel */
-	        $('.latest-posts-carousel-3col.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:30,
-				responsiveClass:true,
-				nav:false,
+			/* Index4 - Latest Posts Carousel */
+			$('.latest-posts-carousel-3col.owl-carousel').owlCarousel({
+				loop: false,
+				margin: 30,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					420: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					}
 				}
-	        });
+			});
 
-	        /* Index5 - Portfolio Carousel */
-	        $('.portfolio-fullwidth-carousel.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:0,
-				responsiveClass:true,
-				nav:false,
+			/* Index5 - Portfolio Carousel */
+			$('.portfolio-fullwidth-carousel.owl-carousel').owlCarousel({
+				loop: false,
+				margin: 0,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: false,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					420: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					992: {
-						items:4
+						items: 4
 					},
 					1280: {
-						items:5
+						items: 5
 					},
 					1600: {
-						items:6
+						items: 6
 					},
 					1920: {
-						items:7
+						items: 7
 					}
 				}
-	        });
+			});
 
-	        /* Index6 - Latest PostsCarousel */
-	        $('.latest-posts-carousel.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:30,
-				responsiveClass:true,
-				nav:true,
+			/* Index6 - Latest PostsCarousel */
+			$('.latest-posts-carousel.owl-carousel').owlCarousel({
+				loop: false,
+				margin: 30,
+				responsiveClass: true,
+				nav: true,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: false,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					420: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					992: {
-						items:4
+						items: 4
 					}
 				}
-	        });
+			});
 
-	        /* Index7 - Team Carousel */
-	        $('.team-carousel-sm.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:20,
-				responsiveClass:true,
-				nav:false,
+			/* Index7 - Team Carousel */
+			$('.team-carousel-sm.owl-carousel').owlCarousel({
+				loop: false,
+				margin: 20,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					420: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					992: {
-						items:3
+						items: 3
 					}
 				}
-	        });
+			});
 
-	        /* Index7 - Latest Carousel */
-	        $('.latest-news-carousel-sm.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:20,
-				responsiveClass:true,
-				nav:false,
+			/* Index7 - Latest Carousel */
+			$('.latest-news-carousel-sm.owl-carousel').owlCarousel({
+				loop: false,
+				margin: 20,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					420: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					992: {
-						items:3
+						items: 3
 					}
 				}
-	        });
+			});
 
-	        /* Index8 - Portfolio 2col Carousel */
-	        $('.portfolio-2col-carousel.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:0,
-				responsiveClass:true,
-				nav:false,
+			/* Index8 - Portfolio 2col Carousel */
+			$('.portfolio-2col-carousel.owl-carousel').owlCarousel({
+				loop: false,
+				margin: 0,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: false,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					420: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					992: {
-						items:4
+						items: 4
 					},
 					1600: {
-						items:5
+						items: 5
 					},
 					1900: {
-						items:6
+						items: 6
 					}
 				}
-	        });
+			});
 
-	        /* Index9 - Clients/Partners Carousel 3col */
-	        $('.clients-carousel-3col.owl-carousel').owlCarousel({
-	            loop:true,
-				margin:10,
-				responsiveClass:true,
-				nav:false,
+			/* Index9 - Clients/Partners Carousel 3col */
+			$('.clients-carousel-3col.owl-carousel').owlCarousel({
+				loop: true,
+				margin: 10,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					280: {
-						items:2
+						items: 2
 					},
 					480: {
-						items:3
+						items: 3
 					},
 					768: {
-						items:2
+						items: 2
 					},
 					992: {
-						items:3
+						items: 3
 					}
 				}
-	        });
+			});
 
-	        /* Index9 - Latest news list carousel */
-	        $('.latest-news-list-carousel.owl-carousel').owlCarousel({
-	            loop:true,
-				margin:30,
-				responsiveClass:true,
-				nav:false,
+			/* Index9 - Latest news list carousel */
+			$('.latest-news-list-carousel.owl-carousel').owlCarousel({
+				loop: true,
+				margin: 30,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 18000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					992: {
-						items:2
+						items: 2
 					}
 				}
-	        });
+			});
 
-	        /* Index9 - Portfolio 2row carousel */
-	        $('.portfolio-2row-carousel.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:30,
-				responsiveClass:true,
-				nav:false,
+			/* Index9 - Portfolio 2row carousel */
+			$('.portfolio-2row-carousel.owl-carousel').owlCarousel({
+				loop: false,
+				margin: 30,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					480: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					992: {
-						items:4
+						items: 4
 					}
 				}
-	        });
+			});
 
-	        /* Index-agency5 - Latest Post Carousel */
-	        $('.latest-posts-carousel-4col.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:30,
-				responsiveClass:true,
-				nav:false,
+			/* Index-agency5 - Latest Post Carousel */
+			$('.latest-posts-carousel-4col.owl-carousel').owlCarousel({
+				loop: false,
+				margin: 30,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					480: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					992: {
-						items:4
+						items: 4
 					}
 				}
-	        });
+			});
 
-	        /* Index-creative3 - Latest Projects Carousel */
-	        $('.vertical-portfolio-carousel.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:0,
-				responsiveClass:true,
-				nav:false,
+			/* Index-creative3 - Latest Projects Carousel */
+			$('.vertical-portfolio-carousel.owl-carousel').owlCarousel({
+				loop: false,
+				margin: 0,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: false,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					480: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					992: {
-						items:4
+						items: 4
 					},
 					1440: {
-						items:5
+						items: 5
 					},
 					1800: {
-						items:6
+						items: 6
 					}
 				}
-	        });
+			});
 
-	        /* Index-creative3 - Our Team Carousel */
-	        $('.vertical-team-carousel.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:20,
-				responsiveClass:true,
-				nav:false,
+			/* Index-creative3 - Our Team Carousel */
+			$('.vertical-team-carousel.owl-carousel').owlCarousel({
+				loop: false,
+				margin: 20,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: false,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					480: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					992: {
-						items:4
+						items: 4
 					},
 					1440: {
-						items:5
+						items: 5
 					},
 					1800: {
-						items:6
+						items: 6
 					}
 				}
-	        });
+			});
 
-	        /* Index-creative3 - Our Blog Carousel */
-	        $('.vertical-posts-carousel.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:20,
-				responsiveClass:true,
-				nav:false,
+			/* Index-creative3 - Our Blog Carousel */
+			$('.vertical-posts-carousel.owl-carousel').owlCarousel({
+				loop: false,
+				margin: 20,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: false,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					480: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					992: {
-						items:4
+						items: 4
 					},
 					1440: {
-						items:5
+						items: 5
 					},
 					1800: {
-						items:6
+						items: 6
 					}
 				}
-	        });
+			});
 
 			/* index-Blog.html -  Featured Entry Carousel */
 			$('.featured-entry-carousel.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:0,
-				responsiveClass:true,
-				nav:false,
+				loop: false,
+				margin: 0,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 12000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					480: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					1200: {
-						items:4
+						items: 4
 					}
 				}
-	        });
+			});
 
-	        /* Index-medical - Latest Post Medical Carousel */
-	        $('.latest-posts-medical-carousel.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:30,
-				responsiveClass:true,
-				nav:false,
+			/* Index-medical - Latest Post Medical Carousel */
+			$('.latest-posts-medical-carousel.owl-carousel').owlCarousel({
+				loop: false,
+				margin: 30,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					480: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					992: {
-						items:4
+						items: 4
 					}
 				}
-	        });
+			});
 
-	        /* Index-dentist - Testimonials Carousel */
+			/* Index-dentist - Testimonials Carousel */
 			$('.testimonials-carousel-dots.owl-carousel').owlCarousel({
-	            loop:true,
-				margin:30,
-				responsiveClass:true,
-				nav:false,
+				loop: true,
+				margin: 30,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					768: {
-						items:2
+						items: 2
 					}
 				}
-	        });
+			});
 
-	        /* Index-veterinary - Testimonials Carousel */
+			/* Index-veterinary - Testimonials Carousel */
 			$('.testimonials-slider-dots.owl-carousel').owlCarousel({
-	            loop:true,
-				margin:0,
-				responsiveClass:true,
-				nav:false,
+				loop: true,
+				margin: 0,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				items:1
-	        });
+				items: 1
+			});
 
 			/* index-shop.html -  Top Products Carousel */
 			$('.top-products-carousel.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:20,
-				responsiveClass:true,
-				nav:false,
+				loop: false,
+				margin: 20,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 12000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					420: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					1200: {
-						items:4
+						items: 4
 					}
 				}
-	        });
-	        
+			});
+
 			/* index-shop.html -  Banner Slider Widget */
 			$('.owl-carousel.banner-widget-slider').owlCarousel({
-	            loop:true,
-	            items:1,
-				margin:0,
-				responsiveClass:true,
-				nav:false,
+				loop: true,
+				items: 1,
+				margin: 0,
+				responsiveClass: true,
+				nav: false,
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 18000
-	        });
+			});
 
-	        /* index-shop.html -  Latest News Carousel */
+			/* index-shop.html -  Latest News Carousel */
 			$('.latest-news-carousel.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:20,
-				responsiveClass:true,
-				nav:false,
+				loop: false,
+				margin: 20,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					420: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					1200: {
-						items:4
+						items: 4
 					}
 				}
-	        });
+			});
 
-	        /* index-shop2.html -  Top Products Carousel 5col */
+			/* index-shop2.html -  Top Products Carousel 5col */
 			$('.top-products-carousel-5col.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:20,
-				responsiveClass:true,
-				nav:false,
+				loop: false,
+				margin: 20,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 12000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					420: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					992: {
 						items: 4
 					},
 					1200: {
-						items:5
+						items: 5
 					}
 				}
-	        });
+			});
 
-	        /* index-shop2.html -  Latest News Carousel 5col */
+			/* index-shop2.html -  Latest News Carousel 5col */
 			$('.latest-news-carousel-5col.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:20,
-				responsiveClass:true,
-				nav:false,
+				loop: false,
+				margin: 20,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					420: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					992: {
 						items: 4
 					},
 					1200: {
-						items:5
+						items: 5
 					}
 				}
-	        });
+			});
 
-	        /* index-shop3.html -  Trending Products Carousel */
+			/* index-shop3.html -  Trending Products Carousel */
 			$('.trending-products-carousel.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:30,
-				responsiveClass:true,
-				nav:false,
+				loop: false,
+				margin: 30,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					420: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					992: {
 						items: 4
 					}
 				}
-	        });
+			});
 
-	        /* Index-gym2 - Latest Post 4col Carousel */
-	        $('.latest-posts-4col-carousel.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:30,
-				responsiveClass:true,
-				nav:false,
+			/* Index-gym2 - Latest Post 4col Carousel */
+			$('.latest-posts-4col-carousel.owl-carousel').owlCarousel({
+				loop: false,
+				margin: 30,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					480: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					992: {
-						items:4
+						items: 4
 					}
 				}
-	        });
+			});
 
 			/* Product.html -  Product carousel to zoom product section */
 			$('.owl-carousel.product-gallery').owlCarousel({
-	            loop:false,
-				margin:3,
-				responsiveClass:true,
-				nav:false,
+				loop: false,
+				margin: 3,
+				responsiveClass: true,
+				nav: false,
 				dots: false,
 				autoplay: true,
 				autoplayTimeout: 10000,
-				responsive:{
-					0:{
-						items:4
+				responsive: {
+					0: {
+						items: 4
 					},
 					480: {
-						items:6
+						items: 6
 					},
 					768: {
-						items:6
+						items: 6
 					},
 					992: {
-						items:5
+						items: 5
 					},
 					1200: {
 						items: 6
 					}
 				}
-	        });
+			});
 
 			/* Similiar Carousel - compare.html - product.html  */
 			$('.similiar-products-carousel.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:20,
-				responsiveClass:true,
-				nav:false,
+				loop: false,
+				margin: 20,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 18000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					420: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					992: {
-						items:4
+						items: 4
 					},
 					1200: {
-						items:5
+						items: 5
 					}
 				}
-	        });
+			});
 
 			/* Testimonials Slider */
 			$('.testimonials-slider.owl-carousel').owlCarousel({
 				items: 1,
-	            loop:true,
-				margin:0,
-				responsiveClass:true,
-				nav:false,
+				loop: true,
+				margin: 0,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 15000
-	        });
+			});
 
 			/* Clients/Partners Carousel */
-	        $('.clients-carousel.owl-carousel').owlCarousel({
-	            loop:true,
-				margin:20,
-				responsiveClass:true,
-				nav:false,
+			$('.clients-carousel.owl-carousel').owlCarousel({
+				loop: true,
+				margin: 20,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:2,
+						items: 2,
 						margin: 10
 					},
 					420: {
-						items:3,
+						items: 3,
 						margin: 10
 					},
 					768: {
-						items:4,
-						margin:15
+						items: 4,
+						margin: 15
 					},
 					992: {
-						items:5
+						items: 5
 					}
 				}
-	        });
+			});
 
-	        /* Team Carousel */
-	        $('.team-carousel.owl-carousel').owlCarousel({
-	            loop:true,
-				margin:20,
-				responsiveClass:true,
-				nav:false,
+			/* Team Carousel */
+			$('.team-carousel.owl-carousel').owlCarousel({
+				loop: true,
+				margin: 20,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					420: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					992: {
-						items:4
+						items: 4
 					}
 				}
-	        });
+			});
 
-	        /* Testimonials Carousel */
+			/* Testimonials Carousel */
 			$('.testimonials-carousel.owl-carousel').owlCarousel({
-	            loop:true,
-				margin:30,
-				responsiveClass:true,
-				nav:true,
+				loop: true,
+				margin: 30,
+				responsiveClass: true,
+				nav: true,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: false,
 				autoplay: true,
 				autoplayTimeout: 15000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					768: {
-						items:2
+						items: 2
 					}
 				}
-	        });
+			});
 
-	        /* About Slider */
+			/* About Slider */
 			$('.about-slider.owl-carousel').owlCarousel({
 				items: 1,
-	            loop:true,
-				margin:0,
-				responsiveClass:true,
-				nav:false,
+				loop: true,
+				margin: 0,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 12000
-	        });
+			});
 
-	         /* Portfolio Post - Portfolio Slider */
+			/* Portfolio Post - Portfolio Slider */
 			$('.portfolio-post-slider.owl-carousel').owlCarousel({
-	            loop:true,
-	            items:1,
-				margin:0,
-				responsiveClass:true,
-				nav:false,
+				loop: true,
+				items: 1,
+				margin: 0,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 12000,
 				animateOut: 'fadeOut'
-	        });
+			});
 
-	        /* Portfolio Post - Related carousel */
+			/* Portfolio Post - Related carousel */
 			$('.portfolio-related-carousel.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:20,
-				responsiveClass:true,
-				nav:false,
+				loop: false,
+				margin: 20,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 18000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					420: {
-						items:2
+						items: 2
 					},
 					768: {
-						items:3
+						items: 3
 					},
 					992: {
-						items:4
+						items: 4
 					}
 				}
-	        });
+			});
 
-	        /* Blog Post - Related carousel */
+			/* Blog Post - Related carousel */
 			$('.blog-related-carousel.owl-carousel').owlCarousel({
-	            loop:false,
-				margin:20,
-				responsiveClass:true,
-				nav:false,
+				loop: false,
+				margin: 20,
+				responsiveClass: true,
+				nav: false,
 				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
 				dots: true,
 				autoplay: true,
 				autoplayTimeout: 18000,
-				responsive:{
+				responsive: {
 					0: {
-						items:1
+						items: 1
 					},
 					600: {
-						items:2
+						items: 2
 					}
 				}
-	        });
+			});
 		},
 		tooltip: function () {
 			// Bootstrap Tooltip
-			if ( $.fn.tooltip ) {
+			if ($.fn.tooltip) {
 				$('[data-toggle="tooltip"]').tooltip();
 			}
 		},
 		popover: function () {
 			// Bootstrap Popover
-			if ( $.fn.popover ) {
+			if ($.fn.popover) {
 				$('[data-toggle="popover"]').popover({
 					trigger: 'focus'
 				});
 			}
 		},
 		scrollBtnAppear: function () {
-	        if ( $(window).scrollTop() >= 400 ) {
-	            $('#scroll-top').addClass('fixed');
-	        } else {
-	            $('#scroll-top').removeClass('fixed');
-	        }
+			if ($(window).scrollTop() >= 400) {
+				$('#scroll-top').addClass('fixed');
+			} else {
+				$('#scroll-top').removeClass('fixed');
+			}
 		},
 		scrollToTop: function () {
 			$('#scroll-top').on('click', function (e) {
-		        $('html, body').animate({
-			            'scrollTop': 0
-		        }, 1200);
+				$('html, body').animate({
+					'scrollTop': 0
+				}, 1200);
 				e.preventDefault();
 			});
 		},
@@ -1159,7 +1210,7 @@ function googleTranslateElementInit() {
 			/* Lightbox for portfolio items and videso and etc.. */
 			$('.popup-gallery').lightGallery({
 				selector: '.zoom-btn',
-				thumbnail:true,
+				thumbnail: true,
 				exThumbImage: 'data-thumb',
 				thumbWidth: 50,
 				thumbContHeight: 60
@@ -1168,7 +1219,7 @@ function googleTranslateElementInit() {
 			// Lightbox for video with button - see: index-agency
 			$('.video-btn-section').lightGallery({
 				selector: '.trigger-video-btn',
-				thumbnail:false
+				thumbnail: false
 			});
 		},
 		productZoom: function () {
@@ -1187,9 +1238,9 @@ function googleTranslateElementInit() {
 					lensBorderSize: 3, // lens border size
 					lensOpacity: 1,
 					lensColour: 'rgba(255, 255, 255, 0.5)', // lens color
-					lensShape : "square", // circle lens shape can be uses
-					lensSize : 200,
-					scrollZoom : true
+					lensShape: "square", // circle lens shape can be uses
+					lensSize: 200,
+					scrollZoom: true
 				});
 
 				/* swap images for zoom on click event */
@@ -1198,7 +1249,7 @@ function googleTranslateElementInit() {
 						smallImg = $(this).data('image'),
 						bigImg = $(this).data('zoom-image');
 
-						ez.swaptheimage(smallImg, bigImg);
+					ez.swaptheimage(smallImg, bigImg);
 					e.preventDefault();
 				});
 			}
@@ -1206,69 +1257,71 @@ function googleTranslateElementInit() {
 		progressBars: function () {
 			var self = this;
 			// Calculate and Animate Progress 
-			$('.progress-animate').waypoint( function (direction) {
-				var $this =  $(this.element),
+			$('.progress-animate').waypoint(function (direction) {
+				var $this = $(this.element),
 					progressVal = $this.data('width');
 
-				$this.css({ 'width' : progressVal + '%'}, 400);
+				$this.css({
+					'width': progressVal + '%'
+				}, 400);
 			}, {
 				offset: '90%',
-				triggerOnce: true 
+				triggerOnce: true
 			});
 		},
 		countTo: function () {
 			// CountTo plugin used count animations for homepages
-			if ( $.fn.countTo ) {
+			if ($.fn.countTo) {
 				if ($.fn.waypoint) {
-					$('.count').waypoint( function () {
+					$('.count').waypoint(function () {
 						$(this.element).countTo();
 					}, {
 						offset: '90%',
-						triggerOnce: true 
+						triggerOnce: true
 					});
 				} else {
 					$('.count').countTo();
-				}	
-			} else { 
+				}
+			} else {
 				// fallback if count plugin doesn't included
 				// Get the data-to value and add it to element
 				$('.count').each(function () {
 					var $this = $(this),
 						countValue = $this.data('to');
-						$this.text(countValue);
+					$this.text(countValue);
 				});
 			}
 		},
 		scrollAnimations: function () {
 			/* Wowy Plugin */
-			if ( typeof WOW === 'function' ) {
+			if (typeof WOW === 'function') {
 				new WOW({
-					boxClass:     'wow',      // default
+					boxClass: 'wow', // default
 					animateClass: 'animated', // default
-					offset:       0          // default
+					offset: 0 // default
 				}).init();
 			}
 		},
 		twitterFeed: function () {
 			/* Twitter feed for user*/
-			if ( $.fn.tweet && $('.twitter-feed-widget').length ) {
-			    $('.twitter-feed-widget').tweet({
-			        modpath: './assets/js/twitter/',
-			        avatar_size: '',
+			if ($.fn.tweet && $('.twitter-feed-widget').length) {
+				$('.twitter-feed-widget').tweet({
+					modpath: './assets/js/twitter/',
+					avatar_size: '',
 					count: 2,
 					query: 'wrapbootstrap', // change query with username if you want to display search results
-					loading_text:  'searching twitter...',
-			        join_text: '',
-			        retweets: false,
-			        template: '<div class="twitter-icon"><i class="fa fa-twitter"></i></div><div class="tweet-content">{text}{time}</div>'
-			        /* etc... */
-			    });
+					loading_text: 'searching twitter...',
+					join_text: '',
+					retweets: false,
+					template: '<div class="twitter-icon"><i class="fa fa-twitter"></i></div><div class="tweet-content">{text}{time}</div>'
+					/* etc... */
+				});
 			}
 		},
 		flickerFeed: function () {
 			/* Flickr feed plugin  */
 			// credits https://www.flickr.com/photos/smanography/
-			if ( $.fn.jflickrfeed ) {
+			if ($.fn.jflickrfeed) {
 				$('.flickr-widget-list').jflickrfeed({
 					limit: 12,
 					qstrings: {
@@ -1280,67 +1333,67 @@ function googleTranslateElementInit() {
 		},
 		instagramFeed: function () {
 			// Instagram Feed
-			if ( $.fn.spectragram && $('#instafeed').length) {
+			if ($.fn.spectragram && $('#instafeed').length) {
 
 				jQuery.fn.spectragram.accessData = {
-				    accessToken: '2229187323.566f1cf.c41eaca370664379b822dc3b17bb1464',
-				    clientID: '7c28e44736494357ba3df343b1c699fe'
+					accessToken: '2229187323.566f1cf.c41eaca370664379b822dc3b17bb1464',
+					clientID: '7c28e44736494357ba3df343b1c699fe'
 				};
 
-				jQuery('#instafeed').spectragram('getUserFeed',{
-				    query: 'pizza',
-				    max: 13,
-				    size: 'medium',
-				    wrapEachWith: '',
-				    complete: function() {
+				jQuery('#instafeed').spectragram('getUserFeed', {
+					query: 'pizza',
+					max: 13,
+					size: 'medium',
+					wrapEachWith: '',
+					complete: function () {
 
-				    	$('#instafeed.owl-carousel').owlCarousel({
-				            loop:true,
-							margin:0,
-							responsiveClass:true,
-							nav:false,
+						$('#instafeed.owl-carousel').owlCarousel({
+							loop: true,
+							margin: 0,
+							responsiveClass: true,
+							nav: false,
 							dots: false,
 							autoplay: true,
 							autoplayTimeout: 15000,
-							smartSpeed:800,
-							responsive:{
+							smartSpeed: 800,
+							responsive: {
 								0: {
-									items:3
+									items: 3
 								},
 								480: {
-									items:4
+									items: 4
 								},
 								768: {
-									items:6
+									items: 6
 								},
 								992: {
-									items:7
+									items: 7
 								},
 								1200: {
-									items:9
+									items: 9
 								},
 								1500: {
-									items:10
+									items: 10
 								},
 								1900: {
-									items:12
+									items: 12
 								}
 							}
-				        });
-				    }
+						});
+					}
 				});
-		    }
+			}
 		},
-		filterSliders:function () {
+		filterSliders: function () {
 			// Slider For category pages / filter price
-			var priceSlider  = document.getElementById('price-slider');
+			var priceSlider = document.getElementById('price-slider');
 
 			// Check if #price-slider elem is exists if not return
 			// to prevent error logs
 			if (priceSlider == null) return;
 
 			noUiSlider.create(priceSlider, {
-				start: [ 100, 900 ],
+				start: [100, 900],
 				connect: true,
 				step: 50,
 				range: {
@@ -1351,7 +1404,7 @@ function googleTranslateElementInit() {
 
 			this.sliderText(priceSlider, '$');
 		},
-		sliderText: function(slider, currency) {
+		sliderText: function (slider, currency) {
 			// add slider values as a text 
 			// check for currency too
 			var currencyVar = (currency) ? '$' : null,
@@ -1359,31 +1412,31 @@ function googleTranslateElementInit() {
 				divs = [];
 
 			// Add divs to the slider handles.
-			for ( var i = 0; i < divHandles.length; i++ ){
+			for (var i = 0; i < divHandles.length; i++) {
 				divs[i] = document.createElement('div');
 				divHandles[i].appendChild(divs[i]);
 			}
 
 			// When the slider changes, write the value to the tooltips.
-			slider.noUiSlider.on('update', function( values, handle ){
-				divs[handle].innerHTML = ( currencyVar) ? (currencyVar + values[handle]) : Math.round(values[handle]);
+			slider.noUiSlider.on('update', function (values, handle) {
+				divs[handle].innerHTML = (currencyVar) ? (currencyVar + values[handle]) : Math.round(values[handle]);
 			});
 		},
-		isotopeActivate: function() {
+		isotopeActivate: function () {
 			// Trigger for isotope plugin
-			if ( $.fn.isotope ) {
+			if ($.fn.isotope) {
 				var container = this.container,
 					layoutMode = container.data('layoutmode');
 
 				container.isotope({
-                	itemSelector: '.portfolio-item',
-                	layoutMode: (layoutMode) ? layoutMode : 'masonry'
-            	});
+					itemSelector: '.portfolio-item',
+					layoutMode: (layoutMode) ? layoutMode : 'masonry'
+				});
 			}
 		},
 		isotopeReinit: function () {
 			// Recall for isotope plugin
-			if ( $.fn.isotope ) {
+			if ($.fn.isotope) {
 				this.container.isotope('destroy');
 				this.isotopeActivate();
 			}
@@ -1393,7 +1446,7 @@ function googleTranslateElementInit() {
 			var self = this,
 				filtersContainer = $('#portfolio-filter, #nav-portfolio-filter');
 
-			filtersContainer.find('a').on('click', function(e) {
+			filtersContainer.find('a').on('click', function (e) {
 				var $this = $(this),
 					selector = $this.attr('data-filter');
 
@@ -1404,27 +1457,27 @@ function googleTranslateElementInit() {
 					filter: selector,
 					transitionDuration: '0.8s'
 				});
-				
+
 				$this.closest('li').addClass('active');
 				e.preventDefault();
 			});
 		},
-		blogMasonry: function() {
+		blogMasonry: function () {
 			// Trigger for isotope plugin
-			if ( $.fn.isotope ) {
+			if ($.fn.isotope) {
 				var blogContainer = this.blogContainer;
 
 				blogContainer.isotope({
-                	itemSelector: '.entry-grid',
-                	layoutMode: 'masonry'
-            	});
+					itemSelector: '.entry-grid',
+					layoutMode: 'masonry'
+				});
 			}
 		},
 		matchProducts: function () {
 			// Match all products (Category - Shop Pages)
-			$('.products-container').each(function() {
-                $(this).find('.product').matchHeight();
-            });
+			$('.products-container').each(function () {
+				$(this).find('.product').matchHeight();
+			});
 		}
 	};
 
@@ -1435,7 +1488,7 @@ function googleTranslateElementInit() {
 	});
 
 	// Load Event
-	$(window).on('load', function() {
+	$(window).on('load', function () {
 		Simple.scrollBtnAppear();
 	});
 
@@ -1446,54 +1499,60 @@ function googleTranslateElementInit() {
 
 
 	// Google Map api v3 - Map for contact pages
-    if ( document.getElementById("map") && typeof google === "object" ) {
-    	// Map pin coordinates and content of pin box
-        var locations = [
-            [
-            	'<address><strong>Address:</strong> Hollywood Blvd, Los Angeles, CA, USA <br> <strong>Phone:</strong> +01 010 554 11 22 </address>',
-            	34.101780,
-            	-118.333655
-        	]
-        ];
+	if (document.getElementById("map") && typeof google === "object") {
+		// Map pin coordinates and content of pin box
+		var locations = [
+			[
+				'<address><strong>Address:</strong> Hollywood Blvd, Los Angeles, CA, USA <br> <strong>Phone:</strong> +01 010 554 11 22 </address>',
+				34.101780, -118.333655
+			]
+		];
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 14,
-            center: new google.maps.LatLng(34.101780, -118.333655), // Map Center coordinates
-            scrollwheel: false,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
+		var map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 14,
+			center: new google.maps.LatLng(34.101780, -118.333655), // Map Center coordinates
+			scrollwheel: false,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		});
 
-        var infowindow = new google.maps.InfoWindow();
+		var infowindow = new google.maps.InfoWindow();
 
 
-        var marker, i;
+		var marker, i;
 
-        for ( i = 0; i < locations.length; i++ ) {  
-          marker = new google.maps.Marker({
-            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-            map: map,
-            animation: google.maps.Animation.DROP,
-            icon: 'assets/images/pin.png'
-          });
+		for (i = 0; i < locations.length; i++) {
+			marker = new google.maps.Marker({
+				position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+				map: map,
+				animation: google.maps.Animation.DROP,
+				icon: 'assets/images/pin.png'
+			});
 
-          google.maps.event.addListener(marker, 'click', (function (marker, i) {
-            return function() {
-              infowindow.setContent(locations[i][0]);
-              infowindow.open(map, marker);
-            }
-          })(marker, i));
-        }
-    }
+			google.maps.event.addListener(marker, 'click', (function (marker, i) {
+				return function () {
+					infowindow.setContent(locations[i][0]);
+					infowindow.open(map, marker);
+				}
+			})(marker, i));
+		}
+	}
 })(jQuery);
 
 if (window.location.origin.indexOf('eonythemes') === -1) {
-    //window.location.href = 'http://eonythemes.com/themes/wb/simple/';
+	//window.location.href = 'http://eonythemes.com/themes/wb/simple/';
 }
 
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+(function (i, s, o, g, r, a, m) {
+	i['GoogleAnalyticsObject'] = r;
+	i[r] = i[r] || function () {
+		(i[r].q = i[r].q || []).push(arguments)
+	}, i[r].l = 1 * new Date();
+	a = s.createElement(o),
+		m = s.getElementsByTagName(o)[0];
+	a.async = 1;
+	a.src = g;
+	m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
 ga('create', 'UA-57177726-9', 'auto');
 ga('send', 'pageview');
