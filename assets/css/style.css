@@ -4465,7 +4465,7 @@ label.error {
   display: inline-block;
   position: relative;
   padding-left: 50px;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1;
 }
 
@@ -4499,7 +4499,7 @@ label.error {
 }
 
 .header-info-boxes .header-info-box .info-box-title {
-  font-size: 13px;
+  font-size: 11px;
   text-transform: uppercase;
   color: #333;
   margin-top: 2px;
@@ -6436,7 +6436,7 @@ label.error {
 
 /* Header Bottom - Custom */
 .header-bottom.custom {
-  background-color: #228b22;
+  background-color: #3CB371;
 }
 
 .header-bottom.custom .navbar-toggle:hover, .header-bottom.custom .navbar-toggle:focus {
@@ -13077,4 +13077,17 @@ label.error {
 
 .dark .soon-section .form-control::placeholder {
   color: #999;
+}
+.fa-chevron-circle-up {
+  background: yellow;
+  border-radius: 50%;
+  height: 1em;
+  width: 1em;
+}
+.profile-pic{
+  background-image: url('../../libin.jpg');
+  background-repeat: no-repeat;
+  height:50px !important;
+  width:50px!important;
+  margin-top: -30px!important;
 }
