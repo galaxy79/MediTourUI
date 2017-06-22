@@ -1536,6 +1536,9 @@ function googleTranslateElementInit() {
 			})(marker, i));
 		}
 	}
+
+	//Login Page
+	
 })(jQuery);
 
 if (window.location.origin.indexOf('eonythemes') === -1) {
