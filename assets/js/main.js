@@ -65,7 +65,7 @@ function googleTranslateElementInit() {
 
 
 
-	$('.main').load("hospitalzone.html");
+	$('.main').load("login.html");
 	$('#google_translate_element').on("click", function () {
 
 		// Change font family and color
