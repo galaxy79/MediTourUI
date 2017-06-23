@@ -34,18 +34,38 @@ var officeAddress="No:12/35, Bangalore Street, Bangalore Main Road, Bangalore, K
 
 var whyIndia="Because India.";
 
-function loadPage() {
-	document.getElementsByClassName('main')[0].innerHTML = '<object type="text/html" data="~/homepage.html" ></object>';
-}
 
-function googleTranslateElementInit() {
-	new google.translate.TranslateElement({
-		pageLanguage: 'en'
-	}, 'pageLanguage');
-}
+// function googleTranslateElementInit() {
+// 	new google.translate.TranslateElement({
+// 		pageLanguage: 'en'
+// 	}, 'pageLanguage');
+// }
 
 (function ($) {
 	"use strict";
+	//Facebook and Google Authentcations
+	//Facebook
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : 'your-app-id',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v2.9',
+	  status			:true
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+
+
 	//load for Master Page
 
 	//Load TagCloud Contents
@@ -66,7 +86,7 @@ function googleTranslateElementInit() {
 
 
 	$('.main').load("login.html");
-	$('#google_translate_element').on("click", function () {
+	//$('#google_translate_element').on("click", function () {
 
 		// Change font family and color
 		$("iframe").contents().find(".goog-te-menu2-item div, .goog-te-menu2-item:link div, .goog-te-menu2-item:visited div, .goog-te-menu2-item:active div, .goog-te-menu2 *")
@@ -91,7 +111,7 @@ function googleTranslateElementInit() {
 			'-webkit-box-shadow': '0 3px 8px 2px #666',
 			'box-shadow': '0 3px 8px 2px #666'
 		});
-	});
+	//});
 	var Simple = {
 		initialised: false,
 		mobile: false,
