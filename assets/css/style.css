@@ -105,7 +105,9 @@ body {
   position: relative;
   direction: ltr;
   color: #323232;
-  font: 400 13px/1.7 "Open Sans", Arial, sans-serif;
+  /*font: 400 13px/1.7 "Open Sans", Arial, sans-serif;*/
+  /*font: 400 13px/1.7 BlinkMacSystemFont,'Roboto',Helvetica Neue,sans-serif !important;*/
+  font-family: BlinkMacSystemFont,'Roboto',Helvetica Neue,sans-serif;
   background-color: #9a9a9a;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -2788,6 +2790,8 @@ label.error {
   padding: 25px 17px;
   text-align: center;
   transition: all 0.4s;
+  width:25%;
+  height:200px;
 }
 
 .service.service-box.service-icon-top {
@@ -3013,8 +3017,8 @@ label.error {
 
 .services-group {
   margin-bottom: 50px;
-  margin-left:  50px;
-  margin-right: 50px;
+  margin-left:  250px;
+  margin-right: 250px;
 }
 
 .services-group .service-row {
@@ -13091,8 +13095,59 @@ label.error {
   width:50px!important;
   margin-top: -30px!important;
 }
+/*MasterPage*/
+#Chat-Window {
+  position: fixed;
+  bottom: 70px;
+  right: 30px;
+  display: block;
+  padding-left: 5px;
+  cursor: pointer;
+  z-index: 999;
+  width: 300px;
+  height: 36px;
+  line-height: 36px;
+  font-size: 15px;
+  margin-bottom: 10px;
+  transition: all 0.4s;
+  -ms-transform: translateY(75px);
+  transform: translateY(75px);
+  text-align: left;
+  color: #fff;
+  background-color: #02C39A;
+}
 
-/*Login Page*/
+#Chat-Window.fixed {
+  opacity: 1;
+  visibility: visible;
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+
+#Chat-Window:hover, #Chat-Window:focus {
+  background-color: #004b7d;
+}
+
+@media (max-width: 767px) {
+  #Chat-Window {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+
+
+/*HomePage*/
+
+@media (min-width: 1200px)
+{
+.container {
+    width: 1300px;
+}
+}
+
+/*LoginPage*/
 .loginButton{
 background-color: #02C39A;
     color: white;

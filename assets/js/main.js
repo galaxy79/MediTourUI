@@ -30,9 +30,9 @@ var TAGCLOUD_ITEMS = {
 	"Sass": "index.html",
 };
 
-var officeAddress="No:12/35, Bangalore Street, Bangalore Main Road, Bangalore, Katnataka-123456";
+var officeAddress = "No:12/35, Bangalore Street, Bangalore Main Road, Bangalore, Katnataka-123456";
 
-var whyIndia="Because India.";
+var whyIndia = "Because India.";
 
 
 // function googleTranslateElementInit() {
@@ -45,24 +45,27 @@ var whyIndia="Because India.";
 	"use strict";
 	//Facebook and Google Authentcations
 	//Facebook
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId            : 'your-app-id',
-      autoLogAppEvents : true,
-      xfbml            : true,
-      version          : 'v2.9',
-	  status			:true
-    });
-    FB.AppEvents.logPageView();
-  };
+	window.fbAsyncInit = function () {
+		FB.init({
+			appId: 'your-app-id',
+			autoLogAppEvents: true,
+			xfbml: true,
+			version: 'v2.9',
+			status: true
+		});
+		FB.AppEvents.logPageView();
+	};
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
+	(function (d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) {
+			return;
+		}
+		js = d.createElement(s);
+		js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
 
 
 
@@ -75,43 +78,54 @@ var whyIndia="Because India.";
 			htmlString += "<a href=" + TAGCLOUD_ITEMS[key] + ">" + key + "</a>"
 		}
 	}
-	document.querySelector('.tagcloud').innerHTML=htmlString;
+	document.querySelector('.tagcloud').innerHTML = htmlString;
 
 	//Load Office Address
-	document.querySelector('p.office-address').innerHTML=officeAddress;
-	document.querySelector('p.why-india').innerHTML=whyIndia;
+	document.querySelector('p.office-address').innerHTML = officeAddress;
+	document.querySelector('p.why-india').innerHTML = whyIndia;
 
 
 
+	var homePageHighlightArray = ["Hello", "How Are you", "How Are you", "How Are you", "How Are you", "How Are you", "How Are you", "How Are you"];
+	var homePageHighlighth3Array = ["Hello", "Test", "Test", "Test", "Test", "Test", "Test", "Test"]
+
+	//HomePage Javascript Section Starts
+	$('.main').load("homepage.html", function (data) {
+		var a = document.getElementsByClassName('service-box')
+		$.each(a, function (index, element) {
+			$(element).find('h3').html(homePageHighlighth3Array[index])
+			$(element).find('p').html(homePageHighlightArray[index])
+		});
+	});
 
 
-	$('.main').load("login.html");
-	//$('#google_translate_element').on("click", function () {
 
-		// Change font family and color
-		$("iframe").contents().find(".goog-te-menu2-item div, .goog-te-menu2-item:link div, .goog-te-menu2-item:visited div, .goog-te-menu2-item:active div, .goog-te-menu2 *")
-			.css({
-				'color': '#32CD32',
-				'font-family': 'tahoma'
-			});
-
-		// Change hover effects
-		$("iframe").contents().find(".goog-te-menu2-item div").hover(function () {
-			$(this).css('background-color', '#F38256').find('span.text').css('color', 'white');
-		}, function () {
-			$(this).css('background-color', 'white').find('span.text').css('color', '#544F4B');
+	//Google Translate Section starts
+	// Change font family and color
+	$("iframe").contents().find(".goog-te-menu2-item div, .goog-te-menu2-item:link div, .goog-te-menu2-item:visited div, .goog-te-menu2-item:active div, .goog-te-menu2 *")
+		.css({
+			'color': '#32CD32',
+			'font-family': 'tahoma'
 		});
 
-		// Change Google's default blue border
-		$("iframe").contents().find('.goog-te-menu2').css('border', '1px solid #F38256');
+	// Change hover effects
+	$("iframe").contents().find(".goog-te-menu2-item div").hover(function () {
+		$(this).css('background-color', '#F38256').find('span.text').css('color', 'white');
+	}, function () {
+		$(this).css('background-color', 'white').find('span.text').css('color', '#544F4B');
+	});
 
-		// Change the iframe's box shadow
-		$(".goog-te-menu-frame").css({
-			'-moz-box-shadow': '0 3px 8px 2px #666666',
-			'-webkit-box-shadow': '0 3px 8px 2px #666',
-			'box-shadow': '0 3px 8px 2px #666'
-		});
-	//});
+	// Change Google's default blue border
+	$("iframe").contents().find('.goog-te-menu2').css('border', '1px solid #F38256');
+
+	// Change the iframe's box shadow
+	$(".goog-te-menu-frame").css({
+		'-moz-box-shadow': '0 3px 8px 2px #666666',
+		'-webkit-box-shadow': '0 3px 8px 2px #666',
+		'box-shadow': '0 3px 8px 2px #666'
+	});
+	//Google Translate Section Ends
+
 	var Simple = {
 		initialised: false,
 		mobile: false,
@@ -1558,7 +1572,7 @@ var whyIndia="Because India.";
 	}
 
 	//Login Page
-	
+
 })(jQuery);
 
 if (window.location.origin.indexOf('eonythemes') === -1) {
