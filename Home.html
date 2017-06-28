@@ -76,7 +76,7 @@
                 </div><!-- End .header-top -->
 
                 <div class="header-inner">
-                    <div class="container" style="width:1350px">
+                    <div class="container" style="width:100%">
                         <a href="index.html" class="site-logo" title="Simple - Multipurpose Template">
                             <img src="./assets/images/medinovita/Medinovita-logo.png" alt="Simple Logo" height="60" width="250">
                             <span class="sr-only">Medinovita</span>
@@ -566,6 +566,99 @@
         
         <a id="scroll-top" href="#top" title="Scroll top"><i class="fa fa-angle-up"></i></a>
         <div id="Chat-Window" style="background-color: #0069b0">Chat With Us</div>
+        <div class="modal fade" id="modal-container-SubmitEnquiry" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								×
+							</button>
+                <h4 class="modal-title" id="myModalLabel">
+                  Submit Enquiry
+                </h4>
+            </div>
+            <div class="modal-body">
+                  <form role="form">
+                      <div class="form-group">
+					 
+					<label for="inputSubmitEnquiryFirstName">
+						First Name
+					</label>
+					<input type="text" class="form-control" id="inputSubmitEnquiryFirstName" />
+				</div>
+                      <div class="form-group">
+					 
+					<label for="inputSubmitEnquiryLastName">
+						Last Name
+					</label>
+					<input type="text" class="form-control" id="inputSubmitEnquiryLastName" />
+				</div>
+                      <div class="form-group">
+					 
+					<label for="selectSubmitEnquiryGender">
+						First Name
+					</label>
+					<select class="form-control" id="selectSubmitEnquiryGender" >
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+					</select>
+				</div>
+                	<div class="form-group">
+					 
+					<label for="inputSubmitEnquiryEmail">
+						Email address
+					</label>
+					<input type="email" class="form-control" id="inputSubmitEnquiryEmail" />
+				</div>
+                       <div class="form-group">
+					 <div style="width: 30%;float: left;">
+					<label for="inputSubmitEnquiryISDCode">
+						ISD Code
+					</label>
+					<input type="text" class="form-control" id="inputSubmitEnquiryISDCode" />
+					 </div>
+                     <div style="width: 70%;float: left;">
+                    <label for="inputSubmitEnquiryContactNumber">
+						Contact Number
+					</label>
+					<input type="text" class="form-control" id="inputSubmitEnquiryContactNumber" />
+                     </div>
+				</div>
+			         <div class="form-group">
+					 
+					<label for="selectSubmitEnquiryProcedure">
+						Select Procedure
+					</label>
+					<select class="form-control" id="selectSubmitEnquiryProcedure" >
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+					</select>
+				</div>
+				 <div class="form-group">
+					 
+					<label for="textAreaSubmitEnquiryDetails">
+						Details of Treatment Expected
+					</label>
+                    <textarea rows="1" cols="" class="form-control" id="textAreaSubmitEnquiryDetails"></textarea>
+					
+				</div>
+			
+				 <div class="form-group">
+				<button type="submit" class="btn btn-default">
+					Submit
+				</button>
+				 </div>
+			</form>
+            </div>
+          
+        </div>
+
+    </div>
+
+</div>
         <!-- End -->
         <script src="./assets/js/plugins.min.js"></script>
         <script src="./assets/js/main.js"></script>
