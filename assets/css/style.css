@@ -2443,7 +2443,7 @@ label,
 }
 
 textarea.form-control {
-  min-height: 150px;
+  min-height: 100px;
 }
 
 .textarea-container {
@@ -3056,6 +3056,13 @@ label.error {
     float: left;
     padding-left: 25px;
     padding-right: 25px;
+  }
+}
+@media (max-width: 768px) {
+  .services-group .service {
+    
+    float: left;
+    
   }
 }
 
@@ -3986,6 +3993,9 @@ label.error {
   .modal-dialog.modal-sm {
     width: 360px;
   }
+  .modal-dialog.modal-lg {
+    width: 600px;
+  }
 }
 
 .modal-content {
@@ -4440,7 +4450,7 @@ label.error {
 .site-logo {
   display: block;
   float: left;
-  margin: 36px 0;
+  margin: 6px 0;
 }
 
 .site-logo img {
@@ -13098,8 +13108,8 @@ label.error {
 /*MasterPage*/
 #Chat-Window {
   position: fixed;
-  bottom: 70px;
-  right: 30px;
+  bottom: 65px;
+  right: 5px;
   display: block;
   padding-left: 5px;
   cursor: pointer;
@@ -13145,6 +13155,13 @@ label.error {
 .container {
     width: 1300px;
 }
+}
+@media (max-width: 400px)
+{
+.paddingTopContainer{
+  margin-top: 220px !important;
+}
+
 }
 
 /*LoginPage*/

@@ -13,9 +13,22 @@
   font-weight: 700 !important;
 }
 
-@media (min-width:992px){
+@media (max-width:1150px){
     .rev_slider {
-        width: 100%;
+        width: 100% !important;
+           
+    margin-left: 0% !important;
+    }
+    .quoteInquiryInnerDiv{
+width: 100% !important;
+    }
+    .quoteInquiryDiv{
+width: 100% !important;
+     float: left; 
+     height: 70%
+    }
+    .slider-container-medical{
+      
     }
 }
 
