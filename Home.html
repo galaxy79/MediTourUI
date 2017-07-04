@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Simple - Multipurpose Template</title>
+        <title>Medinovita</title>
         <meta name="description" content="Multipurpose and creative template">
 
         <!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <![endif]-->
@@ -91,7 +91,7 @@
                             </div><!-- End .header-info-box -->
 
                             <div class="header-info-box">
-                                <i class="fa fa-whatsapp custom"></i>
+                                <i class="fa fa-whatsapp custom" style="background-color: green"></i>
                                 <div class="info-box-title">Whatsapp Contact</div>
                                 <p>1234567890</p>
                             </div><!-- End .header-info-box -->
@@ -622,7 +622,7 @@
 					
 				</div>
 			
-				 <div class="form-group">
+				 <div class="form-group" style="text-align: center">
 				<button type="submit" class="btn btn-success">
 					Submit
 				</button>
@@ -728,11 +728,16 @@
             });
         </script>
         <script type="text/javascript">
+                                // function googleTranslateElementInit() {
+                                // new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                                // }
                                 function googleTranslateElementInit() {
-                                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-                                }
+  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'ar,en,es,jv,ko,pa,pt,ru,zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+}
                                 </script>
 
                                 <script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                               <link rel="stylesheet" href="./assets/css/googletranslate.css">  
+
     </body>
 </html>

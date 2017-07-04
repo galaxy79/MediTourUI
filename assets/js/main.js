@@ -124,6 +124,15 @@ var whyIndia = "Because India.";
 		'-webkit-box-shadow': '0 3px 8px 2px #666',
 		'box-shadow': '0 3px 8px 2px #666'
 	});
+	$(".goog-te-combo").css({
+			'color': '#ffffff',
+			'font-family': 'tahoma'
+	})
+
+
+
+
+	
 	//Google Translate Section Ends
 
 	var Simple = {

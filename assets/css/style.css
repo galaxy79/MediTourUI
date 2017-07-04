@@ -4478,7 +4478,7 @@ label.error {
 .header-info-boxes .header-info-box {
   display: inline-block;
   position: relative;
-  padding-left: 50px;
+  padding-left: 40px;
   font-size: 10px;
   line-height: 1;
 }
@@ -13114,7 +13114,7 @@ label.error {
   padding-left: 5px;
   cursor: pointer;
   z-index: 999;
-  width: 300px;
+  width: 250px;
   height: 36px;
   line-height: 36px;
   font-size: 15px;
@@ -13177,3 +13177,5 @@ background-color: #0069b0;
 button:hover {
     opacity: 0.8;
 }
+
+
