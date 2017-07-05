@@ -4465,14 +4465,31 @@ label.error {
   margin-top: 35px;
 }
 
+
 .cart-dropdown + .header-info-boxes {
   margin-right: 15px;
 }
 
-@media (max-width: 991px) {
-  .header-info-boxes {
-    display: none;
+@media (max-width: 605px) {
+  .iconsCustom{
+display: none !important;
   }
+}
+
+@media (max-width:362px){
+  .iconsHide{
+display: none !important;
+  }
+}
+
+@media (max-width: 754px) {
+  .header-info-boxes {
+    /*display: none;*/
+    margin-bottom: 20px;
+    margin-top: 8px
+
+  }
+
 }
 
 .header-info-boxes .header-info-box {

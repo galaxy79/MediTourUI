@@ -61,7 +61,7 @@ body {
   #google_translate_element {
     bottom: calc(100% - 50% - 53px);
     left: 16px !important;
-    width: 100% !important;
+    width: 30% !important;
   }
   #google_translate_element goog-te-gadget {
     width: 100% !important;

@@ -128,13 +128,14 @@ var whyIndia = "Because India.";
 			'color': '#ffffff',
 			'font-family': 'tahoma'
 	})
-
-
-
-
-	
 	//Google Translate Section Ends
 
+
+//Load for Homepage
+$('#homepageCarousel').carousel({
+    interval: 3000,
+    cycle: true
+});
 	var Simple = {
 		initialised: false,
 		mobile: false,
