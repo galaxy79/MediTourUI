@@ -86,8 +86,13 @@ var latestNewsItems=[
 ];
 
 
+
 (function ($) {
 	"use strict";
+	$('#homepageCarousel').carousel({
+    interval: 100,
+    cycle: true
+});
 	//Facebook and Google Authentcations
 	//Facebook
 	window.fbAsyncInit = function () {
@@ -191,10 +196,7 @@ $('#latestNewsCarousel').html(latestNewsHtmlString);
 
 
 //Load for Homepage
-$('#homepageCarousel').carousel({
-    interval: 3000,
-    cycle: true
-});
+
 	var Simple = {
 		initialised: false,
 		mobile: false,
