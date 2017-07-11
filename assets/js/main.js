@@ -95,28 +95,29 @@ var latestNewsItems=[
 });
 	//Facebook and Google Authentcations
 	//Facebook
-	window.fbAsyncInit = function () {
-		FB.init({
-			appId: 'your-app-id',
-			autoLogAppEvents: true,
-			xfbml: true,
-			version: 'v2.9',
-			status: true
-		});
-		FB.AppEvents.logPageView();
-	};
+	// window.fbAsyncInit = function () {
+	// 	FB.init({
+	// 		appId: 'your-app-id',
+	// 		autoLogAppEvents: true,
+	// 		xfbml: true,
+	// 		version: 'v2.9',
+	// 		status: true
+	// 	});
+	// 	FB.AppEvents.logPageView();
+	// };
 
-	(function (d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) {
-			return;
-		}
-		js = d.createElement(s);
-		js.id = id;
-		js.src = "//connect.facebook.net/en_US/sdk.js";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
+	// (function (d, s, id) {
+	// 	var js, fjs = d.getElementsByTagName(s)[0];
+	// 	if (d.getElementById(id)) {
+	// 		return;
+	// 	}
+	// 	js = d.createElement(s);
+	// 	js.id = id;
+	// 	js.src = "//connect.facebook.net/en_US/sdk.js";
+	// 	fjs.parentNode.insertBefore(js, fjs);
+	// }(document, 'script', 'facebook-jssdk'));
 
+//Facebook Load Ends
 
 
 	//load for Master Page
@@ -136,31 +137,10 @@ var latestNewsItems=[
 
 
 
-	var homePageHighlightArray = ["Hello", "How Are you", "How Are you", "How Are you", "How Are you", "How Are you", "How Are you", "How Are you"];
-	var homePageHighlighth3Array = ["Hello", "Test", "Test", "Test", "Test", "Test", "Test", "Test"]
+
 
 	//HomePage Javascript Section Starts
-	$('.main').load("homepage.html", function (data) {
-		var a = document.getElementsByClassName('service-box')
-		$.each(a, function (index, element) {
-			$(element).find('h3').html(homePageHighlighth3Array[index])
-			$(element).find('p').html(homePageHighlightArray[index])
-		});
-		     var latestNewsHtmlString='';
-
-latestNewsItems.forEach(function(item,index){
-
-latestNewsHtmlString+=' <article data-id="'+item.newsId+'" class="entry entry-grid"><div class="entry-media"><figure><a href="single.html"><img src="'+item.imgPath +'" alt="Post image"></a></figure><div class="entry-meta"><span><i class="fa fa-calendar"></i>'+ item.postedDate+'</span><a href="#"><i class="fa fa-user"></i> '+
-item.postedBy+'</a></div></div><h2 class="entry-title"><i class="fa fa-file-image-o"></i><a href="single.html">'+
-item.postHeading+'</a></h2><div class="entry-content"><p>'+
-item.postShortContent+'</p><a href="#modal-container-LatestNews" class="readmore">Read more<i class="fa fa-angle-right"></i></a></div></article>';
-
-});
-
-
-
-$('#latestNewsCarousel').html(latestNewsHtmlString);
-	});
+	$('.main').load("cost.html");
 
 
 
@@ -1664,3 +1644,31 @@ if (window.location.origin.indexOf('eonythemes') === -1) {
 
 ga('create', 'UA-57177726-9', 'auto');
 ga('send', 'pageview');
+
+
+
+
+//HomePage Load callback
+function homepageCallback (data) {
+			var homePageHighlightArray = ["Hello", "How Are you", "How Are you", "How Are you", "How Are you", "How Are you", "How Are you", "How Are you"];
+	var homePageHighlighth3Array = ["Hello", "Test", "Test", "Test", "Test", "Test", "Test", "Test"]
+		var a = document.getElementsByClassName('service-box')
+		$.each(a, function (index, element) {
+			$(element).find('h3').html(homePageHighlighth3Array[index])
+			$(element).find('p').html(homePageHighlightArray[index])
+		});
+		     var latestNewsHtmlString='';
+
+latestNewsItems.forEach(function(item,index){
+
+latestNewsHtmlString+=' <article data-id="'+item.newsId+'" class="entry entry-grid"><div class="entry-media"><figure><a href="single.html"><img src="'+item.imgPath +'" alt="Post image"></a></figure><div class="entry-meta"><span><i class="fa fa-calendar"></i>'+ item.postedDate+'</span><a href="#"><i class="fa fa-user"></i> '+
+item.postedBy+'</a></div></div><h2 class="entry-title"><i class="fa fa-file-image-o"></i><a href="single.html">'+
+item.postHeading+'</a></h2><div class="entry-content"><p>'+
+item.postShortContent+'</p><a href="#modal-container-LatestNews" class="readmore">Read more<i class="fa fa-angle-right"></i></a></div></article>';
+
+});
+
+
+
+$('#latestNewsCarousel').html(latestNewsHtmlString);
+	}
