@@ -13123,6 +13123,14 @@ display: none !important;
   margin-top: -30px!important;
 }
 /*MasterPage*/
+.centerUL li{
+display: inline !important;
+text-align: center;
+}
+.centerUL{
+display: inline-block;
+}
+
 #Chat-Window {
   position: fixed;
   bottom: 65px;
