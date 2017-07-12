@@ -13122,15 +13122,8 @@ display: none !important;
   width:50px!important;
   margin-top: -30px!important;
 }
-/*MasterPage*/
-.centerUL li{
-display: inline !important;
-text-align: center;
-}
-.centerUL{
-display: inline-block;
-}
 
+/*MasterPage*/
 #Chat-Window {
   position: fixed;
   bottom: 65px;
@@ -13174,7 +13167,16 @@ display: inline-block;
 
 
 /*HomePage*/
+.fixedCarousel .item{
+    height: 400px;
+}
 
+.fixedCarousel .item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 400px;
+}
 
 
 

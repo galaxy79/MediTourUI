@@ -42,10 +42,10 @@ var whyIndia = "Because India.";
 
 (function ($) {
 	"use strict";
-	$('#homepageCarousel').carousel({
-		interval: 100,
-		cycle: true
-	});
+$('#costPageMenu').on('click',function(){
+	$('.main').html('');
+	$('.main').load("cost.html", function (data) { costCallback(data);});
+})
 	//Facebook and Google Authentcations
 	//Facebook
 	// window.fbAsyncInit = function () {
@@ -1217,55 +1217,7 @@ var whyIndia = "Because India.";
 				}
 			});
 
-			$('.top-doctors-carousel.owl-carousel').owlCarousel({
-				loop: false,
-				margin: 30,
-				responsiveClass: true,
-				nav: true,
-				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
-				dots: false,
-				autoplay: true,
-				autoplayTimeout: 150000,
-				responsive: {
-					0: {
-						items: 1
-					},
-					480: {
-						items: 1
-					},
-					768: {
-						items: 2
-					},
-					992: {
-						items: 2
-					}
-				}
-			});
-
-			$('.top-hospitals-carousel.owl-carousel').owlCarousel({
-				loop: false,
-				margin: 30,
-				responsiveClass: true,
-				nav: true,
-				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
-				dots: false,
-				autoplay: true,
-				autoplayTimeout: 150000,
-				responsive: {
-					0: {
-						items: 1
-					},
-					480: {
-						items: 1
-					},
-					768: {
-						items: 2
-					},
-					992: {
-						items: 2
-					}
-				}
-			});
+		
 
 		},
 		tooltip: function () {
@@ -1716,13 +1668,23 @@ function homepageCallback() {
 	];
 	var homePageHighlightArray = ["Hello", "How Are you", "How Are you", "How Are you", "How Are you", "How Are you", "How Are you", "How Are you"];
 	var homePageHighlighth3Array = ["Hello", "Test", "Test", "Test", "Test", "Test", "Test", "Test"]
+
+	//Homepage Carousel initialization
+		$('#homepageCarousel').carousel({
+		interval: 3500,
+		cycle: true
+	});
+
+
 	var a = document.getElementsByClassName('service-box')
 	$.each(a, function (index, element) {
 		$(element).find('h3').html(homePageHighlighth3Array[index])
 		$(element).find('p').html(homePageHighlightArray[index])
 	});
+
+	//Loading Latest news items
 	var latestNewsHtmlString = '';
-	debugger;
+
 	latestNewsItems.forEach(function (item, index) {
 
 		latestNewsHtmlString += ' <article data-id="' + item.newsId + '" class="entry entry-grid"><div class="entry-media"><figure><a href="single.html"><img src="' + item.imgPath + '" alt="Post image"></a></figure><div class="entry-meta"><span><i class="fa fa-calendar"></i>' + item.postedDate + '</span><a href="#"><i class="fa fa-user"></i> ' +
@@ -1731,10 +1693,8 @@ function homepageCallback() {
 			item.postShortContent + '</p><a data-id="' + item.newsId + '" href="#modal-container-LatestNews" class="readmore latestNewsReadmore" data-toggle="modal">Read more<i class="fa fa-angle-right"></i></a></div></article>';
 
 	});
-
-
-
 	$('#latestNewsCarousel').html(latestNewsHtmlString);
+
 
 //Populate latest news modal
 	$(document).on("click", ".latestNewsReadmore", function () {
@@ -1742,14 +1702,60 @@ function homepageCallback() {
 		var newsID = $(this).data('id');
 		$("#modal-container-LatestNews #myModalLabel").text(newsID);
 		$("#modal-container-LatestNews .modal-body").text("Modal Content");
-
-	
-		// $('#addBookDialog').modal('show');
 	});
 }
 
 //Cost page callback
-function costCallback() {
-	//Yet to be done
+function costCallback(data) {
+	
+		$('.top-doctors-carousel.owl-carousel').owlCarousel({
+				loop: false,
+				margin: 30,
+				responsiveClass: true,
+				nav: true,
+				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
+				dots: false,
+				autoplay: true,
+				autoplayTimeout: 150000,
+				responsive: {
+					0: {
+						items: 1
+					},
+					480: {
+						items: 1
+					},
+					768: {
+						items: 2
+					},
+					992: {
+						items: 2
+					}
+				}
+			});
+
+			$('.top-hospitals-carousel.owl-carousel').owlCarousel({
+				loop: false,
+				margin: 30,
+				responsiveClass: true,
+				nav: true,
+				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
+				dots: false,
+				autoplay: true,
+				autoplayTimeout: 150000,
+				responsive: {
+					0: {
+						items: 1
+					},
+					480: {
+						items: 1
+					},
+					768: {
+						items: 2
+					},
+					992: {
+						items: 2
+					}
+				}
+			});
 }
 
