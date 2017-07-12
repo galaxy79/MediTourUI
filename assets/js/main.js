@@ -837,6 +837,8 @@ var latestNewsItems=[
 				}
 			});
 
+			
+
 			/* Index-dentist - Testimonials Carousel */
 			$('.testimonials-carousel-dots.owl-carousel').owlCarousel({
 				loop: true,
@@ -1261,6 +1263,57 @@ var latestNewsItems=[
 					}
 				}
 			});
+
+$('.top-doctors-carousel.owl-carousel').owlCarousel({
+	loop: false,
+	margin: 30,
+	responsiveClass: true,
+	nav: true,
+	navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
+	dots: false,
+	autoplay: true,
+	autoplayTimeout: 150000,
+	responsive: {
+		0: {
+			items: 1
+		},
+		480: {
+			items: 1
+		},
+		768: {
+			items: 2
+		},
+		992: {
+			items: 2
+		}
+	}
+			});
+
+$('.top-hospitals-carousel.owl-carousel').owlCarousel({
+	loop: false,
+	margin: 30,
+	responsiveClass: true,
+	nav: true,
+	navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
+	dots: false,
+	autoplay: true,
+	autoplayTimeout: 150000,
+	responsive: {
+		0: {
+			items: 1
+		},
+		480: {
+			items: 1
+		},
+		768: {
+			items: 2
+		},
+		992: {
+			items: 2
+		}
+	}
+});
+
 		},
 		tooltip: function () {
 			// Bootstrap Tooltip
