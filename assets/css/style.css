@@ -28,6 +28,7 @@ Author: Eon
 -------- 20- Coming Soon
 -------- # Table Of Contents # ------- //
 */
+
 /* Page Loader Animation */
 #page-loader {
   position: fixed;
@@ -3017,8 +3018,8 @@ label.error {
 
 .services-group {
   margin-bottom: 50px;
-  margin-left:  250px;
-  margin-right: 250px;
+  margin-left:  150px;
+  margin-right: 150px;
 }
 
 .services-group .service-row {
@@ -13168,14 +13169,14 @@ display: none !important;
 
 /*HomePage*/
 .fixedCarousel .item{
-    height: 400px;
+    height: 600px;
 }
 
 .fixedCarousel .item img {
     position: absolute;
     top: 0;
     left: 0;
-    min-height: 400px;
+    min-height: 600px;
 }
 
 
@@ -13223,6 +13224,52 @@ display: none !important;
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {
 
+}
+
+
+/*Autocomplete Styling*/
+.ui-tooltip {
+    background: #4a4a4a;
+    color: #96f226;
+    border: 2px solid #454545;
+    border-radius: 0px;
+    box-shadow: 0 0
+}
+.ui-autocomplete{
+    background: white !important;
+    border-radius: 2px !important;
+}
+.ui-menu{
+     background: white !important;
+  }
+
+.ui-menu-divider{
+color: white;
+background-color: white;
+}
+.ui-menu .ui-menu-item a {
+    color: blue;
+    border-radius: 0px;
+    height: 30px !important;
+}
+.ui-menu .ui-menu-item a:hover {
+    background: blue!important;
+    color: blue !important;
+}
+.ui-menu .ui-menu-item a:active {
+    box-shadow: 0 0 30px blue !important
+}
+  .ui-menu-item-wrapper{
+    margin: 0px !important;
+    border-color: white !important;
+   color: black !important;
+  }
+.ui-menu-item{
+   color: blue !important;
+    border-radius: 0px;
+    height: 30px !important;
+    background-color: white !important;
+    border-color: white !important;
 }
 
 /*LoginPage*/

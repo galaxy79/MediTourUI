@@ -1703,6 +1703,27 @@ function homepageCallback() {
 		$("#modal-container-LatestNews #myModalLabel").text(newsID);
 		$("#modal-container-LatestNews .modal-body").text("Modal Content");
 	});
+
+	//Treatment Dropdown
+	     var availableTreatments  =  [
+               "Head",
+               "Neck",
+               "Hair",
+               "Hand",
+            ];
+            $( "#getQuoteTreatment" ).autocomplete({
+               source: availableTreatments
+			});
+			 var availableCountries  =  [
+               "India",
+               "Bangladesh",
+               "Pakistan",
+               "China",
+            ];
+            $( "#getQuoteCountry" ).autocomplete({
+               source: availableCountries
+			});
+			
 }
 
 //Cost page callback
