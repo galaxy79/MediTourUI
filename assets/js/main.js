@@ -36,7 +36,7 @@ var officeAddress = "No:12/35, Bangalore Street, Bangalore Main Road, Bangalore,
 
 var whyIndia = "Because India.";
 
-
+initializeDots();
 
 
 
@@ -1780,3 +1780,54 @@ function costCallback(data) {
 			});
 }
 
+function initializeDots(){
+	// trailing dots on coming soon page
+	debugger;
+var maxDots = 100;
+var interval = 20;
+var time = 0;
+var dots = document.getElementsByClassName('dot');
+var dot = dots[0];
+var dotSize = dot.offsetWidth;
+
+document.addEventListener('mousemove', function(event) {
+    // dot.style.left = event.clientX + 'px';
+    // dot.style.top = event.clientY + 'px';
+
+    if (event.timeStamp > time + interval && dots.length <= maxDots) {
+        time = event.timeStamp;
+        addDot();
+    }
+});
+
+function addDot()  {
+    var dotClone = dot.cloneNode();
+
+    dotClone.style.backgroundColor =
+        '#60a917';
+    dotClone.style.width = dotClone.style.height = randomSize();
+    dotClone.style.left = event.pageX + 'px';
+    dotClone.style.top = event.pageY + 'px';
+    dotClone.style.transform = "translate(" + randomLocation() + ", " + randomLocation() + ")";
+    document.body.appendChild(dotClone);
+
+    if (dots.length === maxDots) {
+        removeDot();
+    }
+}
+
+function removeDot() {
+    document.body.removeChild(dots[1]);
+}
+
+function randomLocation() {
+    return Math.floor(Math.random() * (dotSize * 2)) - (dotSize) + 'px';
+}
+
+function randomSize() {
+    var max = dotSize * 0.95;
+    var min = dotSize * 0.1;
+    return Math.floor(Math.random() * max + min) + 'px';
+}
+
+}
