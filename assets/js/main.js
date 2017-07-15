@@ -1808,7 +1808,9 @@ function addDot()  {
     dotClone.style.width = dotClone.style.height = randomSize();
     dotClone.style.left = event.pageX + 'px';
     dotClone.style.top = event.pageY + 'px';
-    dotClone.style.transform = "translate(" + randomLocation() + ", " + randomLocation() + ")";
+	dotClone.style.transform = "translate(" + randomLocation() + ", " + randomLocation() + ")";
+	dotClone.style.pointerEvents ="none";
+	dotClone.style.zIndex =1001;
     document.body.appendChild(dotClone);
 
     if (dots.length === maxDots) {
