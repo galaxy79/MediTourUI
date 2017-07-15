@@ -1804,7 +1804,7 @@ function addDot()  {
     var dotClone = dot.cloneNode();
 
     dotClone.style.backgroundColor =
-        '#60a917';
+        '#2ECC71';
     dotClone.style.width = dotClone.style.height = randomSize();
     dotClone.style.left = event.pageX + 'px';
     dotClone.style.top = event.pageY + 'px';
