@@ -151,18 +151,20 @@
                 </div>
             </div> -->
          
-            <div class="col-lg-5">
+            <div class="col-lg-7">
                 <div class="input-group input-group-lg center-block">
                      <label for="getQuoteTreatment" class="sr-only"></label>
-                    <input name="getQuoteTreatment" id="getQuoteTreatment" class="form-control" style="border-radius: 3px;padding: 25px" placeholder="Search for a Treatment"/>
+                    <input name="getQuoteTreatment" id="getQuoteTreatment" class="form-control" style="border-radius: 3px;height:50px!important" placeholder="Search for a Treatment"/>
                
                     
                 </div>
             </div>
-            <div class="col-lg-5">
+            <div class="col-lg-3">
                 <div class="input-group input-group-lg center-block">
          <label for="getQuoteCountry" class="sr-only"></label>
-                    <input name="getQuoteCountry" id="getQuoteCountry" class="form-control" style="border-radius: 3px;padding: 25px" placeholder="Search for a Country"/> 
+                    <select name="getQuoteCountry" id="getQuoteCountry" class="form-control" style="border-radius: 3px;height:50px!important" >
+                     
+                    </select>
                  
                 
                     
@@ -171,7 +173,7 @@
             <div class="col-lg-2" style="margin-left:-30px">
                 
                  <div class="input-group input-group-lg">
-                      <button class="btn btn-primary" style="padding: 15.5px;border-radius: 3px;"> Get Quote</button>
+                      <button class="btn btn-primary" style="height:50px!important;border-radius: 3px;"> Get Quote</button>
                     
                 </div>
                 
@@ -330,12 +332,10 @@
     <div class="row">
         <div class="col-md-4">
             <h2 class="title custom">About Medical Tourism</h2>
-            <p class="lead smaller">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            <p>Expedita voluptatum, ratione eveniet velit, distinctio animi voluptas suscipit eos labore voluptatibus? Officiis
-                iusto dolores sit ipsam saepe natus.</p>
-            <p>Amet ipsam maiores, expedita eius odit autem veritatis, in. Quo optio molestiae ut tempora, nam quisquam nulla
-                dignissimos repud iandae, repelle, nulla dignissimos repud iandae, repell sit ipsam saepe niet velit distinct.</p>
-            <a href="#" class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a>
+            <p class="lead smaller" id="aboutSubtitle"></p>
+            <p id="aboutContent"></p>
+           
+            <!-- <a href="#" class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a> -->
             <div class="mb10"></div>
             <!-- margin -->
 
@@ -429,46 +429,11 @@
         <div class="col-md-8">
             <h2 class="title custom mb25">Featured Treatments & Procedures</h2>
 
-            <div class="row row-sm">
-                <div class="col-sm-4">
-                    <div class="text-block hover-bg text-center" style="background-image:url(./assets/images/blocks/index-medical/item1.jpg)">
-                        <img src="./assets/images/services/index-medical/microscope.svg" alt="Microscope" width="42">
-                        <h3 class="block-title"><a href="#">Laboratory</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit
-                            et rem in distin.</p>
-                        <a href="#" class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a>
-                    </div>
-                    <!-- End .text-block -->
-                </div>
-                <!-- End .col-sm-4 -->
-
-                <div class="col-sm-4">
-                    <div class="text-block hover-bg text-center" style="background-image:url(./assets/images/blocks/index-medical/item2.jpg)">
-                        <img src="./assets/images/services/index-medical/stethoscope.svg" alt="Stethoscope" width="42">
-                        <h3 class="block-title"><a href="#">Nursing</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit
-                            et rem in distin.</p>
-                        <a href="#" class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a>
-                    </div>
-                    <!-- End .text-block -->
-                </div>
-                <!-- End .col-sm-4 -->
-
-                <div class="col-sm-4">
-                    <div class="text-block hover-bg text-center" style="background-image:url(./assets/images/blocks/index-medical/item3.jpg)">
-                        <img src="./assets/images/services/index-medical/tooth.svg" alt="Dentistry" width="42" class="img-responsive">
-                        <h3 class="block-title"><a href="#">Dentistry</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit
-                            et rem in distin.</p>
-                        <a href="#" class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a>
-                    </div>
-                    <!-- End .text-block -->
-                </div>
-                <!-- End .col-sm-4 -->
+            <div class="row row-sm" id="featuredTreatmentsSection">
             </div>
-            <!-- End .row -->
+         
 
-            <div class="row row-sm">
+            <!-- <div class="row row-sm">
                 <div class="col-sm-4">
                     <div class="text-block hover-bg text-center" style="background-image:url(./assets/images/blocks/index-medical/item4.jpg)">
                         <img src="./assets/images/services/index-medical/medical-history.svg" alt="Check up" width="42" class="img-responsive">
@@ -477,9 +442,9 @@
                             et rem in distin.</p>
                         <a href="#" class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a>
                     </div>
-                    <!-- End .text-block -->
+                 
                 </div>
-                <!-- End .col-sm-4 -->
+           
 
                 <div class="col-sm-4">
                     <div class="text-block hover-bg text-center" style="background-image:url(./assets/images/blocks/index-medical/item5.jpg)">
@@ -489,10 +454,9 @@
                             et rem in distin.</p>
                         <a href="#" class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a>
                     </div>
-                    <!-- End .text-block -->
+                 
                 </div>
-                <!-- End .col-sm-4 -->
-
+     
                 <div class="col-sm-4">
                     <div class="text-block hover-bg text-center" style="background-image:url(./assets/images/blocks/index-medical/item6.jpg)">
                         <img src="./assets/images/services/index-medical/syringe.svg" alt="syringe" width="42" class="img-responsive">
@@ -501,14 +465,14 @@
                             et rem in distin.</p>
                         <a href="#" class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a>
                     </div>
-                    <!-- End .text-block -->
+                  
                 </div>
-                <!-- End .col-sm-4 -->
-            </div>
-            <!-- End .row -->
+               
+            </div> -->
+          
 
             <div class="mb15 mb10-xs"></div>
-            <!-- margin -->
+         
 
 
         </div>

@@ -36,7 +36,7 @@ var officeAddress = "No:12/35, Bangalore Street, Bangalore Main Road, Bangalore,
 
 var whyIndia = "Because India.";
 
-initializeDots();
+//initializeDots();
 
 
 
@@ -44,7 +44,7 @@ initializeDots();
 	"use strict";
 $('#costPageMenu').on('click',function(){
 	$('.main').html('');
-	$('.main').load("cost.html", function (data) { costCallback(data);});
+	$('.main').load("treatmentsOffered.html", function (data) { treatmentsOfferedCallback(data);});
 })
 	//Facebook and Google Authentcations
 	//Facebook
@@ -88,7 +88,16 @@ $('#costPageMenu').on('click',function(){
 	document.querySelector('p.office-address').innerHTML = officeAddress;
 	document.querySelector('p.why-india').innerHTML = whyIndia;
 
+$('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
+	countryCodes.forEach(function(value,index){
+		 $('#inputSubmitEnquiryISDCode').append($('<option>', { 
+        value: value.dial_code,
+        text : value.name 
+    }));
 
+	})
+
+})
 
 
 
@@ -1616,6 +1625,42 @@ ga('send', 'pageview');
 //HomePage Load callback
 function homepageCallback() {
 	//Homepage Variables
+	var featuredTreatmentsItems=[{
+img:"./assets/images/blocks/index-medical/item2.jpg",
+svgImg:"./assets/images/services/index-medical/stethoscope.svg",altText:"Stethoscope",
+shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
+title:"Nursing"
+	},
+{
+img:"./assets/images/blocks/index-medical/item1.jpg",
+svgImg:"./assets/images/services/index-medical/microscope.svg",altText:"Microscope",
+shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
+title:"Laboratory"
+	},
+{
+img:"./assets/images/blocks/index-medical/item1.jpg",
+svgImg:"./assets/images/services/index-medical/microscope.svg",altText:"Microscope",
+shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
+title:"Laboratory"
+	},
+{
+img:"./assets/images/blocks/index-medical/item1.jpg",
+svgImg:"./assets/images/services/index-medical/microscope.svg",altText:"Microscope",
+shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
+title:"Laboratory"
+	},
+{
+img:"./assets/images/blocks/index-medical/item1.jpg",
+svgImg:"./assets/images/services/index-medical/microscope.svg",altText:"Microscope",
+shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
+title:"Laboratory"
+	},
+{
+img:"./assets/images/blocks/index-medical/item1.jpg",
+svgImg:"./assets/images/services/index-medical/microscope.svg",altText:"Microscope",
+shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
+title:"Laboratory"
+	}]
 	var latestNewsItems = [
 
 		{
@@ -1666,9 +1711,54 @@ function homepageCallback() {
 		}
 
 	];
-	var homePageHighlightArray = ["Hello", "How Are you", "How Are you", "How Are you", "How Are you", "How Are you", "How Are you", "How Are you"];
-	var homePageHighlighth3Array = ["Hello", "Test", "Test", "Test", "Test", "Test", "Test", "Test"]
-
+	var homePageHighLightsItems=[{
+		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		altText:"Emergency",
+		title:"Emergency",
+		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
+	},
+{
+		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		altText:"Emergency",
+		title:"Emergency",
+		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
+	},
+{
+		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		altText:"Emergency",
+		title:"Emergency",
+		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
+	},{
+		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		altText:"Emergency",
+		title:"Emergency",
+		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
+	},{
+		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		altText:"Emergency",
+		title:"Emergency",
+		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
+	},{
+		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		altText:"Emergency",
+		title:"Emergency",
+		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
+	},{
+		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		altText:"Emergency",
+		title:"Emergency",
+		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
+	},{
+		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		altText:"Emergency",
+		title:"Emergency",
+		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
+	}]
+	
+	 var aboutData={
+		 aboutSubTitle:"Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+		  aboutContent:"Expedita voluptatum, ratione eveniet velit, distinctio animi voluptas suscipit eos labore voluptatibus? Officiis iusto dolores sit ipsam saepe natus."
+	 }
 	//Homepage Carousel initialization
 		$('#homepageCarousel').carousel({
 		interval: 3500,
@@ -1678,10 +1768,19 @@ function homepageCallback() {
 
 	var a = document.getElementsByClassName('service-box')
 	$.each(a, function (index, element) {
-		$(element).find('h3').html(homePageHighlighth3Array[index])
-		$(element).find('p').html(homePageHighlightArray[index])
+		$(element).find('h3').html(homePageHighLightsItems[index].title);
+		$(element).find('p').html(homePageHighLightsItems[index].content);
+		$(element).find('img').attr('src',homePageHighLightsItems[index].imgSrc);
 	});
 
+	$('#aboutSubtitle').text(aboutData.aboutSubTitle);
+	$('#aboutContent').text(aboutData.aboutContent);
+
+var featuredTreatmentsHtmlString="";
+featuredTreatmentsItems.forEach(function(item,index){
+featuredTreatmentsHtmlString+=' <div class="col-sm-4"><div class="text-block hover-bg text-center" style="background-image:url('+ item.img+')"><img src="'+item.svgImg+'" alt="'+item.altText+'" width="42"><h3 class="block-title"><a href="#">'+item.title+'</a></h3><p>'+item.shortContent +'</p><a href="#" class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a></div></div>'
+});
+$('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
 	//Loading Latest news items
 	var latestNewsHtmlString = '';
 
@@ -1714,15 +1813,32 @@ function homepageCallback() {
             $( "#getQuoteTreatment" ).autocomplete({
                source: availableTreatments
 			});
-			 var availableCountries  =  [
-               "India",
-               "Bangladesh",
-               "Pakistan",
-               "China",
-            ];
-            $( "#getQuoteCountry" ).autocomplete({
-               source: availableCountries
-			});
+
+	//Country Dropdown
+	var availableCountries = [
+  {
+    "text"  : "India",
+    "value" : "India"
+  },
+  {
+    "text"     : "Bangladesh",
+    "value"    : "Bangladesh",
+    "selected" : true
+  },
+  {
+    "text"  : "Pakistan",
+    "value" : "Pakistan"
+  },
+{
+    "text"  : "China",
+    "value" : "China"
+  }
+];
+	
+			var optionList = document.getElementById('getQuoteCountry').options;
+			availableCountries.forEach( (option) => optionList.add( new Option(option.text, option.value ) ));
+
+          
 			
 }
 
@@ -1780,56 +1896,62 @@ function costCallback(data) {
 			});
 }
 
-function initializeDots(){
-	// trailing dots on coming soon page
-	debugger;
-var maxDots = 100;
-var interval = 20;
-var time = 0;
-var dots = document.getElementsByClassName('dot');
-var dot = dots[0];
-var dotSize = dot.offsetWidth;
 
-document.addEventListener('mousemove', function(event) {
-    // dot.style.left = event.clientX + 'px';
-    // dot.style.top = event.clientY + 'px';
-
-    if (event.timeStamp > time + interval && dots.length <= maxDots) {
-        time = event.timeStamp;
-        addDot();
-    }
-});
-
-function addDot()  {
-    var dotClone = dot.cloneNode();
-
-    dotClone.style.backgroundColor =
-        '#2ECC71';
-    dotClone.style.width = dotClone.style.height = randomSize();
-    dotClone.style.left = event.pageX + 'px';
-    dotClone.style.top = event.pageY + 'px';
-	dotClone.style.transform = "translate(" + randomLocation() + ", " + randomLocation() + ")";
-	dotClone.style.pointerEvents ="none";
-	dotClone.style.zIndex =1001;
-    document.body.appendChild(dotClone);
-
-    if (dots.length === maxDots) {
-        removeDot();
-    }
+//treatmentsOfferedCallback
+function treatmentsOfferedCallback(){
+	
 }
 
-function removeDot() {
-    document.body.removeChild(dots[1]);
-}
+// function initializeDots(){
+// 	// trailing dots on coming soon page
 
-function randomLocation() {
-    return Math.floor(Math.random() * (dotSize * 2)) - (dotSize) + 'px';
-}
+// var maxDots = 100;
+// var interval = 20;
+// var time = 0;
+// var dots = document.getElementsByClassName('dot');
+// var dot = dots[0];
+// var dotSize = dot.offsetWidth;
 
-function randomSize() {
-    var max = dotSize * 0.95;
-    var min = dotSize * 0.1;
-    return Math.floor(Math.random() * max + min) + 'px';
-}
+// document.addEventListener('mousemove', function(event) {
+//     // dot.style.left = event.clientX + 'px';
+//     // dot.style.top = event.clientY + 'px';
 
-}
+//     if (event.timeStamp > time + interval && dots.length <= maxDots) {
+//         time = event.timeStamp;
+//         addDot();
+//     }
+// });
+
+// function addDot()  {
+//     var dotClone = dot.cloneNode();
+
+//     dotClone.style.backgroundColor =
+//         '#2ECC71';
+//     dotClone.style.width = dotClone.style.height = randomSize();
+//     dotClone.style.left = event.pageX + 'px';
+//     dotClone.style.top = event.pageY + 'px';
+// 	dotClone.style.transform = "translate(" + randomLocation() + ", " + randomLocation() + ")";
+// 	dotClone.style.pointerEvents ="none";
+// 	dotClone.style.zIndex =1001;
+//     document.body.appendChild(dotClone);
+
+//     if (dots.length === maxDots) {
+//         removeDot();
+//     }
+// }
+
+// function removeDot() {
+//     document.body.removeChild(dots[1]);
+// }
+
+// function randomLocation() {
+//     return Math.floor(Math.random() * (dotSize * 2)) - (dotSize) + 'px';
+// }
+
+// function randomSize() {
+//     var max = dotSize * 0.95;
+//     var min = dotSize * 0.1;
+//     return Math.floor(Math.random() * max + min) + 'px';
+// }
+
+// }
