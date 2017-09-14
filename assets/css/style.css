@@ -13324,12 +13324,18 @@ width: 300px;
 }
 
 
-@media (max-width: 767px) {
-  #Chat-Window {
-    display: none;
-    visibility: hidden;
-    opacity: 0;
-  }
+@media (max-width: 500px) {
+ 
+  .fixedCarousel .item{
+    height: 300px!important;
+}
+
+.fixedCarousel .item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 300px!important;
+}
 }
 
 

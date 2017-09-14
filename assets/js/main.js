@@ -86,10 +86,13 @@ $('#costPageMenu').on('click',function(){
 
 	//Load Office Address
 	$.ajax({
-		url: "http://ec2-13-126-155-141.ap-south-1.compute.amazonaws.com/api/v1/get/officelocations/officelocation",
+		url: "http://ec2-13-126-79-123.ap-south-1.compute.amazonaws.com/api/v1/get/officelocations/officelocation",
 		type: 'GET',
 		headers: {
-			"Content-Type": "application/json"
+			"Content-Type": "application/json",
+			"Authorization": "Basic bGliaW46bGliaW4=",
+			"x-access-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiT0ZGSUNFTE9DQVRJT04iLCJpYXQiOjE1MDQ1MjM2ODl9.P6Fep4p6vOve-gZrdW6w5CMdgIrVg76yy6fb8ocwUiM"
+
 		},
 		success: function (response) {
 			officeAddress = response;
