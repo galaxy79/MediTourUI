@@ -85,7 +85,20 @@ $('#costPageMenu').on('click',function(){
 	document.querySelector('.tagcloud').innerHTML = htmlString;
 
 	//Load Office Address
-	document.querySelector('p.office-address').innerHTML = officeAddress;
+	$.ajax({
+		url: "http://ec2-13-126-155-141.ap-south-1.compute.amazonaws.com/api/v1/get/officelocations/officelocation",
+		type: 'GET',
+		headers: {
+			"Content-Type": "application/json"
+		},
+		success: function (response) {
+			officeAddress = response;
+			document.querySelector('p.office-address').innerHTML = officeAddress;
+		},
+		error: function (exception) {
+		}
+	});
+	
 	document.querySelector('p.why-india').innerHTML = whyIndia;
 
 $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){

@@ -4471,16 +4471,19 @@ label.error {
   margin-right: 15px;
 }
 
-@media (max-width: 605px) {
+@media (max-width: 692px) {
   .iconsCustom{
 display: none !important;
   }
 }
 
-@media (max-width:362px){
+@media (max-width:542px){
   .iconsHide{
 display: none !important;
   }
+.medinovitaLogo{
+  width:100%;
+}
 }
 
 @media (max-width: 754px) {
