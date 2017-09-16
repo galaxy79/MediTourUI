@@ -49,6 +49,10 @@ $('#costPageMenu').on('click',function(){
 	$('.main').html('');
 	$('.main').load("treatmentsOffered.html", function (data) { treatmentsOfferedCallback(data);});
 })
+$('#homeMenu').on('click',function(){
+	$('.main').html('');
+	$('.main').load("homepage.html", function (data) { homepageCallback(data);});
+})
 	
 	//load for Master Page
 
@@ -72,7 +76,7 @@ $('#costPageMenu').on('click',function(){
 
 		},
 		success: function (response) {
-			officeAddress = response[0].country +"<br>"+response[0].officeCity[0].city+ "<br>" +response[0].officeCity[0].officeLocation[0].addressLine1 +"<br>" + response[0].officeCity[0].officeLocation[0].officeType + "<br>" + response[0].officeCity[0].officeLocation[0].landMark + "<br>" + response[0].officeCity[0].officeLocation[0].officeEmailId + "<br>" + response[0].officeCity[0].officeLocation[0].contactPerson;
+			officeAddress = response[0].country +"<br>"+response[0].officeCity[0].city+ "<br>" +response[0].officeCity[0].officeLocation[0].addressLine1 +"<br>"+response[0].officeCity[0].officeLocation[0].addressLine2 + "<br>" + response[0].officeCity[0].officeLocation[0].landMark + "<br>" + response[0].officeCity[0].officeLocation[0].officeEmailId + "<br>" + response[0].officeCity[0].officeLocation[0].contactPerson;
 			document.querySelector('p.office-address').innerHTML = officeAddress;
 		},
 		error: function (exception) {
@@ -80,23 +84,35 @@ $('#costPageMenu').on('click',function(){
 	});
 	
 	document.querySelector('p.why-india').innerHTML = whyIndia;
+$('#submitEnquiryForm').on('submit',function(){
+	var formData=$(this).serializeArray();
 
-	$.ajax({
-		url: "http://ec2-13-126-79-123.ap-south-1.compute.amazonaws.com/api/v1/get/officelocations/officelocation",
-		type: 'GET',
+$.ajax({
+		url: "http://ec2-13-126-79-123.ap-south-1.compute.amazonaws.com/api/v1/submit/enquiry/postuserenquiry",
+		type: 'POST',
 		headers: {
-			"Content-Type": "application/json",
-			"Authorization": "Basic bGliaW46bGliaW4=",
-			"x-access-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiT0ZGSUNFTE9DQVRJT04iLCJpYXQiOjE1MDQ1MjM2ODl9.P6Fep4p6vOve-gZrdW6w5CMdgIrVg76yy6fb8ocwUiM"
-
+				'Content-type': 'application/x-www-form-urlencoded',
+			"Authorization": "Basic "+ basicKey,
+			"x-access-token": xAccessToken
 		},
+		data:{emailID:formData[1].value,
+	userFullName:formData[0].value,
+	isdCode:formData[2].value,
+	primaryPhonenumber:formData[3].value,
+	procedureName:formData[4].value,
+	commuMedium:"English",
+	caseDescription:formData[5].value,
+	attachment:"N",
+	attachmentName:"null"},
 		success: function (response) {
-			officeAddress = response[0].country +"<br>"+response[0].officeCity[0].city+ "<br>" +response[0].officeCity[0].officeLocation[0].addressLine1 +"<br>" + response[0].officeCity[0].officeLocation[0].officeType + "<br>" + response[0].officeCity[0].officeLocation[0].landMark + "<br>" + response[0].officeCity[0].officeLocation[0].officeEmailId + "<br>" + response[0].officeCity[0].officeLocation[0].contactPerson;
-			document.querySelector('p.office-address').innerHTML = officeAddress;
+			
 		},
 		error: function (exception) {
+			console.log(exception)
 		}
 	});
+})
+	
 $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 	countryCodes.forEach(function(value,index){
 		 $('#inputSubmitEnquiryISDCode').append($('<option>', { 
