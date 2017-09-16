@@ -4481,9 +4481,12 @@ display: none !important;
   .iconsHide{
 display: none !important;
   }
-.medinovitaLogo{
-  width:100%;
+.customerCare{
+  display: none !important;
 }
+/* .medinovitaLogo{
+  width:30%;
+} */
 }
 
 @media (max-width: 754px) {
