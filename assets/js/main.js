@@ -1,6 +1,9 @@
 /* ================================================
 ----------------- Simple Main.js ------------- */
 //Global Variables
+
+var basicKey="bGliaW46bGliaW4=";
+var xAccessToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiT0ZGSUNFTE9DQVRJT04iLCJpYXQiOjE1MDQ1MjM2ODl9.P6Fep4p6vOve-gZrdW6w5CMdgIrVg76yy6fb8ocwUiM";
 var GLOBAL_VARIABLES = {
 	"Language": "en",
 	"Currency": "dollar"
@@ -46,33 +49,7 @@ $('#costPageMenu').on('click',function(){
 	$('.main').html('');
 	$('.main').load("treatmentsOffered.html", function (data) { treatmentsOfferedCallback(data);});
 })
-	//Facebook and Google Authentcations
-	//Facebook
-	// window.fbAsyncInit = function () {
-	// 	FB.init({
-	// 		appId: 'your-app-id',
-	// 		autoLogAppEvents: true,
-	// 		xfbml: true,
-	// 		version: 'v2.9',
-	// 		status: true
-	// 	});
-	// 	FB.AppEvents.logPageView();
-	// };
-
-	// (function (d, s, id) {
-	// 	var js, fjs = d.getElementsByTagName(s)[0];
-	// 	if (d.getElementById(id)) {
-	// 		return;
-	// 	}
-	// 	js = d.createElement(s);
-	// 	js.id = id;
-	// 	js.src = "//connect.facebook.net/en_US/sdk.js";
-	// 	fjs.parentNode.insertBefore(js, fjs);
-	// }(document, 'script', 'facebook-jssdk'));
-
-	//Facebook Load Ends
-
-
+	
 	//load for Master Page
 
 	//Load TagCloud Contents
@@ -90,12 +67,12 @@ $('#costPageMenu').on('click',function(){
 		type: 'GET',
 		headers: {
 			"Content-Type": "application/json",
-			"Authorization": "Basic bGliaW46bGliaW4=",
-			"x-access-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiT0ZGSUNFTE9DQVRJT04iLCJpYXQiOjE1MDQ1MjM2ODl9.P6Fep4p6vOve-gZrdW6w5CMdgIrVg76yy6fb8ocwUiM"
+			"Authorization": "Basic "+ basicKey,
+			"x-access-token": xAccessToken
 
 		},
 		success: function (response) {
-			officeAddress = response;
+			officeAddress = response[0].country +"<br>"+response[0].officeCity[0].city+ "<br>" +response[0].officeCity[0].officeLocation[0].addressLine1 +"<br>" + response[0].officeCity[0].officeLocation[0].officeType + "<br>" + response[0].officeCity[0].officeLocation[0].landMark + "<br>" + response[0].officeCity[0].officeLocation[0].officeEmailId + "<br>" + response[0].officeCity[0].officeLocation[0].contactPerson;
 			document.querySelector('p.office-address').innerHTML = officeAddress;
 		},
 		error: function (exception) {
@@ -104,6 +81,22 @@ $('#costPageMenu').on('click',function(){
 	
 	document.querySelector('p.why-india').innerHTML = whyIndia;
 
+	$.ajax({
+		url: "http://ec2-13-126-79-123.ap-south-1.compute.amazonaws.com/api/v1/get/officelocations/officelocation",
+		type: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic bGliaW46bGliaW4=",
+			"x-access-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiT0ZGSUNFTE9DQVRJT04iLCJpYXQiOjE1MDQ1MjM2ODl9.P6Fep4p6vOve-gZrdW6w5CMdgIrVg76yy6fb8ocwUiM"
+
+		},
+		success: function (response) {
+			officeAddress = response[0].country +"<br>"+response[0].officeCity[0].city+ "<br>" +response[0].officeCity[0].officeLocation[0].addressLine1 +"<br>" + response[0].officeCity[0].officeLocation[0].officeType + "<br>" + response[0].officeCity[0].officeLocation[0].landMark + "<br>" + response[0].officeCity[0].officeLocation[0].officeEmailId + "<br>" + response[0].officeCity[0].officeLocation[0].contactPerson;
+			document.querySelector('p.office-address').innerHTML = officeAddress;
+		},
+		error: function (exception) {
+		}
+	});
 $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 	countryCodes.forEach(function(value,index){
 		 $('#inputSubmitEnquiryISDCode').append($('<option>', { 
