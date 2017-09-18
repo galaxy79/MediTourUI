@@ -39,8 +39,33 @@ var officeAddress = "No:12/35, Bangalore Street, Bangalore Main Road, Bangalore,
 
 var whyIndia = "Because India.";
 
-//initializeDots();
+//Global Methods
+// Function replace Native Alert
+  window.alert = function (msg) {
+    var h, html, source, template;
+    source = $("#tpl-alert").html();
+    template = Handlebars.compile(source);
+    html = $(template({
+      message: new Handlebars.SafeString(msg)
+    }));
+    $("body").append(html);
+    html.addClass("is-visible");
+    h = html.find(".window-message-container").height();
+    html.find(".window-message-container").hide().fadeIn("fast");
+    return html.find("a").on("click", function (_this) {
+      return function (e) {
+        e.stopPropagation();
+        html.remove();
+        return false;
+      };
+    }(this));
+  };
+  // END Function replace Native Alert
 
+
+//   $("#popup-custom").on("click", function (e) {
+//     alert("<h1>Custom title!</h1><p>Lorem ipsum dolor sit amet, <i>consectetur adipisicing elit</i>, sed do eiusmod tempor incididunt ut labore et <strong>dolore magna aliqua</strong>. Ut enim ad minim veniam, <u>quis nostrud exercitation ullamco</u> laboris nisi ut aliquip ex ea commodo consequat.</p>");
+//   });
 
 
 (function ($) {
@@ -105,7 +130,7 @@ $.ajax({
 	attachment:"N",
 	attachmentName:"null"},
 		success: function (response) {
-			
+			alert("Thanks for contacting us, we will get back to you soon")
 		},
 		error: function (exception) {
 			console.log(exception)
@@ -114,13 +139,16 @@ $.ajax({
 })
 	
 $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
+	 $('.modal .modal-body').css('overflow-y', 'auto'); 
+    $('.modal .modal-body').css('max-height', $(window).height() *0.9);
+
+	})
 	countryCodes.forEach(function(value,index){
 		 $('#inputSubmitEnquiryISDCode').append($('<option>', { 
         value: value.dial_code,
         text : value.name 
-    }));
-
-	})
+	}));
+	
 
 })
 

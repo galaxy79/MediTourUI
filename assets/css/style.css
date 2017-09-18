@@ -13448,6 +13448,176 @@ background-color: white;
     border-color: white !important;
 }
 
+/* custom alert */
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000000;
+}
+.overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.window-message-container {
+  -webkit-transition: background-color 0.2s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -moz-transition: background-color 0.2s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -ms-transition: background-color 0.2s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -o-transition: background-color 0.2s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  transition: background-color 0.2s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  -moz-transform: translateY(-50%) translateX(-50%);
+  -ms-transform: translateY(-50%) translateX(-50%);
+  -o-transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%);
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 1px 8px #212121;
+  -moz-box-shadow: 0 1px 8px #212121;
+  box-shadow: 0 1px 8px #212121;
+  position: relative;
+  font-family: "Montserrat";
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1;
+  background: #FAFAFA;
+  color: #111111;
+  width: 90%;
+  max-width: 600px;
+  margin: 0;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+}
+.window-message-container__input {
+  padding: 16px 40px;
+}
+.window-message-container .window-message-container__input .window-message-container__form-control {
+  padding: 30px;
+  text-align: center;
+  font-size: 24px;
+}
+.window-message-container__text {
+  padding: 50px;
+  margin: 0;
+}
+.window-message-container ul.buttons {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 60px;
+}
+.window-message-container ul.buttons li a {
+  -webkit-transition: background-color 0.2s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -moz-transition: background-color 0.2s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -ms-transition: background-color 0.2s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -o-transition: background-color 0.2s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  transition: background-color 0.2s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  display: block;
+  font-size: 16px;
+  color: #FFFFFF;
+  height: 60px;
+  line-height: 60px;
+  text-decoration: none;
+}
+.window-message-container ul.buttons.alert li {
+  float: left;
+  width: 100%;
+}
+.window-message-container ul.buttons.alert li a {
+  background: #111111;
+  border-radius: 0 0 2px 2px;
+}
+.window-message-container ul.buttons.alert li a:hover {
+  background-color: #0057ff;
+}
+.window-message-container .alert-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  text-indent: -9999em;
+}
+.window-message-container .alert-close::before, .window-message-container .alert-close::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  width: 14px;
+  height: 3px;
+  background-color: #DDD;
+}
+.window-message-container .alert-close::before {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  left: 8px;
+}
+.window-message-container .alert-close::after {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  right: 8px;
+}
+
+
+/* columned contents */
+/*** Responsive Columns ***/
+
+.one-half, .one-third, .two-thirds, .three-fourths, .one-fourth {
+float:left;
+margin-bottom:20px;
+margin-right:4%;
+position:relative;
+background: #fff; /* Just for display purposes */
+}
+
+.one-half {
+width: 48%;
+}
+
+.one-third {
+width: 30.66%;
+}
+
+.two-thirds {
+width: 65.33%;
+}
+
+.one-fourth {
+width: 22%;
+}
+
+.three-fourths {
+width: 74%;
+}
+
+.last-col {
+clear:right;
+margin-right:0;
+}
+
+@media only screen and (max-width: 45em) {
+  .one-half, .one-third, .two-thirds, .three-fourths, .one-fourth {
+    width: 100%;
+    clear: both;
+  }
+}
+
 /*LoginPage*/
 .loginButton{
 background-color: #0069b0;

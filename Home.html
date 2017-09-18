@@ -27,6 +27,7 @@
 
         <!-- Modernizr -->
         <script src="./assets/js/modernizr.js"></script>
+         <script async src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js'></script>
          <script src="./assets/customjs/chat.js"></script>
       
     </head>
@@ -648,6 +649,46 @@
     </div>
 
 </div>
+<div class="modal fade" id="modal-container-145337" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							 
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								×
+							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								Modal title
+							</h4>
+						</div>
+						<div class="modal-body">
+							...
+						</div>
+						<div class="modal-footer">
+							 
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+								Close
+							</button> 
+							<button type="button" class="btn btn-primary">
+								Save changes
+							</button>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+ <script id="tpl-alert" type="text/x-handlebars-template">
+    <div class="overlay">
+      <div class="window-message-container type-alert">
+        <div class="window-message-container__text">{{message}}</div>
+        <ul class="buttons alert">
+          <li><a href="#">Ok</a></li>
+        </ul>
+        <a href="#" class="alert-close img-replace">Close</a>
+      </div>
+    </div>
+  </script>
         <!-- End -->
         
         <script src="./assets/js/plugins.min.js"></script>
