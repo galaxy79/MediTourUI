@@ -70,6 +70,12 @@ var whyIndia = "Because India.";
 
 (function ($) {
 	"use strict";
+	//HomePage Javascript Section Starts
+	$('.main').load("homepage.html", function (data) {
+		homepageCallback(data);
+	});
+
+
 $('#costPageMenu').on('click',function(){
 	$('.main').html('');
 	$('.main').load("treatmentsOffered.html", function (data) { treatmentsOfferedCallback(data);});
@@ -154,9 +160,7 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 
 
 
-	//HomePage Javascript Section Starts
-	$('.main').load("homepage.html", function (data) { homepageCallback(data);});
-
+	
 
 
 	//Google Translate Section starts
@@ -1863,7 +1867,7 @@ $('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
                "Hair",
                "Hand",
             ];
-            $( "#getQuoteTreatment" ).autocomplete({
+            $("#getQuoteTreatment").autocomplete({
                source: availableTreatments
 			});
 

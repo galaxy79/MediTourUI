@@ -4475,6 +4475,9 @@ label.error {
   .iconsCustom{
 display: none !important;
   }
+  .justify-center{
+        margin-top: 25px!important;
+  }
 }
 
 @media (max-width:542px){
@@ -4483,6 +4486,10 @@ display: none !important;
   }
 .customerCare{
   display: none !important;
+}
+#searchForm {
+  text-align: start!important;
+  
 }
 /* .medinovitaLogo{
   width:30%;
