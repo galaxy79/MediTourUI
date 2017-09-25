@@ -7414,6 +7414,10 @@ display: none !important;
 /* ----------- 6.Homepages -------------
 --------------------------------------*/
 /* Homepages - Index */
+.main{
+  background-color: #F0F3F3;
+}
+
 .slider-container-index {
   background-color: #e1e1e1;
 }
@@ -13644,4 +13648,18 @@ Cost Page */
 
   .top-margin {
     padding-top: 15px;
+  }
+
+
+  /* Treatments Offered Page */
+
+
+  .treatments-hover:hover{
+transform: scaleX(1.01);
+-webkit-box-shadow: 5px 22px 52px 2px rgba(138, 138, 138, 0.66);
+-moz-box-shadow: 5px 22px 52px 2px rgba(138, 138, 138, 0.66);
+box-shadow: 5px 22px 52px 2px rgba(138, 138, 138, 0.66);
+z-index: 1000;
+clear: both;
+overflow: visible;
   }
