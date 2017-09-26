@@ -7414,9 +7414,9 @@ display: none !important;
 /* ----------- 6.Homepages -------------
 --------------------------------------*/
 /* Homepages - Index */
-.main{
+/* .main{
   background-color: #F0F3F3;
-}
+} */
 
 .slider-container-index {
   background-color: #e1e1e1;
@@ -13711,8 +13711,9 @@ Cost Page */
 
 
   /* Treatments Offered Page */
-
-
+  .treatments-hover{
+transition: all .3s ease-in-out;
+  }
   .treatments-hover:hover{
 transform: scaleX(1.01);
 -webkit-box-shadow: 5px 22px 52px 2px rgba(138, 138, 138, 0.66);

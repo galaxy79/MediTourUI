@@ -98,7 +98,7 @@ $('#homeMenu').on('click',function(){
 
 	//Load Office Address
 	$.ajax({
-		url: "http://ec2-13-126-79-123.ap-south-1.compute.amazonaws.com/api/v1/get/officelocations/officelocation",
+		url: "http://medinovita.in/api/v1/get/officelocations/officelocation",
 		type: 'GET',
 		headers: {
 			"Content-Type": "application/json",
@@ -114,12 +114,40 @@ $('#homeMenu').on('click',function(){
 		}
 	});
 	
-	document.querySelector('p.why-india').innerHTML = whyIndia;
+
+	$.ajax({
+		url: "http://medinovita.in/api/v1/get/homepagedetails/COMPANYDESC",
+		type: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic " + basicKey,
+			"x-access-token": xAccessToken
+		},
+		success: function (response) {
+			
+			document.querySelector('p.why-india').innerHTML = response[0].whyIndiaDesc;
+			var socialMedia = document.querySelectorAll('a.social-icon');
+			socialMedia[0].setAttribute('href', response[0].fburlLink);
+			socialMedia[1].setAttribute('href', response[0].twitterurlLink);
+			socialMedia[2].setAttribute('href', response[0].linkedlinurlLink);
+			socialMedia[3].setAttribute('href', response[0].instagramurlLink);
+			document.querySelector('p.medinovitaDecs').innerHTML = response[0].whymedinovitaDesc;
+			document.querySelector('p.customerCareNumber').innerHTML = response[0].whatsappCustomercareno;
+			document.querySelector('p.whatsappContactNumber').innerHTML = response[0].customerCareno
+		},
+		error: function (exception) {
+
+		}
+	});
+
+	
+
+
 $('#submitEnquiryForm').on('submit',function(){
 	var formData=$(this).serializeArray();
 
 $.ajax({
-		url: "http://ec2-13-126-79-123.ap-south-1.compute.amazonaws.com/api/v1/submit/enquiry/postuserenquiry",
+		url: "http://medinovita.in/api/v1/submit/enquiry/postuserenquiry",
 		type: 'POST',
 		headers: {
 				'Content-type': 'application/x-www-form-urlencoded',
