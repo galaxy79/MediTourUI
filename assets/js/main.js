@@ -2,14 +2,12 @@
 ----------------- Simple Main.js ------------- */
 //Global Variables
 
-//Temp Data Remove later
-// 10.207.163.102
-// Sept163102
+
 
 
 var basicKey = "bGliaW46bGliaW4=";
 var xAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiT1VSU0VSVklDRVMiLCJpYXQiOjE1MDU5NjY3NTB9.0GlBMqkhAXELN0-m6z5ES6K9zcf-_M0EYT0z9FH43ig";
-var serverName = "http://10.207.163.102:8443/";
+var serverName = "http://www.medinovita.in/";
 var GLOBAL_VARIABLES = {
 	"Language": "en",
 	"Currency": "dollar"
