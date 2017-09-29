@@ -91,14 +91,7 @@ $('#homeMenu').on('click',function(){
 	
 	//load for Master Page
 
-	//Load TagCloud Contents
-	var htmlString = ""
-	for (var key in TAGCLOUD_ITEMS) {
-		if (TAGCLOUD_ITEMS.hasOwnProperty(key)) {
-			htmlString += "<a href=" + TAGCLOUD_ITEMS[key] + ">" + key + "</a>"
-		}
-	}
-	document.querySelector('.tagcloud').innerHTML = htmlString;
+
 
 	//Load Office Address
 	$.ajax({
@@ -1859,7 +1852,7 @@ title:"Laboratory"
 		success: function (response) {
 			var aboutData = response;
 		$('#aboutSubtitle').text(aboutData.aboutSubTitle);
-		$('#aboutContent').text(aboutData.aboutContent);
+		$('#aboutContent').html($.parseHTML(aboutData.aboutContent))
 		},
 		error: function (exception) {
 			console.log(exception);
