@@ -75,8 +75,8 @@ var whyIndia = "Because India.";
 (function ($) {
 	"use strict";
 	//HomePage Javascript Section Starts
-	$('.main').load("homepage.html", function (data) {
-		homepageCallback(data);
+	$('.main').load("homepage.html", function () {
+		homepageCallback();
 	});
 
 
@@ -148,7 +148,7 @@ $.ajax({
 		url: serverName+"api/v1/submit/enquiry/postuserenquiry",
 		type: 'POST',
 		headers: {
-				'Content-type': 'application/x-www-form-urlencoded',
+				'Content-type': 'application/json',
 			"Authorization": "Basic "+ basicKey,
 			"x-access-token": xAccessToken
 		},
