@@ -141,7 +141,8 @@ $('#homeMenu').on('click',function(){
 	
 
 
-$('#submitEnquiryForm').on('submit',function(){
+$('#submitEnquiryForm').on('submit',function(e){
+	e.preventDefault();
 	var formData=$(this).serializeArray();
 
 $.ajax({
