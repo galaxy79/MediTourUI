@@ -153,7 +153,7 @@ $.ajax({
 			"Authorization": "Basic "+ basicKey,
 			"x-access-token": xAccessToken
 		},
-		data:{emailID:formData[1].value,
+		data:JSON.stringify({emailID:formData[1].value,
 	userFullName:formData[0].value,
 	isdCode:formData[2].value,
 	primaryPhonenumber:formData[3].value,
@@ -161,7 +161,7 @@ $.ajax({
 	commuMedium:"English",
 	caseDescription:formData[5].value,
 	attachment:"N",
-	attachmentName:"null"},
+	attachmentName:"null"}),
 		success: function (response) {
 			alert("Thanks for contacting us, we will get back to you soon")
 		},
