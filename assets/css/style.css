@@ -4554,6 +4554,7 @@ display: none !important;
 
 .header-info-boxes .header-info-box p {
   margin-bottom: 0;
+   font-size: 13px;
 }
 
 .header-info-boxes .header-info-box + .header-info-box {
@@ -7681,7 +7682,22 @@ display: none !important;
   .typed-header {
     font-size: 18px;
   }
+ 
 }
+@media (max-width :412px){
+   #getQuoteCountry{
+    display:none;
+  }
+  .responsiveGetQuote{
+       margin-top: -50px; 
+  }
+      .responsiveSearchTreatment{
+        width: 75%!important;
+      }
+}
+    @media (max-width:541px){
+
+    }
 
 @media (min-width: 768px) {
   .typed-header {
@@ -13723,3 +13739,6 @@ z-index: 1000;
 clear: both;
 overflow: visible;
   }
+
+
+  

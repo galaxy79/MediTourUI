@@ -1919,20 +1919,8 @@ $('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
   {
     "text"  : "India",
     "value" : "India"
-  },
-  {
-    "text"     : "Bangladesh",
-    "value"    : "Bangladesh",
-    "selected" : true
-  },
-  {
-    "text"  : "Pakistan",
-    "value" : "Pakistan"
-  },
-{
-    "text"  : "China",
-    "value" : "China"
   }
+  
 ];
 	
 			var optionList = document.getElementById('getQuoteCountry').options;
