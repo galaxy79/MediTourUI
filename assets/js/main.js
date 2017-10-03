@@ -7,7 +7,7 @@
 
 var basicKey = "bGliaW46bGliaW4=";
 var xAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiT1VSU0VSVklDRVMiLCJpYXQiOjE1MDU5NjY3NTB9.0GlBMqkhAXELN0-m6z5ES6K9zcf-_M0EYT0z9FH43ig";
-var serverName = "http://www.medinovita.in/";
+var serverName = "https://www.medinovita.in/";
 var GLOBAL_VARIABLES = {
 	"Language": "en",
 	"Currency": "dollar"
@@ -142,7 +142,7 @@ $('#homeMenu').on('click',function(){
 
 
 $('#submitEnquiryForm').on('submit',function(e){
-	e.preventDefault();
+	
 	var formData=$(this).serializeArray();
 
 $.ajax({
@@ -169,6 +169,7 @@ $.ajax({
 			console.log(exception)
 		}
 	});
+e.preventDefault();
 })
 	
 $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
@@ -1839,7 +1840,60 @@ title:"Laboratory"
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	}]
 	
-	
+
+	$.ajax({
+		url: serverName + "api/v1/gethighlighttreatments/GETHIGHLIGHTTRMT?limit=9",
+		type: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic " + basicKey,
+			"x-access-token": xAccessToken
+
+		},
+		success: function (response) {
+			var homePageHighLightsItems = response;
+			var a = document.getElementsByClassName('service-box')
+			$.each(a, function (index, element) {
+				$(element).find('h3').html(homePageHighLightsItems[index].title);
+				$(element).find('p').html(homePageHighLightsItems[index].content);
+				$(element).find('img').attr('src', homePageHighLightsItems[index].imgSrc);
+			});
+
+		},
+		error: function (exception) {
+			console.log(exception);
+		}
+	});
+
+	$.ajax({
+		url: serverName + "api/v1/get/newssection/NEWSSECTION",
+		type: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic " + basicKey,
+			"x-access-token": xAccessToken
+
+		},
+		success: function (response) {
+			var latestNewsItems = response
+			//Loading Latest news items
+			var latestNewsHtmlString = '';
+
+			latestNewsItems.forEach(function (item, index) {
+
+				latestNewsHtmlString += ' <article data-id="' + item.newsId + '" class="entry entry-grid"><div class="entry-media"><figure><a href="single.html"><img src="' + item.imgPath + '" alt="Post image"></a></figure><div class="entry-meta"><span><i class="fa fa-calendar"></i>' + item.postedDate + '</span><a href="#"><i class="fa fa-user"></i> ' +
+					item.postedBy + '</a></div></div><h2 class="entry-title"><i class="fa fa-file-image-o"></i><a href="single.html">' +
+					item.postHeading + '</a></h2><div class="entry-content"><p>' +
+					item.postShortContent + '</p><a data-id="' + item.newsId + '" href="#modal-container-LatestNews" class="readmore latestNewsReadmore" data-toggle="modal">Read more<i class="fa fa-angle-right"></i></a></div></article>';
+
+			});
+			$('#latestNewsCarousel').html(latestNewsHtmlString);
+
+		},
+		error: function (exception) {
+			console.log(exception);
+		}
+	});
 	
 	$.ajax({
 		url: serverName + "api/v1/getaboutMedical/GETABTMEDICAL",
@@ -1868,12 +1922,6 @@ title:"Laboratory"
 	});
 
 
-	var a = document.getElementsByClassName('service-box')
-	$.each(a, function (index, element) {
-		$(element).find('h3').html(homePageHighLightsItems[index].title);
-		$(element).find('p').html(homePageHighLightsItems[index].content);
-		$(element).find('img').attr('src',homePageHighLightsItems[index].imgSrc);
-	});
 
 	
 
@@ -1882,18 +1930,7 @@ featuredTreatmentsItems.forEach(function(item,index){
 featuredTreatmentsHtmlString+=' <div class="col-sm-4"><div class="text-block hover-bg text-center" style="background-image:url('+ item.img+')"><img src="'+item.svgImg+'" alt="'+item.altText+'" width="42"><h3 class="block-title"><a href="#">'+item.title+'</a></h3><p>'+item.shortContent +'</p><a href="#" class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a></div></div>'
 });
 $('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
-	//Loading Latest news items
-	var latestNewsHtmlString = '';
-
-	latestNewsItems.forEach(function (item, index) {
-
-		latestNewsHtmlString += ' <article data-id="' + item.newsId + '" class="entry entry-grid"><div class="entry-media"><figure><a href="single.html"><img src="' + item.imgPath + '" alt="Post image"></a></figure><div class="entry-meta"><span><i class="fa fa-calendar"></i>' + item.postedDate + '</span><a href="#"><i class="fa fa-user"></i> ' +
-			item.postedBy + '</a></div></div><h2 class="entry-title"><i class="fa fa-file-image-o"></i><a href="single.html">' +
-			item.postHeading + '</a></h2><div class="entry-content"><p>' +
-			item.postShortContent + '</p><a data-id="' + item.newsId + '" href="#modal-container-LatestNews" class="readmore latestNewsReadmore" data-toggle="modal">Read more<i class="fa fa-angle-right"></i></a></div></article>';
-
-	});
-	$('#latestNewsCarousel').html(latestNewsHtmlString);
+	
 
 
 //Populate latest news modal
