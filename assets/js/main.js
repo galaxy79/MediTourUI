@@ -1842,7 +1842,7 @@ title:"Laboratory"
 	
 
 	$.ajax({
-		url: serverName + "api/v1/gethighlighttreatments/GETHIGHLIGHTTRMT?limit=9",
+		url: serverName + "api/v1/gethighlighttreatments/GETHIGHLIGHTTRMT?limit=8",
 		type: 'GET',
 		headers: {
 			"Content-Type": "application/json",
