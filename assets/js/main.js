@@ -103,6 +103,9 @@ $('#homeMenu').on('click',function(){
 			"x-access-token": xAccessToken
 
 		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+		},
 		success: function (response) {
 			officeAddress = response[0].country +"<br>"+response[0].officeCity[0].city+ "<br>" +response[0].officeCity[0].officeLocation[0].addressLine1 +"<br>"+response[0].officeCity[0].officeLocation[0].addressLine2 + "<br>" + response[0].officeCity[0].officeLocation[0].landMark + "<br>" + response[0].officeCity[0].officeLocation[0].officeEmailId + "<br>" + response[0].officeCity[0].officeLocation[0].contactPerson;
 			document.querySelector('p.office-address').innerHTML = officeAddress;
@@ -120,6 +123,9 @@ $('#homeMenu').on('click',function(){
 			"Content-Type": "application/json",
 			"Authorization": "Basic " + basicKey,
 			"x-access-token": xAccessToken
+		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
 		},
 		success: function (response) {
 			
@@ -153,6 +159,9 @@ $.ajax({
 			"Authorization": "Basic "+ basicKey,
 			"x-access-token": xAccessToken
 		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+		},
 		data:JSON.stringify({emailID:formData[1].value,
 	userFullName:formData[0].value,
 	isdCode:formData[2].value,
@@ -170,6 +179,7 @@ $.ajax({
 		}
 	});
 e.preventDefault();
+	$('#modal-container-SubmitEnquiry').modal('toggle');	
 })
 	
 $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
@@ -1850,6 +1860,9 @@ title:"Laboratory"
 			"x-access-token": xAccessToken
 
 		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+		},
 		success: function (response) {
 			var homePageHighLightsItems = response;
 			var a = document.getElementsByClassName('service-box')
@@ -1873,6 +1886,9 @@ title:"Laboratory"
 			"Authorization": "Basic " + basicKey,
 			"x-access-token": xAccessToken
 
+		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
 		},
 		success: function (response) {
 			var latestNewsItems = response
@@ -1903,6 +1919,9 @@ title:"Laboratory"
 			"Authorization": "Basic " + basicKey,
 			"x-access-token": xAccessToken
 
+		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
 		},
 		success: function (response) {
 			var aboutData = response;
