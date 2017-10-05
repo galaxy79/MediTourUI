@@ -4487,10 +4487,10 @@ display: none !important;
 .customerCare{
   display: none !important;
 }
-#searchForm {
+/* #searchForm {
   text-align: start!important;
   
-}
+} */
 /* .medinovitaLogo{
   width:30%;
 } */
@@ -7685,15 +7685,17 @@ display: none !important;
  
 }
 @media (max-width :412px){
-   #getQuoteCountry{
-    display:none;
-  }
+   #getQuoteCountry {
+     display: none;
+   }
+
+   /* .responsiveSearchTreatment {
+     width: 75%!important;
+   } */
   .responsiveGetQuote{
        margin-top: -50px; 
   }
-      .responsiveSearchTreatment{
-        width: 75%!important;
-      }
+     
 }
     @media (max-width:541px){
 
@@ -13354,10 +13356,20 @@ width: 300px;
 }
 
 
+/*HomePage*/
+
 @media (max-width: 500px) {
  
   .fixedCarousel .item{
     height: 300px!important;
+}
+
+#searchForm{
+    
+    position: absolute;
+    top: 200px!important;
+    height: 100%;
+    width: 100%;
 }
 
 .fixedCarousel .item img {
@@ -13370,7 +13382,7 @@ width: 300px;
 
 
 
-/*HomePage*/
+
 .fixedCarousel .item{
     height: 600px;
 }
