@@ -150,7 +150,15 @@ $('#homeMenu').on('click',function(){
 $('#submitEnquiryForm').on('submit',function(e){
 	
 	var formData=$(this).serializeArray();
-
+	var v = grecaptcha.getResponse();
+	if (v.length == 0) {
+		document.getElementById('captcha').innerHTML = "Please verify that you are not a robot";
+		return false;
+	}
+	else {
+		document.getElementById('captcha').innerHTML = "Verification completed";
+		return true;
+	}
 $.ajax({
 		url: serverName+"api/v1/submit/enquiry/postuserenquiry",
 		type: 'POST',
