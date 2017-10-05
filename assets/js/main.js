@@ -134,7 +134,7 @@ $('#homeMenu').on('click',function(){
 			socialMedia[0].setAttribute('href', response[0].fburlLink);
 			socialMedia[1].setAttribute('href', response[0].twitterurlLink);
 			socialMedia[2].setAttribute('href', response[0].linkedlinurlLink);
-			socialMedia[3].setAttribute('href', response[0].instagramurlLink);
+			//socialMedia[3].setAttribute('href', response[0].instagramurlLink);
 			document.querySelector('p.medinovitaDecs').innerHTML = response[0].whymedinovitaDesc;
 			document.querySelector('p.customerCareNumber').innerHTML = response[0].whatsappCustomercareno;
 			document.querySelector('p.whatsappContactNumber').innerHTML = response[0].customerCareno
