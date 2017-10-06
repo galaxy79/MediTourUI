@@ -1728,6 +1728,8 @@ ga('send', 'pageview');
 //HomePage Load callback
 function homepageCallback() {
 	//Homepage Variables
+	var treatmentList = "";
+
 	var featuredTreatmentsItems=[{
 img:"./assets/images/blocks/index-medical/item2.jpg",
 svgImg:"./assets/images/services/index-medical/stethoscope.svg",altText:"Stethoscope",
@@ -1858,6 +1860,31 @@ title:"Laboratory"
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	}]
 	
+	//Fetch search Treatments list
+	$.ajax({
+		url: serverName + "api/v1/getTreamentlist/all/getTreatment",
+		type: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic " + basicKey,
+			"x-access-token": xAccessToken
+
+		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+		},
+		success: function (response) {
+			treatmentList = response;
+			//Populate Treatment Dropdown
+			$("#getQuoteTreatment").autocomplete({
+				source: treatmentList
+			});
+
+		},
+		error: function (exception) {
+			console.log(exception);
+		}
+	});
 
 	$.ajax({
 		url: serverName + "api/v1/gethighlighttreatments/GETHIGHLIGHTTRMT?limit=8",
@@ -1968,16 +1995,7 @@ $('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
 		$("#modal-container-LatestNews .modal-body").text("Modal Content");
 	});
 
-	//Treatment Dropdown
-	     var availableTreatments  =  [
-               "Head",
-               "Neck",
-               "Hair",
-               "Hand",
-            ];
-            $("#getQuoteTreatment").autocomplete({
-               source: availableTreatments
-			});
+	
 
 	//Country Dropdown
 	var availableCountries = [
