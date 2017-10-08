@@ -148,7 +148,7 @@ $('#homeMenu').on('click',function(){
 
 
 $('#submitEnquiryForm').on('submit',function(e){
-	
+	e.preventDefault();
 	var formData=$(this).serializeArray();
 	var v = grecaptcha.getResponse();
 	if (v.length == 0) {
@@ -186,7 +186,7 @@ $.ajax({
 			console.log(exception)
 		}
 	});
-e.preventDefault();
+
 	$('#modal-container-SubmitEnquiry').modal('toggle');	
 })
 	
