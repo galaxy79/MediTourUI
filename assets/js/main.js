@@ -1968,6 +1968,28 @@ title:"Laboratory"
 		}
 	});
 
+	//Get Featured Treatment
+	$.ajax({
+		url: serverName + "api/v1/getFeaturedtreatments/GETFTDTREATMENT",
+		type: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic " + basicKey,
+			"x-access-token": xAccessToken
+
+		},
+		success: function (response) {
+			
+			var featuredTreatmentsHtmlString="";
+response.forEach(function(item,index){
+featuredTreatmentsHtmlString+=' <div class="col-sm-4"><div class="text-block hover-bg text-center" style="background-image:url('+ item.img+')"><img src="'+item.svgImg+'" width="42"><h3 class="block-title"><a href="#">'+item.title+'</a></h3><p>'+item.shortContent +'</p><a href="#" class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a></div></div>'
+});
+$('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
+		},
+		error: function (exception) {
+			console.log(exception);
+		}
+	});
 
 	//Homepage Carousel initialization
 		$('#homepageCarousel').carousel({
@@ -1975,16 +1997,6 @@ title:"Laboratory"
 		cycle: true
 	});
 
-
-
-	
-
-var featuredTreatmentsHtmlString="";
-featuredTreatmentsItems.forEach(function(item,index){
-featuredTreatmentsHtmlString+=' <div class="col-sm-4"><div class="text-block hover-bg text-center" style="background-image:url('+ item.img+')"><img src="'+item.svgImg+'" alt="'+item.altText+'" width="42"><h3 class="block-title"><a href="#">'+item.title+'</a></h3><p>'+item.shortContent +'</p><a href="#" class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a></div></div>'
-});
-$('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
-	
 
 
 //Populate latest news modal
