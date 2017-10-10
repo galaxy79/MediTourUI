@@ -84,9 +84,16 @@ $('#costPageMenu').on('click',function(){
 	$('.main').html('');
 	$('.main').load("treatmentsOffered.html", function (data) { treatmentsOfferedCallback(data);});
 })
+//Home menu selected
 $('#homeMenu').on('click',function(){
 	$('.main').html('');
 	$('.main').load("homepage.html", function (data) { homepageCallback(data);});
+})
+
+//Hospitals and Doctors selected
+$('#hospitalsPageMenu').on('click',function(){
+	$('.main').html('');
+	$('.main').load("hospitalzone.html", function (data) { });
 })
 	
 	//load for Master Page
@@ -876,31 +883,7 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 				}
 			});
 
-			/* Index-medical - Latest Post Medical Carousel */
-			$('.latest-posts-medical-carousel.owl-carousel').owlCarousel({
-				loop: false,
-				margin: 30,
-				responsiveClass: true,
-				nav: false,
-				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
-				dots: true,
-				autoplay: true,
-				autoplayTimeout: 15000,
-				responsive: {
-					0: {
-						items: 1
-					},
-					480: {
-						items: 2
-					},
-					768: {
-						items: 3
-					},
-					992: {
-						items: 4
-					}
-				}
-			});
+		
 
 
 
@@ -1939,7 +1922,31 @@ title:"Laboratory"
 
 			});
 			$('#latestNewsCarousel').html(latestNewsHtmlString);
-
+	/* Index-medical - Latest Post Medical Carousel */
+			$('.latest-posts-medical-carousel.owl-carousel').owlCarousel({
+				loop: false,
+				margin: 30,
+				responsiveClass: true,
+				nav: false,
+				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
+				dots: true,
+				autoplay: true,
+				autoplayTimeout: 15000,
+				responsive: {
+					0: {
+						items: 1
+					},
+					480: {
+						items: 2
+					},
+					768: {
+						items: 3
+					},
+					992: {
+						items: 4
+					}
+				}
+			});
 		},
 		error: function (exception) {
 			console.log(exception);
