@@ -84,6 +84,7 @@ $('#costPageMenu').on('click',function(){
 	$('.main').html('');
 	$('.main').load("treatmentsOffered.html", function (data) { treatmentsOfferedCallback(data);});
 })
+//Home menu selected
 $('#homeMenu').on('click',function(){
 	$('.main').html('');
 	$('.main').load("homepage.html", function (data) { homepageCallback(data);});
@@ -93,6 +94,12 @@ $('#treatmentsOfferedUL li a').on('click', function () {
 	$('.main').html('');
 	$('.main').load("treatmentsOffered.html", function (id) { treatmentsOfferedCallback(id); });
 	})
+
+//Hospitals and Doctors selected
+$('#hospitalsPageMenu').on('click',function(){
+	$('.main').html('');
+	$('.main').load("hospitalzone.html", function (data) { });
+})
 	
 	//load for Master Page
 
@@ -153,7 +160,7 @@ $('#treatmentsOfferedUL li a').on('click', function () {
 
 
 $('#submitEnquiryForm').on('submit',function(e){
-	
+	e.preventDefault();
 	var formData=$(this).serializeArray();
 	var v = grecaptcha.getResponse();
 	if (v.length == 0) {
@@ -191,7 +198,7 @@ $.ajax({
 			console.log(exception)
 		}
 	});
-e.preventDefault();
+
 	$('#modal-container-SubmitEnquiry').modal('toggle');	
 })
 	
@@ -881,31 +888,7 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 				}
 			});
 
-			/* Index-medical - Latest Post Medical Carousel */
-			$('.latest-posts-medical-carousel.owl-carousel').owlCarousel({
-				loop: false,
-				margin: 30,
-				responsiveClass: true,
-				nav: false,
-				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
-				dots: true,
-				autoplay: true,
-				autoplayTimeout: 15000,
-				responsive: {
-					0: {
-						items: 1
-					},
-					480: {
-						items: 2
-					},
-					768: {
-						items: 3
-					},
-					992: {
-						items: 4
-					}
-				}
-			});
+		
 
 
 
@@ -1944,7 +1927,31 @@ title:"Laboratory"
 
 			});
 			$('#latestNewsCarousel').html(latestNewsHtmlString);
-
+	/* Index-medical - Latest Post Medical Carousel */
+			$('.latest-posts-medical-carousel.owl-carousel').owlCarousel({
+				loop: false,
+				margin: 30,
+				responsiveClass: true,
+				nav: false,
+				navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
+				dots: true,
+				autoplay: true,
+				autoplayTimeout: 15000,
+				responsive: {
+					0: {
+						items: 1
+					},
+					480: {
+						items: 2
+					},
+					768: {
+						items: 3
+					},
+					992: {
+						items: 4
+					}
+				}
+			});
 		},
 		error: function (exception) {
 			console.log(exception);
@@ -1973,6 +1980,28 @@ title:"Laboratory"
 		}
 	});
 
+	//Get Featured Treatment
+	$.ajax({
+		url: serverName + "api/v1/getFeaturedtreatments/GETFTDTREATMENT",
+		type: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic " + basicKey,
+			"x-access-token": xAccessToken
+
+		},
+		success: function (response) {
+			
+			var featuredTreatmentsHtmlString="";
+response.forEach(function(item,index){
+featuredTreatmentsHtmlString+=' <div class="col-sm-4"><div class="text-block hover-bg text-center" style="background-image:url('+ item.img+')"><img src="'+item.svgImg+'" width="42"><h3 class="block-title"><a href="#">'+item.title+'</a></h3><p>'+item.shortContent +'</p><a href="#" class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a></div></div>'
+});
+$('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
+		},
+		error: function (exception) {
+			console.log(exception);
+		}
+	});
 
 	//Homepage Carousel initialization
 		$('#homepageCarousel').carousel({
@@ -1980,16 +2009,6 @@ title:"Laboratory"
 		cycle: true
 	});
 
-
-
-	
-
-var featuredTreatmentsHtmlString="";
-featuredTreatmentsItems.forEach(function(item,index){
-featuredTreatmentsHtmlString+=' <div class="col-sm-4"><div class="text-block hover-bg text-center" style="background-image:url('+ item.img+')"><img src="'+item.svgImg+'" alt="'+item.altText+'" width="42"><h3 class="block-title"><a href="#">'+item.title+'</a></h3><p>'+item.shortContent +'</p><a href="#" class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a></div></div>'
-});
-$('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
-	
 
 
 //Populate latest news modal
