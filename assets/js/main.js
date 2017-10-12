@@ -88,6 +88,11 @@ $('#homeMenu').on('click',function(){
 	$('.main').html('');
 	$('.main').load("homepage.html", function (data) { homepageCallback(data);});
 })
+$('#treatmentsOfferedUL li a').on('click', function () {
+	var id = $(this).attr('id');
+	$('.main').html('');
+	$('.main').load("treatmentsOffered.html", function (id) { treatmentsOfferedCallback(id); });
+	})
 	
 	//load for Master Page
 
@@ -2069,60 +2074,44 @@ function costCallback(data) {
 
 
 //treatmentsOfferedCallback
-function treatmentsOfferedCallback(){
+function treatmentsOfferedCallback(id) {
+	var treatmentCategory = '';
+	switch (id) {
+		case 'cardiacTreatmentMenu':
+			treatmentCategory = "Cardiac";
+			break;
+		case 'ayurvedaTreatmentMenu':
+			treatmentCategory = "Ayurveda";
+			break;
+		case 'dentalTreatmentMenu':
+			treatmentCategory = "Dental";
+			break;
+		default:
+			treatmentCategory = "Cardiac";
+			break;
+	}
 	
+	$.ajax({
+		url: serverName + "api/v1/searchHospitaldetails/" + treatmentCategory+"/searchHospital",
+		type: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic " + basicKey,
+			"x-access-token": xAccessToken
+
+		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+		},
+		success: function (response) {
+			console.log(response);
+		},
+		error: function (exception) {
+			console.log(exception);
+		}
+	});
+
+	///api/v1/searchHospitaldetails/Dental/searchHospital
+
 }
 
-// function initializeDots(){
-// 	// trailing dots on coming soon page
-
-// var maxDots = 100;
-// var interval = 20;
-// var time = 0;
-// var dots = document.getElementsByClassName('dot');
-// var dot = dots[0];
-// var dotSize = dot.offsetWidth;
-
-// document.addEventListener('mousemove', function(event) {
-//     // dot.style.left = event.clientX + 'px';
-//     // dot.style.top = event.clientY + 'px';
-
-//     if (event.timeStamp > time + interval && dots.length <= maxDots) {
-//         time = event.timeStamp;
-//         addDot();
-//     }
-// });
-
-// function addDot()  {
-//     var dotClone = dot.cloneNode();
-
-//     dotClone.style.backgroundColor =
-//         '#2ECC71';
-//     dotClone.style.width = dotClone.style.height = randomSize();
-//     dotClone.style.left = event.pageX + 'px';
-//     dotClone.style.top = event.pageY + 'px';
-// 	dotClone.style.transform = "translate(" + randomLocation() + ", " + randomLocation() + ")";
-// 	dotClone.style.pointerEvents ="none";
-// 	dotClone.style.zIndex =1001;
-//     document.body.appendChild(dotClone);
-
-//     if (dots.length === maxDots) {
-//         removeDot();
-//     }
-// }
-
-// function removeDot() {
-//     document.body.removeChild(dots[1]);
-// }
-
-// function randomLocation() {
-//     return Math.floor(Math.random() * (dotSize * 2)) - (dotSize) + 'px';
-// }
-
-// function randomSize() {
-//     var max = dotSize * 0.95;
-//     var min = dotSize * 0.1;
-//     return Math.floor(Math.random() * max + min) + 'px';
-// }
-
-// }
