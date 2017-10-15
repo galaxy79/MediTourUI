@@ -4,6 +4,3 @@ os: windows
 files:
   - source: ./
     destination: C:\Newfolder
-hooks:
-  BeforeInstall:
-    - location: C:\runbeforedeploy.ps1
