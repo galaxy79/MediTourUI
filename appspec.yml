@@ -6,4 +6,4 @@ files:
     destination: C:\Medinovita\views\webcontent
 hooks:
   BeforeInstall:
-    - location: \beforedeploy.ps1
+    - location: \beforedeploy.bat
