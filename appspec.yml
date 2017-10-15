@@ -3,4 +3,4 @@ version: 0.0
 os: windows
 files:
   - source: ./
-    destination: C:\Newfolder
+    destination: C:\Medinovita\views\webcontent
