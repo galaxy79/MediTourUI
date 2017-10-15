@@ -1,0 +1,1 @@
+Remove-Item -path C:\Medinovita\views\webcontent\* -recurse
