@@ -74,14 +74,14 @@ $('#hospitalsPageMenu').on('click',function(){
 	$('.main').html('');
 	$('.main').load("hospitalzone.html", function (data) { });
 })
-	
+
 	//load for Master Page
 
 
 
 	//Load Office Address
 	$.ajax({
-		url: serverName+"api/v1/get/officelocations/officelocation",
+		url: serverName+"api/v1/get/officelocations/meditrip",
 		type: 'GET',
 		headers: {
 			"Content-Type": "application/json",
@@ -100,10 +100,10 @@ $('#hospitalsPageMenu').on('click',function(){
 			console.log(exception);
 		}
 	});
-	
+
 
 	$.ajax({
-		url: serverName+"api/v1/get/homepagedetails/COMPANYDESC",
+		url: serverName+"api/v1/get/homepagedetails/meditrip",
 		type: 'GET',
 		headers: {
 			"Content-Type": "application/json",
@@ -114,7 +114,7 @@ $('#hospitalsPageMenu').on('click',function(){
 			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
 		},
 		success: function (response) {
-			
+
 			document.querySelector('p.why-india').innerHTML = response[0].whyIndiaDesc;
 			var socialMedia = document.querySelectorAll('a.social-icon');
 			socialMedia[0].setAttribute('href', response[0].fburlLink);
@@ -130,7 +130,7 @@ $('#hospitalsPageMenu').on('click',function(){
 		}
 	});
 
-	
+
 
 
 $('#submitEnquiryForm').on('submit',function(e){
@@ -143,10 +143,10 @@ $('#submitEnquiryForm').on('submit',function(e){
 	}
 	else {
 		document.getElementById('captcha').innerHTML = "Verification completed";
-		
+
 	}
 $.ajax({
-		url: serverName+"api/v1/submit/enquiry/postuserenquiry",
+		url: serverName+"api/v1/submit/enquiry/meditrip",
 		type: 'POST',
 		headers: {
 				'Content-type': 'application/json',
@@ -173,26 +173,26 @@ $.ajax({
 		}
 	});
 
-	$('#modal-container-SubmitEnquiry').modal('toggle');	
+	$('#modal-container-SubmitEnquiry').modal('toggle');
 })
-	
+
 $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
-	 $('.modal .modal-body').css('overflow-y', 'auto'); 
+	 $('.modal .modal-body').css('overflow-y', 'auto');
     $('.modal .modal-body').css('max-height', $(window).height() *0.9);
 
 	})
 	countryCodes.forEach(function(value,index){
-		 $('#inputSubmitEnquiryISDCode').append($('<option>', { 
+		 $('#inputSubmitEnquiryISDCode').append($('<option>', {
         value: value.dial_code,
         text : value.name.substr(0,5) + " (" + value.code+ ") " + value.dial_code
 	}));
-	
+
 
 })
 
 
 
-	
+
 
 
 	//Google Translate Section starts
@@ -862,7 +862,7 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 				}
 			});
 
-		
+
 
 
 
@@ -1291,7 +1291,7 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 				}
 			});
 
-		
+
 
 		},
 		tooltip: function () {
@@ -1373,7 +1373,7 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 		},
 		progressBars: function () {
 			var self = this;
-			// Calculate and Animate Progress 
+			// Calculate and Animate Progress
 			$('.progress-animate').waypoint(function (direction) {
 				var $this = $(this.element),
 					progressVal = $this.data('width');
@@ -1522,7 +1522,7 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 			this.sliderText(priceSlider, '$');
 		},
 		sliderText: function (slider, currency) {
-			// add slider values as a text 
+			// add slider values as a text
 			// check for currency too
 			var currencyVar = (currency) ? '$' : null,
 				divHandles = slider.getElementsByClassName('noUi-handle'),
@@ -1819,10 +1819,10 @@ title:"Laboratory"
 		title:"Emergency",
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	}]
-	
+
 	//Fetch search Treatments list
 	$.ajax({
-		url: serverName + "api/v1/getTreamentlist/all/getTreatment",
+		url: serverName + "api/v1/getTreamentlist/all/meditrip",
 		type: 'GET',
 		headers: {
 			"Content-Type": "application/json",
@@ -1855,7 +1855,7 @@ title:"Laboratory"
 	});
 
 	$.ajax({
-		url: serverName + "api/v1/gethighlighttreatments/GETHIGHLIGHTTRMT?limit=8",
+		url: serverName + "api/v1/gethighlighttreatments/meditrip?limit=8",
 		type: 'GET',
 		headers: {
 			"Content-Type": "application/json",
@@ -1882,7 +1882,7 @@ title:"Laboratory"
 	});
 
 	$.ajax({
-		url: serverName + "api/v1/get/newssection/NEWSSECTION",
+		url: serverName + "api/v1/get/newssection/meditrip",
 		type: 'GET',
 		headers: {
 			"Content-Type": "application/json",
@@ -1937,9 +1937,9 @@ title:"Laboratory"
 			console.log(exception);
 		}
 	});
-	
+
 	$.ajax({
-		url: serverName + "api/v1/getaboutMedical/GETABTMEDICAL",
+		url: serverName + "api/v1/getaboutMedical/meditrip",
 		type: 'GET',
 		headers: {
 			"Content-Type": "application/json",
@@ -1962,7 +1962,7 @@ title:"Laboratory"
 
 	//Get Featured Treatment
 	$.ajax({
-		url: serverName + "api/v1/getFeaturedtreatments/GETFTDTREATMENT",
+		url: serverName + "api/v1/getFeaturedtreatments/meditrip",
 		type: 'GET',
 		headers: {
 			"Content-Type": "application/json",
@@ -1971,7 +1971,7 @@ title:"Laboratory"
 
 		},
 		success: function (response) {
-			
+
 			var featuredTreatmentsHtmlString="";
 response.forEach(function(item,index){
 featuredTreatmentsHtmlString+=' <div class="col-sm-4"><div class="text-block hover-bg text-center" style="background-image:url('+ item.img+')"><img src="'+item.svgImg+'" width="42"><h3 class="block-title"><a href="#">'+item.title+'</a></h3><p>'+item.shortContent +'</p><a href="#" class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a></div></div>'
@@ -1999,7 +1999,7 @@ $('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
 		$("#modal-container-LatestNews .modal-body").text("Modal Content");
 	});
 
-	
+
 
 	//Country Dropdown
 	var availableCountries = [
@@ -2007,19 +2007,19 @@ $('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
     "text"  : "India",
     "value" : "India"
   }
-  
+
 ];
-	
+
 			var optionList = document.getElementById('getQuoteCountry').options;
 			availableCountries.forEach( (option) => optionList.add( new Option(option.text, option.value ) ));
 
-          
-			
+
+
 }
 
 //Cost page callback
 function costCallback(data) {
-	
+
 		$('.top-doctors-carousel.owl-carousel').owlCarousel({
 				loop: false,
 				margin: 30,
@@ -2089,9 +2089,9 @@ function treatmentsOfferedCallback(id) {
 			treatmentCategory = "Cardiac";
 			break;
 	}
-	
+
 	$.ajax({
-		url: serverName + "api/v1/searchHospitaldetails/" + treatmentCategory+"/searchHospital",
+		url: serverName + "api/v1/searchHospitaldetails/" + treatmentCategory+"/meditrip",
 		type: 'GET',
 		headers: {
 			"Content-Type": "application/json",
