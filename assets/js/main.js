@@ -6,7 +6,7 @@
 
 
 var basicKey = "bGliaW46bGliaW4=";
-var xAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiT1VSU0VSVklDRVMiLCJpYXQiOjE1MDU5NjY3NTB9.0GlBMqkhAXELN0-m6z5ES6K9zcf-_M0EYT0z9FH43ig";
+var xAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiVG9rZW5Ub0F1dGhlbnRpY2F0ZU1lZGlub3ZpdGFVc2VyIiwiaWF0IjoxNTA4MDQ0OTMwfQ.cZ3pCte1guE8KQkjd1KfY_bLJ-gOatJm2xlwyiLGAl4";
 var serverName = "https://www.medinovita.in/";
 var GLOBAL_VARIABLES = {
 	"Language": "en",
