@@ -68,7 +68,9 @@ $('#treatmentsOfferedUL li a').on('click', function (e) {
 	var id = $(this).attr('id');
 	console.log(id);
 	$('.main').html('');
-	$('.main').load("treatmentsOffered.html", function () { treatmentsOfferedCallback(id); });
+	$('.main').load("treatmentsOffered_V2.html", function () { 
+		//treatmentsOfferedCallback(id);
+	 });
 	})
 
 //Hospitals and Doctors selected
@@ -2111,10 +2113,10 @@ response.forEach(function(item,index){
 
 	treatmentArray.forEach(function(treatmentItem,treatmentIndex){
 		var displayName=treatmentItem.displayName;
-		var shortDescription=treatmentItem.shortDescription;
+		var treatmentDescription=treatmentItem.treatmentDescription;
 		var procedureImagepath=treatmentItem.procedureImagepath;
 		
-			htmlString+='<div class="treatments-hover" style="min-height:100px;padding:20px;width:90%;overflow:auto;border-radius: 7px;position:relative;margin-bottom: 20px;background-color:#eff6ef;border-bottom: 1px solid #DAD8D8;border-right: 0.2px solid #DAD8D8;"><div class="one-third" style="width:120px"><img src="'+procedureImagepath +'" height="100" width="140" style="display:inline-block"/></div><div class="three-fourths last-col" style="line-height: 1em;background-color: #eff6ef"> <p>'+displayName+'</p> <p><u>Hospital Stay:</u> '+treatmentItem.minHospitalization+'-'+treatmentItem.maxHospitalization+' days</p>     <p><u>Healing Time:</u> '+treatmentItem.healingTimeInDays+' days</p>     <p>Description of Procedure:</br>'+shortDescription+'</p></div>   <a href="#" style="float:right">more details</a></div>'
+			htmlString+='<div class="treatments-hover" style="min-height:100px;padding:20px;width:90%;overflow:auto;border-radius: 7px;position:relative;margin-bottom: 20px;background-color:#eff6ef;border-bottom: 1px solid #DAD8D8;border-right: 0.2px solid #DAD8D8;"><div class="one-third" style="width:120px"><img src="'+procedureImagepath +'" height="100" width="140" style="display:inline-block"/></div><div class="three-fourths last-col" style="line-height: 1em;background-color: #eff6ef"> <p>'+displayName+'</p> <p><u>Hospital Stay:</u> '+treatmentItem.minHospitalization+'-'+treatmentItem.maxHospitalization+' days</p>     <p><u>Healing Time:</u> '+treatmentItem.healingTimeInDays+' days</p>     <p>Description of Procedure:</br>'+treatmentDescription+'</p></div>   <a href="#" style="float:right">more details</a></div>'
 	});
 });
 document.getElementById('availableProceduresDiv').innerHTML=htmlString;
