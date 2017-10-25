@@ -68,7 +68,7 @@ $('#treatmentsOfferedUL li a').on('click', function (e) {
 	var id = $(this).attr('id');
 	console.log(id);
 	$('.main').html('');
-	$('.main').load("treatmentsOffered.html", function (id) { treatmentsOfferedCallback(id); });
+	$('.main').load("treatmentsOffered.html", function () { treatmentsOfferedCallback(id); });
 	})
 
 //Hospitals and Doctors selected
@@ -188,9 +188,7 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
         value: value.dial_code,
         text : value.name.substr(0,5) + " (" + value.code+ ") " + value.dial_code
 	}));
-
-
-})
+});
 
 
 
@@ -1847,7 +1845,7 @@ title:"Laboratory"
 				var option = document.createElement("option")
 				option.text = item;
 				option.value = item.substr(0, item.length - 10).trim();
-				selectBox.addEventListener(option);
+				selectBox.add(option);
 			});
 
 		},
@@ -2105,23 +2103,21 @@ function treatmentsOfferedCallback(id) {
 			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
 		},
 		success: function (response) {
-var htmlString='';
-
+var htmlString='<h2 style="margin-top: 20px">Available Procedures</h2>';
+console.log(JSON.stringify(response,null,'\t'))
 response.forEach(function(item,index){
-	var hospitalName=item.hospitalName;
-	var treatmentArray=item.Treatment;
+	
+	var treatmentArray=item.treatmentList;
 
 	treatmentArray.forEach(function(treatmentItem,treatmentIndex){
-		var departmentName=treatmentItem.departmentName;
-		var doctors=treatmentItem.doctor;
-		doctors.forEach(function(doctor,x){
-			var doctorName=doctor.doctorName;
-			var docPicPath=doctor.profilepicdir;
-			htmlString+='<div class="treatments-hover" style="min-height:100px;padding:20px;width:100%;overflow:auto;border-radius: 7px;position:relative;margin-bottom: 20px;background-color:#eff6ef;border-bottom: 1px solid #DAD8D8;border-right: 0.2px solid #DAD8D8;"><div class="one-third" style="width:120px"><img src="'+docPicPath +'" height="100" width="140" style="display:inline-block"/></div><div class="three-fourths last-col" style="line-height: 1em;background-color: #eff6ef"> <p><u>'+departmentName+'</u></p> <p><u>Hospital Stay</u></p>     <p><u>Healing Time</u></p>     <p>Description of Procedure:</br>'+departmentName+'</p></div>   <a href="#" style="float:right">more details</a></div>'
-		});
+		var displayName=treatmentItem.displayName;
+		var shortDescription=treatmentItem.shortDescription;
+		var procedureImagepath=treatmentItem.procedureImagepath;
+		
+			htmlString+='<div class="treatments-hover" style="min-height:100px;padding:20px;width:100%;overflow:auto;border-radius: 7px;position:relative;margin-bottom: 20px;background-color:#eff6ef;border-bottom: 1px solid #DAD8D8;border-right: 0.2px solid #DAD8D8;"><div class="one-third" style="width:120px"><img src="'+procedureImagepath +'" height="100" width="140" style="display:inline-block"/></div><div class="three-fourths last-col" style="line-height: 1em;background-color: #eff6ef"> <p>'+displayName+'</p> <p><u>Hospital Stay:</u> '+treatmentItem.minHospitalization+'-'+treatmentItem.maxHospitalization+' days</p>     <p><u>Healing Time:</u> '+treatmentItem.healingTimeInDays+' days</p>     <p>Description of Procedure:</br>'+shortDescription+'</p></div>   <a href="#" style="float:right">more details</a></div>'
 	});
 });
-
+document.getElementById('availableProceduresDiv').innerHTML=htmlString;
 			
 		},
 		error: function (exception) {
