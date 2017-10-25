@@ -54,17 +54,19 @@ var whyIndia = "Because India.";
 	});
 
 
-$('#costPageMenu').on('click',function(){
-	$('.main').html('');
-	$('.main').load("treatmentsOffered.html", function (data) { treatmentsOfferedCallback(data);});
-})
+// $('#costPageMenu').on('click',function(){
+// 	$('.main').html('');
+// 	$('.main').load("treatmentsOffered.html", function (data) { treatmentsOfferedCallback(data);});
+// })
 //Home menu selected
 $('#homeMenu').on('click',function(){
 	$('.main').html('');
 	$('.main').load("homepage.html", function (data) { homepageCallback(data);});
 })
-$('#treatmentsOfferedUL li a').on('click', function () {
+$('#treatmentsOfferedUL li a').on('click', function (e) {
+	e.preventDefault();
 	var id = $(this).attr('id');
+	console.log(id);
 	$('.main').html('');
 	$('.main').load("treatmentsOffered.html", function (id) { treatmentsOfferedCallback(id); });
 	})
@@ -2091,7 +2093,7 @@ function treatmentsOfferedCallback(id) {
 	}
 
 	$.ajax({
-		url: serverName + "api/v1/searchHospitaldetails/" + treatmentCategory+"/meditrip",
+		url: serverName + "api/v1/get/treatmentdescription/" + treatmentCategory+"/meditrip",
 		type: 'GET',
 		headers: {
 			"Content-Type": "application/json",
@@ -2103,7 +2105,24 @@ function treatmentsOfferedCallback(id) {
 			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
 		},
 		success: function (response) {
-			console.log(response);
+var htmlString='';
+
+response.forEach(function(item,index){
+	var hospitalName=item.hospitalName;
+	var treatmentArray=item.Treatment;
+
+	treatmentArray.forEach(function(treatmentItem,treatmentIndex){
+		var departmentName=treatmentItem.departmentName;
+		var doctors=treatmentItem.doctor;
+		doctors.forEach(function(doctor,x){
+			var doctorName=doctor.doctorName;
+			var docPicPath=doctor.profilepicdir;
+			htmlString+='<div class="treatments-hover" style="min-height:100px;padding:20px;width:100%;overflow:auto;border-radius: 7px;position:relative;margin-bottom: 20px;background-color:#eff6ef;border-bottom: 1px solid #DAD8D8;border-right: 0.2px solid #DAD8D8;"><div class="one-third" style="width:120px"><img src="'+docPicPath +'" height="100" width="140" style="display:inline-block"/></div><div class="three-fourths last-col" style="line-height: 1em;background-color: #eff6ef"> <p><u>'+departmentName+'</u></p> <p><u>Hospital Stay</u></p>     <p><u>Healing Time</u></p>     <p>Description of Procedure:</br>'+departmentName+'</p></div>   <a href="#" style="float:right">more details</a></div>'
+		});
+	});
+});
+
+			
 		},
 		error: function (exception) {
 			console.log(exception);
