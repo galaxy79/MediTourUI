@@ -54,19 +54,25 @@ var whyIndia = "Because India.";
 	});
 
 
-$('#costPageMenu').on('click',function(){
-	$('.main').html('');
-	$('.main').load("medicalVisa.html", function (data) { treatmentsOfferedCallback(data);});
-})
+
+// $('#costPageMenu').on('click',function(){
+// 	$('.main').html('');
+// 	$('.main').load("treatmentsOffered.html", function (data) { treatmentsOfferedCallback(data);});
+// })
+
 //Home menu selected
 $('#homeMenu').on('click',function(){
 	$('.main').html('');
 	$('.main').load("homepage.html", function (data) { homepageCallback(data);});
 })
-$('#treatmentsOfferedUL li a').on('click', function () {
+$('#treatmentsOfferedUL li a').on('click', function (e) {
+	e.preventDefault();
 	var id = $(this).attr('id');
+	console.log(id);
 	$('.main').html('');
-	$('.main').load("treatmentsOffered.html", function (id) { treatmentsOfferedCallback(id); });
+	$('.main').load("treatmentsOffered_V2.html", function () { 
+		//treatmentsOfferedCallback(id);
+	 });
 	})
 
 //Hospitals and Doctors selected
@@ -197,9 +203,7 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
         value: value.dial_code,
         text : value.name.substr(0,5) + " (" + value.code+ ") " + value.dial_code
 	}));
-
-
-})
+});
 
 
 
@@ -1671,20 +1675,20 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 
 
 
-(function (i, s, o, g, r, a, m) {
-	i['GoogleAnalyticsObject'] = r;
-	i[r] = i[r] || function () {
-		(i[r].q = i[r].q || []).push(arguments)
-	}, i[r].l = 1 * new Date();
-	a = s.createElement(o),
-		m = s.getElementsByTagName(o)[0];
-	a.async = 1;
-	a.src = g;
-	m.parentNode.insertBefore(a, m)
-})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+// (function (i, s, o, g, r, a, m) {
+// 	i['GoogleAnalyticsObject'] = r;
+// 	i[r] = i[r] || function () {
+// 		(i[r].q = i[r].q || []).push(arguments)
+// 	}, i[r].l = 1 * new Date();
+// 	a = s.createElement(o),
+// 		m = s.getElementsByTagName(o)[0];
+// 	a.async = 1;
+// 	a.src = g;
+// 	m.parentNode.insertBefore(a, m)
+// })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-ga('create', 'UA-57177726-9', 'auto');
-ga('send', 'pageview');
+// ga('create', 'UA-57177726-9', 'auto');
+// ga('send', 'pageview');
 
 
 //Common Functions
@@ -1856,7 +1860,7 @@ title:"Laboratory"
 				var option = document.createElement("option")
 				option.text = item;
 				option.value = item.substr(0, item.length - 10).trim();
-				selectBox.addEventListener(option);
+				selectBox.add(option);
 			});
 
 		},
@@ -2102,7 +2106,7 @@ function treatmentsOfferedCallback(id) {
 	}
 
 	$.ajax({
-		url: serverName + "api/v1/searchHospitaldetails/" + treatmentCategory+"/meditrip",
+		url: serverName + "api/v1/get/treatmentdescription/" + treatmentCategory+"/meditrip",
 		type: 'GET',
 		headers: {
 			"Content-Type": "application/json",
@@ -2114,7 +2118,22 @@ function treatmentsOfferedCallback(id) {
 			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
 		},
 		success: function (response) {
-			console.log(response);
+var htmlString='<h2 style="margin-top: 20px">Available Procedures</h2>';
+console.log(JSON.stringify(response,null,'\t'))
+response.forEach(function(item,index){
+	
+	var treatmentArray=item.treatmentList;
+
+	treatmentArray.forEach(function(treatmentItem,treatmentIndex){
+		var displayName=treatmentItem.displayName;
+		var treatmentDescription=treatmentItem.treatmentDescription;
+		var procedureImagepath=treatmentItem.procedureImagepath;
+		
+			htmlString+='<div class="treatments-hover" style="min-height:100px;padding:20px;width:90%;overflow:auto;border-radius: 7px;position:relative;margin-bottom: 20px;background-color:#eff6ef;border-bottom: 1px solid #DAD8D8;border-right: 0.2px solid #DAD8D8;"><div class="one-third" style="width:120px"><img src="'+procedureImagepath +'" height="100" width="140" style="display:inline-block"/></div><div class="three-fourths last-col" style="line-height: 1em;background-color: #eff6ef"> <p>'+displayName+'</p> <p><u>Hospital Stay:</u> '+treatmentItem.minHospitalization+'-'+treatmentItem.maxHospitalization+' days</p>     <p><u>Healing Time:</u> '+treatmentItem.healingTimeInDays+' days</p>     <p>Description of Procedure:</br>'+treatmentDescription+'</p></div>   <a href="#" style="float:right">more details</a></div>'
+	});
+});
+document.getElementById('availableProceduresDiv').innerHTML=htmlString;
+			
 		},
 		error: function (exception) {
 			console.log(exception);
