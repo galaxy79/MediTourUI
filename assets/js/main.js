@@ -6,7 +6,7 @@
 
 
 var basicKey = "bGliaW46bGliaW4=";
-var xAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiT1VSU0VSVklDRVMiLCJpYXQiOjE1MDU5NjY3NTB9.0GlBMqkhAXELN0-m6z5ES6K9zcf-_M0EYT0z9FH43ig";
+var xAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiVG9rZW5Ub0F1dGhlbnRpY2F0ZU1lZGlub3ZpdGFVc2VyIiwiaWF0IjoxNTA4MDQ0OTMwfQ.cZ3pCte1guE8KQkjd1KfY_bLJ-gOatJm2xlwyiLGAl4";
 var serverName = "https://www.medinovita.in/";
 var GLOBAL_VARIABLES = {
 	"Language": "en",
@@ -56,7 +56,7 @@ var whyIndia = "Because India.";
 
 $('#costPageMenu').on('click',function(){
 	$('.main').html('');
-	$('.main').load("treatmentsOffered.html", function (data) { treatmentsOfferedCallback(data);});
+	$('.main').load("medicalVisa.html", function (data) { treatmentsOfferedCallback(data);});
 })
 //Home menu selected
 $('#homeMenu').on('click',function(){
@@ -74,6 +74,17 @@ $('#hospitalsPageMenu').on('click',function(){
 	$('.main').html('');
 	$('.main').load("hospitalzone.html", function (data) { });
 })
+
+//MedicalVisa
+
+$('#medicalVisaPageMenu').on('click', function () {
+	//var id = $(this).attr('id');
+	$('.main').html('');
+	$('.main').load("medicalVisa.html", function (data) {
+		visaPageCallBack(data);
+	 });
+	})
+
 
 	//load for Master Page
 
@@ -2114,3 +2125,38 @@ function treatmentsOfferedCallback(id) {
 
 }
 
+//MedicalVisapage Callback
+
+function visaPageCallBack(data){
+	$.ajax({
+		url: serverName + "api/v1/get/evisacountries/all/meditrip",
+		type: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic " + basicKey,
+			"x-access-token": xAccessToken
+
+		},
+		success: function(response){
+			console.log("visa-response: "+ response);
+			var countryArr = [];
+		response.forEach(function(item){
+			countryArr.push({"country": item.country, "fee": item.fee});
+			console.log("my country " + item.country)
+		})
+		console.log("countryArr-response: "+ countryArr[1].country);
+		// countryArr.forEach(function(item){
+		// 	$('.select-country .country-list').append('<a class="dropdown-item" href="#">' + item.country +'</a>')
+		// })
+
+		countryArr.forEach(function(item){
+			$('.customer-country .country-list').append('<option>' + item.country +'</option>')
+		})
+
+
+		},
+		error: function (exception) {
+			console.log(exception);
+		}
+	})
+}

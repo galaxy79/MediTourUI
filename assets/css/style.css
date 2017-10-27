@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* 
+/*
 Template Name: Simple - Multipurpose Premium Html5 Template
 Template URI: http://www.eonythemes.com
 Description: Multipurpose Html5 Template
@@ -109,7 +109,7 @@ body {
   font: 400 13px/1.7 "Open Sans", Arial, sans-serif;
   /*font: 400 13px/1.7 BlinkMacSystemFont,'Roboto',Helvetica Neue,sans-serif !important;*/
   /*font-family: BlinkMacSystemFont,'Roboto',Helvetica Neue,sans-serif;*/
-  background-color: #9a9a9a;
+  background-color: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -3061,9 +3061,9 @@ label.error {
 }
 @media (max-width: 768px) {
   .services-group .service {
-    
+
     float: left;
-    
+
   }
 }
 
@@ -4489,7 +4489,7 @@ display: none !important;
 }
 /* #searchForm {
   text-align: start!important;
-  
+
 } */
 /* .medinovitaLogo{
   width:30%;
@@ -7682,7 +7682,7 @@ display: none !important;
   .typed-header {
     font-size: 18px;
   }
- 
+
 }
 @media (max-width :412px){
    #getQuoteCountry {
@@ -7693,9 +7693,9 @@ display: none !important;
      width: 75%!important;
    } */
   .responsiveGetQuote{
-       margin-top: -50px; 
+       margin-top: -50px;
   }
-     
+
 }
     @media (max-width:541px){
 
@@ -12224,14 +12224,14 @@ display: none !important;
   }
 }
 
-/* 
+/*
  * 	Owl Carousel - Auto Height Plugin
  */
 .owl-height {
   transition: height 500ms ease-in-out;
 }
 
-/* 
+/*
  *  Core Owl Carousel CSS File
  */
 .owl-carousel {
@@ -12339,7 +12339,7 @@ display: none !important;
   display: block;
 }
 
-/* 
+/*
  * 	Owl Carousel - Lazy Load Plugin
  */
 .owl-carousel .owl-item .owl-lazy {
@@ -12351,7 +12351,7 @@ display: none !important;
   transform-style: preserve-3d;
 }
 
-/* 
+/*
  * 	Owl Carousel - Video Plugin
  */
 .owl-carousel .owl-video-wrapper {
@@ -13221,7 +13221,7 @@ display: none !important;
 
 #Chat-Window-Body{
 width: 300px;
-  
+
   position: fixed;
   bottom: -10px;
   right: 5px;
@@ -13359,13 +13359,13 @@ width: 300px;
 /*HomePage*/
 
 @media (max-width: 500px) {
- 
+
   .fixedCarousel .item{
     height: 300px!important;
 }
 
 #searchForm{
-    
+
     position: absolute;
     top: 200px!important;
     height: 100%;
@@ -13730,7 +13730,7 @@ button:hover {
     opacity: 0.8;
 }
 
-/* 
+/*
 Cost Page */
 
   .top-margin {
@@ -13753,4 +13753,39 @@ overflow: visible;
   }
 
 
-  
+  body{
+    font-family: Montserrat;
+}
+.index-intro{
+    width: 100%;
+    background-color: #fff;
+}
+.index-intro .jumbotron{
+    padding: 20px 60px;
+
+    background-color: #e05928;
+    background-image: url("../images/banner1.jpg");
+    background-size: cover;
+}
+.bg-white{
+    background-color: #fff;
+}
+.bg-white.border{
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.mb65{
+    margin-bottom: 65px !important;
+}
+.pt70{
+    padding-top: 70px;
+}
+.pb45{
+    padding-bottom: 45px;
+}
+ .country-button{
+    margin-left: 20px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
