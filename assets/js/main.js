@@ -1617,6 +1617,7 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 	jQuery(document).ready(function () {
 		// Init our app
 		Simple.init();
+		$('.selectpicker').selectpicker();
 	});
 
 	// Load Event
@@ -2164,15 +2165,10 @@ function visaPageCallBack(data){
 			console.log("my country " + item.country)
 		})
 		console.log("countryArr-response: "+ countryArr[1].country);
-		// countryArr.forEach(function(item){
-		// 	$('.select-country .country-list').append('<a class="dropdown-item" href="#">' + item.country +'</a>')
-		// })
-
 		countryArr.forEach(function(item){
-			$('.customer-country .country-list').append('<option>' + item.country +'</option>')
+			$('.select-country .country-list').append('<option data-tokens="'+item.country+'">' + item.country +'</option>')
 		})
-
-
+		$('.selectpicker').selectpicker();
 		},
 		error: function (exception) {
 			console.log(exception);
