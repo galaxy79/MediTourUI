@@ -68,7 +68,7 @@ $('#treatmentsOfferedUL li a').on('click', function (e) {
 	var id = $(this).attr('id');
 	console.log(id);
 	$('.main').html('');
-	$('.main').load("treatmentsOffered_V2.html", function () { 
+	$('.main').load("treatmentsOffered_V2.html", function () {
 		//treatmentsOfferedCallback(id);
 	 });
 	})
@@ -79,6 +79,13 @@ $('#hospitalsPageMenu').on('click',function(){
 	$('.main').load("hospitalzone.html", function (data) { });
 })
 
+//Contact Page
+
+$('#contactPageMenu').on('click', function () {
+	//var id = $(this).attr('id');
+	$('.main').html('');
+	$('.main').load("contact3.html")
+	})
 	//load for Master Page
 
 
@@ -2108,19 +2115,19 @@ function treatmentsOfferedCallback(id) {
 var htmlString='<h2 style="margin-top: 20px">Available Procedures</h2>';
 console.log(JSON.stringify(response,null,'\t'))
 response.forEach(function(item,index){
-	
+
 	var treatmentArray=item.treatmentList;
 
 	treatmentArray.forEach(function(treatmentItem,treatmentIndex){
 		var displayName=treatmentItem.displayName;
 		var treatmentDescription=treatmentItem.treatmentDescription;
 		var procedureImagepath=treatmentItem.procedureImagepath;
-		
+
 			htmlString+='<div class="treatments-hover" style="min-height:100px;padding:20px;width:90%;overflow:auto;border-radius: 7px;position:relative;margin-bottom: 20px;background-color:#eff6ef;border-bottom: 1px solid #DAD8D8;border-right: 0.2px solid #DAD8D8;"><div class="one-third" style="width:120px"><img src="'+procedureImagepath +'" height="100" width="140" style="display:inline-block"/></div><div class="three-fourths last-col" style="line-height: 1em;background-color: #eff6ef"> <p>'+displayName+'</p> <p><u>Hospital Stay:</u> '+treatmentItem.minHospitalization+'-'+treatmentItem.maxHospitalization+' days</p>     <p><u>Healing Time:</u> '+treatmentItem.healingTimeInDays+' days</p>     <p>Description of Procedure:</br>'+treatmentDescription+'</p></div>   <a href="#" style="float:right">more details</a></div>'
 	});
 });
 document.getElementById('availableProceduresDiv').innerHTML=htmlString;
-			
+
 		},
 		error: function (exception) {
 			console.log(exception);
@@ -2128,6 +2135,36 @@ document.getElementById('availableProceduresDiv').innerHTML=htmlString;
 	});
 
 	///api/v1/searchHospitaldetails/Dental/searchHospital
+//contactPageCallBack(data);
+
 
 }
 
+// function contactPageCallBack(data){
+// 	$.ajax({
+// 		url: serverName + "api/v1/get/evisacountries/all/meditrip",
+// 		type: 'GET',
+// 		headers: {
+// 			"Content-Type": "application/json",
+// 			"Authorization": "Basic " + basicKey,
+// 			"x-access-token": xAccessToken
+
+// 		},
+// 		success: function(response){
+// 			console.log("visa-response: "+ response);
+// 			var countryArr = [];
+// 		response.forEach(function(item){
+// 			countryArr.push({"country": item.country, "fee": item.fee});
+// 			console.log("my country " + item.country)
+// 		})
+// 		console.log("countryArr-response: "+ countryArr[1].country);
+// 		countryArr.forEach(function(item){
+// 			$('.select-country .country-list').append('<option data-tokens="'+item.country+'">' + item.country +'</option>')
+// 		})
+// 		$('.selectpicker').selectpicker();
+// 		},
+// 		error: function (exception) {
+// 			console.log(exception);
+// 		}
+// 	})
+// }
