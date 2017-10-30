@@ -6,12 +6,12 @@
 
 
             <div class="main">
-                <div class="page-header larger larger-top  custom "style="background-image:url(assets/images/contact-header1.jpg)">
-                    <div class="container">
+                <div class="page-header larger larger-top  custom "style="background-image:url(assets/images/header.jpg)">
+                    <div class="container" style="padding-left:30px">
                         <h1 >Contact us</h1>
                         <ol class="breadcrumb">
                             <li><a href="index.html">Home</a></li>
-                            <li><a href="#">Pages</a></li>
+
                             <li class="active">Contact</li>
                         </ol>
                     </div><!-- End .container -->
@@ -20,9 +20,9 @@
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-md-7">
+                        <div class="col-md-6 right-border" style="padding-left:30px" >
                             <h2 class="mb30">GET IN TOUCH</h2>
-                            <form action="#" method="post" id="contact-form">
+                            <form  action="https://www.medinovita.in/api/v1/post/contactus/meditrip" method="post" id="contact-form">
                                 <div class="row">
                                     <div class="col-md-7">
                                         <input type="text" class="form-control" id="contactname" name="contactname" placeholder="Name" required>
@@ -33,11 +33,7 @@
                                         <input type="email" class="form-control" id="contactemail" name="contactemail" placeholder="Email" required>
                                     </div><!-- End .col-md-7 -->
                                 </div><!-- End .row -->
-                                <div class="row">
-                                    <div class="col-md-7">
-                                        <input type="url" class="form-control" id="contactwebsite" name="contactwebsite"  required>
-                                    </div><!-- End .col-md-7 -->
-                                </div><!-- End .row -->
+
                                 <div class="row">
                                     <div class="col-md-7">
                                         <input type="text" class="form-control" id="contactsubject" name="contactsubject" placeholder="Subject">
@@ -50,30 +46,21 @@
                                     </div><!-- End .col-md-12 -->
                                 </div><!-- End .row -->
 
-                                <input type="submit" class="btn btn-black min-width-lg" data-loading-text="Sending Message..." value="Send Message">
+                                <input type="submit" id="sendMessage" class="btn btn-black min-width-lg" data-loading-text="Sending Message..." value="Send Message">
                             </form>
                         </div><!-- End .col-md-7 -->
 
                         <div class="clearfix mb65 visible-sm visible-xs"></div><!-- margin -->
-                        <div class="col-md-4">
+                        <div class="col-md-5 officeAdd" >
                             <div id="india-office" class="vertical" style="margin-top:50px">
                                     <div class="contact-box mb30">
                                             <h3>India Office</h3>
                                             <ul>
 
-                                                <li><strong>Address:</strong> Hollywood Blvd, Los Angeles, CA, USA </li>
-                                                <li><strong>Phone</strong> +01 010 554 11 22</li>
-                                                <li><strong>Email:</strong> <a href="#">madeup@gmail.com</a></li>
-                                                <li>
-                                                    <strong>Social Media:</strong>
-                                                    <div class="social-icons">
-                                                        <a href="#" class="social-icon" data-toggle="tooltip" title="Facebook"><i class="fa fa-facebook"></i></a>
-                                                        <a href="#" class="social-icon" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a>
-                                                        <a href="#" class="social-icon" data-toggle="tooltip" title="Github"><i class="fa fa-github"></i></a>
-                                                        <a href="#" class="social-icon" data-toggle="tooltip" title="Linkedin"><i class="fa fa-linkedin"></i></a>
-                                                        <a href="#" class="social-icon" data-toggle="tooltip" title="Flickr"><i class="fa fa-flickr"></i></a>
-                                                    </div><!-- End .social-icons -->
-                                                </li>
+                                                <li><strong>Address:</strong> Infopark, main Blvd, Kochi, India </li>
+                                                <li><strong>Phone</strong> +91-9740177277</li>
+                                                <li><strong>Email:</strong> <a href="#">medinovita@gmail.com</a></li>
+
                                             </ul>
                                         </div><!-- End .contact-box -->
                             </div><!-- End #india-office -->

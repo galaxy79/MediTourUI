@@ -102,7 +102,11 @@ Author: Eon
 /* Loader Animation End */
 /* ----------- 1.General --------------
 --------------------------------------*/
+/* contact page general */
+
+
 body {
+  height: 100%;
   position: relative;
   direction: ltr;
   color: #323232;
@@ -13953,4 +13957,19 @@ overflow: visible;
 }
 
 
+/*contact page not useful*/
 
+@media screen and (min-width:992px){
+  .right-border{
+    border-right:0.5px solid grey;
+  }
+  .officeAdd{
+    padding-left:80px;
+  }
+}
+
+@media screen and (max-width:992px){
+  .officeAdd{
+    padding-left:30px;
+  }
+}

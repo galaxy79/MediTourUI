@@ -84,7 +84,7 @@ $('#hospitalsPageMenu').on('click',function(){
 $('#contactPageMenu').on('click', function () {
 	//var id = $(this).attr('id');
 	$('.main').html('');
-	$('.main').load("contact3.html")
+	$('.main').load("contact.html")
 	})
 	//load for Master Page
 
@@ -1665,6 +1665,174 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 
 	//Login Page
 
+	//Contact Page
+// 	if ($.fn.validate) {
+// 		var contactForm = $('#contact-form'),
+// 				formBtn = contactForm.find('.btn');
+
+// 		contactForm.validate({
+// 				rules: {
+// 						contactname: 'required',
+
+// 						contactsubject: 'required',
+// 						contactemail: {
+// 								required: true,
+// 								email: true
+// 						},
+// 						contactmessage: {
+// 								required: true,
+// 								minlength: 40
+// 						}
+// 				},
+// 				messages: {
+// 						contactname: "This field is required. Please enter your name.",
+
+// 						contactsubject: "This field is required. Please enter a subject.",
+// 						contactemail: {
+// 								required: "This field is required. Please enter your email address.",
+// 								email: "Please enter a valid email address."
+// 						},
+// 						contactmessage: {
+// 								required: "This field is required. Please enter your message.",
+// 								minlength: "Your message must be at least 40 characters long."
+// 						}
+// 				},
+// 				submitHandler: function (form) {
+// 						$(document).ajaxStart(function() {
+// 								formBtn.button('loading');
+// 						}).ajaxStop(function() {
+// 								formBtn.button('reset');
+// 						});
+// 						/* Ajax handler */
+// 						console.log("im here");
+// 						$.ajax({
+// 			type: 'post',
+// 			url: serverName + 'api/v1/post/contactus/meditrip',
+// 			headers: {
+// 				"Content-Type": "application/json",
+// 				"Authorization": "Basic " + basicKey,
+// 				"x-access-token": xAccessToken
+
+// 			},
+
+// 			beforeSend: function (xhr) {
+//  								xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+//  							},
+//  							data:JSON.stringify({emailID:formData[1].value,
+//  									userFullName:formData[0].value,
+//  									subject:formData[2].value,
+//  									message:formData[3].value,
+
+//  									}),
+//  										success: function (response) {
+//  											console.log("res: ", response)
+//  											alert("Thanks for contacting us, we will get back to you soon")
+//  										},
+//  										error: function (exception) {
+//  											console.log(exception)
+//  										}
+// 	//		data: $(form).serialize(),
+// 		}).done(function( data ) {
+// 			console.log(data);
+// 			if ( data == 'success') {
+// 				alert('Email has been sent successfully!')
+// 			} else if ( data == 'already') {
+// 				alert('You already sent a message. Please try again later');
+// 			} else {
+// 				alert('There is an error please try again later!');
+// 			}
+// 		}).error(function() {
+// 			alert( 'There is an error please try again later!' );
+// 		});
+// 						return false;
+// 				}
+// 		});
+// }
+//anjali Contact version
+$('form').submit(function(event){
+	console.log("here iam")
+if ($.fn.validate) {
+	var contactForm = $('#contact-form'),
+			formBtn = contactForm.find('.btn');
+
+	contactForm.validate({
+			rules: {
+					contactname: 'required',
+					contactwebsite: {
+							required: true,
+							url: true
+					},
+					contactsubject: 'required',
+					contactemail: {
+							required: true,
+							email: true
+					},
+					contactmessage: {
+							required: true,
+							minlength: 40
+					}
+			},
+			messages: {
+					contactname: "This field is required. Please enter your name.",
+					contactwebsite: {
+							required: "This field is required. Please enter your website.",
+							email: "Please enter a valid url."
+					},
+					contactsubject: "This field is required. Please enter a subject.",
+					contactemail: {
+							required: "This field is required. Please enter your email address.",
+							email: "Please enter a valid email address."
+					},
+					contactmessage: {
+							required: "This field is required. Please enter your message.",
+							minlength: "Your message must be at least 40 characters long."
+					}
+			},
+			submitHandler: function (form) {
+					$(document).ajaxStart(function() {
+							formBtn.button('loading');
+					}).ajaxStop(function() {
+							formBtn.button('reset');
+					});
+					/* Ajax handler */
+					$.ajax({
+		type: 'post',
+		url: serverName + 'api/v1/post/contactus/meditrip',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic " + basicKey,
+			"x-access-token": xAccessToken
+
+		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+		},
+		data: {
+			'contactname'  : $('input[name=contactname]').val(),
+			'contactemail' : $('input[name=contactemail]').val(),
+			'contactsubject': $('input[name=contactsubject]').val(),
+			'contactmessage' : $('input[name=contactmessage]').val(),
+		},
+	}).done(function( data ) {
+		// if ( data == 'success') {
+		// 	alert('Email has been sent successfully!')
+		// } else if ( data == 'already') {
+		// 	alert('You already sent a message. Please try again later');
+		// } else {
+		// 	alert('There is an error please try again later!');
+		// }
+		alert('success');
+		console.log("mydata: " + data);
+	}).error(function() {
+		alert( 'There is an error please try again later!' );
+	});
+					return false;
+			}
+	});
+}
+})
+
+
 })(jQuery);
 
 
@@ -2140,31 +2308,38 @@ document.getElementById('availableProceduresDiv').innerHTML=htmlString;
 
 }
 
-// function contactPageCallBack(data){
-// 	$.ajax({
-// 		url: serverName + "api/v1/get/evisacountries/all/meditrip",
-// 		type: 'GET',
-// 		headers: {
-// 			"Content-Type": "application/json",
-// 			"Authorization": "Basic " + basicKey,
-// 			"x-access-token": xAccessToken
 
-// 		},
-// 		success: function(response){
-// 			console.log("visa-response: "+ response);
-// 			var countryArr = [];
-// 		response.forEach(function(item){
-// 			countryArr.push({"country": item.country, "fee": item.fee});
-// 			console.log("my country " + item.country)
-// 		})
-// 		console.log("countryArr-response: "+ countryArr[1].country);
-// 		countryArr.forEach(function(item){
-// 			$('.select-country .country-list').append('<option data-tokens="'+item.country+'">' + item.country +'</option>')
-// 		})
-// 		$('.selectpicker').selectpicker();
-// 		},
-// 		error: function (exception) {
-// 			console.log(exception);
-// 		}
+// $('#contact-form').on('submit', function(e){
+// 	console.log("mail: ");
+// 	//e.preventDefault();
+// 	var formData=$(this).serializeArray();
+
+
+// 	$.ajax({
+// 		url: serverName + "api/v1/post/contactus/meditrip",
+// 				type: 'POST',
+// 				headers: {
+// 					"Content-Type": "application/json",
+// 					"Authorization": "Basic " + basicKey,
+// 					"x-access-token": xAccessToken
+
+// 				},
+// 				beforeSend: function (xhr) {
+// 								xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+// 							},
+// 							data:JSON.stringify({emailID:formData[1].value,
+// 									userFullName:formData[0].value,
+// 									subject:formData[2].value,
+// 									message:formData[3].value,
+
+// 									}),
+// 										success: function (response) {
+// 											console.log("res: ", response)
+// 											alert("Thanks for contacting us, we will get back to you soon")
+// 										},
+// 										error: function (exception) {
+// 											console.log(exception)
+// 										}
 // 	})
-// }
+// })
+
