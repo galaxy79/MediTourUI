@@ -13973,3 +13973,13 @@ overflow: visible;
     padding-left:30px;
   }
 }
+
+/* contact-form*/
+
+.form-error{
+  color:red;
+}
+
+.input-error{
+  box-shadow: 0 0 5px red;
+}

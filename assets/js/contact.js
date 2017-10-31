@@ -1,7 +1,6 @@
-// (function($) {
-//     "use strict";
 
-//     var serverName = "https://www.medinovita.in/";
+// (function($) {
+// 	"use strict";
 // 	// Contact form valitation with jquery.validate plugin
 // 	if ($.fn.validate) {
 //         var contactForm = $('#contact-form'),
@@ -49,7 +48,7 @@
 //                 /* Ajax handler */
 //                 $.ajax({
 // 					type: 'post',
-// 					url: serverName + 'api/v1/post/contactus/meditrip',
+// 					url: 'assets/php/mail.php',
 // 					data: $(form).serialize(),
 // 				}).done(function( data ) {
 // 					if ( data == 'success') {
@@ -67,3 +66,23 @@
 //         });
 //     }
 // })(jQuery);
+
+
+$(document).ready(function(){
+
+  $('#contact-form').submit(function(event){
+    event.preventDefault();
+    var contactname = $('#contactname').val();
+    var contactemail = $('#contactemail').val();
+    var contactsubject = $('#contactsubject').val();
+    var contactmessage = $('#contactmessage').val();
+    var contactsubmit = $('#sendMessage').val();
+    $('.form-message').load('assets/php/mail.php', {
+      contactname: contactname,
+      contactemail: contactemail,
+      contactsubject: contactsubject,
+      contactmessage: contactmessage,
+      contactsubmit: contactsubmit
+    });
+  });
+});

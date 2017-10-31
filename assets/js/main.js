@@ -83,7 +83,7 @@ $('#hospitalsPageMenu').on('click',function(){
 
 $('#contactPageMenu').on('click', function () {
 	//var id = $(this).attr('id');
-	$('.main').html('');
+//	$('.main').html('');
 	$('.main').load("contact.html")
 	})
 	//load for Master Page
@@ -1749,88 +1749,88 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 // 		});
 // }
 //anjali Contact version
-$('form').submit(function(event){
-	console.log("here iam")
-if ($.fn.validate) {
-	var contactForm = $('#contact-form'),
-			formBtn = contactForm.find('.btn');
+// $('form').submit(function(event){
+// 	console.log("here iam")
+// if ($.fn.validate) {
+// 	var contactForm = $('#contact-form'),
+// 			formBtn = contactForm.find('.btn');
 
-	contactForm.validate({
-			rules: {
-					contactname: 'required',
-					contactwebsite: {
-							required: true,
-							url: true
-					},
-					contactsubject: 'required',
-					contactemail: {
-							required: true,
-							email: true
-					},
-					contactmessage: {
-							required: true,
-							minlength: 40
-					}
-			},
-			messages: {
-					contactname: "This field is required. Please enter your name.",
-					contactwebsite: {
-							required: "This field is required. Please enter your website.",
-							email: "Please enter a valid url."
-					},
-					contactsubject: "This field is required. Please enter a subject.",
-					contactemail: {
-							required: "This field is required. Please enter your email address.",
-							email: "Please enter a valid email address."
-					},
-					contactmessage: {
-							required: "This field is required. Please enter your message.",
-							minlength: "Your message must be at least 40 characters long."
-					}
-			},
-			submitHandler: function (form) {
-					$(document).ajaxStart(function() {
-							formBtn.button('loading');
-					}).ajaxStop(function() {
-							formBtn.button('reset');
-					});
-					/* Ajax handler */
-					$.ajax({
-		type: 'post',
-		url: serverName + 'api/v1/post/contactus/meditrip',
-		headers: {
-			"Content-Type": "application/json",
-			"Authorization": "Basic " + basicKey,
-			"x-access-token": xAccessToken
+// 	contactForm.validate({
+// 			rules: {
+// 					contactname: 'required',
+// 					contactwebsite: {
+// 							required: true,
+// 							url: true
+// 					},
+// 					contactsubject: 'required',
+// 					contactemail: {
+// 							required: true,
+// 							email: true
+// 					},
+// 					contactmessage: {
+// 							required: true,
+// 							minlength: 40
+// 					}
+// 			},
+// 			messages: {
+// 					contactname: "This field is required. Please enter your name.",
+// 					contactwebsite: {
+// 							required: "This field is required. Please enter your website.",
+// 							email: "Please enter a valid url."
+// 					},
+// 					contactsubject: "This field is required. Please enter a subject.",
+// 					contactemail: {
+// 							required: "This field is required. Please enter your email address.",
+// 							email: "Please enter a valid email address."
+// 					},
+// 					contactmessage: {
+// 							required: "This field is required. Please enter your message.",
+// 							minlength: "Your message must be at least 40 characters long."
+// 					}
+// 			},
+// 			submitHandler: function (form) {
+// 					$(document).ajaxStart(function() {
+// 							formBtn.button('loading');
+// 					}).ajaxStop(function() {
+// 							formBtn.button('reset');
+// 					});
+// 					/* Ajax handler */
+// 					$.ajax({
+// 		type: 'post',
+// 		url: serverName + 'api/v1/post/contactus/meditrip',
+// 		headers: {
+// 			"Content-Type": "application/json",
+// 			"Authorization": "Basic " + basicKey,
+// 			"x-access-token": xAccessToken
 
-		},
-		beforeSend: function (xhr) {
-			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
-		},
-		data: {
-			'contactname'  : $('input[name=contactname]').val(),
-			'contactemail' : $('input[name=contactemail]').val(),
-			'contactsubject': $('input[name=contactsubject]').val(),
-			'contactmessage' : $('input[name=contactmessage]').val(),
-		},
-	}).done(function( data ) {
-		// if ( data == 'success') {
-		// 	alert('Email has been sent successfully!')
-		// } else if ( data == 'already') {
-		// 	alert('You already sent a message. Please try again later');
-		// } else {
-		// 	alert('There is an error please try again later!');
-		// }
-		alert('success');
-		console.log("mydata: " + data);
-	}).error(function() {
-		alert( 'There is an error please try again later!' );
-	});
-					return false;
-			}
-	});
-}
-})
+// 		},
+// 		beforeSend: function (xhr) {
+// 			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+// 		},
+// 		data: {
+// 			'contactname'  : $('input[name=contactname]').val(),
+// 			'contactemail' : $('input[name=contactemail]').val(),
+// 			'contactsubject': $('input[name=contactsubject]').val(),
+// 			'contactmessage' : $('input[name=contactmessage]').val(),
+// 		},
+// 	}).done(function( data ) {
+// 		// if ( data == 'success') {
+// 		// 	alert('Email has been sent successfully!')
+// 		// } else if ( data == 'already') {
+// 		// 	alert('You already sent a message. Please try again later');
+// 		// } else {
+// 		// 	alert('There is an error please try again later!');
+// 		// }
+// 		alert('success');
+// 		console.log("mydata: " + data);
+// 	}).error(function() {
+// 		alert( 'There is an error please try again later!' );
+// 	});
+// 					return false;
+// 			}
+// 	});
+// }
+// })
 
 
 })(jQuery);
