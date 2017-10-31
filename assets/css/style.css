@@ -13974,12 +13974,4 @@ overflow: visible;
   }
 }
 
-/* contact-form*/
 
-.form-error{
-  color:red;
-}
-
-.input-error{
-  box-shadow: 0 0 5px red;
-}

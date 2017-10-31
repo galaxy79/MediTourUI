@@ -164,8 +164,9 @@
                         </button>
                         <div class="collapse navbar-collapse" id="main-nav-container" >
                             <ul class="nav navbar-nav ">
-                                <li class="dropdown">
-                                    <a href="index.html" id="homeMenu" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Home</a>
+                                <!--deleted class="dropdown"-->
+                                <li >
+                                    <a href="index.html">Home</a>
 
                                 </li>
                                 <li class="dropdown">
@@ -298,7 +299,7 @@
                             </form>
 
                         </div><!-- End .col-md-7 -->
-                        <p class="form-message" style="margin-top:10px; color:blue"></p>
+                        <p class="form-message" style="margin-top:10px; color:black;font-size:17px;font-weight:bold"></p>
                         <!-- <div id="toShow"> -->
                                 <!-- <div class="form-message" style="margin-top:10px; color:blue">
                                         <span ><strong> Thanks for contacting us, we will get back to you soon</strong></span> -->
@@ -521,189 +522,9 @@
     <!-- main Js file -->
     <script src="./assets/js/main.js"></script>
     <script type="text/javascript" src="./assets/js/jquery.validate.min.js"></script>
-    <script src="./assets/js/contact.js"></script>
-
-
-    <!-- SLIDER REVOLUTION 5.0 EXTENSIONS
-    (Load Extensions only on Local File Systems !
-    The following part can be removed on Server for On Demand Loading) -->
-    <script type="text/javascript" src="./assets/js/extensions/revolution.extension.actions.min.js"></script>
-    <script type="text/javascript" src="./assets/js/extensions/revolution.extension.carousel.min.js"></script>
-    <script type="text/javascript" src="./assets/js/extensions/revolution.extension.kenburn.min.js"></script>
-    <script type="text/javascript" src="./assets/js/extensions/revolution.extension.layeranimation.min.js"></script>
-    <script type="text/javascript" src="./assets/js/extensions/revolution.extension.migration.min.js"></script>
-    <script type="text/javascript" src="./assets/js/extensions/revolution.extension.navigation.min.js"></script>
-    <script type="text/javascript" src="./assets/js/extensions/revolution.extension.parallax.min.js"></script>
-    <script type="text/javascript" src="./assets/js/extensions/revolution.extension.slideanims.min.js"></script>
-    <script type="text/javascript" src="./assets/js/extensions/revolution.extension.video.min.js"></script>
-
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-            "use strict";
-
-            var revapi;
-            if ( $("#rev_slider").revolution == undefined ) {
-                revslider_showDoubleJqueryError("#rev_slider");
-            } else {
-                revapi = $("#rev_slider").show().revolution({
-                    sliderType: "standard",
-                    jsFileLocation: "assets/js/",
-                    sliderLayout: "auto",
-                    dottedOverlay:"none",
-                    delay: 15000,
-                    navigation: {
-                        mouseScrollNavigation: "off",
-                        onHoverStop: "off",
-                        touch: {
-                            touchenabled: "on"
-                        },
-                        arrows: {
-                            style: "hermes",
-                            enable: true,
-                            hide_onmobile: false,
-                            hide_under: 992,
-                            hide_onleave: true,
-                            tmp: '<div class="tp-arr-allwrapper">   <div class="tp-arr-imgholder"></div>    <div class="tp-arr-titleholder">{{title}}</div> </div>',
-                            left: {
-                                h_align: "left",
-                                v_align: "center",
-                                h_offset: 0,
-                                v_offset: 0
-                            },
-                            right: {
-                                h_align: "right",
-                                v_align: "center",
-                                h_offset: 0,
-                                v_offset: 0
-                            }
-                        },
-                        bullets: {
-                            enable: false,
-                            hide_onmobile: false,
-                            style: "hades",
-                            hide_onleave: false,
-                            direction: "horizontal",
-                            h_align: "right",
-                            v_align: "bottom",
-                            h_offset: 20,
-                            v_offset: 20,
-                            space: 5,
-                            tmp: ''
-                        }
-                    },
-                    responsiveLevels: [1200,992,768,480],
-                    gridwidth: [1170,970,750,480],
-                    gridheight: [600,520,450,340],
-                    lazyType: "smart",
-                    spinner: "spinner2",
-                    parallax: {
-                        type: "on",
-                        origo: "slidercenter",
-                        speed: 2000,
-                        levels: [2,3,4,5,6,7,12,16,10,50],
-                        disable_onmobile: "on"
-                    },
-                    debugMode: false
-                });
-            }
-        });
-    </script>
-    <script type="text/javascript">
-
-                            function googleTranslateElementInit() {
-new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'ar,en,es,jv,ko,pa,pt,ru,zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
-}
-                            </script>
-
-
-                           <link rel="stylesheet" href="./assets/css/googletranslate.css">
-
-
-
-<script type="text/javascript">
-        $(document).ready(function(){
-
-              $('#contact-form').submit(function(event){
-                event.preventDefault();
-                var contactname = $('#contactname').val();
-                var contactemail = $('#contactemail').val();
-                var contactsubject = $('#contactsubject').val();
-                var contactmessage = $('#contactmessage').val();
-                var contactsubmit = $('#sendMessage').val();
-                $('.form-message').load('./assets/php/mail.php', {
-                  contactname: contactname,
-                  contactemail: contactemail,
-                  contactsubject: contactsubject,
-                  contactmessage: contactmessage,
-                  contactsubmit: contactsubmit
-                });
-                var req = {
-			emailID  : $('input[name=contactname]').val(),
-			userFullName : $('input[name=contactemail]').val(),
-			subject: $('input[name=contactsubject]').val(),
-			message : $('input[name=contactmessage]').val(),
-        }
-        console.log("req: " + req);
-                $.ajax({
-		type: 'post',
-		url: serverName + 'api/v1/post/contactus/meditrip',
-		headers: {
-			"Content-Type": "application/json",
-			"Authorization": "Basic " + basicKey,
-			"x-access-token": xAccessToken
-
-		},
-		beforeSend: function (xhr) {
-			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
-		},
-		// data: {
-		// 	emailID  : contactemail,
-		// 	userFullName : contactname,
-		// 	subject: contactsubject,
-		// 	message : contactmessage,
-        // }
-        data:JSON.stringify({emailID:contactemail,
-	userFullName:contactname,
-	subject:contactsubject,
-	message:contactmessage,
-	}),
-		success: function (response) {
-            // alert("Thanks for contacting us, we will get back to you soon")
-            // $('.form-message').append("<span ><strong> Thanks for contacting us, we will get back to you soon</strong></span>");
-            // $('#contactname, #contactemail, #contactsubject, #contactmessage').val("");
-
-            $('.toHide').hide();
-            $('.form-message').append("<span ><strong> Thanks for contacting us, we will get back to you soon</strong></span>");
-            $('.officeAdd').hide();
-            //$('#toHide').hide();
-           // $('.form-message').append("<span ><strong> Thanks for contacting us, we will get back to you soon</strong></span>");
-            //$('#toShow').html(response);
-
-		},
-		error: function (exception) {
-			console.log(exception)
-		}
-	 });//.done(function( res ) {
-	// 	// if ( data == 'success') {
-	// 	// 	alert('Email has been sent successfully!')
-	// 	// } else if ( data == 'already') {
-	// 	// 	alert('You already sent a message. Please try again later');
-	// 	// } else {
-	// 	// 	alert('There is an error please try again later!');
-	// 	// }
-	// 	alert('success');
-	// 	console.log("mydata: " + res);
-	// }).error(function() {
-	// 	alert( 'There is an error please try again later!' );
-	// });
-		return false;
 
 
 
 
-
-            });
-        })
-</script>
 </body>
 </html>
