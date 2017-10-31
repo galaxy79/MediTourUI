@@ -68,10 +68,11 @@ $('#treatmentsOfferedUL li a').on('click', function (e) {
 	var id = $(this).attr('id');
 	console.log(id);
 	$('.main').html('');
-	$('.main').load("treatmentsOffered_V2.html", function () { 
+	$('.main').load("treatmentsOffered_V2.html", function () {
 		//treatmentsOfferedCallback(id);
 	 });
 	})
+
 
 //Hospitals and Doctors selected
 $('#hospitalsPageMenu').on('click',function(){
@@ -79,6 +80,17 @@ $('#hospitalsPageMenu').on('click',function(){
 	$('.main').load("hospitalzone.html", function (data) { });
 })
 
+//Contact Page
+
+$('#contactPageMenu').on('click', function () {
+	//var id = $(this).attr('id');
+	//$('.contact').html('');
+	//console.log("hello " + $(this).attr('href'))
+	//console.log($(this).val())
+	//$('.contact').load("/contact.html")
+
+	document.location.href = $(this).attr('href');
+})
 	//load for Master Page
 
 
@@ -1658,6 +1670,60 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 
 	//Login Page
 
+//contact page
+
+$('#contact-form').submit(function(event){
+	event.preventDefault();
+	var contactname = $('#contactname').val();
+	var contactemail = $('#contactemail').val();
+	var contactsubject = $('#contactsubject').val();
+	var contactmessage = $('#contactmessage').val();
+	var contactsubmit = $('#sendMessage').val();
+
+	$.ajax({
+type: 'post',
+url: serverName + 'api/v1/post/contactus/meditrip',
+headers: {
+"Content-Type": "application/json",
+"Authorization": "Basic " + basicKey,
+"x-access-token": xAccessToken
+
+},
+beforeSend: function (xhr) {
+xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+},
+
+data:JSON.stringify({emailID:contactemail,
+userFullName:contactname,
+subject:contactsubject,
+message:contactmessage,
+}),
+success: function (response) {
+// alert("Thanks for contacting us, we will get back to you soon")
+// $('.form-message').append("<span ><strong> Thanks for contacting us, we will get back to you soon</strong></span>");
+// $('#contactname, #contactemail, #contactsubject, #contactmessage').val("");
+
+
+$('.officeAdd').hide();
+$('.toHide').slideUp(400, function(){
+	$('.form-message').append("<span>Thank you for contacting us, we will get back to you as soon as possible!</span>");
+});
+
+
+//$('#toHide').hide();
+// $('.form-message').append("<span ><strong> Thanks for contacting us, we will get back to you soon</strong></span>");
+//$('#toShow').html(response);
+
+},
+error: function (exception) {
+console.log(exception)
+}
+});
+return false;
+
+});
+
+
 })(jQuery);
 
 
@@ -2108,19 +2174,19 @@ function treatmentsOfferedCallback(id) {
 var htmlString='<h2 style="margin-top: 20px">Available Procedures</h2>';
 console.log(JSON.stringify(response,null,'\t'))
 response.forEach(function(item,index){
-	
+
 	var treatmentArray=item.treatmentList;
 
 	treatmentArray.forEach(function(treatmentItem,treatmentIndex){
 		var displayName=treatmentItem.displayName;
 		var treatmentDescription=treatmentItem.treatmentDescription;
 		var procedureImagepath=treatmentItem.procedureImagepath;
-		
+
 			htmlString+='<div class="treatments-hover" style="min-height:100px;padding:20px;width:90%;overflow:auto;border-radius: 7px;position:relative;margin-bottom: 20px;background-color:#eff6ef;border-bottom: 1px solid #DAD8D8;border-right: 0.2px solid #DAD8D8;"><div class="one-third" style="width:120px"><img src="'+procedureImagepath +'" height="100" width="140" style="display:inline-block"/></div><div class="three-fourths last-col" style="line-height: 1em;background-color: #eff6ef"> <p>'+displayName+'</p> <p><u>Hospital Stay:</u> '+treatmentItem.minHospitalization+'-'+treatmentItem.maxHospitalization+' days</p>     <p><u>Healing Time:</u> '+treatmentItem.healingTimeInDays+' days</p>     <p>Description of Procedure:</br>'+treatmentDescription+'</p></div>   <a href="#" style="float:right">more details</a></div>'
 	});
 });
 document.getElementById('availableProceduresDiv').innerHTML=htmlString;
-			
+
 		},
 		error: function (exception) {
 			console.log(exception);
@@ -2128,6 +2194,43 @@ document.getElementById('availableProceduresDiv').innerHTML=htmlString;
 	});
 
 	///api/v1/searchHospitaldetails/Dental/searchHospital
+//contactPageCallBack(data);
+
 
 }
+
+
+// $('#contact-form').on('submit', function(e){
+// 	console.log("mail: ");
+// 	//e.preventDefault();
+// 	var formData=$(this).serializeArray();
+
+
+// 	$.ajax({
+// 		url: serverName + "api/v1/post/contactus/meditrip",
+// 				type: 'POST',
+// 				headers: {
+// 					"Content-Type": "application/json",
+// 					"Authorization": "Basic " + basicKey,
+// 					"x-access-token": xAccessToken
+
+// 				},
+// 				beforeSend: function (xhr) {
+// 								xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+// 							},
+// 							data:JSON.stringify({emailID:formData[1].value,
+// 									userFullName:formData[0].value,
+// 									subject:formData[2].value,
+// 									message:formData[3].value,
+
+// 									}),
+// 										success: function (response) {
+// 											console.log("res: ", response)
+// 											alert("Thanks for contacting us, we will get back to you soon")
+// 										},
+// 										error: function (exception) {
+// 											console.log(exception)
+// 										}
+// 	})
+// })
 

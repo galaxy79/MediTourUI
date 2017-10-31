@@ -1,33 +1,5 @@
 @charset "UTF-8";
-/* 
-Template Name: Simple - Multipurpose Premium Html5 Template
-Template URI: http://www.eonythemes.com
-Description: Multipurpose Html5 Template
-Author: Eon
 
--------- # Table Of Contents # -------- //
--------- 1-  General
--------- 2-  Typography
--------- 3-  Elements
--------- 4-  Pricing
--------- 5-  Headers
--------- 6-  Homepages
--------- 7-  About
--------- 8-  Services Pages
--------- 9-  Blog
--------- 10- Portfolio
--------- 11- Category(Shop) - Product
--------- 12- Cart
--------- 13- Compare
--------- 14- Checkout
--------- 15- Contact
--------- 16- 404
--------- 17- FaQs
--------- 18- Footers
--------- 19- Owl Carousel
--------- 20- Coming Soon
--------- # Table Of Contents # ------- //
-*/
 
 /* Page Loader Animation */
 #page-loader {
@@ -102,7 +74,11 @@ Author: Eon
 /* Loader Animation End */
 /* ----------- 1.General --------------
 --------------------------------------*/
+/* contact page general */
+
+
 body {
+  height: 100%;
   position: relative;
   direction: ltr;
   color: #323232;
@@ -1312,18 +1288,18 @@ p {
 }
 
 .page-header.larger-top {
-  padding-top: 130px;
+  padding-top: 30px;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .page-header.larger-top {
-    padding-top: 200px;
+    padding-top: 30px;
   }
 }
 
 @media (min-width: 992px) {
   .page-header.larger-top {
-    padding-top: 160px;
+    padding-top: 30px;
   }
 }
 
@@ -1416,9 +1392,9 @@ p {
 }
 
 .page-header.custom {
-  background-color: #0069b0;
+  background-color: #8D8D8D;
   color: #0087e3;
-  border-color: #0078ca;
+  border-color: black;
 }
 
 .page-header.custom h1 {
@@ -3061,9 +3037,9 @@ label.error {
 }
 @media (max-width: 768px) {
   .services-group .service {
-    
+
     float: left;
-    
+
   }
 }
 
@@ -4489,7 +4465,7 @@ display: none !important;
 }
 /* #searchForm {
   text-align: start!important;
-  
+
 } */
 /* .medinovitaLogo{
   width:30%;
@@ -7682,7 +7658,7 @@ display: none !important;
   .typed-header {
     font-size: 18px;
   }
- 
+
 }
 @media (max-width :412px){
    #getQuoteCountry {
@@ -7693,9 +7669,9 @@ display: none !important;
      width: 75%!important;
    } */
   .responsiveGetQuote{
-       margin-top: -50px; 
+       margin-top: -50px;
   }
-     
+
 }
     @media (max-width:541px){
 
@@ -12224,14 +12200,14 @@ display: none !important;
   }
 }
 
-/* 
+/*
  * 	Owl Carousel - Auto Height Plugin
  */
 .owl-height {
   transition: height 500ms ease-in-out;
 }
 
-/* 
+/*
  *  Core Owl Carousel CSS File
  */
 .owl-carousel {
@@ -12339,7 +12315,7 @@ display: none !important;
   display: block;
 }
 
-/* 
+/*
  * 	Owl Carousel - Lazy Load Plugin
  */
 .owl-carousel .owl-item .owl-lazy {
@@ -12351,7 +12327,7 @@ display: none !important;
   transform-style: preserve-3d;
 }
 
-/* 
+/*
  * 	Owl Carousel - Video Plugin
  */
 .owl-carousel .owl-video-wrapper {
@@ -13221,7 +13197,7 @@ display: none !important;
 
 #Chat-Window-Body{
 width: 300px;
-  
+
   position: fixed;
   bottom: -10px;
   right: 5px;
@@ -13359,13 +13335,13 @@ width: 300px;
 /*HomePage*/
 
 @media (max-width: 500px) {
- 
+
   .fixedCarousel .item{
     height: 300px!important;
 }
 
 #searchForm{
-    
+
     position: absolute;
     top: 200px!important;
     height: 100%;
@@ -13730,7 +13706,7 @@ button:hover {
     opacity: 0.8;
 }
 
-/* 
+/*
 Cost Page */
 
   .top-margin {
@@ -13755,7 +13731,7 @@ overflow: visible;
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto:400,700);
 
 .blog-card {
-  
+
   transition: height 0.3s ease;
   -webkit-transition: height 0.3s ease;
   background: #fff;
@@ -13953,5 +13929,22 @@ overflow: visible;
 }
 
 
+/*contact page not useful*/
 
-  
+@media screen and (min-width:992px){
+  .right-border{
+    border-right:0.5px solid grey;
+  }
+  .officeAdd{
+    padding-left:80px;
+  }
+}
+
+
+@media screen and (max-width:992px){
+  .officeAdd{
+    padding-left:30px;
+  }
+}
+
+
