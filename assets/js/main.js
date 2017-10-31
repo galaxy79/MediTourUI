@@ -83,9 +83,13 @@ $('#hospitalsPageMenu').on('click',function(){
 
 $('#contactPageMenu').on('click', function () {
 	//var id = $(this).attr('id');
-//	$('.main').html('');
-	$('.main').load("contact.html")
-	})
+	//$('.contact').html('');
+	//console.log("hello " + $(this).attr('href'))
+	//console.log($(this).val())
+	//$('.contact').load("/contact.html")
+
+	document.location.href = $(this).attr('href');
+})
 	//load for Master Page
 
 
