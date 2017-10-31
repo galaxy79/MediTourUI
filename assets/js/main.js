@@ -73,6 +73,7 @@ $('#treatmentsOfferedUL li a').on('click', function (e) {
 	 });
 	})
 
+
 //Hospitals and Doctors selected
 $('#hospitalsPageMenu').on('click',function(){
 	$('.main').html('');
