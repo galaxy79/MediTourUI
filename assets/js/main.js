@@ -48,54 +48,11 @@ var whyIndia = "Because India.";
 
 (function ($) {
 	"use strict";
-	//HomePage Javascript Section Starts
-	$('.main').load("homepage.html", function () {
-		homepageCallback();
-	});
+	
+		$(".medinovitaHeader").load("./assets/pages/header.html",function(){
 
-
-// $('#costPageMenu').on('click',function(){
-// 	$('.main').html('');
-// 	$('.main').load("treatmentsOffered.html", function (data) { treatmentsOfferedCallback(data);});
-// })
-//Home menu selected
-$('#homeMenu').on('click',function(){
-	$('.main').html('');
-	$('.main').load("homepage.html", function (data) { homepageCallback(data);});
-})
-$('#treatmentsOfferedUL li a').on('click', function (e) {
-	e.preventDefault();
-	var id = $(this).attr('id');
-	console.log(id);
-	$('.main').html('');
-	$('.main').load("treatmentsOffered_V2.html", function () {
-		//treatmentsOfferedCallback(id);
-	 });
-	})
-
-
-//Hospitals and Doctors selected
-$('#hospitalsPageMenu').on('click',function(){
-	$('.main').html('');
-	$('.main').load("hospitalzone.html", function (data) { });
-})
-
-//Contact Page
-
-$('#contactPageMenu').on('click', function () {
-	//var id = $(this).attr('id');
-	//$('.contact').html('');
-	//console.log("hello " + $(this).attr('href'))
-	//console.log($(this).val())
-	//$('.contact').load("/contact.html")
-
-	document.location.href = $(this).attr('href');
-})
-	//load for Master Page
-
-
-
-	//Load Office Address
+		}); 
+$(".medinovitaFooter").load("./assets/pages/footer.html",function(){
 	$.ajax({
 		url: serverName+"api/v1/get/officelocations/meditrip",
 		type: 'GET',
@@ -145,6 +102,66 @@ $('#contactPageMenu').on('click', function () {
 			console.log(exception);
 		}
 	});
+}); 
+$(".medinovitaModals").load("./assets/pages/modals.html",function(){
+	Simple.init();
+	if(window.location.href.indexOf("index">-1)){
+		homepageCallback();
+	  }
+}); 
+	
+	
+	   
+	  
+	//HomePage Javascript Section Starts
+	// $('.main').load("homepage.html", function () {
+	// 	homepageCallback();
+	// });
+
+
+// $('#costPageMenu').on('click',function(){
+// 	$('.main').html('');
+// 	$('.main').load("treatmentsOffered.html", function (data) { treatmentsOfferedCallback(data);});
+// })
+//Home menu selected
+$('#homeMenu').on('click',function(){
+	$('.main').html('');
+	$('.main').load("homepage.html", function (data) { homepageCallback(data);});
+})
+$('#treatmentsOfferedUL li a').on('click', function (e) {
+	e.preventDefault();
+	var id = $(this).attr('id');
+	console.log(id);
+	$('.main').html('');
+	$('.main').load("treatmentsOffered_V2.html", function () {
+		//treatmentsOfferedCallback(id);
+	 });
+	})
+
+
+//Hospitals and Doctors selected
+$('#hospitalsPageMenu').on('click',function(){
+	$('.main').html('');
+	$('.main').load("hospitalzone.html", function (data) { });
+})
+
+//Contact Page
+
+$('#contactPageMenu').on('click', function () {
+	//var id = $(this).attr('id');
+	//$('.contact').html('');
+	//console.log("hello " + $(this).attr('href'))
+	//console.log($(this).val())
+	//$('.contact').load("/contact.html")
+
+	document.location.href = $(this).attr('href');
+})
+	//load for Master Page
+
+
+
+	//Load Office Address
+	
 
 
 
@@ -1615,7 +1632,7 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 	// Ready Event
 	jQuery(document).ready(function () {
 		// Init our app
-		Simple.init();
+		//Simple.init();
 	});
 
 	// Load Event
