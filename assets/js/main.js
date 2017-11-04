@@ -70,7 +70,7 @@ $('#treatmentsOfferedUL li a').on('click', function (e) {
 	var id = $(this).attr('id');
 	console.log(id);
 	$('.main').html('');
-	$('.main').load("treatmentsOffered_V2.html", function () { 
+	$('.main').load("treatmentsOffered_V2.html", function () {
 		//treatmentsOfferedCallback(id);
 	 });
 	})
@@ -84,12 +84,47 @@ $('#hospitalsPageMenu').on('click',function(){
 //MedicalVisa
 
 $('#medicalVisaPageMenu').on('click', function () {
-	//var id = $(this).attr('id');
-	$('.main').html('');
-	$('.main').load("medicalVisa.html", function (data) {
-		visaPageCallBack(data);
-	 });
+
+	console.log("hello")
+		document.location.href = $(this).attr('href');
+		console.log("iam here")
+
 	})
+	//visaPageCallBack();
+  // $('.selectpicker').load("",function (data) {
+	//  	console.log("hello")
+	//  	//alert( "Load was performed." );
+	//   	visaPageCallBack(data);
+	//  	});
+
+	// $('.country-list').on('click', function(){
+	// 	$.ajax({
+	// 		url: serverName + "api/v1/get/evisacountries/all/meditrip",
+	// 		type: 'GET',
+	// 		headers: {
+	// 			"Content-Type": "application/json",
+	// 			"Authorization": "Basic " + basicKey,
+	// 			"x-access-token": xAccessToken
+
+	// 		},
+	// 		success: function(response){
+	// 			console.log("visa-response: "+ response);
+	// 			var countryArr = [];
+	// 		response.forEach(function(item){
+	// 			countryArr.push({"country": item.country, "fee": item.fee});
+	// 			console.log("my country " + item.country)
+	// 		})
+	// 		console.log("countryArr-response: "+ countryArr[1].country);
+	// 		countryArr.forEach(function(item){
+	// 			$('.select-country .country-list').append('<option data-tokens="'+item.country+'">' + item.country +'</option>')
+	// 		})
+	// 		$('.selectpicker').selectpicker();
+	// 		},
+	// 		error: function (exception) {
+	// 			console.log(exception);
+	// 		}
+	// 	})
+	// })
 
 
 	//load for Master Page
@@ -119,33 +154,33 @@ $('#medicalVisaPageMenu').on('click', function () {
 	});
 
 
-	$.ajax({
-		url: serverName+"api/v1/get/homepagedetails/meditrip",
-		type: 'GET',
-		headers: {
-			"Content-Type": "application/json",
-			"Authorization": "Basic " + basicKey,
-			"x-access-token": xAccessToken
-		},
-		beforeSend: function (xhr) {
-			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
-		},
-		success: function (response) {
+	// $.ajax({
+	// 	url: serverName+"api/v1/get/homepagedetails/meditrip",
+	// 	type: 'GET',
+	// 	headers: {
+	// 		"Content-Type": "application/json",
+	// 		"Authorization": "Basic " + basicKey,
+	// 		"x-access-token": xAccessToken
+	// 	},
+	// 	beforeSend: function (xhr) {
+	// 		xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+	// 	},
+	// 	success: function (response) {
 
-			document.querySelector('p.why-india').innerHTML = response[0].whyIndiaDesc;
-			var socialMedia = document.querySelectorAll('a.social-icon');
-			socialMedia[0].setAttribute('href', response[0].fburlLink);
-			socialMedia[1].setAttribute('href', response[0].twitterurlLink);
-			socialMedia[2].setAttribute('href', response[0].linkedlinurlLink);
-			//socialMedia[3].setAttribute('href', response[0].instagramurlLink);
-			document.querySelector('p.medinovitaDecs').innerHTML = response[0].whymedinovitaDesc;
-			document.querySelector('p.customerCareNumber').innerHTML = response[0].whatsappCustomercareno;
-			document.querySelector('p.whatsappContactNumber').innerHTML = response[0].customerCareno
-		},
-		error: function (exception) {
-			console.log(exception);
-		}
-	});
+	// 		document.querySelector('p.why-india').innerHTML = response[0].whyIndiaDesc;
+	// 		var socialMedia = document.querySelectorAll('a.social-icon');
+	// 		socialMedia[0].setAttribute('href', response[0].fburlLink);
+	// 		socialMedia[1].setAttribute('href', response[0].twitterurlLink);
+	// 		socialMedia[2].setAttribute('href', response[0].linkedlinurlLink);
+	// 		//socialMedia[3].setAttribute('href', response[0].instagramurlLink);
+	// 		document.querySelector('p.medinovitaDecs').innerHTML = response[0].whymedinovitaDesc;
+	// 		document.querySelector('p.customerCareNumber').innerHTML = response[0].whatsappCustomercareno;
+	// 		document.querySelector('p.whatsappContactNumber').innerHTML = response[0].customerCareno
+	// 	},
+	// 	error: function (exception) {
+	// 		console.log(exception);
+	// 	}
+	// });
 
 
 
@@ -1613,7 +1648,7 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 		}
 	};
 
-	// Ready Event
+	//Ready Event
 	jQuery(document).ready(function () {
 		// Init our app
 		Simple.init();
@@ -2122,19 +2157,19 @@ function treatmentsOfferedCallback(id) {
 var htmlString='<h2 style="margin-top: 20px">Available Procedures</h2>';
 console.log(JSON.stringify(response,null,'\t'))
 response.forEach(function(item,index){
-	
+
 	var treatmentArray=item.treatmentList;
 
 	treatmentArray.forEach(function(treatmentItem,treatmentIndex){
 		var displayName=treatmentItem.displayName;
 		var treatmentDescription=treatmentItem.treatmentDescription;
 		var procedureImagepath=treatmentItem.procedureImagepath;
-		
+
 			htmlString+='<div class="treatments-hover" style="min-height:100px;padding:20px;width:90%;overflow:auto;border-radius: 7px;position:relative;margin-bottom: 20px;background-color:#eff6ef;border-bottom: 1px solid #DAD8D8;border-right: 0.2px solid #DAD8D8;"><div class="one-third" style="width:120px"><img src="'+procedureImagepath +'" height="100" width="140" style="display:inline-block"/></div><div class="three-fourths last-col" style="line-height: 1em;background-color: #eff6ef"> <p>'+displayName+'</p> <p><u>Hospital Stay:</u> '+treatmentItem.minHospitalization+'-'+treatmentItem.maxHospitalization+' days</p>     <p><u>Healing Time:</u> '+treatmentItem.healingTimeInDays+' days</p>     <p>Description of Procedure:</br>'+treatmentDescription+'</p></div>   <a href="#" style="float:right">more details</a></div>'
 	});
 });
 document.getElementById('availableProceduresDiv').innerHTML=htmlString;
-			
+
 		},
 		error: function (exception) {
 			console.log(exception);
@@ -2147,31 +2182,31 @@ document.getElementById('availableProceduresDiv').innerHTML=htmlString;
 
 //MedicalVisapage Callback
 
-function visaPageCallBack(data){
-	$.ajax({
-		url: serverName + "api/v1/get/evisacountries/all/meditrip",
-		type: 'GET',
-		headers: {
-			"Content-Type": "application/json",
-			"Authorization": "Basic " + basicKey,
-			"x-access-token": xAccessToken
+// function visaPageCallBack(){
+// 	$.ajax({
+// 		url: serverName + "api/v1/get/evisacountries/all/meditrip",
+// 		type: 'GET',
+// 		headers: {
+// 			"Content-Type": "application/json",
+// 			"Authorization": "Basic " + basicKey,
+// 			"x-access-token": xAccessToken
 
-		},
-		success: function(response){
-			console.log("visa-response: "+ response);
-			var countryArr = [];
-		response.forEach(function(item){
-			countryArr.push({"country": item.country, "fee": item.fee});
-			console.log("my country " + item.country)
-		})
-		console.log("countryArr-response: "+ countryArr[1].country);
-		countryArr.forEach(function(item){
-			$('.select-country .country-list').append('<option data-tokens="'+item.country+'">' + item.country +'</option>')
-		})
-		$('.selectpicker').selectpicker();
-		},
-		error: function (exception) {
-			console.log(exception);
-		}
-	})
-}
+// 		},
+// 		success: function(response){
+// 			console.log("visa-response: "+ response);
+// 			var countryArr = [];
+// 		response.forEach(function(item){
+// 			countryArr.push({"country": item.country, "fee": item.fee});
+// 			console.log("my country " + item.country)
+// 		})
+// 		console.log("countryArr-response: "+ countryArr[1].country);
+// 		countryArr.forEach(function(item){
+// 			$('.select-country .country-list').append('<option data-tokens="'+item.country+'">' + item.country +'</option>')
+// 		})
+// 		$('.selectpicker').selectpicker();
+// 		},
+// 		error: function (exception) {
+// 			console.log(exception);
+// 		}
+// 	})
+// }

@@ -102,19 +102,32 @@ Author: Eon
 /* Loader Animation End */
 /* ----------- 1.General --------------
 --------------------------------------*/
+/* body {
+  position: relative;
+  direction: ltr;
+  color: #323232;
+  font: 400 13px/1.7 "Open Sans", Arial, sans-serif; */
+  /*font: 400 13px/1.7 BlinkMacSystemFont,'Roboto',Helvetica Neue,sans-serif !important;*/
+  /*font-family: BlinkMacSystemFont,'Roboto',Helvetica Neue,sans-serif;*/
+  /* background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+} */
+
 body {
+  height: 100%;
   position: relative;
   direction: ltr;
   color: #323232;
   font: 400 13px/1.7 "Open Sans", Arial, sans-serif;
   /*font: 400 13px/1.7 BlinkMacSystemFont,'Roboto',Helvetica Neue,sans-serif !important;*/
   /*font-family: BlinkMacSystemFont,'Roboto',Helvetica Neue,sans-serif;*/
-  background-color: #fff;
+  background-color: #9a9a9a;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
-
 body.edge {
   padding: 5px;
 }
@@ -238,6 +251,31 @@ ol {
   margin: 0;
 }
 
+/*medical visa bullets style*/
+.visa-gen .para{
+  margin-bottom: 30px;
+}
+.visa-gen ul.eligibile{
+  list-style-type: disc;
+  margin-left:20px;
+  margin-bottom: 30px;
+}
+.visa-gen ul.eligibile-sub{
+  list-style-type: circle;
+  margin-left:20px;
+}
+.visa-gen ol.documents{
+  list-style-type: disc;
+  margin-left:20px;
+  margin-bottom: 30px;
+}
+.visa-gen ul.documents-photo{
+  list-style-type: circle;
+  margin-left:20px;
+
+}
+
+/*end of med visa*/
 a:focus, a:active,
 select:focus,
 select:active,
@@ -1312,18 +1350,24 @@ p {
 }
 
 .page-header.larger-top {
-  padding-top: 130px;
+  /*changed as per contact header
+  padding-top: 130px;*/
+  padding-top: 30px;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .page-header.larger-top {
-    padding-top: 200px;
+    /*changed as per contact header
+    padding-top: 200px;*/
+    padding-top: 30px;
   }
 }
 
 @media (min-width: 992px) {
   .page-header.larger-top {
-    padding-top: 160px;
+    /*changed as per contact header
+    padding-top: 160px;*/
+   padding-top: 30px;
   }
 }
 
@@ -1414,11 +1458,13 @@ p {
   background-color: #000;
   opacity: 0.6;
 }
-
+/*changed as in contact page header*/
 .page-header.custom {
-  background-color: #0069b0;
+  /*background-color: #0069b0;*/
+  background-color: #8D8D8D;
   color: #0087e3;
-  border-color: #0078ca;
+  /*border-color: #0078ca;*/
+  border-color: black;
 }
 
 .page-header.custom h1 {
@@ -13236,6 +13282,8 @@ width: 300px;
   padding: 0;
   margin: 0;
 }
+
+
 .chat ul li {
   margin: 45px 0 0 0;
   font-weight: 300;
@@ -13755,7 +13803,7 @@ overflow: visible;
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto:400,700);
 
 .blog-card {
-  
+
   transition: height 0.3s ease;
   -webkit-transition: height 0.3s ease;
   background: #fff;
@@ -13954,9 +14002,9 @@ overflow: visible;
 
 
 
-  body{
+  /* body{
     font-family: Montserrat;
-}
+} */
 .index-intro{
     width: 100%;
     background-color: #fff;
@@ -13970,11 +14018,12 @@ overflow: visible;
 }
 .bg-white{
     background-color: #fff;
+    padding-bottom: 50px;
 }
-.bg-white.border{
+/* .bg-white.border{
     border-top: 1px solid #f0f0f0;
     border-bottom: 1px solid #f0f0f0;
-}
+} */
 .mb65{
     margin-bottom: 65px !important;
 }
@@ -13989,4 +14038,62 @@ overflow: visible;
     margin-top: -10px;
     margin-bottom: 10px;
     border-radius: 5px;
+}
+
+/*medical page*/
+@media (max-width: 991px) {
+  .visa-gen{
+    border-bottom: 0.5px solid black;
+    padding-bottom: 42px;
+  }
+}
+@media (max-width: 991px) {
+  .customer-country {
+   /* float: left;*/
+   margin-top: 66px;
+   margin-left: 30px;
+   margin-bottom: 30px;
+  };
+
+
+}
+
+@media (min-width: 992px){
+  .customer-country{
+    margin-top:50px;
+     margin-left:70px
+  }
+}
+/* Med-visa table */
+table#t01 .no-show{
+  display: none;
+}
+table#t01{
+  width:50%;
+  margin-left: 200px;
+  margin-top: 50px;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+table th{
+  font-size: 1.52rem;
+}
+table td{
+  font-size: 1.4rem;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+table#t01 tr:nth-child(even) {
+  background-color: #eee;
+}
+table#t01 tr:nth-child(odd) {
+ background-color:#fff;
+}
+table#t01 th {
+  background-color: grey;
+  color: white;
 }
