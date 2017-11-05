@@ -50,7 +50,22 @@ var whyIndia = "Because India.";
 	"use strict";
 	
 		$(".medinovitaHeader").load("./assets/pages/header.html",function(){
-
+			$('#costPageMenu').on('click',function(){
+				document.location.href='/cost.html';
+			})
+			$('#contactPageMenu').on('click', function () {
+				//var id = $(this).attr('id');
+				//$('.contact').html('');
+				//console.log("hello " + $(this).attr('href'))
+				//console.log($(this).val())
+				//$('.contact').load("/contact.html")
+			
+				document.location.href = '/contact.html';
+			});
+			$('#homeMenu').on('click',function(){
+				document.location.href = '/index.html';
+				//homepageCallback();
+			})
 		}); 
 $(".medinovitaFooter").load("./assets/pages/footer.html",function(){
 	$.ajax({
@@ -104,7 +119,7 @@ $(".medinovitaFooter").load("./assets/pages/footer.html",function(){
 	});
 }); 
 $(".medinovitaModals").load("./assets/pages/modals.html",function(){
-	Simple.init();
+	//Simple.init();
 	if(window.location.href.indexOf("index">-1)){
 		homepageCallback();
 	  }
@@ -147,15 +162,7 @@ $('#hospitalsPageMenu').on('click',function(){
 
 //Contact Page
 
-$('#contactPageMenu').on('click', function () {
-	//var id = $(this).attr('id');
-	//$('.contact').html('');
-	//console.log("hello " + $(this).attr('href'))
-	//console.log($(this).val())
-	//$('.contact').load("/contact.html")
 
-	document.location.href = $(this).attr('href');
-})
 	//load for Master Page
 
 
@@ -351,7 +358,7 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 		menuHover: function () {
 			if (typeof Modernizr === "object" && Modernizr.mq('only all and (min-width: 768px)') && !Modernizr.touchevents) {
 				if ($.fn.hoverIntent) {
-					$('.header').find('.navbar-nav').not('.nav-overlay').hoverIntent({
+					$('.medinovitaHeader .header').find('.navbar-nav').not('.nav-overlay').hoverIntent({
 						over: function () {
 							var $this = $(this);
 
@@ -393,20 +400,20 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 		menuOnClick: function () {
 			var self = this;
 			// Menu on click scroll animation for onepages
-			$('.onepage-nav').find('a').on('click', function (e) {
-				var target = $(this).attr('href');
-				if (target.indexOf('#') === -1 || !$(target).length) {
-					return;
-				}
+			// $('.onepage-nav').find('a').on('click', function (e) {
+			// 	var target = $(this).attr('href');
+			// 	if (target.indexOf('#') === -1 || !$(target).length) {
+			// 		return;
+			// 	}
 
-				var elem = $(target),
-					targetPos = elem.offset().top;
+			// 	var elem = $(target),
+			// 		targetPos = elem.offset().top;
 
-				$('html, body').animate({
-					'scrollTop': targetPos
-				}, 1200);
-				e.preventDefault();
-			});
+			// 	$('html, body').animate({
+			// 		'scrollTop': targetPos
+			// 	}, 1200);
+			// 	e.preventDefault();
+			// });
 		},
 		stickyHeader: function () {
 			// Sticky header - calls if sticky-header class is added to the header
@@ -1632,7 +1639,7 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 	// Ready Event
 	jQuery(document).ready(function () {
 		// Init our app
-		//Simple.init();
+		Simple.init();
 	});
 
 	// Load Event
