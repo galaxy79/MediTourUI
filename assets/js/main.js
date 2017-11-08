@@ -66,6 +66,13 @@ var whyIndia = "Because India.";
 				document.location.href = '/index.html';
 				//homepageCallback();
 			})
+			$('#treatmentsOfferedUL li a').on('click', function (e) {
+				e.preventDefault();
+				var id = $(this).attr('id');
+				
+				setCookie("treatmentPage", id,1);
+				document.location.href = '/treatmentsOffered_V2.html';
+			})
 		}); 
 $(".medinovitaFooter").load("./assets/pages/footer.html",function(){
 	$.ajax({
@@ -119,10 +126,13 @@ $(".medinovitaFooter").load("./assets/pages/footer.html",function(){
 	});
 }); 
 $(".medinovitaModals").load("./assets/pages/modals.html",function(){
-	//Simple.init();
-	if(window.location.href.indexOf("index">-1)){
+	
+	if(window.location.href.indexOf("index")>-1){
 		homepageCallback();
-	  }
+	}
+	if (window.location.href.indexOf("treatmentsOffered") > -1) {
+		treatmentsOfferedCallback(getCookie("treatmentPage"));
+	}
 }); 
 	
 	
@@ -139,19 +149,19 @@ $(".medinovitaModals").load("./assets/pages/modals.html",function(){
 // 	$('.main').load("treatmentsOffered.html", function (data) { treatmentsOfferedCallback(data);});
 // })
 //Home menu selected
-$('#homeMenu').on('click',function(){
-	$('.main').html('');
-	$('.main').load("homepage.html", function (data) { homepageCallback(data);});
-})
-$('#treatmentsOfferedUL li a').on('click', function (e) {
-	e.preventDefault();
-	var id = $(this).attr('id');
-	console.log(id);
-	$('.main').html('');
-	$('.main').load("treatmentsOffered_V2.html", function () {
-		//treatmentsOfferedCallback(id);
-	 });
-	})
+// $('#homeMenu').on('click',function(){
+// 	$('.main').html('');
+// 	$('.main').load("homepage.html", function (data) { homepageCallback(data);});
+// })
+// $('#treatmentsOfferedUL li a').on('click', function (e) {
+// 	e.preventDefault();
+// 	var id = $(this).attr('id');
+// 	console.log(id);
+// 	$('.main').html('');
+// 	$('.main').load("treatmentsOffered_V2.html", function () {
+// 		//treatmentsOfferedCallback(id);
+// 	 });
+// 	})
 
 
 //Hospitals and Doctors selected
@@ -2183,7 +2193,7 @@ function treatmentsOfferedCallback(id) {
 	}
 
 	$.ajax({
-		url: serverName + "api/v1/get/treatmentdescription/" + treatmentCategory+"/meditrip",
+		url: serverName + "api/v1/get/treatmentdescription/cost/meditrip?department=" + treatmentCategory,
 		type: 'GET',
 		headers: {
 			"Content-Type": "application/json",
@@ -2195,18 +2205,23 @@ function treatmentsOfferedCallback(id) {
 			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
 		},
 		success: function (response) {
-var htmlString='<h2 style="margin-top: 20px">Available Procedures</h2>';
-console.log(JSON.stringify(response,null,'\t'))
-response.forEach(function(item,index){
+			$('.treatmentDecsription h1').html(response[0].department);
+			$('.treatmentDecsription p').html(response[0].departmentDescription);
 
-	var treatmentArray=item.treatmentList;
+			var htmlString='<h2 style="margin-top: 20px">Available Procedures</h2>';
+			console.log(JSON.stringify(response,null,'\t'))
+			response.forEach(function(item,index){
 
-	treatmentArray.forEach(function(treatmentItem,treatmentIndex){
+			var treatmentArray=item.treatmentList;
+
+		treatmentArray.forEach(function(treatmentItem,treatmentIndex){
 		var displayName=treatmentItem.displayName;
 		var treatmentDescription=treatmentItem.treatmentDescription;
 		var procedureImagepath=treatmentItem.procedureImagepath;
 
-			htmlString+='<div class="treatments-hover" style="min-height:100px;padding:20px;width:90%;overflow:auto;border-radius: 7px;position:relative;margin-bottom: 20px;background-color:#eff6ef;border-bottom: 1px solid #DAD8D8;border-right: 0.2px solid #DAD8D8;"><div class="one-third" style="width:120px"><img src="'+procedureImagepath +'" height="100" width="140" style="display:inline-block"/></div><div class="three-fourths last-col" style="line-height: 1em;background-color: #eff6ef"> <p>'+displayName+'</p> <p><u>Hospital Stay:</u> '+treatmentItem.minHospitalization+'-'+treatmentItem.maxHospitalization+' days</p>     <p><u>Healing Time:</u> '+treatmentItem.healingTimeInDays+' days</p>     <p>Description of Procedure:</br>'+treatmentDescription+'</p></div>   <a href="#" style="float:right">more details</a></div>'
+		htmlString += '<div class="blog-card"><div class="photo photo1" style="background: url("/assets/images/Image5.jpg") center no-repeat;"></div><ul class="details"><li class="author"><a href="#">John Doe</a></li><li class="date">Aug. 24, 2015</li><li class="tags"><ul><li><a href="#">Learn</a></li><li><a href="#">Code</a></li><li><a href="#">HTML</a></li><li><a href="#">CSS</a></li></ul></li></ul><div class="description"><h1>' + displayName+'</h1><h2>' + displayName + '</h2><p class="summary">' + treatmentDescription+'</p><a href="#">Read More</a></div></div>'
+
+			//htmlString+='<div class="treatments-hover" style="min-height:100px;padding:20px;width:90%;overflow:auto;border-radius: 7px;position:relative;margin-bottom: 20px;background-color:#eff6ef;border-bottom: 1px solid #DAD8D8;border-right: 0.2px solid #DAD8D8;"><div class="one-third" style="width:120px"><img src="'+procedureImagepath +'" height="100" width="140" style="display:inline-block"/></div><div class="three-fourths last-col" style="line-height: 1em;background-color: #eff6ef"> <p>'+displayName+'</p> <p><u>Hospital Stay:</u> '+treatmentItem.minHospitalization+'-'+treatmentItem.maxHospitalization+' days</p>     <p><u>Healing Time:</u> '+treatmentItem.healingTimeInDays+' days</p>     <p>Description of Procedure:</br>'+treatmentDescription+'</p></div>   <a href="#" style="float:right">more details</a></div>'
 	});
 });
 document.getElementById('availableProceduresDiv').innerHTML=htmlString;
@@ -2258,3 +2273,24 @@ document.getElementById('availableProceduresDiv').innerHTML=htmlString;
 // 	})
 // })
 
+function setCookie(cname, cvalue, exdays) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+	var expires = "expires=" + d.toUTCString();
+	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+	var name = cname + "=";
+	var ca = document.cookie.split(';');
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(name) == 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return "";
+}
