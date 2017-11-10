@@ -138,6 +138,9 @@ if(window.location.href.indexOf("index")>-1){
 if (window.location.href.indexOf("treatmentsOffered") > -1) {
 	treatmentsOfferedCallback(getCookie("treatmentPage"));
 }
+if (window.location.href.indexOf("MedicalVisatoIndia") > -1) {
+	medicalVisacallback();
+}
 });
 
 
@@ -151,56 +154,53 @@ $('#hospitalsPageMenu').on('click',function(){
 
 //MedicalVisa
 
-$('#medicalVisaPageMenu').on('click', function () {
+// $('#medical-visa').on('click', function () {
 
 
-		document.location.href = $(this).attr('href');
+// 		document.location.href = $(this).attr('href');
+// 	$.ajax({
+// 		url: serverName + "api/v1/get/evisacountries/all/meditrip",
+// 		type: 'GET',
+// 		headers: {
+// 				"Content-Type": "application/json",
+// 				"Authorization": "Basic " + basicKey,
+// 				"x-access-token": xAccessToken
+
+// 		},
+// 		success: function(response){
+// 			 // console.log("visa-response: "+ response);
+// 				var countryArr = [];
+// 		response.forEach(function(item){
+// 				countryArr.push({"country": item.country, "fee": item.fee});
+// 			 // console.log("my country " + item.country)
+// 		})
+// 		//console.log("countryArr-response: "+ countryArr[1].country);
+// 		countryArr.forEach(function(item){
+// 				$('.select-country .country-list').append('<option class="'+item.fee + '"' +'data-tokens="'+ item.country+'">' + item.country +'</option>')
+// 		})
+
+// 		//$('.selectpicker').selectpicker();
+// 		$('.selectpicker').selectpicker('render');
+// 		$('.selectpicker').selectpicker('refresh');
+// 		},
+// 		error: function (exception) {
+// 				console.log(exception);
+// 		}
+//   });
+// //   })
+// $('.selectpicker').on('change', function(){
+// $('table#t01 tr').hide();
+// var countrySelected = $("option:selected",this).val();
+
+// var countryFee  = $('option:selected',this).attr('class');
+
+// $('table#t01 tr th').removeClass('no-show');
 
 
-	})
+// $('table#t01 tbody').append('<tr><th >Country</th><th>Fees (USD)<br><div style="font-size:0.9rem;">2.5% additional charge on bank transactions</div></th></tr>'+'<tr class="new-row"><td>'+countrySelected+'</td><td>'+countryFee+'</td></tr>');
 
-	$.ajax({
-		url: serverName + "api/v1/get/evisacountries/all/meditrip",
-		type: 'GET',
-		headers: {
-				"Content-Type": "application/json",
-				"Authorization": "Basic " + basicKey,
-				"x-access-token": xAccessToken
-
-		},
-		success: function(response){
-			 // console.log("visa-response: "+ response);
-				var countryArr = [];
-		response.forEach(function(item){
-				countryArr.push({"country": item.country, "fee": item.fee});
-			 // console.log("my country " + item.country)
-		})
-		//console.log("countryArr-response: "+ countryArr[1].country);
-		countryArr.forEach(function(item){
-				$('.select-country .country-list').append('<option class="'+item.fee + '"' +'data-tokens="'+ item.country+'">' + item.country +'</option>')
-		})
-
-		//$('.selectpicker').selectpicker();
-		$('.selectpicker').selectpicker('render');
-		$('.selectpicker').selectpicker('refresh');
-		},
-		error: function (exception) {
-				console.log(exception);
-		}
-});
-//   })
-$('.selectpicker').on('change', function(){
-$('table#t01 tr').hide();
-var countrySelected = $("option:selected",this).val();
-
-var countryFee  = $('option:selected',this).attr('class');
-
-$('table#t01 tr th').removeClass('no-show');
-
-
-$('table#t01 tbody').append('<tr><th >Country</th><th>Fees (USD)<br><div style="font-size:0.9rem;">2.5% additional charge on bank transactions</div></th></tr>'+'<tr class="new-row"><td>'+countrySelected+'</td><td>'+countryFee+'</td></tr>');
-
-});
+// });
+// });
 	//visaPageCallBack();
   // $('.selectpicker').load("",function (data) {
 	//  	console.log("hello")
@@ -2290,34 +2290,50 @@ document.getElementById('availableProceduresDiv').innerHTML=htmlString;
 	///api/v1/searchHospitaldetails/Dental/searchHospital
 
 }
+function medicalVisacallback(){
 
-//MedicalVisapage Callback
+			$.ajax({
+				url: serverName + "api/v1/get/evisacountries/all/meditrip",
+				type: 'GET',
+				headers: {
+						"Content-Type": "application/json",
+						"Authorization": "Basic " + basicKey,
+						"x-access-token": xAccessToken
 
-// function visaPageCallBack(){
-// 	$.ajax({
-// 		url: serverName + "api/v1/get/evisacountries/all/meditrip",
-// 		type: 'GET',
-// 		headers: {
-// 			"Content-Type": "application/json",
-// 			"Authorization": "Basic " + basicKey,
-// 			"x-access-token": xAccessToken
+				},
+				success: function(response){
+					 // console.log("visa-response: "+ response);
+						var countryArr = [];
+				response.forEach(function(item){
+						countryArr.push({"country": item.country, "fee": item.fee});
+					 // console.log("my country " + item.country)
+				})
+				//console.log("countryArr-response: "+ countryArr[1].country);
 
-// 		},
-// 		success: function(response){
-// 			console.log("visa-response: "+ response);
-// 			var countryArr = [];
-// 		response.forEach(function(item){
-// 			countryArr.push({"country": item.country, "fee": item.fee});
-// 			console.log("my country " + item.country)
-// 		})
-// 		console.log("countryArr-response: "+ countryArr[1].country);
-// 		countryArr.forEach(function(item){
-// 			$('.select-country .country-list').append('<option data-tokens="'+item.country+'">' + item.country +'</option>')
-// 		})
-// 		$('.selectpicker').selectpicker();
-// 		},
-// 		error: function (exception) {
-// 			console.log(exception);
-// 		}
-// 	})
-// }
+				countryArr.forEach(function(item){
+						$('.select-country .country-list').append('<option class="'+item.fee + '"' +'data-tokens="'+ item.country+'">' + item.country +'</option>')
+				})
+
+				//$('.selectpicker').selectpicker();
+				$('.selectpicker').selectpicker('render');
+				$('.selectpicker').selectpicker('refresh');
+				},
+				error: function (exception) {
+						console.log(exception);
+				}
+		});
+		$('.selectpicker').on('change', function(){
+			$('table#t01 tr').hide();
+			var countrySelected = $("option:selected",this).val();
+
+			var countryFee  = $('option:selected',this).attr('class');
+
+			$('table#t01 tr th').removeClass('no-show');
+
+
+			$('table#t01 tbody').append('<tr><th >Country</th><th>Fees (USD)<br><div style="font-size:0.9rem;">2.5% additional charge on bank transactions</div></th></tr>'+'<tr class="new-row"><td>'+countrySelected+'</td><td>'+countryFee+'</td></tr>');
+
+			});
+}
+
+
