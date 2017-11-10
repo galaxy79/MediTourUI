@@ -48,32 +48,100 @@ var whyIndia = "Because India.";
 
 (function ($) {
 	"use strict";
-	//HomePage Javascript Section Starts
-	$('.main').load("homepage.html", function () {
-		homepageCallback();
+	$(".medinovitaHeader").load("./assets/pages/header.html",function(){
+		$('#costPageMenu').on('click',function(){
+			document.location.href='/cost.html';
+		})
+		$('#contactPageMenu').on('click', function () {
+			//var id = $(this).attr('id');
+			//$('.contact').html('');
+			//console.log("hello " + $(this).attr('href'))
+			//console.log($(this).val())
+			//$('.contact').load("/contact.html")
+
+			document.location.href = '/contact.html';
+		});
+		$('#homeMenu').on('click',function(){
+			document.location.href = '/index.html';
+			//homepageCallback();
+		})
+		$('#treatmentsOfferedUL li a').on('click', function (e) {
+			e.preventDefault();
+			var id = $(this).attr('id');
+
+			setCookie("treatmentPage", id,1);
+			document.location.href = '/treatmentsOffered_V2.html';
+		})
+
+		$('#medicalVisaPageMenu').on('click', function () {
+
+
+			document.location.href = '/MedicalVisatoIndia.html';
+		});
 	});
+$(".medinovitaFooter").load("./assets/pages/footer.html",function(){
+$.ajax({
+	url: serverName+"api/v1/get/officelocations/meditrip",
+	type: 'GET',
+	headers: {
+		"Content-Type": "application/json",
+		"Authorization": "Basic "+ basicKey,
+		"x-access-token": xAccessToken
+
+	},
+	beforeSend: function (xhr) {
+		xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+	},
+	success: function (response) {
+		officeAddress = response[0].country +"<br>"+response[0].officeCity[0].city+ "<br>" +response[0].officeCity[0].officeLocation[0].addressLine1 +"<br>"+response[0].officeCity[0].officeLocation[0].addressLine2 + "<br>" + response[0].officeCity[0].officeLocation[0].landMark + "<br>" + response[0].officeCity[0].officeLocation[0].officeEmailId + "<br>" + response[0].officeCity[0].officeLocation[0].contactPerson;
+		document.querySelector('p.office-address').innerHTML = officeAddress;
+	},
+	error: function (exception) {
+		console.log(exception);
+	}
+});
+
+
+$.ajax({
+	url: serverName+"api/v1/get/homepagedetails/meditrip",
+	type: 'GET',
+	headers: {
+		"Content-Type": "application/json",
+		"Authorization": "Basic " + basicKey,
+		"x-access-token": xAccessToken
+	},
+	beforeSend: function (xhr) {
+		xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+	},
+	success: function (response) {
+
+		document.querySelector('p.why-india').innerHTML = response[0].whyIndiaDesc;
+		var socialMedia = document.querySelectorAll('a.social-icon');
+		socialMedia[0].setAttribute('href', response[0].fburlLink);
+		socialMedia[1].setAttribute('href', response[0].twitterurlLink);
+		socialMedia[2].setAttribute('href', response[0].linkedlinurlLink);
+		//socialMedia[3].setAttribute('href', response[0].instagramurlLink);
+		document.querySelector('p.medinovitaDecs').innerHTML = response[0].whymedinovitaDesc;
+		document.querySelector('p.customerCareNumber').innerHTML = response[0].whatsappCustomercareno;
+		document.querySelector('p.whatsappContactNumber').innerHTML = response[0].customerCareno
+	},
+	error: function (exception) {
+		console.log(exception);
+	}
+});
+});
+$(".medinovitaModals").load("./assets/pages/modals.html",function(){
+
+if(window.location.href.indexOf("index")>-1){
+	homepageCallback();
+}
+if (window.location.href.indexOf("treatmentsOffered") > -1) {
+	treatmentsOfferedCallback(getCookie("treatmentPage"));
+}
+});
 
 
 
-// $('#costPageMenu').on('click',function(){
-// 	$('.main').html('');
-// 	$('.main').load("treatmentsOffered.html", function (data) { treatmentsOfferedCallback(data);});
-// })
-
-//Home menu selected
-$('#homeMenu').on('click',function(){
-	$('.main').html('');
-	$('.main').load("homepage.html", function (data) { homepageCallback(data);});
-})
-$('#treatmentsOfferedUL li a').on('click', function (e) {
-	e.preventDefault();
-	var id = $(this).attr('id');
-	console.log(id);
-	$('.main').html('');
-	$('.main').load("treatmentsOffered_V2.html", function () {
-		//treatmentsOfferedCallback(id);
-	 });
-	})
 
 //Hospitals and Doctors selected
 $('#hospitalsPageMenu').on('click',function(){
@@ -85,11 +153,54 @@ $('#hospitalsPageMenu').on('click',function(){
 
 $('#medicalVisaPageMenu').on('click', function () {
 
-	console.log("hello")
+
 		document.location.href = $(this).attr('href');
-		console.log("iam here")
+
 
 	})
+
+	$.ajax({
+		url: serverName + "api/v1/get/evisacountries/all/meditrip",
+		type: 'GET',
+		headers: {
+				"Content-Type": "application/json",
+				"Authorization": "Basic " + basicKey,
+				"x-access-token": xAccessToken
+
+		},
+		success: function(response){
+			 // console.log("visa-response: "+ response);
+				var countryArr = [];
+		response.forEach(function(item){
+				countryArr.push({"country": item.country, "fee": item.fee});
+			 // console.log("my country " + item.country)
+		})
+		//console.log("countryArr-response: "+ countryArr[1].country);
+		countryArr.forEach(function(item){
+				$('.select-country .country-list').append('<option class="'+item.fee + '"' +'data-tokens="'+ item.country+'">' + item.country +'</option>')
+		})
+
+		//$('.selectpicker').selectpicker();
+		$('.selectpicker').selectpicker('render');
+		$('.selectpicker').selectpicker('refresh');
+		},
+		error: function (exception) {
+				console.log(exception);
+		}
+});
+//   })
+$('.selectpicker').on('change', function(){
+$('table#t01 tr').hide();
+var countrySelected = $("option:selected",this).val();
+
+var countryFee  = $('option:selected',this).attr('class');
+
+$('table#t01 tr th').removeClass('no-show');
+
+
+$('table#t01 tbody').append('<tr><th >Country</th><th>Fees (USD)<br><div style="font-size:0.9rem;">2.5% additional charge on bank transactions</div></th></tr>'+'<tr class="new-row"><td>'+countrySelected+'</td><td>'+countryFee+'</td></tr>');
+
+});
 	//visaPageCallBack();
   // $('.selectpicker').load("",function (data) {
 	//  	console.log("hello")
@@ -132,26 +243,26 @@ $('#medicalVisaPageMenu').on('click', function () {
 
 
 	//Load Office Address
-	$.ajax({
-		url: serverName+"api/v1/get/officelocations/meditrip",
-		type: 'GET',
-		headers: {
-			"Content-Type": "application/json",
-			"Authorization": "Basic "+ basicKey,
-			"x-access-token": xAccessToken
+	// $.ajax({
+	// 	url: serverName+"api/v1/get/officelocations/meditrip",
+	// 	type: 'GET',
+	// 	headers: {
+	// 		"Content-Type": "application/json",
+	// 		"Authorization": "Basic "+ basicKey,
+	// 		"x-access-token": xAccessToken
 
-		},
-		beforeSend: function (xhr) {
-			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
-		},
-		success: function (response) {
-			officeAddress = response[0].country +"<br>"+response[0].officeCity[0].city+ "<br>" +response[0].officeCity[0].officeLocation[0].addressLine1 +"<br>"+response[0].officeCity[0].officeLocation[0].addressLine2 + "<br>" + response[0].officeCity[0].officeLocation[0].landMark + "<br>" + response[0].officeCity[0].officeLocation[0].officeEmailId + "<br>" + response[0].officeCity[0].officeLocation[0].contactPerson;
-			document.querySelector('p.office-address').innerHTML = officeAddress;
-		},
-		error: function (exception) {
-			console.log(exception);
-		}
-	});
+	// 	},
+	// 	beforeSend: function (xhr) {
+	// 		xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+	// 	},
+	// 	success: function (response) {
+	// 		officeAddress = response[0].country +"<br>"+response[0].officeCity[0].city+ "<br>" +response[0].officeCity[0].officeLocation[0].addressLine1 +"<br>"+response[0].officeCity[0].officeLocation[0].addressLine2 + "<br>" + response[0].officeCity[0].officeLocation[0].landMark + "<br>" + response[0].officeCity[0].officeLocation[0].officeEmailId + "<br>" + response[0].officeCity[0].officeLocation[0].contactPerson;
+	// 		document.querySelector('p.office-address').innerHTML = officeAddress;
+	// 	},
+	// 	error: function (exception) {
+	// 		console.log(exception);
+	// 	}
+	// });
 
 
 	// $.ajax({
@@ -1652,7 +1763,7 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 	jQuery(document).ready(function () {
 		// Init our app
 		Simple.init();
-		$('.selectpicker').selectpicker();
+	//	$('.selectpicker').selectpicker();
 	});
 
 	// Load Event
