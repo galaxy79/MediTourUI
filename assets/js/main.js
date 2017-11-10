@@ -48,141 +48,105 @@ var whyIndia = "Because India.";
 
 (function ($) {
 	"use strict";
-	
-		$(".medinovitaHeader").load("./assets/pages/header.html",function(){
-			$('#costPageMenu').on('click',function(){
-				document.location.href='/cost.html';
-			})
-			$('#contactPageMenu').on('click', function () {
-				//var id = $(this).attr('id');
-				//$('.contact').html('');
-				//console.log("hello " + $(this).attr('href'))
-				//console.log($(this).val())
-				//$('.contact').load("/contact.html")
-			
-				document.location.href = '/contact.html';
-			});
-			$('#homeMenu').on('click',function(){
-				document.location.href = '/index.html';
-				//homepageCallback();
-			})
-			$('#treatmentsOfferedUL li a').on('click', function (e) {
-				e.preventDefault();
-				var id = $(this).attr('id');
-				
-				setCookie("treatmentPage", id,1);
-				document.location.href = '/treatmentsOffered_V2.html';
-			})
-		}); 
+	$(".medinovitaHeader").load("./assets/pages/header.html",function(){
+		$('#costPageMenu').on('click',function(){
+			document.location.href='/cost.html';
+		})
+		$('#contactPageMenu').on('click', function () {
+			//var id = $(this).attr('id');
+			//$('.contact').html('');
+			//console.log("hello " + $(this).attr('href'))
+			//console.log($(this).val())
+			//$('.contact').load("/contact.html")
+
+			document.location.href = '/contact.html';
+		});
+		$('#homeMenu').on('click',function(){
+			document.location.href = '/index.html';
+			//homepageCallback();
+		})
+		$('#treatmentsOfferedUL li a').on('click', function (e) {
+			e.preventDefault();
+			var id = $(this).attr('id');
+
+			setCookie("treatmentPage", id,1);
+			document.location.href = '/treatmentsOffered_V2.html';
+		})
+
+		$('#medicalVisaPageMenu').on('click', function () {
+
+
+			document.location.href = '/MedicalVisatoIndia.html';
+		});
+	});
 $(".medinovitaFooter").load("./assets/pages/footer.html",function(){
-	$.ajax({
-		url: serverName+"api/v1/get/officelocations/meditrip",
-		type: 'GET',
-		headers: {
-			"Content-Type": "application/json",
-			"Authorization": "Basic "+ basicKey,
-			"x-access-token": xAccessToken
+$.ajax({
+	url: serverName+"api/v1/get/officelocations/meditrip",
+	type: 'GET',
+	headers: {
+		"Content-Type": "application/json",
+		"Authorization": "Basic "+ basicKey,
+		"x-access-token": xAccessToken
 
-		},
-		beforeSend: function (xhr) {
-			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
-		},
-		success: function (response) {
-			officeAddress = response[0].country +"<br>"+response[0].officeCity[0].city+ "<br>" +response[0].officeCity[0].officeLocation[0].addressLine1 +"<br>"+response[0].officeCity[0].officeLocation[0].addressLine2 + "<br>" + response[0].officeCity[0].officeLocation[0].landMark + "<br>" + response[0].officeCity[0].officeLocation[0].officeEmailId + "<br>" + response[0].officeCity[0].officeLocation[0].contactPerson;
-			document.querySelector('p.office-address').innerHTML = officeAddress;
-		},
-		error: function (exception) {
-			console.log(exception);
-		}
-	});
+	},
+	beforeSend: function (xhr) {
+		xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+	},
+	success: function (response) {
+		officeAddress = response[0].country +"<br>"+response[0].officeCity[0].city+ "<br>" +response[0].officeCity[0].officeLocation[0].addressLine1 +"<br>"+response[0].officeCity[0].officeLocation[0].addressLine2 + "<br>" + response[0].officeCity[0].officeLocation[0].landMark + "<br>" + response[0].officeCity[0].officeLocation[0].officeEmailId + "<br>" + response[0].officeCity[0].officeLocation[0].contactPerson;
+		document.querySelector('p.office-address').innerHTML = officeAddress;
+	},
+	error: function (exception) {
+		console.log(exception);
+	}
+});
 
 
-	$.ajax({
-		url: serverName+"api/v1/get/homepagedetails/meditrip",
-		type: 'GET',
-		headers: {
-			"Content-Type": "application/json",
-			"Authorization": "Basic " + basicKey,
-			"x-access-token": xAccessToken
-		},
-		beforeSend: function (xhr) {
-			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
-		},
-		success: function (response) {
+$.ajax({
+	url: serverName+"api/v1/get/homepagedetails/meditrip",
+	type: 'GET',
+	headers: {
+		"Content-Type": "application/json",
+		"Authorization": "Basic " + basicKey,
+		"x-access-token": xAccessToken
+	},
+	beforeSend: function (xhr) {
+		xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+	},
+	success: function (response) {
 
-			document.querySelector('p.why-india').innerHTML = response[0].whyIndiaDesc;
-			var socialMedia = document.querySelectorAll('a.social-icon');
-			socialMedia[0].setAttribute('href', response[0].fburlLink);
-			socialMedia[1].setAttribute('href', response[0].twitterurlLink);
-			socialMedia[2].setAttribute('href', response[0].linkedlinurlLink);
-			//socialMedia[3].setAttribute('href', response[0].instagramurlLink);
-			document.querySelector('p.medinovitaDecs').innerHTML = response[0].whymedinovitaDesc;
-			document.querySelector('p.customerCareNumber').innerHTML = response[0].whatsappCustomercareno;
-			document.querySelector('p.whatsappContactNumber').innerHTML = response[0].customerCareno
-		},
-		error: function (exception) {
-			console.log(exception);
-		}
-	});
-}); 
+		document.querySelector('p.why-india').innerHTML = response[0].whyIndiaDesc;
+		var socialMedia = document.querySelectorAll('a.social-icon');
+		socialMedia[0].setAttribute('href', response[0].fburlLink);
+		socialMedia[1].setAttribute('href', response[0].twitterurlLink);
+		socialMedia[2].setAttribute('href', response[0].linkedlinurlLink);
+		//socialMedia[3].setAttribute('href', response[0].instagramurlLink);
+		document.querySelector('p.medinovitaDecs').innerHTML = response[0].whymedinovitaDesc;
+		document.querySelector('p.customerCareNumber').innerHTML = response[0].whatsappCustomercareno;
+		document.querySelector('p.whatsappContactNumber').innerHTML = response[0].customerCareno
+	},
+	error: function (exception) {
+		console.log(exception);
+	}
+});
+});
 $(".medinovitaModals").load("./assets/pages/modals.html",function(){
-	
-	if(window.location.href.indexOf("index")>-1){
-		homepageCallback();
-	}
-	if (window.location.href.indexOf("treatmentsOffered") > -1) {
-		treatmentsOfferedCallback(getCookie("treatmentPage"));
-	}
-}); 
-	
-	
-	   
-	  
-	//HomePage Javascript Section Starts
-	// $('.main').load("homepage.html", function () {
-	// 	homepageCallback();
-	// });
 
-
-// $('#costPageMenu').on('click',function(){
-// 	$('.main').html('');
-// 	$('.main').load("treatmentsOffered.html", function (data) { treatmentsOfferedCallback(data);});
-// })
-//Home menu selected
-// $('#homeMenu').on('click',function(){
-// 	$('.main').html('');
-// 	$('.main').load("homepage.html", function (data) { homepageCallback(data);});
-// })
-// $('#treatmentsOfferedUL li a').on('click', function (e) {
-// 	e.preventDefault();
-// 	var id = $(this).attr('id');
-// 	console.log(id);
-// 	$('.main').html('');
-// 	$('.main').load("treatmentsOffered_V2.html", function () {
-// 		//treatmentsOfferedCallback(id);
-// 	 });
-// 	})
-
-
+if(window.location.href.indexOf("index")>-1){
+	homepageCallback();
+}
+if (window.location.href.indexOf("treatmentsOffered") > -1) {
+	treatmentsOfferedCallback(getCookie("treatmentPage"));
+}
+if (window.location.href.indexOf("MedicalVisatoIndia") > -1) {
+	medicalVisacallback();
+}
+});
 //Hospitals and Doctors selected
 $('#hospitalsPageMenu').on('click',function(){
 	$('.main').html('');
 	$('.main').load("hospitalzone.html", function (data) { });
 })
-
-//Contact Page
-
-
-	//load for Master Page
-
-
-
-	//Load Office Address
-	
-
-
-
-
 $('#submitEnquiryForm').on('submit',function(e){
 	e.preventDefault();
 	var formData=$(this).serializeArray();
@@ -1646,10 +1610,11 @@ $('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 		}
 	};
 
-	// Ready Event
+	//Ready Event
 	jQuery(document).ready(function () {
 		// Init our app
 		Simple.init();
+	//	$('.selectpicker').selectpicker();
 	});
 
 	// Load Event
@@ -2205,9 +2170,9 @@ function treatmentsOfferedCallback(id) {
 			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
 		},
 		success: function (response) {
+
 			$('.treatmentDecsription h1').html(response[0].department);
 			$('.treatmentDecsription p').html(response[0].departmentDescription);
-
 			var htmlString='<h2 style="margin-top: 20px">Available Procedures</h2>';
 			console.log(JSON.stringify(response,null,'\t'))
 			response.forEach(function(item,index){
@@ -2218,10 +2183,10 @@ function treatmentsOfferedCallback(id) {
 		var displayName=treatmentItem.displayName;
 		var treatmentDescription=treatmentItem.treatmentDescription;
 		var procedureImagepath=treatmentItem.procedureImagepath;
-
 		htmlString += '<div class="blog-card"><div class="photo photo1" style="background: url("/assets/images/Image5.jpg") center no-repeat;"></div><ul class="details"><li class="author"><a href="#">' + treatmentItem.procedureName + '</a></li><li class="date"> Heal Time: ' + treatmentItem.healingTimeInDays + '</li><li class="date"> Surgical Time: ' + treatmentItem.surgicalTime + '</li><li class="date"> Estimate Cost: ' + treatmentItem.procedureCost +'</li></ul><div class="description"><h1>' + displayName+'</h1><h2>' + displayName + '</h2><p class="summary">' + treatmentDescription+'</p><a href="#">Read More</a></div></div>'
 
 			//htmlString+='<div class="treatments-hover" style="min-height:100px;padding:20px;width:90%;overflow:auto;border-radius: 7px;position:relative;margin-bottom: 20px;background-color:#eff6ef;border-bottom: 1px solid #DAD8D8;border-right: 0.2px solid #DAD8D8;"><div class="one-third" style="width:120px"><img src="'+procedureImagepath +'" height="100" width="140" style="display:inline-block"/></div><div class="three-fourths last-col" style="line-height: 1em;background-color: #eff6ef"> <p>'+displayName+'</p> <p><u>Hospital Stay:</u> '+treatmentItem.minHospitalization+'-'+treatmentItem.maxHospitalization+' days</p>     <p><u>Healing Time:</u> '+treatmentItem.healingTimeInDays+' days</p>     <p>Description of Procedure:</br>'+treatmentDescription+'</p></div>   <a href="#" style="float:right">more details</a></div>'
+
 	});
 });
 document.getElementById('availableProceduresDiv').innerHTML=htmlString;
@@ -2279,6 +2244,52 @@ function setCookie(cname, cvalue, exdays) {
 	var expires = "expires=" + d.toUTCString();
 	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
+function medicalVisacallback(){
+
+			$.ajax({
+				url: serverName + "api/v1/get/evisacountries/all/meditrip",
+				type: 'GET',
+				headers: {
+						"Content-Type": "application/json",
+						"Authorization": "Basic " + basicKey,
+						"x-access-token": xAccessToken
+
+				},
+				success: function(response){
+					 // console.log("visa-response: "+ response);
+						var countryArr = [];
+				response.forEach(function(item){
+						countryArr.push({"country": item.country, "fee": item.fee});
+					 // console.log("my country " + item.country)
+				})
+				//console.log("countryArr-response: "+ countryArr[1].country);
+
+				countryArr.forEach(function(item){
+						$('.select-country .country-list').append('<option class="'+item.fee + '"' +'data-tokens="'+ item.country+'">' + item.country +'</option>')
+				})
+
+				//$('.selectpicker').selectpicker();
+				$('.selectpicker').selectpicker('render');
+				$('.selectpicker').selectpicker('refresh');
+				},
+				error: function (exception) {
+						console.log(exception);
+				}
+		});
+		$('.selectpicker').on('change', function(){
+			$('table#t01 tr').hide();
+			var countrySelected = $("option:selected",this).val();
+
+			var countryFee  = $('option:selected',this).attr('class');
+
+			$('table#t01 tr th').removeClass('no-show');
+
+
+			$('table#t01 tbody').append('<tr><th >Country</th><th>Fees (USD)<br><div style="font-size:0.9rem;">2.5% additional charge on bank transactions</div></th></tr>'+'<tr class="new-row"><td>'+countrySelected+'</td><td>'+countryFee+'</td></tr>');
+
+			});
+}
+
 
 function getCookie(cname) {
 	var name = cname + "=";

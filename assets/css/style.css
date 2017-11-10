@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
 /* Page Loader Animation */
 #page-loader {
   position: fixed;
@@ -74,7 +73,6 @@
 /* Loader Animation End */
 /* ----------- 1.General --------------
 --------------------------------------*/
-/* contact page general */
 
 
 body {
@@ -90,7 +88,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
-
 body.edge {
   padding: 5px;
 }
@@ -214,6 +211,31 @@ ol {
   margin: 0;
 }
 
+/*medical visa bullets style*/
+/* .visa-gen .para{
+  margin-bottom: 30px;
+} */
+.visa-gen ul.eligibile{
+  list-style-type: disc;
+  margin-left:20px;
+  margin-bottom: 36px;
+}
+.visa-gen ul.eligibile-sub{
+  list-style-type: circle;
+  margin-left:20px;
+}
+.visa-gen ol.documents{
+  list-style-type: disc;
+  margin-left:20px;
+  margin-bottom: 36px;
+}
+.visa-gen ul.documents-photo{
+  list-style-type: circle;
+  margin-left:20px;
+
+}
+
+/*end of med visa*/
 a:focus, a:active,
 select:focus,
 select:active,
@@ -1288,18 +1310,22 @@ p {
 }
 
 .page-header.larger-top {
+
   padding-top: 30px;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .page-header.larger-top {
+
     padding-top: 30px;
   }
 }
 
 @media (min-width: 992px) {
   .page-header.larger-top {
+
     padding-top: 30px;
+
   }
 }
 
@@ -1390,10 +1416,12 @@ p {
   background-color: #000;
   opacity: 0.6;
 }
-
+/*changed as in contact page header*/
 .page-header.custom {
+
   background-color: #8D8D8D;
   color: #0087e3;
+
   border-color: black;
 }
 
@@ -13212,6 +13240,8 @@ width: 300px;
   padding: 0;
   margin: 0;
 }
+
+
 .chat ul li {
   margin: 45px 0 0 0;
   font-weight: 300;
@@ -13928,8 +13958,119 @@ overflow: visible;
   }
 }
 
+.index-intro{
+    width: 100%;
+    background-color: #fff;
+}
+.index-intro .jumbotron{
+    padding: 20px 60px;
 
-/*contact page not useful*/
+    background-color: #e05928;
+    background-image: url("../images/banner1.jpg");
+    background-size: cover;
+}
+.bg-white{
+    background-color: #fff;
+    padding-bottom: 50px;
+}
+/* .bg-white.border{
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+} */
+.mb65{
+    margin-bottom: 65px !important;
+}
+.pt70{
+    padding-top: 70px;
+}
+.pb45{
+    padding-bottom: 45px;
+}
+ .country-button{
+    margin-left: 20px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/*medical page*/
+button.bs-placeholder[role='button']>span{
+  color:white;
+}
+@media (max-width: 991px) {
+  .visa-gen{
+    border-bottom: 0.5px solid black;
+    padding-bottom: 42px;
+  }
+}
+@media (max-width: 991px) {
+  .customer-country {
+   /* float: left;*/
+   margin-top: 66px;
+   margin-left: 30px;
+   margin-bottom: 30px;
+  };
+  /* table#t01{
+    margin-left: 30px;
+  } */
+
+}
+
+@media (min-width: 992px){
+  .customer-country{
+    margin-top:53px;
+     margin-left:70px
+  }
+}
+/* Med-visa table */
+table#t01 .no-show{
+  display: none;
+}
+table#t01{
+  width:62.3%;
+  margin-left: 151px;
+  margin-top: 16px;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+table th{
+  font-size: 1.52rem;
+}
+table td{
+  font-size: 1.4rem;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+table#t01 tr:nth-child(even) {
+  background-color: #fff;
+}
+table#t01 tr:nth-child(odd) {
+ background-color:#fff;
+}
+table#t01 th {
+  background-color: #4db6ac;
+  color: white;
+}
+@media (max-width: 429px){
+  table#t01{
+    margin-left: 81px;
+  }
+}
+@media (min-width: 430px) and (max-width:640px){
+  table#t01{
+    margin-left: 90px;
+  }
+}
+@media (min-width: 641px) and (max-width:699px){
+  table#t01{
+    margin-left: 120px;
+  }
+}
+/*contact page */
 
 @media screen and (min-width:992px){
   .right-border{
