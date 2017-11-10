@@ -1,33 +1,4 @@
 @charset "UTF-8";
-/*
-Template Name: Simple - Multipurpose Premium Html5 Template
-Template URI: http://www.eonythemes.com
-Description: Multipurpose Html5 Template
-Author: Eon
-
--------- # Table Of Contents # -------- //
--------- 1-  General
--------- 2-  Typography
--------- 3-  Elements
--------- 4-  Pricing
--------- 5-  Headers
--------- 6-  Homepages
--------- 7-  About
--------- 8-  Services Pages
--------- 9-  Blog
--------- 10- Portfolio
--------- 11- Category(Shop) - Product
--------- 12- Cart
--------- 13- Compare
--------- 14- Checkout
--------- 15- Contact
--------- 16- 404
--------- 17- FaQs
--------- 18- Footers
--------- 19- Owl Carousel
--------- 20- Coming Soon
--------- # Table Of Contents # ------- //
-*/
 
 /* Page Loader Animation */
 #page-loader {
@@ -102,18 +73,7 @@ Author: Eon
 /* Loader Animation End */
 /* ----------- 1.General --------------
 --------------------------------------*/
-/* body {
-  position: relative;
-  direction: ltr;
-  color: #323232;
-  font: 400 13px/1.7 "Open Sans", Arial, sans-serif; */
-  /*font: 400 13px/1.7 BlinkMacSystemFont,'Roboto',Helvetica Neue,sans-serif !important;*/
-  /*font-family: BlinkMacSystemFont,'Roboto',Helvetica Neue,sans-serif;*/
-  /* background-color: #fff;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-} */
+
 
 body {
   height: 100%;
@@ -1350,24 +1310,22 @@ p {
 }
 
 .page-header.larger-top {
-  /*changed as per contact header
-  padding-top: 130px;*/
+
   padding-top: 30px;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .page-header.larger-top {
-    /*changed as per contact header
-    padding-top: 200px;*/
+
     padding-top: 30px;
   }
 }
 
 @media (min-width: 992px) {
   .page-header.larger-top {
-    /*changed as per contact header
-    padding-top: 160px;*/
-   padding-top: 30px;
+
+    padding-top: 30px;
+
   }
 }
 
@@ -1460,10 +1418,10 @@ p {
 }
 /*changed as in contact page header*/
 .page-header.custom {
-  /*background-color: #0069b0;*/
+
   background-color: #8D8D8D;
   color: #0087e3;
-  /*border-color: #0078ca;*/
+
   border-color: black;
 }
 
@@ -13832,7 +13790,7 @@ overflow: visible;
   position: relative;
 }
 .blog-card .photo.photo1 {
-  background: url("http://i62.tinypic.com/34oq4o0.jpg") center no-repeat;
+  /* background: url("http://i62.tinypic.com/34oq4o0.jpg") center no-repeat; */
   background-size: cover;
 }
 .blog-card .photo.photo2 {
@@ -14000,11 +13958,6 @@ overflow: visible;
   }
 }
 
-
-/*medical page*/
-  /* body{
-    font-family: Montserrat;
-} */
 .index-intro{
     width: 100%;
     background-color: #fff;
@@ -14117,3 +14070,22 @@ table#t01 th {
     margin-left: 120px;
   }
 }
+/*contact page */
+
+@media screen and (min-width:992px){
+  .right-border{
+    border-right:0.5px solid grey;
+  }
+  .officeAdd{
+    padding-left:80px;
+  }
+}
+
+
+@media screen and (max-width:992px){
+  .officeAdd{
+    padding-left:30px;
+  }
+}
+
+
