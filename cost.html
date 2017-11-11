@@ -90,79 +90,6 @@
           <script type="text/javascript" src="./assets/js/extensions/revolution.extension.parallax.min.js"></script>
           <script type="text/javascript" src="./assets/js/extensions/revolution.extension.slideanims.min.js"></script>
           <script type="text/javascript" src="./assets/js/extensions/revolution.extension.video.min.js"></script>
-  
-          <!-- <script type="text/javascript">
-              jQuery(document).ready(function() {
-                  "use strict";
-  
-                  var revapi;
-                  if ( $("#rev_slider").revolution == undefined ) {
-                      revslider_showDoubleJqueryError("#rev_slider");
-                  } else {
-                      revapi = $("#rev_slider").show().revolution({
-                          sliderType: "standard",
-                          jsFileLocation: "assets/js/",
-                          sliderLayout: "auto",
-                          dottedOverlay:"none",
-                          delay: 15000,
-                          navigation: {
-                              mouseScrollNavigation: "off",
-                              onHoverStop: "off",
-                              touch: {
-                                  touchenabled: "on"
-                              },
-                              arrows: {
-                                  style: "hermes",
-                                  enable: true,
-                                  hide_onmobile: false,
-                                  hide_under: 992,
-                                  hide_onleave: true,
-                                  tmp: '<div class="tp-arr-allwrapper">   <div class="tp-arr-imgholder"></div>    <div class="tp-arr-titleholder">{{title}}</div> </div>',
-                                  left: {
-                                      h_align: "left",
-                                      v_align: "center",
-                                      h_offset: 0,
-                                      v_offset: 0
-                                  },
-                                  right: {
-                                      h_align: "right",
-                                      v_align: "center",
-                                      h_offset: 0,
-                                      v_offset: 0
-                                  }
-                              },
-                              bullets: {
-                                  enable: false,
-                                  hide_onmobile: false,
-                                  style: "hades",
-                                  hide_onleave: false,
-                                  direction: "horizontal",
-                                  h_align: "right",
-                                  v_align: "bottom",
-                                  h_offset: 20,
-                                  v_offset: 20,
-                                  space: 5,
-                                  tmp: ''
-                              }
-                          },
-                          responsiveLevels: [1200,992,768,480],
-                          gridwidth: [1170,970,750,480],
-                          gridheight: [600,520,450,340],
-                          lazyType: "smart",
-                          spinner: "spinner2",
-                          parallax: {
-                              type: "on",
-                              origo: "slidercenter",
-                              speed: 2000,
-                              levels: [2,3,4,5,6,7,12,16,10,50],
-                              disable_onmobile: "on"
-                          },
-                          debugMode: false
-                      });
-                  }
-              });
-          </script> -->
-         
     </head>
     <body>
             <script id="tpl-alert" type="text/x-handlebars-template">
@@ -205,35 +132,21 @@
     margin: 20px;">
         <div class="col-lg-12" style="padding:2%;padding-bottom: 0%">
             <div class="col-md-6">
+              
                 <div class="col-sm-4">
-                    <label for="getQuoteCountry" class="sr-only"></label>
-                    <select name="getQuoteCountry" id="getQuoteCountry" class="form-control"> 
-                             <option value="">Facility</option>
-                    <option value="India">India</option>
-                    <option value="Pakistan">Pakistan</option>
+                    <label for="getProcedureName" class="sr-only"></label>
+                    <select name="getProcedureName" id="getProcedureName" class="form-control"> 
+                                <option value="">Procedure Name</option>
+                    <option value="IVF">IVF</option>
+                    <option value="Dental">Dental</option>
                 </select>
                 </div>
-                <div class="col-sm-4">
-                    <label for="getQuoteCountry" class="sr-only"></label>
-                    <select name="getQuoteCountry" id="getQuoteCountry" class="form-control"> 
-                                <option value="">Nationality</option>
-                    <option value="India">India</option>
-                    <option value="Pakistan">Pakistan</option>
-                </select>
-                </div>
-                <div class="col-sm-4">
-                    <label for="getQuoteCountry" class="sr-only"></label>
-                    <select name="getQuoteCountry" id="getQuoteCountry" class="form-control"> 
-                                <option value="">Country</option>
-                    <option value="India">India</option>
-                    <option value="Pakistan">Pakistan</option>
-                </select>
-                </div>
+                
             </div>
             <div class="col-md-6">
                 <div class="col-sm-4">
                     <div class="input-group input-group-lg center-block">
-                        <a href="#" role="button"> Get Quote</a>
+                        <a id="getCostDetails" role="button"> Get Quote</a>
 
                     </div>
                 </div>
@@ -242,30 +155,18 @@
         </div>
         <div class="col-md-12" style="padding:2%;padding-top: 0%;padding-bottom: 0%">
             <div class="col-md-6">
+             
                 <div class="col-sm-4">
-                    <label for="getQuoteCountry" class="sr-only"></label>
-                    <select name="getQuoteCountry" id="getQuoteCountry" class="form-control"> 
-                             <option value="">Procedure</option>
-                    <option value="India">India</option>
-                    <option value="Pakistan">Pakistan</option>
+                    <label for="bystandercount" class="sr-only"></label>
+                    <select name="bystandercount" id="bystandercount" class="form-control"> 
+                    <option value="">No Of Bystanders</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="2">3</option>
+                    <option value="2">4</option>
                 </select>
                 </div>
-                <div class="col-sm-4">
-                    <label for="getQuoteCountry" class="sr-only"></label>
-                    <select name="getQuoteCountry" id="getQuoteCountry" class="form-control"> 
-                                <option value="">No Of Bystanders</option>
-                    <option value="India">India</option>
-                    <option value="Pakistan">Pakistan</option>
-                </select>
-                </div>
-                <div class="col-sm-4">
-                    <label for="getQuoteCountry" class="sr-only"></label>
-                    <select name="getQuoteCountry" id="getQuoteCountry" class="form-control"> 
-                                <option value="">Holiday Package</option>
-                    <option value="India">India</option>
-                    <option value="Pakistan">Pakistan</option>
-                </select>
-                </div>
+          
             </div>
             <div class="col-md-6">
                 <div class="col-sm-4">
@@ -277,29 +178,29 @@
         <div class="col-md-12" style="padding:2%;padding-top: 0%">
             <div class="col-md-6">
                 <label class="checkbox-inline">
-      <input type="checkbox" value="">Airline 
+      <input type="checkbox" value="" checked disabled>Airline 
     </label>
                 <label class="checkbox-inline">
-      <input type="checkbox" value="">VISA 
+      <input type="checkbox" value="" checked disabled>VISA 
     </label>
                 <label class="checkbox-inline">
-      <input type="checkbox" value="">Hotel 
+      <input type="checkbox" value="" checked disabled>Hotel 
     </label>
                 <label class="checkbox-inline">
-      <input type="checkbox" value="">Conveyance 
+      <input type="checkbox" value="" checked disabled>Conveyance 
     </label>
                 <label class="checkbox-inline">
-      <input type="checkbox" value="">Food 
+      <input type="checkbox" value="" checked disabled>Food 
     </label>
                 <label class="checkbox-inline">
-      <input type="checkbox" value="">Treatment 
+      <input type="checkbox" value="" checked disabled>Treatment 
     </label>
                 <label class="checkbox-inline">
-      <input type="checkbox" value="">Holiday 
+      <input type="checkbox" value="" checked disabled>Holiday 
     </label>
             </div>
             <div class="col-md-6">
-                <label for="" class="pull-right">Want More Information? <a href='#'>Login </a>or <a href='#'>Signup</a></label>
+                <!-- <label for="" class="pull-right">Want More Information? <a href='#'>Login </a>or <a href='#'>Signup</a></label> -->
             </div>
         </div>
 
@@ -332,8 +233,8 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="info">
+                <tbody id="costRow">
+                    <tr class="info" >
                         <td>
                             2
                         </td>

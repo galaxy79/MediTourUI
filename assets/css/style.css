@@ -3022,8 +3022,8 @@ label.error {
 
 .services-group {
   margin-bottom: 50px;
-  margin-left:  150px;
-  margin-right: 150px;
+  /* margin-left:  150px;
+  margin-right: 150px; */
 }
 
 .services-group .service-row {

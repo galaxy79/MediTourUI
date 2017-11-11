@@ -132,7 +132,8 @@ $.ajax({
 });
 $(".medinovitaModals").load("./assets/pages/modals.html",function(){
 
-if(window.location.href.indexOf("index")>-1){
+
+if(window.location.href.indexOf("index")>-1 || window.location.href=="https://www.medinovita.in"){
 	homepageCallback();
 }
 if (window.location.href.indexOf("treatmentsOffered") > -1) {
@@ -140,6 +141,9 @@ if (window.location.href.indexOf("treatmentsOffered") > -1) {
 }
 if (window.location.href.indexOf("MedicalVisatoIndia") > -1) {
 	medicalVisacallback();
+}
+if(window.location.href.indexOf("cost")>-1){
+	costCallback();
 }
 });
 //Hospitals and Doctors selected
@@ -2136,6 +2140,39 @@ function costCallback(data) {
 					}
 				}
 			});
+
+			$('#getCostDetails').on('click',function(){
+				var procedurName=$('#getProcedureName').val();
+				var bystandercount=$('#bystandercount').val();
+
+
+$.ajax({
+	url: serverName + "api/v1/get/treatmentcost/meditrip?procedurename="+ procedurName+"&bystandercount="+ bystandercount+"&holidaypackage=short name 1&hotelrate=3 star&vehicletype=sedan",
+	type: 'GET',
+	headers: {
+		"Content-Type": "application/json",
+		"Authorization": "Basic " + basicKey,
+		"x-access-token": xAccessToken
+
+	},
+	beforeSend: function (xhr) {
+		xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+	},
+	success: function (response) {
+		htmlString="<tr class='info' ><td>" + 1+bystandercount+"</td><td>3</td><td>5</td><td>"+ response.ProcedureAvarageCost[0].avarageTreatmentCost+"</td><td>"+response.holidayCost[0].totalPackageCost+"</td><td>"+response.totalExpense.mediTourEstimate+"</td></tr>";
+
+
+
+
+		$('#costRow').append(htmlString)
+
+
+	},
+	error: function (exception) {
+		console.log(exception);
+	}
+})
+			});
 }
 
 
@@ -2204,39 +2241,7 @@ document.getElementById('availableProceduresDiv').innerHTML=htmlString;
 }
 
 
-// $('#contact-form').on('submit', function(e){
-// 	console.log("mail: ");
-// 	//e.preventDefault();
-// 	var formData=$(this).serializeArray();
 
-
-// 	$.ajax({
-// 		url: serverName + "api/v1/post/contactus/meditrip",
-// 				type: 'POST',
-// 				headers: {
-// 					"Content-Type": "application/json",
-// 					"Authorization": "Basic " + basicKey,
-// 					"x-access-token": xAccessToken
-
-// 				},
-// 				beforeSend: function (xhr) {
-// 								xhr.setRequestHeader("Authorization", "Basic " + basicKey);
-// 							},
-// 							data:JSON.stringify({emailID:formData[1].value,
-// 									userFullName:formData[0].value,
-// 									subject:formData[2].value,
-// 									message:formData[3].value,
-
-// 									}),
-// 										success: function (response) {
-// 											console.log("res: ", response)
-// 											alert("Thanks for contacting us, we will get back to you soon")
-// 										},
-// 										error: function (exception) {
-// 											console.log(exception)
-// 										}
-// 	})
-// })
 
 function setCookie(cname, cvalue, exdays) {
 	var d = new Date();
