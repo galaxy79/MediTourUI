@@ -3022,8 +3022,8 @@ label.error {
 
 .services-group {
   margin-bottom: 50px;
-  /* margin-left:  150px;
-  margin-right: 150px; */
+  margin-left:  150px;
+  margin-right: 150px;
 }
 
 .services-group .service-row {
@@ -3056,6 +3056,7 @@ label.error {
 
 
 @media (min-width: 768px) {
+  
   .services-group .service {
     width: 50%;
     float: left;
@@ -3064,6 +3065,11 @@ label.error {
   }
 }
 @media (max-width: 768px) {
+  .services-group {
+    margin-bottom: 50px;
+    margin-left: 0px!important;
+    margin-right: 0px!important;
+  }
   .services-group .service {
 
     float: left;
