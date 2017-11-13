@@ -133,7 +133,7 @@ $.ajax({
 $(".medinovitaModals").load("./assets/pages/modals.html",function(){
 
 
-if(window.location.href.indexOf("index")>-1 || window.location.href=="https://www.medinovita.in"){
+if(window.location.href.indexOf("index")>-1 || window.location.href=="https://www.medinovita.in/"){
 	homepageCallback();
 }
 if (window.location.href.indexOf("treatmentsOffered") > -1) {
