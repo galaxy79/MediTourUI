@@ -78,6 +78,11 @@ var whyIndia = "Because India.";
 
 			document.location.href = '/MedicalVisatoIndia.html';
 		});
+
+		$('#ourServicesPageMenu').on('click', function () {
+			document.location.href = '/ourservices.html';
+		});
+
 	});
 $(".medinovitaFooter").load("./assets/pages/footer.html",function(){
 $.ajax({
