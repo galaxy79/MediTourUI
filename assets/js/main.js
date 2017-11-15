@@ -70,7 +70,7 @@ var whyIndia = "Because India.";
 			var id = $(this).attr('id');
 
 			setCookie("treatmentPage", id,1);
-			document.location.href = '/treatmentsOffered_V2.html';
+			document.location.href = '/procedure.html';
 		})
 
 		$('#medicalVisaPageMenu').on('click', function () {
