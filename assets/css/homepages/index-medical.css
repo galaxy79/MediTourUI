@@ -106,7 +106,8 @@ width: 100% !important;
 /* added by libin */
 .container-table {
   width:60%;
-  height:150px;
+  padding:1%;
+  /*height:150px;*/
   border:1px solid#cecece;
   background-color: #f3fafe;
   
@@ -118,8 +119,8 @@ width: 100% !important;
    text-align:center;
 
 }
-.top-buffermore { margin-top:16px; }
-.top-bufferless { margin-top:10px; }
+.top-buffermore { margin-top:1%; }
+.top-bufferless { margin-top:2%; }
 
 .transperentboarder {
    /* border: 0 none; */
