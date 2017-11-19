@@ -107,6 +107,8 @@ $.ajax({
 });
 
 
+
+
 $.ajax({
 	url: serverName+"api/v1/get/homepagedetails/meditrip",
 	type: 'GET',
@@ -137,6 +139,94 @@ $.ajax({
 });
 $(".medinovitaModals").load("./assets/pages/modals.html",function(){
 
+	$('#submitEnquiryForm').on('submit',function(e){
+		e.preventDefault();
+		var formData=$(this).serializeArray();
+		var v = grecaptcha.getResponse();
+		if (v.length == 0) {
+			document.getElementById('captcha').innerHTML = "Please verify that you are not a robot";
+			return false;
+		}
+		else {
+			document.getElementById('captcha').innerHTML = "Verification completed";
+	
+		}
+	$.ajax({
+			url: serverName+"api/v1/submit/enquiry/meditrip",
+			type: 'POST',
+			headers: {
+					'Content-type': 'application/json',
+				"Authorization": "Basic "+ basicKey,
+				"x-access-token": xAccessToken
+			},
+			beforeSend: function (xhr) {
+				xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+			},
+			data:JSON.stringify({emailID:formData[1].value,
+		userFullName:formData[0].value,
+		isdCode:formData[2].value,
+		primaryPhonenumber:formData[3].value,
+		procedureName:formData[4].value,
+		commuMedium:"English",
+		caseDescription:formData[5].value,
+		attachment:"N",
+		attachmentName:"null"}),
+			success: function (response) {
+				alert("Thanks for contacting us, we will get back to you soon")
+			},
+			error: function (exception) {
+				console.log(exception)
+			}
+		});
+	
+		$('#modal-container-SubmitEnquiry').modal('toggle');
+	})
+	
+	$('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
+		 $('.modal .modal-body').css('overflow-y', 'auto');
+		$('.modal .modal-body').css('max-height', $(window).height() *0.9);
+	
+		})
+		countryCodes.forEach(function(value,index){
+			 $('#inputSubmitEnquiryISDCode').append($('<option>', {
+			value: value.dial_code,
+			text : value.name.substr(0,5) + " (" + value.code+ ") " + value.dial_code
+		}));
+	});
+
+	//Fetch search Treatments list
+	$.ajax({
+		url: serverName + "api/v1/getTreamentlist/all/meditrip",
+		type: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic " + basicKey,
+			"x-access-token": xAccessToken
+
+		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+		},
+		success: function (response) {
+			var treatmentList = response;
+			//Populate Treatment Dropdown
+			$("#getQuoteTreatment").autocomplete({
+				source: treatmentList
+			});
+
+			var selectBox = document.getElementById("selectSubmitEnquiryProcedure");
+			treatmentList.forEach(function (item, index) {
+				var option = document.createElement("option")
+				option.text = item;
+				option.value = item.substr(0, item.length - 10).trim();
+				selectBox.add(option);
+			});
+
+		},
+		error: function (exception) {
+			console.log(exception);
+		}
+	});
 
 if(window.location.href.indexOf("index")>-1 || window.location.href=="https://www.medinovita.in/"){
 	homepageCallback();
@@ -156,60 +246,7 @@ $('#hospitalsPageMenu').on('click',function(){
 	$('.main').html('');
 	$('.main').load("hospitalzone.html", function (data) { });
 })
-$('#submitEnquiryForm').on('submit',function(e){
-	e.preventDefault();
-	var formData=$(this).serializeArray();
-	var v = grecaptcha.getResponse();
-	if (v.length == 0) {
-		document.getElementById('captcha').innerHTML = "Please verify that you are not a robot";
-		return false;
-	}
-	else {
-		document.getElementById('captcha').innerHTML = "Verification completed";
 
-	}
-$.ajax({
-		url: serverName+"api/v1/submit/enquiry/meditrip",
-		type: 'POST',
-		headers: {
-				'Content-type': 'application/json',
-			"Authorization": "Basic "+ basicKey,
-			"x-access-token": xAccessToken
-		},
-		beforeSend: function (xhr) {
-			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
-		},
-		data:JSON.stringify({emailID:formData[1].value,
-	userFullName:formData[0].value,
-	isdCode:formData[2].value,
-	primaryPhonenumber:formData[3].value,
-	procedureName:formData[4].value,
-	commuMedium:"English",
-	caseDescription:formData[5].value,
-	attachment:"N",
-	attachmentName:"null"}),
-		success: function (response) {
-			alert("Thanks for contacting us, we will get back to you soon")
-		},
-		error: function (exception) {
-			console.log(exception)
-		}
-	});
-
-	$('#modal-container-SubmitEnquiry').modal('toggle');
-})
-
-$('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
-	 $('.modal .modal-body').css('overflow-y', 'auto');
-    $('.modal .modal-body').css('max-height', $(window).height() *0.9);
-
-	})
-	countryCodes.forEach(function(value,index){
-		 $('#inputSubmitEnquiryISDCode').append($('<option>', {
-        value: value.dial_code,
-        text : value.name.substr(0,5) + " (" + value.code+ ") " + value.dial_code
-	}));
-});
 
 
 
@@ -1896,39 +1933,7 @@ title:"Laboratory"
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	}]
 
-	//Fetch search Treatments list
-	$.ajax({
-		url: serverName + "api/v1/getTreamentlist/all/meditrip",
-		type: 'GET',
-		headers: {
-			"Content-Type": "application/json",
-			"Authorization": "Basic " + basicKey,
-			"x-access-token": xAccessToken
-
-		},
-		beforeSend: function (xhr) {
-			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
-		},
-		success: function (response) {
-			treatmentList = response;
-			//Populate Treatment Dropdown
-			$("#getQuoteTreatment").autocomplete({
-				source: treatmentList
-			});
-
-			var selectBox = document.getElementById("selectSubmitEnquiryProcedure");
-			treatmentList.forEach(function (item, index) {
-				var option = document.createElement("option")
-				option.text = item;
-				option.value = item.substr(0, item.length - 10).trim();
-				selectBox.add(option);
-			});
-
-		},
-		error: function (exception) {
-			console.log(exception);
-		}
-	});
+	
 
 	$.ajax({
 		url: serverName + "api/v1/gethighlighttreatments/meditrip?limit=8",
