@@ -234,7 +234,7 @@ if(window.location.href.indexOf("index")>-1 || window.location.href=="https://ww
 if (window.location.href.indexOf("treatmentsOffered") > -1) {
 	treatmentsOfferedCallback(getCookie("treatmentPage"));
 }
-if (window.location.href.indexOf("MedicalVisatoIndia") > -1) {
+if (window.location.href.indexOf("medical-visa-to-india") > -1) {
 	medicalVisacallback();
 }
 if(window.location.href.indexOf("cost")>-1){
