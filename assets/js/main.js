@@ -48,7 +48,7 @@ var whyIndia = "Because India.";
 
 (function ($) {
 	"use strict";
-	$(".medinovitaHeader").load("./assets/pages/header.html",function(){
+	$(".medinovitaHeader").load("../assets/pages/header.html",function(){
 		$('#costPageMenu').on('click',function(){
 			document.location.href='/cost.html';
 		})
@@ -84,7 +84,7 @@ var whyIndia = "Because India.";
 		});
 
 	});
-$(".medinovitaFooter").load("./assets/pages/footer.html",function(){
+$(".medinovitaFooter").load("../assets/pages/footer.html",function(){
 $.ajax({
 	url: serverName+"api/v1/get/officelocations/meditrip",
 	type: 'GET',
@@ -137,7 +137,7 @@ $.ajax({
 	}
 });
 });
-$(".medinovitaModals").load("./assets/pages/modals.html",function(){
+$(".medinovitaModals").load("../assets/pages/modals.html",function(){
 
 	$('#submitEnquiryForm').on('submit',function(e){
 		e.preventDefault();
@@ -1481,7 +1481,7 @@ $('#hospitalsPageMenu').on('click',function(){
 			/* Twitter feed for user*/
 			if ($.fn.tweet && $('.twitter-feed-widget').length) {
 				$('.twitter-feed-widget').tweet({
-					modpath: './assets/js/twitter/',
+					modpath: '../assets/js/twitter/',
 					avatar_size: '',
 					count: 2,
 					query: 'wrapbootstrap', // change query with username if you want to display search results
@@ -1804,38 +1804,38 @@ function homepageCallback() {
 	var treatmentList = "";
 
 	var featuredTreatmentsItems=[{
-img:"./assets/images/blocks/index-medical/item2.jpg",
-svgImg:"./assets/images/services/index-medical/stethoscope.svg",altText:"Stethoscope",
+img:"../assets/images/blocks/index-medical/item2.jpg",
+svgImg:"../assets/images/services/index-medical/stethoscope.svg",altText:"Stethoscope",
 shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
 title:"Nursing"
 	},
 {
-img:"./assets/images/blocks/index-medical/item1.jpg",
+img:"../assets/images/blocks/index-medical/item1.jpg",
+svgImg:"../assets/images/services/index-medical/microscope.svg",altText:"Microscope",
+shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
+title:"Laboratory"
+	},
+{
+img:"../assets/images/blocks/index-medical/item1.jpg",
+svgImg:"../assets/images/services/index-medical/microscope.svg",altText:"Microscope",
+shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
+title:"Laboratory"
+	},
+{
+img:"../assets/images/blocks/index-medical/item1.jpg",
 svgImg:"./assets/images/services/index-medical/microscope.svg",altText:"Microscope",
 shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
 title:"Laboratory"
 	},
 {
-img:"./assets/images/blocks/index-medical/item1.jpg",
-svgImg:"./assets/images/services/index-medical/microscope.svg",altText:"Microscope",
+img:"../assets/images/blocks/index-medical/item1.jpg",
+svgImg:"../assets/images/services/index-medical/microscope.svg",altText:"Microscope",
 shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
 title:"Laboratory"
 	},
 {
-img:"./assets/images/blocks/index-medical/item1.jpg",
-svgImg:"./assets/images/services/index-medical/microscope.svg",altText:"Microscope",
-shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
-title:"Laboratory"
-	},
-{
-img:"./assets/images/blocks/index-medical/item1.jpg",
-svgImg:"./assets/images/services/index-medical/microscope.svg",altText:"Microscope",
-shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
-title:"Laboratory"
-	},
-{
-img:"./assets/images/blocks/index-medical/item1.jpg",
-svgImg:"./assets/images/services/index-medical/microscope.svg",altText:"Microscope",
+img:"../assets/images/blocks/index-medical/item1.jpg",
+svgImg:"../assets/images/services/index-medical/microscope.svg",altText:"Microscope",
 shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
 title:"Laboratory"
 	}]
@@ -1844,7 +1844,7 @@ title:"Laboratory"
 		{
 			"newsId": "1",
 
-			"imgPath": "./assets/images/blog/index-medical/post1.jpg",
+			"imgPath": "../assets/images/blog/index-medical/post1.jpg",
 
 			"postedDate": "17 Jan, 2016",
 
@@ -1861,7 +1861,7 @@ title:"Laboratory"
 		{
 			"newsId": "2",
 
-			"imgPath": "./assets/images/blog/index-medical/post2.jpg",
+			"imgPath": "../assets/images/blog/index-medical/post2.jpg",
 
 			"postedDate": "17 Jan, 2016",
 
@@ -1876,7 +1876,7 @@ title:"Laboratory"
 		{
 			"newsId": "2",
 
-			"imgPath": "./assets/images/blog/index-medical/post3.jpg",
+			"imgPath": "../assets/images/blog/index-medical/post3.jpg",
 
 			"postedDate": "17 Jan, 2016",
 
@@ -1890,44 +1890,44 @@ title:"Laboratory"
 
 	];
 	var homePageHighLightsItems=[{
-		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		imgSrc:"../assets/images/services/index-medical/first-aid-kit.svg",
 		altText:"Emergency",
 		title:"Emergency",
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	},
 {
-		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		imgSrc:"../assets/images/services/index-medical/first-aid-kit.svg",
 		altText:"Emergency",
 		title:"Emergency",
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	},
 {
-		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		imgSrc:"../assets/images/services/index-medical/first-aid-kit.svg",
 		altText:"Emergency",
 		title:"Emergency",
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	},{
-		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		imgSrc:"../assets/images/services/index-medical/first-aid-kit.svg",
 		altText:"Emergency",
 		title:"Emergency",
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	},{
-		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		imgSrc:"../assets/images/services/index-medical/first-aid-kit.svg",
 		altText:"Emergency",
 		title:"Emergency",
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	},{
-		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		imgSrc:"../assets/images/services/index-medical/first-aid-kit.svg",
 		altText:"Emergency",
 		title:"Emergency",
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	},{
-		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		imgSrc:"../assets/images/services/index-medical/first-aid-kit.svg",
 		altText:"Emergency",
 		title:"Emergency",
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	},{
-		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		imgSrc:"../assets/images/services/index-medical/first-aid-kit.svg",
 		altText:"Emergency",
 		title:"Emergency",
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
@@ -2230,7 +2230,7 @@ function treatmentsOfferedCallback(id) {
 		var displayName=treatmentItem.displayName;
 		var treatmentDescription=treatmentItem.treatmentDescription;
 		var procedureImagepath=treatmentItem.procedureImagepath.replace(/\//g, "\/");
-		htmlString += '<div class="blog-card"><div class="photo photo1" style="background: url('+procedureImagepath+') center no-repeat;"></div><ul class="details"><li class="author"><a href="#">' + treatmentItem.procedureName + '</a></li><li class="date"> Heal Time: ' + treatmentItem.healingTimeInDays + '</li><li class="date"> Surgical Time: ' + treatmentItem.surgicalTime + '</li><li class="date"> Estimate Cost: ' + treatmentItem.procedureCost +'</li></ul><div class="description"><h1>' + displayName+'</h1><h2>' + displayName + '</h2><p class="summary">' + treatmentDescription+'</p><a href="/Bone Grafting">Read More</a></div></div>'
+		htmlString += '<div class="blog-card"><div class="photo photo1" style="background: url('+procedureImagepath+') center no-repeat;"></div><ul class="details"><li class="author"><a href="#">' + treatmentItem.procedureName + '</a></li><li class="date"> Heal Time: ' + treatmentItem.healingTimeInDays + '</li><li class="date"> Surgical Time: ' + treatmentItem.surgicalTime + '</li><li class="date"> Estimate Cost: ' + treatmentItem.procedureCost +'</li></ul><div class="description"><h1>' + displayName+'</h1><h2>' + displayName + '</h2><p class="summary">' + treatmentDescription+'</p><a href="/procedure/Bone Grafting">Read More</a></div></div>'
 
 			//htmlString+='<div class="treatments-hover" style="min-height:100px;padding:20px;width:90%;overflow:auto;border-radius: 7px;position:relative;margin-bottom: 20px;background-color:#eff6ef;border-bottom: 1px solid #DAD8D8;border-right: 0.2px solid #DAD8D8;"><div class="one-third" style="width:120px"><img src="'+procedureImagepath +'" height="100" width="140" style="display:inline-block"/></div><div class="three-fourths last-col" style="line-height: 1em;background-color: #eff6ef"> <p>'+displayName+'</p> <p><u>Hospital Stay:</u> '+treatmentItem.minHospitalization+'-'+treatmentItem.maxHospitalization+' days</p>     <p><u>Healing Time:</u> '+treatmentItem.healingTimeInDays+' days</p>     <p>Description of Procedure:</br>'+treatmentDescription+'</p></div>   <a href="#" style="float:right">more details</a></div>'
 
