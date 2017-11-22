@@ -76,7 +76,7 @@ var whyIndia = "Because India.";
 		$('#medicalVisaPageMenu').on('click', function () {
 
 
-			document.location.href = '/MedicalVisatoIndia.html';
+			document.location.href = '/medical-visa-to-india.html';
 		});
 
 		$('#ourServicesPageMenu').on('click', function () {
