@@ -240,6 +240,9 @@ if (window.location.href.indexOf("medical-visa-to-india") > -1) {
 if(window.location.href.indexOf("cost")>-1){
 	costCallback();
 }
+if(window.location.href.indexOf("SearchTreatment")>-1){
+	searchTreatmentCallback();
+}
 });
 //Hospitals and Doctors selected
 $('#hospitalsPageMenu').on('click',function(){
@@ -2094,7 +2097,10 @@ $('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
 			var optionList = document.getElementById('getQuoteCountry').options;
 			availableCountries.forEach( (option) => optionList.add( new Option(option.text, option.value ) ));
 
-
+$('.responsiveGetQuote').on('click',function(){
+	document.location.href="/SearchTreatment.html";
+	setCookie("Search-Treatment",$('#getQuoteTreatment').val(),1)
+});
 
 }
 
@@ -2249,6 +2255,33 @@ document.getElementById('availableProceduresDiv').innerHTML=htmlString;
 
 }
 
+//Search Treatment Callback
+function searchTreatmentCallback()
+{
+	var treatmentName=getCookie("Search-Treatment");
+	$.ajax({
+		url: serverName + "api/v1/searchHospitaldetails/"+treatmentName+"/meditrip",
+		type: 'GET',
+		headers: {
+				"Content-Type": "application/json",
+				"Authorization": "Basic " + basicKey,
+				"x-access-token": xAccessToken
+
+		},
+		success: function(response){
+			var htmlString="";
+			response.forEach(function(item,index){
+				htmlString+='<div class="card-media"><div class="card-media-object-container"><div class="card-media-object" style="background-image: url('+item.hospitalimage+');"></div><span class="card-media-object-tag subtle">Trusted</span><ul class="card-media-object-social-list"></ul></div><div class="card-media-body"><div class="card-media-body-top"><span class="subtle">'+item.hospitalName+'</span><div class="card-media-body-top-icons u-float-right"></div></div><span class="card-media-body-heading">'
+				+item.hospitalContact.country+', '+ item.hospitalContact.addressLine1+', '+ item.hospitalContact.City+', '+ item.hospitalContact.PostalCode+'<br>'+item.hospitalContact.website +'</span><div class="card-media-body-supporting-bottom"><span class="card-media-body-supporting-bottom-text subtle">NABL: '+item.Accreditation.NABL+', NABH: '+item.Accreditation.NABH+', JCI: '+item.Accreditation.JCI+'</span><span class="card-media-body-supporting-bottom-text subtle u-float-right"></span></div><div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal"><span class="card-media-body-supporting-bottom-text subtle">'+item.Treatment[0].name+'</span><a href="#/" class="card-media-body-supporting-bottom-text card-media-link u-float-right">More Details</a></div></div></div>';
+			});
+	$('#seearchTreatmentPageContainer').append(htmlString);
+
+		},
+		error: function (exception) {
+				console.log(exception);
+		}
+});
+}
 
 
 
