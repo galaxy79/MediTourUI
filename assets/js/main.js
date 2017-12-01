@@ -2105,7 +2105,86 @@ $('.responsiveGetQuote').on('click',function(){
 }
 
 //Cost page callback
+
+
 function costCallback(data) {
+
+	$(".treatmentCostDropdown li a").click(function(){
+		// remove previously added selectedLi
+		$('.selectedLi').removeClass('selectedLi');
+		// add class `selectedLi`
+		$(this).addClass('selectedLi');
+		var selText = $(this).text();///User selected value...****
+		$(this).parents('btn').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
+		
+  });
+
+  $(".bystanderDropdown li a").click(function(){
+	// remove previously added selectedLi
+	$('.selectedBystanderLi').removeClass('selectedBystanderLi');
+	// add class `selectedLi`
+	$(this).addClass('selectedBystanderLi');
+	var selText = $(this).text();
+	$(this).parents('.btn').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
+	
+
+});
+$(".holidayPackageDropdown li a").click(function(){
+	// remove previously added selectedLi
+	$('.selectedpackageLi').removeClass('selectedpackageLi');
+	// add class `selectedLi`
+	$(this).addClass('selectedpackageLi');
+	var selText = $(this).text();
+	$(this).parents('.btn').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
+
+});
+	$.ajax({
+		url: serverName + "api/v1/get/distinctprocedurenames/meditrip",
+		type: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic " + basicKey,
+			"x-access-token": xAccessToken
+	
+		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+		},
+		success: function (response) {
+			response[0].treatmentNames.forEach(function(item,index){
+				$('.treatmentCostDropdown').append("<li><a href = '#'>"+item["procedureName"]+"</a></li>")
+			})
+		
+	
+		},
+		error: function (exception) {
+			console.log(exception);
+		}
+	})
+
+	$.ajax({
+		url: serverName + "api/v1/get/holidayPackage/meditrip",
+		type: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic " + basicKey,
+			"x-access-token": xAccessToken
+	
+		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+		},
+		success: function (response) {
+			response.forEach(function(item,index){
+				$('.holidayPackageDropdown').append("<li><a href = '#'>"+item["packageShortName"]+"</a></li>")
+			})
+		
+	
+		},
+		error: function (exception) {
+			console.log(exception);
+		}
+	})
 
 		$('.top-doctors-carousel.owl-carousel').owlCarousel({
 				loop: false,
@@ -2158,12 +2237,15 @@ function costCallback(data) {
 			});
 
 			$('#getCostDetails').on('click',function(){
-				var procedurName=$('#getProcedureName').val();
-				var bystandercount=$('#bystandercount').val();
+				var procedurName=$('.treatmentCostDropdown li a.selectedLi').text();
+				
+				var bystandercount=$('.bystanderDropdown li a.selectedBystanderLi').text();
+
+				var holidayPackage=$('.holidayPackageDropdown li a.selectedpackageLi').text();
 
 
 $.ajax({
-	url: serverName + "api/v1/get/treatmentcost/meditrip?procedurename="+ procedurName+"&bystandercount="+ bystandercount+"&holidaypackage=short name 1&hotelrate=3 star&vehicletype=sedan",
+	url: serverName + "api/v1/get/treatmentcost/meditrip?procedurename="+ procedurName+"&bystandercount="+ bystandercount+"&holidaypackage="+holidayPackage+"&hotelrate=3 star&vehicletype=sedan&countryName=Albania",
 	type: 'GET',
 	headers: {
 		"Content-Type": "application/json",
@@ -2175,14 +2257,7 @@ $.ajax({
 		xhr.setRequestHeader("Authorization", "Basic " + basicKey);
 	},
 	success: function (response) {
-		htmlString="<tr class='info' ><td>" + 1+bystandercount+"</td><td>3</td><td>5</td><td>"+ response.ProcedureAvarageCost[0].avarageTreatmentCost+"</td><td>"+response.holidayCost[0].totalPackageCost+"</td><td>"+response.totalExpense.mediTourEstimate+"</td></tr>";
-
-
-
-
-		$('#costRow').append(htmlString)
-
-
+		
 	},
 	error: function (exception) {
 		console.log(exception);
