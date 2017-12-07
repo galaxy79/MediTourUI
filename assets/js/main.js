@@ -2150,7 +2150,7 @@ function costCallback(data) {
 			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
 		},
 		success: function (response) {
-			response.forEach(function(item,index){
+			response.result.forEach(function(item,index){
 				$('#holidayPackageDropdown').append("<li><a href = '#'>"+item["packageShortName"]+"</a></li>")
 			})
 			$("#treatmentCostDropdown li a").on('click',function(){
