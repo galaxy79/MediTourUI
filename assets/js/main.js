@@ -2290,7 +2290,7 @@ function treatmentsOfferedCallback(id) {
 	}
 
 	$.ajax({
-		url: serverName + "api/v1/get/treatmentdescription/cost/meditrip?department=" + treatmentCategory,
+		url: serverName + "api/v1/get/treatmentdescription/nocost/meditrip?department=" + treatmentCategory,
 		type: 'GET',
 		headers: {
 			"Content-Type": "application/json",
