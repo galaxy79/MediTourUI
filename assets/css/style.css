@@ -3056,7 +3056,7 @@ label.error {
 
 
 @media (min-width: 768px) {
-  
+
   .services-group .service {
     width: 50%;
     float: left;
@@ -14000,9 +14000,11 @@ overflow: visible;
 }
 
 /*medical page*/
-button.bs-placeholder[role='button']>span{
+.customer-country button.bs-placeholder[role='button']>span{
   color:white;
 }
+
+
 @media (max-width: 991px) {
   .visa-gen{
     border-bottom: 0.5px solid black;
@@ -14192,6 +14194,135 @@ table#t01 th {
     padding-left:37px;
   }
 }
+
+/*hospits & doctors*/
+.treatment-select button.bs-placeholder[role='button']>span{
+  color:black;
+}
+
+.hos.page-header{
+  margin: 0 0 0px;
+}
+
+
+.test img{
+  float: left;
+  margin-right: 2em;
+}
+.speciality{
+  float: left;
+  margin: 0;
+  margin-left:14em;
+  line-height: 1.4em
+}
+.test span
+{
+    font-size:16px;
+    /* font-style: italic; */
+    margin-top:62px;
+    display: block;
+}
+.test1 button{
+  background-color: #c00f3c;
+  border-color: #c00f3c;
+}
+
+div.margin20{
+  margin-top:-20px;
+}
+
+ .pagination{
+  float:left;
+}
+/*.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;} */
+/* .pagination {
+  float:right;
+} */
+
+@media (min-width: 992px){
+  .treatment-select{
+    margin-top:10px;
+  }
+  .hosp-header{
+    padding-left: 19px;
+    padding-top: 17px;
+    padding-bottom:15px;
+    margin-bottom:70px;
+  }
+}
+@media (min-width: 992px) and (max-width:1199px){
+  .hospital-select{
+    margin-left: 159px;
+  }
+  .searchhosp{
+    margin-left: 388px;
+    margin-top: 10px;
+  }
+}
+@media (min-width:1200px){
+  .hospital-select{
+    margin-left: 233px;
+  }
+  .searchhosp{
+    margin-left: 515px;
+    margin-top: 10px;
+
+  }
+}
+@media (max-width: 991px){
+
+  .hosp-header{
+    margin-bottom: 50px;
+    padding-bottom: 7px;
+  }
+  .test{
+    width: 720px;
+  }
+  .even{
+    margin-bottom: 30px;
+  }
+}
+@media (max-width: 645px){
+  .hospital-select{
+    margin-left: 0px;
+  }
+  .hospital-select-city{
+    margin-left: 0px;
+    margin-top:6px;
+  }
+  .searchhosp{
+    margin-left: 0px;
+    margin-top: 6px;
+
+  }
+}
+
+@media (min-width: 646px) and (max-width:991px){
+  .hospital-select{
+    margin-left: 187px;
+  }
+  .hospital-select-city{
+    margin-left: 187px;
+    margin-top:6px;
+  }
+  .searchhosp{
+    margin-left: 235px;
+    margin-top: 6px;
+
+  }
 
 .u-float-right {
   float: right;
