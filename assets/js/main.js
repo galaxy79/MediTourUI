@@ -83,8 +83,107 @@ var whyIndia = "Because India.";
 			document.location.href = '/ourservices.html';
 		});
 
+		$('#hospitalsPageMenu').on('click', function () {
+			document.location.href = '/hospitaldoctors.html';
+		});
 	});
 $(".medinovitaFooter").load("./assets/pages/footer.html",function(){
+//  *****************************************************
+
+// $('#hospitalsPageMenu').on('click', function () {
+// $.ajax({
+// 	url: serverName+"api/v1/searchHospitaldetails/all/meditrip",
+// 	type: 'GET',
+// 	headers: {
+// 		"Content-Type": "application/json",
+// 		"Authorization": "Basic "+ basicKey,
+// 		"x-access-token": xAccessToken
+
+// 	},
+// 	beforeSend: function (xhr) {
+// 		xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+// 	},
+// 	success: function(response){
+// 		console.log("resp: ", response);
+// 		var myHtml = '';
+// 		var rData = {hospitals:response};
+// 		var template = document.getElementById('template1').innerHTML;
+
+// 		var output = Mustache.render(template, rData);
+// 		document.getElementById('template1').innerHTML = output;
+// 		$.each(response.Treatment, function(index, item){
+// 			for(var i = 0; i <= 3; i++){
+// 				if(index !== 3){
+// 					myHtml += item.name + ',';
+// 				 }
+// 				 else{
+// 					myHtml += item.name;
+// 				}
+// 			}
+
+// 				$('#template1 span').html("specialities in ", myHtml);
+// 			});
+// },
+// 	error: function (exception) {
+// 		console.log(exception);
+// 	}
+// });
+// });
+	//  *****************************************************
+//  test2*****************************************************
+// $('#hospitalsPageMenu').on('click', function () {
+// 	console.log("hello im here foru ");
+// 	$.ajax({
+// 			url: serverName+"api/v1/searchHospitaldetails/all/meditrip",
+// 			type: 'GET',
+// 			headers: {
+// 				"Content-Type": "application/json",
+// 				"Authorization": "Basic "+ basicKey,
+// 				"x-access-token": xAccessToken
+
+// 			},
+// 			beforeSend: function (xhr) {
+// 				xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+// 			},
+
+// 			success: function(response){
+// 				console.log("hello");
+// 				$.each(response, function(index, hospital){
+// 					var myHtml = '';
+//               console.log(hospital.hospitalName);
+// 					var location = $('<br>'+hospital.hospitalContact.City+', '+hospital.hospitalContact.country + '<br>')
+// 					var hosp = $('.hosp-'+index);
+
+// 					hosp.find('img').attr('src', hospital.hospitalimage);
+// 					hosp.find('strong').html(hospital.hospitalName).append(location);
+// 					$.each(hospital.Treatment, function(index, treatment){
+// 					while (index <= 2){
+// 						if(index !== 2){
+// 							myHtml += item.name + ',';
+// 						}
+// 						else{
+// 							myHtml += item.name ;
+// 						}
+// 					}
+// 					var spe = $('<span>specialities in '+myHtml+'</span');
+// 					hosp.find('p').append(spe);
+
+// 					})
+
+//****************
+					// var htmlStr = '<p class="test1"><img src='+hospital.hospitalimage+'<button type="button" class="btn btn-success btn-rounded btn-sm"style="float:right">Contact Us</button><strong>'+hospital.hospitalName+'</strong><br>'+hospital.hospitalContact.City+', '+hospital.hospitalContact.country+'<br><span>specialities in '
+					// ****************
+			// 	})
+
+			// },
+// 			error: function (exception) {
+// 						console.log(exception);
+// 					}
+// 		});
+
+// console.log("end of function");
+// 	});
+//  test2 end*****************************************************
 $.ajax({
 	url: serverName+"api/v1/get/officelocations/meditrip",
 	type: 'GET',
@@ -149,7 +248,7 @@ $(".medinovitaModals").load("./assets/pages/modals.html",function(){
 		}
 		else {
 			document.getElementById('captcha').innerHTML = "Verification completed";
-	
+
 		}
 	$.ajax({
 			url: serverName+"api/v1/submit/enquiry/meditrip",
@@ -178,16 +277,18 @@ $(".medinovitaModals").load("./assets/pages/modals.html",function(){
 				console.log(exception)
 			}
 		});
-	
+
 		$('#modal-container-SubmitEnquiry').modal('toggle');
 	})
-	
+
 	$('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
+
 		 $('.modal .modal-body').css('overflow-y', 'auto');
 		$('.modal .modal-body').css('max-height', $(window).height() *0.9);
-	
+
 		})
 		countryCodes.forEach(function(value,index){
+
 			 $('#inputSubmitEnquiryISDCode').append($('<option>', {
 			value: value.dial_code,
 			text : value.name.substr(0,5) + " (" + value.code+ ") " + value.dial_code
@@ -222,6 +323,14 @@ $(".medinovitaModals").load("./assets/pages/modals.html",function(){
 				selectBox.add(option);
 			});
 
+			// var treatmentSelectBox = document.getElementById("selectTreatment");
+			// treatmentList.forEach(function(item,index){
+			// 	var treatmentOption = document.createElement("option");
+			// 	treatmentOption.text = item;
+			// 	treatmentOption.value = item.substr(0, item.length - 10).trim();
+			// 	treatmentSelectBox.add(treatmentOption);
+			// });
+
 		},
 		error: function (exception) {
 			console.log(exception);
@@ -237,6 +346,11 @@ if (window.location.href.indexOf("treatmentsOffered") > -1) {
 if (window.location.href.indexOf("MedicalVisatoIndia") > -1) {
 	medicalVisacallback();
 }
+// hospitaldoctors**************
+if (window.location.href.indexOf("hospitaldoctors") > -1) {
+	hospitalPageCallback("all","");
+}
+// end of hospitaldoctors******************
 if(window.location.href.indexOf("cost")>-1){
 	costCallback();
 }
@@ -1933,7 +2047,7 @@ title:"Laboratory"
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	}]
 
-	
+
 
 	$.ajax({
 		url: serverName + "api/v1/gethighlighttreatments/meditrip?limit=8",
@@ -2097,6 +2211,189 @@ $('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
 
 
 }
+
+//hospitalPageCallback
+function hospitalPageCallback(para,city){
+
+	// to load tratmentList in selectbox
+	$.ajax({
+		url: serverName + "api/v1/getTreamentlist/all/meditrip",
+		type: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic " + basicKey,
+			"x-access-token": xAccessToken
+
+		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+		},
+		success: function (response) {
+			var treatmentList = response;
+			//Populate Treatment Dropdown
+			treatmentList.forEach(function(item){
+				var selectOption = $('<option>'+item+'</option>')
+				$('.hospital-select #selectTreatment').append(selectOption);
+			})
+
+
+		},
+		error: function (exception) {
+			console.log(exception);
+		}
+	});
+	$.ajax({
+		url: serverName + "api/v1/getcitylist/meditrip",
+		type: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic " + basicKey,
+			"x-access-token": xAccessToken
+
+		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+		},
+		success: function (response) {
+			var citylist = response;
+			//Populate citry name Dropdown
+			citylist.forEach(function(item){
+				var selectOption = $('<option>'+item+'</option>')
+				$('.hospital-select-city #selectCity').append(selectOption);
+			})
+
+
+		},
+		error: function (exception) {
+			console.log(exception);
+		}
+	});
+
+
+
+
+	//*****shortcut******** */
+
+
+	$.ajax({
+		url: serverName+"api/v1/searchHospitaldetails/"+para+"/meditrip?city="+city,
+		type: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic "+ basicKey,
+			"x-access-token": xAccessToken
+
+		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+		},
+
+		success: function(response){
+			console.log(" response: " + response);
+			//$('.tobehidden').hide();
+		//	console.log("hello");
+			var mainDiv = $('.hosp-main');
+			if(response == ""){
+				console.log("no response");
+				mainDiv.html('<div style="text-align:center;font-weight:bold;font-size:1.4em;">No hospital records in the selected city</div>');
+				$('.pagination').hide();
+			}
+			else{
+				$('.pagination').show();
+			mainDiv.html('');
+			$.each(response, function(index, hospital){
+
+				var myHtml = '';
+
+				var rowDiv = $('.hosp-row');
+
+				if(hospital.Treatment.length > 3){
+					var treatmentArr = hospital.Treatment.slice(0,3);
+					$.each(treatmentArr, function(index, item){
+						if(index !== treatmentArr.length-1){
+							myHtml += item.name + ', ';
+						}
+						else{
+							myHtml += item.name ;
+						}
+					})
+				}
+				else{
+				$.each(hospital.Treatment, function(index, treatment){
+
+
+					if(index !== hospital.Treatment.length-1){
+									myHtml += treatment.name + ', ';
+								}
+								else{
+									myHtml += treatment.name ;
+								}
+
+				})
+
+			}
+				if(index%2 === 0){
+					var htmlStr = $('<div class="row is-flex hosp-row" style="margin-bottom:30px"><div class="col-md-5 test even hosp-'+index+'"'+ 'style="background-color:#fafafa; padding:28px"><p class="test1"><img src='+hospital.hospitalimage+'><a href="#modal-container-SubmitEnquiry" data-toggle="modal"><button type="button" class="btn btn-success btn-rounded btn-sm" style="float:right">Contact</button></a><a href="/hospitals/'+hospital.hospitalName+'"><strong style="font-size:18px;line-height:1.6em;">'+hospital.hospitalName+'</strong></a><br><i class="fa fa-map-marker"  aria-hidden="true"></i>'+' ' + hospital.hospitalContact.City+', '+hospital.hospitalContact.country + '<br><span>Specialities: '+myHtml+'</span></p><div class="margin20"> <a href="/hospitals/'+ hospital.hospitalName+'"style="float:right;font-weight:bold">Learn More...</a></div></div></div>')
+
+					mainDiv.append(htmlStr);
+				}
+				else{
+					var htmlStrr = $('<div class="col-md-5 col-md-offset-1 test odd hosp-'+index+'"'+ 'style="background-color:#fafafa; padding:28px"><p class="test1"><img src='+hospital.hospitalimage+'><a href="#modal-container-SubmitEnquiry" data-toggle="modal"><button type="button" class="btn btn-success btn-rounded btn-sm" style="float:right">Contact</button></a><a href="/hospitals/'+hospital.hospitalName+'"><strong style="font-size:18px;line-height:1.6em;">'+hospital.hospitalName+'</strong></a><br><i class="fa fa-map-marker color=blue" aria-hidden="true"></i>'+' ' +hospital.hospitalContact.City+', '+hospital.hospitalContact.country + '<br><span>Specialities: '+myHtml+'</span></p><div class="margin20"> <a href="/hospitals/'+hospital.hospitalName+'" style="float:right;font-weight:bold">Learn More...</a></div></div>')
+
+					rowDiv.last().append(htmlStrr);
+				}
+
+			})
+			// *****************pagination***********************
+			var items = $(".hosp-main .row");
+			//console.log("items: ", items)
+			var numItems = items.length;
+			var perPage = 5;
+			//console.log("numItems, perPage: "+numItems +" " +perPage)
+			items.slice(perPage).hide();
+			if(numItems != 0){
+				$(".pagination").pagination({
+					items: numItems,
+					itemsOnPage: perPage,
+					cssStyle: "dark-theme",
+
+					onPageClick: function(pageNumber) {
+						var showFrom = perPage * (pageNumber - 1);
+						var showTo = showFrom + perPage;
+						items.hide().slice(showFrom, showTo).show();
+					}
+				});
+			}
+			// *****************end of pagination***********************
+		}
+	},
+		error: function (exception) {
+					console.log(exception);
+				}
+	});
+
+// *******end of shortcut**********/
+
+	$('.searchhosp button').on('click', function(){
+
+			var treatmentSel = $("#selectTreatment").val();
+			console.log("selected treat: "+treatmentSel)
+			var citySel = $('#selectCity').val();
+			console.log("selected city: "+citySel);
+			if(treatmentSel=="" || citySel==""){
+				console.log('un selected!');
+				//alert('select city')
+			}
+			else{
+			hospitalPageCallback(treatmentSel, citySel);
+			}
+
+	})
+
+
+}
+
+
 
 //Cost page callback
 function costCallback(data) {
@@ -2294,7 +2591,7 @@ function medicalVisacallback(){
 		$('.selectpicker').on('change', function(){
 			$('table#t01 tr').hide();
 			var countrySelected = $("option:selected",this).val();
-
+			console.log("country selected: "+ countrySelected)
 			var countryFee  = $('option:selected',this).attr('class');
 
 			$('table#t01 tr th').removeClass('no-show');
@@ -2320,3 +2617,51 @@ function getCookie(cname) {
 	}
 	return "";
 }
+// function selectHospitalPageCallback(){
+// 	$.ajax({
+// 		url: serverName+"api/v1/searchHospitaldetails/"+treatmentSel+"/meditrip",
+// 		type: 'GET',
+// 		headers: {
+// 			"Content-Type": "application/json",
+// 			"Authorization": "Basic "+ basicKey,
+// 			"x-access-token": xAccessToken
+
+// 		},
+// 		beforeSend: function (xhr) {
+// 			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+// 		},
+
+// 		success: function(response){
+// 			//console.log("hello");
+// 			$.each(response, function(index, hospital){
+// 				var myHtml = '';
+// 				var mainDiv = $('.hosp-main');
+// 				var rowDiv = $('.hosp-row');
+// 				$.each(hospital.Treatment, function(index, treatment){
+// 					if(index !== hospital.Treatment.length-1){
+// 									myHtml += treatment.name + ', ';
+// 								}
+// 								else{
+// 									myHtml += treatment.name ;
+// 								}
+// 				})
+// 				if(index%2 === 0){
+// 					var htmlStr = $('<div class="row  hosp-row" style="margin-bottom:30px"><div class="col-md-5 test" style="background-color:#fafafa; padding:28px"><p class="test1"><img src='+hospital.hospitalimage+'><button type="button" class="btn btn-success btn-rounded btn-sm" style="float:right">Contact Us</button><strong style="font-size:18px;line-height:1.6em;">'+hospital.hospitalName+'</strong><br>'+hospital.hospitalContact.City+', '+hospital.hospitalContact.country + '<br><span>Specialities: '+myHtml+'</span></p><div class="margin20"> <a href="/hospitals/'+ hospital.hospitalName+'"style="float:right;font-weight:bold">Learn More...</a></div></div></div>')
+
+// 					$('.tobehidden').hide().append(htmlStr).fadeIn();
+// 				}
+// 				else{
+// 					var htmlStrr = $('<div class="col-md-5 col-md-offset-1 test" style="background-color:#fafafa; padding:28px"><p class="test1"><img src='+hospital.hospitalimage+'><button type="button" class="btn btn-success btn-rounded btn-sm" style="float:right">Contact Us</button><strong style="font-size:18px;line-height:1.6em;">'+hospital.hospitalName+'</strong><br>'+hospital.hospitalContact.City+', '+hospital.hospitalContact.country + '<br><span>Specialities: '+myHtml+'</span></p><div class="margin20"> <a href="/hospitals/'+hospital.hospitalName+'" style="float:right;font-weight:bold">Learn More...</a></div></div>')
+
+// 					rowDiv.last().append(htmlStrr);
+// 				}
+
+// 			})
+
+// 		},
+// 		error: function (exception) {
+// 					console.log(exception);
+// 				}
+// 	});
+
+// }
