@@ -48,7 +48,7 @@ var whyIndia = "Because India.";
 
 (function ($) {
 	"use strict";
-	$(".medinovitaHeader").load("./assets/pages/header.html",function(){
+	$(".medinovitaHeader").load("../assets/pages/header.html",function(){
 		$('#costPageMenu').on('click',function(){
 			document.location.href='/cost.html';
 		})
@@ -76,114 +76,23 @@ var whyIndia = "Because India.";
 		$('#medicalVisaPageMenu').on('click', function () {
 
 
-			document.location.href = '/MedicalVisatoIndia.html';
+			document.location.href = '/medical-visa-to-india.html';
 		});
 
 		$('#ourServicesPageMenu').on('click', function () {
 			document.location.href = '/ourservices.html';
+		});
+		$('#holidayPageMenu').on('click',function(){
+			document.location.href = '/holiday/holiday_home';			
 		});
 
 		$('#hospitalsPageMenu').on('click', function () {
 			document.location.href = '/hospitaldoctors.html';
 		});
 	});
-$(".medinovitaFooter").load("./assets/pages/footer.html",function(){
-//  *****************************************************
 
-// $('#hospitalsPageMenu').on('click', function () {
-// $.ajax({
-// 	url: serverName+"api/v1/searchHospitaldetails/all/meditrip",
-// 	type: 'GET',
-// 	headers: {
-// 		"Content-Type": "application/json",
-// 		"Authorization": "Basic "+ basicKey,
-// 		"x-access-token": xAccessToken
+$(".medinovitaFooter").load("../assets/pages/footer.html",function(){
 
-// 	},
-// 	beforeSend: function (xhr) {
-// 		xhr.setRequestHeader("Authorization", "Basic " + basicKey);
-// 	},
-// 	success: function(response){
-// 		console.log("resp: ", response);
-// 		var myHtml = '';
-// 		var rData = {hospitals:response};
-// 		var template = document.getElementById('template1').innerHTML;
-
-// 		var output = Mustache.render(template, rData);
-// 		document.getElementById('template1').innerHTML = output;
-// 		$.each(response.Treatment, function(index, item){
-// 			for(var i = 0; i <= 3; i++){
-// 				if(index !== 3){
-// 					myHtml += item.name + ',';
-// 				 }
-// 				 else{
-// 					myHtml += item.name;
-// 				}
-// 			}
-
-// 				$('#template1 span').html("specialities in ", myHtml);
-// 			});
-// },
-// 	error: function (exception) {
-// 		console.log(exception);
-// 	}
-// });
-// });
-	//  *****************************************************
-//  test2*****************************************************
-// $('#hospitalsPageMenu').on('click', function () {
-// 	console.log("hello im here foru ");
-// 	$.ajax({
-// 			url: serverName+"api/v1/searchHospitaldetails/all/meditrip",
-// 			type: 'GET',
-// 			headers: {
-// 				"Content-Type": "application/json",
-// 				"Authorization": "Basic "+ basicKey,
-// 				"x-access-token": xAccessToken
-
-// 			},
-// 			beforeSend: function (xhr) {
-// 				xhr.setRequestHeader("Authorization", "Basic " + basicKey);
-// 			},
-
-// 			success: function(response){
-// 				console.log("hello");
-// 				$.each(response, function(index, hospital){
-// 					var myHtml = '';
-//               console.log(hospital.hospitalName);
-// 					var location = $('<br>'+hospital.hospitalContact.City+', '+hospital.hospitalContact.country + '<br>')
-// 					var hosp = $('.hosp-'+index);
-
-// 					hosp.find('img').attr('src', hospital.hospitalimage);
-// 					hosp.find('strong').html(hospital.hospitalName).append(location);
-// 					$.each(hospital.Treatment, function(index, treatment){
-// 					while (index <= 2){
-// 						if(index !== 2){
-// 							myHtml += item.name + ',';
-// 						}
-// 						else{
-// 							myHtml += item.name ;
-// 						}
-// 					}
-// 					var spe = $('<span>specialities in '+myHtml+'</span');
-// 					hosp.find('p').append(spe);
-
-// 					})
-
-//****************
-					// var htmlStr = '<p class="test1"><img src='+hospital.hospitalimage+'<button type="button" class="btn btn-success btn-rounded btn-sm"style="float:right">Contact Us</button><strong>'+hospital.hospitalName+'</strong><br>'+hospital.hospitalContact.City+', '+hospital.hospitalContact.country+'<br><span>specialities in '
-					// ****************
-			// 	})
-
-			// },
-// 			error: function (exception) {
-// 						console.log(exception);
-// 					}
-// 		});
-
-// console.log("end of function");
-// 	});
-//  test2 end*****************************************************
 $.ajax({
 	url: serverName+"api/v1/get/officelocations/meditrip",
 	type: 'GET',
@@ -236,7 +145,7 @@ $.ajax({
 	}
 });
 });
-$(".medinovitaModals").load("./assets/pages/modals.html",function(){
+$(".medinovitaModals").load("../assets/pages/modals.html",function(){
 
 	$('#submitEnquiryForm').on('submit',function(e){
 		e.preventDefault();
@@ -343,7 +252,7 @@ if(window.location.href.indexOf("index")>-1 || window.location.href=="https://ww
 if (window.location.href.indexOf("treatmentsOffered") > -1) {
 	treatmentsOfferedCallback(getCookie("treatmentPage"));
 }
-if (window.location.href.indexOf("MedicalVisatoIndia") > -1) {
+if (window.location.href.indexOf("medical-visa-to-india") > -1) {
 	medicalVisacallback();
 }
 // hospitaldoctors**************
@@ -353,6 +262,9 @@ if (window.location.href.indexOf("hospitaldoctors") > -1) {
 // end of hospitaldoctors******************
 if(window.location.href.indexOf("cost")>-1){
 	costCallback();
+}
+if(window.location.href.indexOf("SearchTreatment")>-1){
+	searchTreatmentCallback();
 }
 });
 //Hospitals and Doctors selected
@@ -1595,7 +1507,7 @@ $('#hospitalsPageMenu').on('click',function(){
 			/* Twitter feed for user*/
 			if ($.fn.tweet && $('.twitter-feed-widget').length) {
 				$('.twitter-feed-widget').tweet({
-					modpath: './assets/js/twitter/',
+					modpath: '../assets/js/twitter/',
 					avatar_size: '',
 					count: 2,
 					query: 'wrapbootstrap', // change query with username if you want to display search results
@@ -1918,38 +1830,38 @@ function homepageCallback() {
 	var treatmentList = "";
 
 	var featuredTreatmentsItems=[{
-img:"./assets/images/blocks/index-medical/item2.jpg",
-svgImg:"./assets/images/services/index-medical/stethoscope.svg",altText:"Stethoscope",
+img:"../assets/images/blocks/index-medical/item2.jpg",
+svgImg:"../assets/images/services/index-medical/stethoscope.svg",altText:"Stethoscope",
 shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
 title:"Nursing"
 	},
 {
-img:"./assets/images/blocks/index-medical/item1.jpg",
+img:"../assets/images/blocks/index-medical/item1.jpg",
+svgImg:"../assets/images/services/index-medical/microscope.svg",altText:"Microscope",
+shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
+title:"Laboratory"
+	},
+{
+img:"../assets/images/blocks/index-medical/item1.jpg",
+svgImg:"../assets/images/services/index-medical/microscope.svg",altText:"Microscope",
+shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
+title:"Laboratory"
+	},
+{
+img:"../assets/images/blocks/index-medical/item1.jpg",
 svgImg:"./assets/images/services/index-medical/microscope.svg",altText:"Microscope",
 shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
 title:"Laboratory"
 	},
 {
-img:"./assets/images/blocks/index-medical/item1.jpg",
-svgImg:"./assets/images/services/index-medical/microscope.svg",altText:"Microscope",
+img:"../assets/images/blocks/index-medical/item1.jpg",
+svgImg:"../assets/images/services/index-medical/microscope.svg",altText:"Microscope",
 shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
 title:"Laboratory"
 	},
 {
-img:"./assets/images/blocks/index-medical/item1.jpg",
-svgImg:"./assets/images/services/index-medical/microscope.svg",altText:"Microscope",
-shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
-title:"Laboratory"
-	},
-{
-img:"./assets/images/blocks/index-medical/item1.jpg",
-svgImg:"./assets/images/services/index-medical/microscope.svg",altText:"Microscope",
-shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
-title:"Laboratory"
-	},
-{
-img:"./assets/images/blocks/index-medical/item1.jpg",
-svgImg:"./assets/images/services/index-medical/microscope.svg",altText:"Microscope",
+img:"../assets/images/blocks/index-medical/item1.jpg",
+svgImg:"../assets/images/services/index-medical/microscope.svg",altText:"Microscope",
 shortContent:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto debitis nemo ipsa iure aliquid! Impedit et rem in distin.",
 title:"Laboratory"
 	}]
@@ -1958,7 +1870,7 @@ title:"Laboratory"
 		{
 			"newsId": "1",
 
-			"imgPath": "./assets/images/blog/index-medical/post1.jpg",
+			"imgPath": "../assets/images/blog/index-medical/post1.jpg",
 
 			"postedDate": "17 Jan, 2016",
 
@@ -1975,7 +1887,7 @@ title:"Laboratory"
 		{
 			"newsId": "2",
 
-			"imgPath": "./assets/images/blog/index-medical/post2.jpg",
+			"imgPath": "../assets/images/blog/index-medical/post2.jpg",
 
 			"postedDate": "17 Jan, 2016",
 
@@ -1990,7 +1902,7 @@ title:"Laboratory"
 		{
 			"newsId": "2",
 
-			"imgPath": "./assets/images/blog/index-medical/post3.jpg",
+			"imgPath": "../assets/images/blog/index-medical/post3.jpg",
 
 			"postedDate": "17 Jan, 2016",
 
@@ -2004,44 +1916,44 @@ title:"Laboratory"
 
 	];
 	var homePageHighLightsItems=[{
-		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		imgSrc:"../assets/images/services/index-medical/first-aid-kit.svg",
 		altText:"Emergency",
 		title:"Emergency",
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	},
 {
-		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		imgSrc:"../assets/images/services/index-medical/first-aid-kit.svg",
 		altText:"Emergency",
 		title:"Emergency",
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	},
 {
-		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		imgSrc:"../assets/images/services/index-medical/first-aid-kit.svg",
 		altText:"Emergency",
 		title:"Emergency",
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	},{
-		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		imgSrc:"../assets/images/services/index-medical/first-aid-kit.svg",
 		altText:"Emergency",
 		title:"Emergency",
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	},{
-		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		imgSrc:"../assets/images/services/index-medical/first-aid-kit.svg",
 		altText:"Emergency",
 		title:"Emergency",
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	},{
-		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		imgSrc:"../assets/images/services/index-medical/first-aid-kit.svg",
 		altText:"Emergency",
 		title:"Emergency",
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	},{
-		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		imgSrc:"../assets/images/services/index-medical/first-aid-kit.svg",
 		altText:"Emergency",
 		title:"Emergency",
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	},{
-		imgSrc:"./assets/images/services/index-medical/first-aid-kit.svg",
+		imgSrc:"../assets/images/services/index-medical/first-aid-kit.svg",
 		altText:"Emergency",
 		title:"Emergency",
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
@@ -2208,7 +2120,10 @@ $('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
 			var optionList = document.getElementById('getQuoteCountry').options;
 			availableCountries.forEach( (option) => optionList.add( new Option(option.text, option.value ) ));
 
-
+$('.responsiveGetQuote').on('click',function(){
+	document.location.href="/SearchTreatment.html";
+	setCookie("Search-Treatment",$('#getQuoteTreatment').val(),1)
+});
 
 }
 
@@ -2396,7 +2311,86 @@ function hospitalPageCallback(para,city){
 
 
 //Cost page callback
+
+
 function costCallback(data) {
+
+	
+	$.ajax({
+		url: serverName + "api/v1/get/distinctprocedurenames/meditrip",
+		type: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic " + basicKey,
+			"x-access-token": xAccessToken
+	
+		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+		},
+		success: function (response) {
+			response[0].treatmentNames.forEach(function(item,index){
+				$('#treatmentCostDropdown').append("<li><a href = '#'>"+item["procedureName"]+"</a></li>")
+			})
+		
+	
+		},
+		error: function (exception) {
+			console.log(exception);
+		}
+	})
+
+	$.ajax({
+		url: serverName + "api/v1/get/holidayPackage/meditrip",
+		type: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic " + basicKey,
+			"x-access-token": xAccessToken
+	
+		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+		},
+		success: function (response) {
+			response.result.forEach(function(item,index){
+				$('#holidayPackageDropdown').append("<li><a href = '#'>"+item["packageShortName"]+"</a></li>")
+			})
+			$("#treatmentCostDropdown li a").on('click',function(){
+				// remove previously added selectedLi
+				$('.selectedLi').removeClass('selectedLi');
+				// add class `selectedLi`
+				$(this).addClass('selectedLi');
+				var selText = $(this).text();///User selected value...****
+				$(this).parent().parent().prev().html(selText+' <span class="caret"></span>');
+				
+		  });
+		
+		  $("#bystanderDropdown li a").click(function(){
+			// remove previously added selectedLi
+			$('.selectedBystanderLi').removeClass('selectedBystanderLi');
+			// add class `selectedLi`
+			$(this).addClass('selectedBystanderLi');
+			var selText = $(this).text();
+			$(this).parent().parent().prev().html(selText+' <span class="caret"></span>');
+			
+		
+		});
+		$("#holidayPackageDropdown li a").on('click',function(){
+			// remove previously added selectedLi
+			$('.selectedpackageLi').removeClass('selectedpackageLi');
+			// add class `selectedLi`
+			$(this).addClass('selectedpackageLi');
+			var selText = $(this).text();
+			$(this).parent().parent().prev().html(selText+' <span class="caret"></span>');
+		
+		});
+	
+		},
+		error: function (exception) {
+			console.log(exception);
+		}
+	})
 
 		$('.top-doctors-carousel.owl-carousel').owlCarousel({
 				loop: false,
@@ -2448,13 +2442,16 @@ function costCallback(data) {
 				}
 			});
 
-			$('#getCostDetails').on('click',function(){
-				var procedurName=$('#getProcedureName').val();
-				var bystandercount=$('#bystandercount').val();
+			$('#getCostDetails').on('click',function(e){
+				var procedurName=$('#treatmentCostDropdown li a.selectedLi').text();
+				
+				var bystandercount=$('#bystanderDropdown li a.selectedBystanderLi').text();
+
+				var holidayPackage=$('#holidayPackageDropdown li a.selectedpackageLi').text();
 
 
 $.ajax({
-	url: serverName + "api/v1/get/treatmentcost/meditrip?procedurename="+ procedurName+"&bystandercount="+ bystandercount+"&holidaypackage=short name 1&hotelrate=3 star&vehicletype=sedan",
+	url: serverName + "api/v1/get/cost/meditrip?procedurename="+ procedurName+"&bystandercount="+ bystandercount+"&holidaypackage="+holidayPackage+"&hotelrate=3 star&vehicletype=sedan&countryName=Albania",
 	type: 'GET',
 	headers: {
 		"Content-Type": "application/json",
@@ -2466,20 +2463,14 @@ $.ajax({
 		xhr.setRequestHeader("Authorization", "Basic " + basicKey);
 	},
 	success: function (response) {
-		htmlString="<tr class='info' ><td>" + 1+bystandercount+"</td><td>3</td><td>5</td><td>"+ response.ProcedureAvarageCost[0].avarageTreatmentCost+"</td><td>"+response.holidayCost[0].totalPackageCost+"</td><td>"+response.totalExpense.mediTourEstimate+"</td></tr>";
-
-
-
-
-		$('#costRow').append(htmlString)
-
-
+		$('#costTemplateDiv').html(response);
 	},
 	error: function (exception) {
 		console.log(exception);
 	}
 })
-			});
+e.preventDefault();			
+});
 }
 
 
@@ -2502,7 +2493,7 @@ function treatmentsOfferedCallback(id) {
 	}
 
 	$.ajax({
-		url: serverName + "api/v1/get/treatmentdescription/cost/meditrip?department=" + treatmentCategory,
+		url: serverName + "api/v1/get/treatmentdescription/nocost/meditrip?department=" + treatmentCategory,
 		type: 'GET',
 		headers: {
 			"Content-Type": "application/json",
@@ -2527,8 +2518,7 @@ function treatmentsOfferedCallback(id) {
 		var displayName=treatmentItem.displayName;
 		var treatmentDescription=treatmentItem.treatmentDescription;
 		var procedureImagepath=treatmentItem.procedureImagepath.replace(/\//g, "\/");
-		htmlString += '<div class="blog-card"><div class="photo photo1" style="background: url('+procedureImagepath+') center no-repeat;"></div><ul class="details"><li class="author"><a href="#">' + treatmentItem.procedureName + '</a></li><li class="date"> Heal Time: ' + treatmentItem.healingTimeInDays + '</li><li class="date"> Surgical Time: ' + treatmentItem.surgicalTime + '</li><li class="date"> Estimate Cost: ' + treatmentItem.procedureCost +'</li></ul><div class="description"><h1>' + displayName+'</h1><h2>' + displayName + '</h2><p class="summary">' + treatmentDescription+'</p><a href="#">Read More</a></div></div>'
-
+		htmlString += '<div class="blog-card"><div class="photo photo1" style="background: url('+procedureImagepath+') center no-repeat;"></div><ul class="details"><li class="author"><a href="#">' + treatmentItem.procedureName + '</a></li><li class="date"> Heal Time: ' + treatmentItem.healingTimeInDays + '</li><li class="date"> Surgical Time: ' + treatmentItem.surgicalTime + '</li><li class="date"> Estimate Cost: ' + treatmentItem.procedureCost +'</li></ul><div class="description"><h1>' + displayName+'</h1><h2>' + displayName + '</h2><p class="summary">' + treatmentDescription+'</p><a href="/procedure/Bone Grafting">Read More</a></div></div>'
 			//htmlString+='<div class="treatments-hover" style="min-height:100px;padding:20px;width:90%;overflow:auto;border-radius: 7px;position:relative;margin-bottom: 20px;background-color:#eff6ef;border-bottom: 1px solid #DAD8D8;border-right: 0.2px solid #DAD8D8;"><div class="one-third" style="width:120px"><img src="'+procedureImagepath +'" height="100" width="140" style="display:inline-block"/></div><div class="three-fourths last-col" style="line-height: 1em;background-color: #eff6ef"> <p>'+displayName+'</p> <p><u>Hospital Stay:</u> '+treatmentItem.minHospitalization+'-'+treatmentItem.maxHospitalization+' days</p>     <p><u>Healing Time:</u> '+treatmentItem.healingTimeInDays+' days</p>     <p>Description of Procedure:</br>'+treatmentDescription+'</p></div>   <a href="#" style="float:right">more details</a></div>'
 
 	});
@@ -2547,6 +2537,33 @@ document.getElementById('availableProceduresDiv').innerHTML=htmlString;
 
 }
 
+//Search Treatment Callback
+function searchTreatmentCallback()
+{
+	var treatmentName=getCookie("Search-Treatment");
+	$.ajax({
+		url: serverName + "api/v1/searchHospitaldetails/"+treatmentName+"/meditrip",
+		type: 'GET',
+		headers: {
+				"Content-Type": "application/json",
+				"Authorization": "Basic " + basicKey,
+				"x-access-token": xAccessToken
+
+		},
+		success: function(response){
+			var htmlString="";
+			response.forEach(function(item,index){
+				htmlString+='<div class="card-media"><div class="card-media-object-container"><div class="card-media-object" style="background-image: url('+item.hospitalimage+');"></div><span class="card-media-object-tag subtle">Trusted</span><ul class="card-media-object-social-list"></ul></div><div class="card-media-body"><div class="card-media-body-top"><span class="subtle">'+item.hospitalName+'</span><div class="card-media-body-top-icons u-float-right"></div></div><span class="card-media-body-heading">'
+				+item.hospitalContact.country+', '+ item.hospitalContact.addressLine1+', '+ item.hospitalContact.City+', '+ item.hospitalContact.PostalCode+'<br>'+item.hospitalContact.website +'</span><div class="card-media-body-supporting-bottom"><span class="card-media-body-supporting-bottom-text subtle">NABL: '+item.Accreditation.NABL+', NABH: '+item.Accreditation.NABH+', JCI: '+item.Accreditation.JCI+'</span><span class="card-media-body-supporting-bottom-text subtle u-float-right"></span></div><div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal"><span class="card-media-body-supporting-bottom-text subtle">'+item.Treatment[0].name+'</span><a href="#/" class="card-media-body-supporting-bottom-text card-media-link u-float-right">More Details</a></div></div></div>';
+			});
+	$('#seearchTreatmentPageContainer').append(htmlString);
+
+		},
+		error: function (exception) {
+				console.log(exception);
+		}
+});
+}
 
 
 

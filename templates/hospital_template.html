@@ -33,6 +33,11 @@
       <META NAME="keywords" CONTENT="doctors In India,destination India,health tour,Medical Facility In India,Healthcare tourism in india, Hospitals in India, health tour India,Wellness Tourism, India medical tourism, super speciality hospitals,super speciality hospitals in India, healthcare travel, Best Hospital in India, best hospital india, medical travel, health travel India, Best Doctors in India,Apollo Hospitals, indian health guru,low cost medical treatment in India,low cost medical treatment in Asia,India Healthcare Tourism,health travel India, Affordable treatment in India, Affordable treatment in Asian countries, healthcare tourism company india,Asian medical tour, Hospitals in India,cosmetic surgery in India, best healthcare tourism company,medical tourism India cost, Health Tourism in India,medical travel abroad, medical tourism overseas,medical travel overseas, health tourism,Medical Visa to India,clinics in India,Cheap medical facility,surgery in India,Ayurveda,Ayurveda India,Medinovita,kerala">
       <!-- Google Fonts -->
       <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7COpen+Sans:300,300i,400,400i,600,600i,700,800" rel="stylesheet">
+      <!-- Added for glyphicons -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	 
+      <!-- Added for glyphicons -->
       <link rel="stylesheet" href="../assets/css/plugins.min.css">
       <link rel="stylesheet" href="../assets/css/settings.css">
       <link rel="stylesheet" href="../assets/css/layers.css">
@@ -54,6 +59,7 @@
       <script type="text/javascript" src="../assets/js/jquery.themepunch.tools.min.js"></script>
       <script type="text/javascript" src="../assets/js/jquery.themepunch.revolution.min.js"></script>
       <script src="../assets/js/jquery-ui.min.js"></script>
+      <!-- boot JS strap file -->
       <!-- main Js file -->
       <script type="text/javascript" src="../assets/js/jquery.validate.min.js"></script>
       <!-- SLIDER REVOLUTION 5.0 EXTENSIONS
@@ -68,6 +74,22 @@
       <script type="text/javascript" src="../assets/js/extensions/revolution.extension.parallax.min.js"></script>
       <script type="text/javascript" src="../assets/js/extensions/revolution.extension.slideanims.min.js"></script>
       <script type="text/javascript" src="../assets/js/extensions/revolution.extension.video.min.js"></script>
+      <!-- script for expand and collapse-->
+      <script>
+         $(document).ready(function(){
+             // Add minus icon for collapse element which is open by default
+             $(".collapse.in").each(function(){
+             	$(this).siblings(".panel-heading").find(".glyphicon").addClass("glyphicon-minus").removeClass("glyphicon-plus");
+             });
+             
+             // Toggle plus minus icon on show hide of collapse element
+             $(".collapse").on('show.bs.collapse', function(){
+             	$(this).parent().find(".glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+             }).on('hide.bs.collapse', function(){
+             	$(this).parent().find(".glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+             });
+         });
+      </script>
    </head>
    <body>
       <script id="tpl-alert" type="text/x-handlebars-template">
@@ -91,10 +113,10 @@
       <div class="contact">
       <div class="page-header larger larger-top  custom "style="background-image:url(../assets/images/header.jpg)">
          <div class="container" style="padding-left:30px">
-            <h1>{{procedure_name}}</h1>
+            <h1>hospital details</h1>
             <ol class="breadcrumb">
-               <li><a href="/index.html">Home</a></li>               
-               <li class="active">{{procedure_name}}</li>
+               <li><a href="index.html">Home</a></li>
+               <li class="active">{{hospital_name}}</li>
             </ol>
          </div>
          <!-- End .container -->
@@ -103,82 +125,96 @@
       <!-- Template added by Libin -->
       <div class="container">
          <div class="row">
-            <div class="col-md-7">			   
-               {{{procedure_gridFS_data}}}
+            <h2  class="text-primary">
+               {{hospital_name}} 
+               <p style="font-size:16px;"> {{hospitalcity}},{{hospitalcountry}} </p>
+            </h2>
+         </div>
+         <div class="row">
+            <div class="col-md-10">
+               <a href="#" title="Click to submit enquiry"> 
+               <img src="{{{hospitalimage}}}" class="img-thumbnail transperentboarder" alt="Responsive image">
+               </a>
+            </div>
+         </div>
+         <p class="h5-responsive"></p>
+         <div class="row">
+            <div class="col-md-7">
+			   <!-- HTML description of hospitals-->	
+               {{{hospital_gridFS_data}}}
+               <!-- Collapsible menu to display various procedure details-->	
+               <p class="h5">
+               <h4 class="display-4">Procedures</h4>
+               </p>  
+               <div class="col-md-6">			   
+                  <div class="panel-group" id="accordion">			
+				   {{#department}} <!--array of department names-->
+                     <div class="panel panel-default">
+                        <div class="panel-heading">
+                           <h4 class="panel-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#{{department}}"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;{{{department}}}</a>
+                           </h4>
+                        </div>
+                        <div id="{{department}}" class="panel-collapse collapse">
+                           <div class="panel-body">						   
+						      {{#procedureList}} <!--array of procedure names-->
+                              <div class="row">
+                                 <div class="col-md-6">
+                                    <p><a href="" target="_blank">{{procedureName}}</a></p>
+                                 </div>
+                                 <div class="col-md-6">	
+                                    <button type = "button" class = "btn btn-primary">Starts from {{cost}}</button>									
+                                 </div>
+                              </div>
+                              <p></p>
+							  {{/procedureList}} <!--array of procedure names-->							  							 
+                           </div>
+                        </div>
+                     </div>
+                     {{/department}} <!--Array of department names-->					
+                  </div>
+               </div>
+               <!-- Collapsible menu to display various procedure details-->			
             </div>
             <div class="col-md-3">
                <p class="h5-responsive"></p>
                <div class="row">
-                  <div class="col-md-10">
+                  <div class="col-md-8">
                      <a href="#" title="Click to submit enquiry"> 
                      <img src="../assets/images/medinovita/contactus.jpg" class="img-fluid img-thumbnail" alt="Responsive image">
                      </a>
                   </div>
                </div>
+               <!-- accreditations -->
+               <p></p>
+               <p></p>
+               <p></p>
                <div class="row">
-                  <div class="col-md-7">
-                     <!-- Table to display the treatment cost -->
-                     <table class="table table-responsive">
-                        <caption>
-                           <h4 class="display-4">
-                              Cost of {{procedure_name}}   
-                           </h4>
-                        </caption>
-                        <!--Table head-->
-                        <thead class="blue-grey lighten-4">						
-                           <tr>
-                              <th>#</th>
-                              <th>Country</th>
-                              <th>Cost</th>
-                           </tr>
-                        </thead>
-                        <!--Table head-->
-                        <!--Table body-->
-                        <tbody>
-						   {{#costdisprows}} <!--array name hold the cell values-->
-                           <tr>
-                              <th scope="row">{{rowindex}}</th>
-                              <td>{{country}}</td>
-                              <td>{{cost}}{{currency}}</td>
-                           </tr>
-                          {{/costdisprows}} <!--array ends here-->
-                        </tbody>
-                     </table>
-                     <!-- End .table table-responsive-->
-                     <!-- Table to display the treatment cost -->
+                  <div class="col-md-6 text-left">
+                     <h4 class="display-4">Accreditations</h4>
                   </div>
                </div>
-               <!-- End .col-md-7 -->	
-			   
-               <!-- Top Hospitals -->
+			   {{#Accreditation}} <!--array of accreditations-->
                <div class="row">
-                  <div class="col-md-12">
-                     <caption>
-                        <h4 class="display-4">Top Hospitals for {{procedure_name}}</h4>
-                     </caption>
-					 {{#tophospitals}} <!--array name hold the cell values-->
-                     <div class="col-md-12">
-                        <div class="col-md-4">				  
-                           <img src="{{{hospitalimage}}}"  class="img-thumbnail transperentboarder" alt="Responsive image">
-                        </div>
-                        <a href="#" title="Click View Details">
-                           <div class="col-md-8">
-                              <h5 class="text-primary">
-                                 {{hospitalName}}
-                                 <p>{{hospitalcity}},{{hospitalcountry}}</p>
-                              </h5>
-                           </div>
-                        </a>
-                     </div>
-                    {{/tophospitals}} <!--array ends here--> 
-               <!-- Top hospitals -->
+                  <div class="col-md-6 text-left">
+                     <h3><small>{{agency}}</small></h3>
+                  </div>
+                  <div class="col-md-3">
+                     <img src="../assets/images/medinovita/{{{agency}}}.jpg" class="img-fluid img-thumbnail" alt="Responsive image" />
+                  </div>
+               </div>
+               <p></p>
+			   {{/Accreditation}} <!--array of accreditations-->               			   
+               <!-- accreditations -->
+               <p></p>
+               <p></p>
                <!-- Top Doctors -->
                <div class="row">
                   <div class="col-md-12">
                      <caption>
-                        <h4 class="display-4">Top Doctors for {{procedure_name}}</h4>
+                        <h4 class="display-4">Top Doctors In {{hospital_name}}</h4>
                      </caption>
-					{{#topdoctors}} <!--array name hold the cell values-->
+					 {{#topdoctors}} <!--array name hold the cell values-->
                      <div class="col-md-12">
                         <div class="col-md-4">				  
                            <img src="{{{docpicdir}}}" class="img-thumbnail transperentboarder" alt="Responsive image">
@@ -192,10 +228,10 @@
                            </div>
                         </a>
                      </div>
-                     {{/topdoctors}} <!--array ends here-->
+					 {{/topdoctors}} <!--array ends here-->                    
                   </div>
                </div>
-             <!-- Top Doctors -->
+               <!-- Top Doctors -->
                <!-- End .row -->	
                <!-- End .col-md-8 -->					
                <div class="row">
