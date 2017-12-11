@@ -27,7 +27,7 @@
       <!-- Below lines added by libin -->
       <link rel="canonical" href="https://www.medinovita.in/" />
       <link rel="shortlink" href="https://www.medinovita.in/" />
-      <title>{{title}}</title>
+      <title>{{title}}|Easy Medical Travel to India|Medinovita</title>
       <meta property="og:description" content="Planning a medical trip to India for affordable treatment?Medinovita connects you with best Doctors and super speciality hospitals in India.Medinovita also assists in travel,visa processing,local transport and Stay along with 24X7 care for patient and attendants">
       <META NAME="description" CONTENT= "Planning a medical trip to India for affordable treatment?Medinovita connects you with best Doctors and super speciality hospitals in India.Medinovita also assists in travel,visa processing,local transport and Stay along with 24X7 care for patient and attendants.">
       <META NAME="keywords" CONTENT="doctors In India,destination India,health tour,Medical Facility In India,Healthcare tourism in india, Hospitals in India, health tour India,Wellness Tourism, India medical tourism, super speciality hospitals,super speciality hospitals in India, healthcare travel, Best Hospital in India, best hospital india, medical travel, health travel India, Best Doctors in India,Apollo Hospitals, indian health guru,low cost medical treatment in India,low cost medical treatment in Asia,India Healthcare Tourism,health travel India, Affordable treatment in India, Affordable treatment in Asian countries, healthcare tourism company india,Asian medical tour, Hospitals in India,cosmetic surgery in India, best healthcare tourism company,medical tourism India cost, Health Tourism in India,medical travel abroad, medical tourism overseas,medical travel overseas, health tourism,Medical Visa to India,clinics in India,Cheap medical facility,surgery in India,Ayurveda,Ayurveda India,Medinovita,kerala">
@@ -74,7 +74,7 @@
       <script type="text/javascript" src="../assets/js/extensions/revolution.extension.parallax.min.js"></script>
       <script type="text/javascript" src="../assets/js/extensions/revolution.extension.slideanims.min.js"></script>
       <script type="text/javascript" src="../assets/js/extensions/revolution.extension.video.min.js"></script>
-      <!-- script for expand and collapse-->
+      <!-- script for expand and collapse-->   
       <script>
          $(document).ready(function(){
              // Add minus icon for collapse element which is open by default
@@ -106,145 +106,52 @@
       <!-- Google Tag Manager (noscript) added by libin-->
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVPCCNV"
          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-      <!-- End Google Tag Manager (noscript) -->
-      <div id="wrapper">
-      <div class="medinovitaHeader"></div>
-      <div id="wrapper">
-      <div class="contact">
-      <div class="page-header larger larger-top  custom "style="background-image:url(../assets/images/header.jpg)">
-         <div class="container" style="padding-left:30px">
-            <h1>hospital details</h1>
-            <ol class="breadcrumb">
-               <li><a href="../index.html">Home</a></li>
-               <li class="active">{{hospital_name}}</li>
-            </ol>
+      <!-- End Google Tag Manager (noscript) -->     
+      <div class="medinovitaHeader"> </div>
+       <div id="wrapper">
+       <div class="contact"> 
+         <div class="page-header larger larger-top  custom" style="background-image:url(../assets/images/header.jpg)">
+            <div class="container" style="padding-left:40px">
+               <h1>Holiday Packages</h1>
+               <ol class="breadcrumb">
+                  <li><a href="../index.html">Home</a></li>
+				  <li><a href="/holiday/holiday_home">Holiday Packages</a></li>
+                  <li class="active">{{packageShortName}} </li>
+               </ol>
+            </div>
+            <!-- End .container -->                  
          </div>
-         <!-- End .container -->
-      </div>
-      <!-- End .page-header -->
-      <!-- Template added by Libin -->
+         <!-- End .page-header larger -->
+      </div> 
+      <!-- End .contact -->
+      <!-- Template added by Libin -->	 
       <div class="container">
          <div class="row">
-            <h2  class="text-primary">
-               {{hospital_name}} 
-               <p style="font-size:16px;"> {{hospitalcity}},{{hospitalcountry}} </p>
-            </h2>
-         </div>
+		    <div class="col-md-7">	
+				<h2  class="text-primary">{{packageShortName}}</h2>
+				   <p></p>
+				   <h4  class="text-primary" style="font-size:14px;"> {{packageDuration}} </h4>
+				   <h4  class="text-primary" style="font-size:14px;"> {{packageCost}}&nbsp;{{currency}}&nbsp;per person</h4>			   
+			 </div>
+		</div>
+         <!-- End .row -->
          <div class="row">
-            <div class="col-md-10">
-               <a href="#" title="Click to submit enquiry"> 
-               <img src="{{{hospitalimage}}}" class="img-thumbnail transperentboarder" alt="Responsive image">
-               </a>
+            <div class="col-md-10">              
+               <img src="{{{packageImageDir}}}" class="img-responsive" alt="Responsive image">              
             </div>
          </div>
+         <!-- End .row -->
          <p class="h5-responsive"></p>
          <div class="row">
-            <div class="col-md-7">
-			   <!-- HTML description of hospitals-->	
-               {{{hospital_gridFS_data}}}
-               <!-- Collapsible menu to display various procedure details-->	
-               <p class="h5">
-               <h4 class="display-4">Procedures</h4>
-               </p>  
-               <div class="col-md-6">			   
-                  <div class="panel-group" id="accordion">			
-				   {{#department}} <!--array of department names-->
-                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                           <h4 class="panel-title">
-                              <a data-toggle="collapse" data-parent="#accordion" href="#{{department}}"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;{{{department}}}</a>
-                           </h4>
-                        </div>
-                        <div id="{{department}}" class="panel-collapse collapse">
-                           <div class="panel-body">						   
-						      {{#procedureList}} <!--array of procedure names-->
-                              <div class="row">
-                                 <div class="col-md-6">
-                                    <p><a href="" target="_blank">{{procedureName}}</a></p>
-                                 </div>
-                                 <div class="col-md-6">	
-                                    <button type = "button" class = "btn btn-primary">Starts from {{cost}}</button>									
-                                 </div>
-                              </div>
-                              <p></p>
-							  {{/procedureList}} <!--array of procedure names-->							  							 
-                           </div>
-                        </div>
-                     </div>
-                     {{/department}} <!--Array of department names-->					
-                  </div>
-               </div>
-               <!-- Collapsible menu to display various procedure details-->			
+            <div class="col-md-7">			   
+               <!-- start Holiday description -->
+               {{{gridFS_holidayDescription}}}			   
             </div>
-            <div class="col-md-3">
-               <p class="h5-responsive"></p>
-               <div class="row">
-                  <div class="col-md-8">
-                     <a href="#" title="Click to submit enquiry"> 
-                     <img src="../assets/images/medinovita/contactus.jpg" class="img-fluid img-thumbnail" alt="Responsive image">
-                     </a>
-                  </div>
-               </div>
-               <!-- accreditations -->
-               <p></p>
-               <p></p>
-               <p></p>
-               <div class="row">
-                  <div class="col-md-6 text-left">
-                     <h4 class="display-4">Accreditations</h4>
-                  </div>
-               </div>
-			   {{#Accreditation}} <!--array of accreditations-->
-               <div class="row">
-                  <div class="col-md-6 text-left">
-                     <h3><small>{{agency}}</small></h3>
-                  </div>
-                  <div class="col-md-3">
-                     <img src="../assets/images/medinovita/{{{agency}}}.jpg" class="img-fluid img-thumbnail" alt="Responsive image" />
-                  </div>
-               </div>
-               <p></p>
-			   {{/Accreditation}} <!--array of accreditations-->               			   
-               <!-- accreditations -->
-               <p></p>
-               <p></p>
-               <!-- Top Doctors -->
-               <div class="row">
-                  <div class="col-md-12">
-                     <caption>
-                        <h4 class="display-4">Top Doctors In {{hospital_name}}</h4>
-                     </caption>
-					 {{#topdoctors}} <!--array name hold the cell values-->
-                     <div class="col-md-12">
-                        <div class="col-md-4">				  
-                           <img src="{{{docpicdir}}}" class="img-thumbnail transperentboarder" alt="Responsive image">
-                        </div>
-                        <a href="#" title="Click View Details">
-                           <div class="col-md-8">
-                              <h5 class="text-primary">
-                                 {{docname}}
-                                 <p>{{docspeciality}}</p>
-                              </h5>
-                           </div>
-                        </a>
-                     </div>
-					 {{/topdoctors}} <!--array ends here-->                    
-                  </div>
-               </div>
-               <!-- Top Doctors -->
-               <!-- End .row -->	
-               <!-- End .col-md-8 -->					
-               <div class="row">
-                  <!-- End .row -->
-               </div>
-               <!-- End .container -->
-               <!-- Template added by Libin -->
-               <div class="mb60"></div>
-               <!-- margin -->
-            </div>
-            <!-- End .main -->
+            <!-- End .row -->
          </div>
-         <!-- End #wrapper -->
+         <!-- End .continer -->
+         <div class="row"></div>
+         <div class="mb60"></div>
          <div class="medinovitaFooter"></div>
       </div>
       <!-- End #wrapper -->
