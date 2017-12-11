@@ -83,7 +83,10 @@ var whyIndia = "Because India.";
 			document.location.href = '/ourservices.html';
 		});
 		$('#holidayPageMenu').on('click',function(){
-			document.location.href = '/holiday/holiday_home';			
+			document.location.href = '/holiday/holiday_home';
+		});
+		$('#hospitalsPageMenu').on('click', function () {
+			document.location.href = '/hospitaldoctors.html';
 		});
 
 	});
@@ -152,7 +155,7 @@ $(".medinovitaModals").load("../assets/pages/modals.html",function(){
 		}
 		else {
 			document.getElementById('captcha').innerHTML = "Verification completed";
-	
+
 		}
 	$.ajax({
 			url: serverName+"api/v1/submit/enquiry/meditrip",
@@ -181,14 +184,14 @@ $(".medinovitaModals").load("../assets/pages/modals.html",function(){
 				console.log(exception)
 			}
 		});
-	
+
 		$('#modal-container-SubmitEnquiry').modal('toggle');
 	})
-	
+
 	$('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
 		 $('.modal .modal-body').css('overflow-y', 'auto');
 		$('.modal .modal-body').css('max-height', $(window).height() *0.9);
-	
+
 		})
 		countryCodes.forEach(function(value,index){
 			 $('#inputSubmitEnquiryISDCode').append($('<option>', {
@@ -246,6 +249,11 @@ if(window.location.href.indexOf("cost")>-1){
 if(window.location.href.indexOf("SearchTreatment")>-1){
 	searchTreatmentCallback();
 }
+// hospitaldoctors**************
+if (window.location.href.indexOf("hospitaldoctors") > -1) {
+	hospitalPageCallback("all","");
+}
+// end of hospitaldoctors******************
 });
 //Hospitals and Doctors selected
 $('#hospitalsPageMenu').on('click',function(){
@@ -1681,43 +1689,43 @@ $('#hospitalsPageMenu').on('click',function(){
 
 
 	// Google Map api v3 - Map for contact pages
-	if (document.getElementById("map") && typeof google === "object") {
-		// Map pin coordinates and content of pin box
-		var locations = [
-			[
-				'<address><strong>Address:</strong> Hollywood Blvd, Los Angeles, CA, USA <br> <strong>Phone:</strong> +01 010 554 11 22 </address>',
-				34.101780, -118.333655
-			]
-		];
+	// if (document.getElementById("map") && typeof google === "object") {
+	// 	// Map pin coordinates and content of pin box
+	// 	var locations = [
+	// 		[
+	// 			'<address><strong>Address:</strong> Hollywood Blvd, Los Angeles, CA, USA <br> <strong>Phone:</strong> +01 010 554 11 22 </address>',
+	// 			34.101780, -118.333655
+	// 		]
+	// 	];
 
-		var map = new google.maps.Map(document.getElementById('map'), {
-			zoom: 14,
-			center: new google.maps.LatLng(34.101780, -118.333655), // Map Center coordinates
-			scrollwheel: false,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-		});
+	// 	var map = new google.maps.Map(document.getElementById('map'), {
+	// 		zoom: 14,
+	// 		center: new google.maps.LatLng(34.101780, -118.333655), // Map Center coordinates
+	// 		scrollwheel: false,
+	// 		mapTypeId: google.maps.MapTypeId.ROADMAP
+	// 	});
 
-		var infowindow = new google.maps.InfoWindow();
+	// 	var infowindow = new google.maps.InfoWindow();
 
 
-		var marker, i;
+	// 	var marker, i;
 
-		for (i = 0; i < locations.length; i++) {
-			marker = new google.maps.Marker({
-				position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-				map: map,
-				animation: google.maps.Animation.DROP,
-				icon: 'assets/images/pin.png'
-			});
+	// 	for (i = 0; i < locations.length; i++) {
+	// 		marker = new google.maps.Marker({
+	// 			position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+	// 			map: map,
+	// 			animation: google.maps.Animation.DROP,
+	// 			icon: 'assets/images/pin.png'
+	// 		});
 
-			google.maps.event.addListener(marker, 'click', (function (marker, i) {
-				return function () {
-					infowindow.setContent(locations[i][0]);
-					infowindow.open(map, marker);
-				}
-			})(marker, i));
-		}
-	}
+	// 		google.maps.event.addListener(marker, 'click', (function (marker, i) {
+	// 			return function () {
+	// 				infowindow.setContent(locations[i][0]);
+	// 				infowindow.open(map, marker);
+	// 			}
+	// 		})(marker, i));
+	// 	}
+	// }
 
 	//Login Page
 
@@ -1939,7 +1947,7 @@ title:"Laboratory"
 		content:"Lorem ipsum dolor sit amet, consectetur adipi sunt nisi id magni dignissimos rem."
 	}]
 
-	
+
 
 	$.ajax({
 		url: serverName + "api/v1/gethighlighttreatments/meditrip?limit=8",
@@ -2112,7 +2120,7 @@ $('.responsiveGetQuote').on('click',function(){
 
 function costCallback(data) {
 
-	
+
 	$.ajax({
 		url: serverName + "api/v1/get/distinctprocedurenames/meditrip",
 		type: 'GET',
@@ -2120,7 +2128,7 @@ function costCallback(data) {
 			"Content-Type": "application/json",
 			"Authorization": "Basic " + basicKey,
 			"x-access-token": xAccessToken
-	
+
 		},
 		beforeSend: function (xhr) {
 			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
@@ -2129,8 +2137,8 @@ function costCallback(data) {
 			response[0].treatmentNames.forEach(function(item,index){
 				$('#treatmentCostDropdown').append("<li><a href = '#'>"+item["procedureName"]+"</a></li>")
 			})
-		
-	
+
+
 		},
 		error: function (exception) {
 			console.log(exception);
@@ -2144,7 +2152,7 @@ function costCallback(data) {
 			"Content-Type": "application/json",
 			"Authorization": "Basic " + basicKey,
 			"x-access-token": xAccessToken
-	
+
 		},
 		beforeSend: function (xhr) {
 			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
@@ -2160,9 +2168,9 @@ function costCallback(data) {
 				$(this).addClass('selectedLi');
 				var selText = $(this).text();///User selected value...****
 				$(this).parent().parent().prev().html(selText+' <span class="caret"></span>');
-				
+
 		  });
-		
+
 		  $("#bystanderDropdown li a").click(function(){
 			// remove previously added selectedLi
 			$('.selectedBystanderLi').removeClass('selectedBystanderLi');
@@ -2170,8 +2178,8 @@ function costCallback(data) {
 			$(this).addClass('selectedBystanderLi');
 			var selText = $(this).text();
 			$(this).parent().parent().prev().html(selText+' <span class="caret"></span>');
-			
-		
+
+
 		});
 		$("#holidayPackageDropdown li a").on('click',function(){
 			// remove previously added selectedLi
@@ -2180,9 +2188,9 @@ function costCallback(data) {
 			$(this).addClass('selectedpackageLi');
 			var selText = $(this).text();
 			$(this).parent().parent().prev().html(selText+' <span class="caret"></span>');
-		
+
 		});
-	
+
 		},
 		error: function (exception) {
 			console.log(exception);
@@ -2241,7 +2249,7 @@ function costCallback(data) {
 
 			$('#getCostDetails').on('click',function(e){
 				var procedurName=$('#treatmentCostDropdown li a.selectedLi').text();
-				
+
 				var bystandercount=$('#bystanderDropdown li a.selectedBystanderLi').text();
 
 				var holidayPackage=$('#holidayPackageDropdown li a.selectedpackageLi').text();
@@ -2266,7 +2274,7 @@ $.ajax({
 		console.log(exception);
 	}
 })
-e.preventDefault();			
+e.preventDefault();
 });
 }
 
@@ -2416,7 +2424,6 @@ function medicalVisacallback(){
 			});
 }
 
-
 function getCookie(cname) {
 	var name = cname + "=";
 	var ca = document.cookie.split(';');
@@ -2431,3 +2438,188 @@ function getCookie(cname) {
 	}
 	return "";
 }
+
+//hospitalPageCallback
+function hospitalPageCallback(para,city){
+	var today = new Date();
+		// to load tratmentList in selectbox
+		//console.log("hello " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()+ ":" +today.getMilliseconds())
+		$.ajax({
+			url: serverName + "api/v1/getTreamentlist/all/meditrip",
+			type: 'GET',
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": "Basic " + basicKey,
+				"x-access-token": xAccessToken
+
+			},
+			beforeSend: function (xhr) {
+				xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+			},
+			success: function (response) {
+				var treatmentList = response;
+				//Populate Treatment Dropdown
+				console.log("treatment :" + response )
+				treatmentList.forEach(function(item){
+					var selectOption = $('<option>'+item+'</option>')
+					$('.hospital-select #selectTreatment').append(selectOption);
+				})
+
+
+			},
+			error: function (exception) {
+				console.log(exception);
+			}
+		});
+		//console.log("hello " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()+ ":" +today.getMilliseconds())
+		$.ajax({
+			url: serverName + "api/v1/getcitylist/meditrip",
+			type: 'GET',
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": "Basic " + basicKey,
+				"x-access-token": xAccessToken
+
+			},
+			beforeSend: function (xhr) {
+				xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+			},
+			success: function (response) {
+				var citylist = response;
+				//Populate citry name Dropdown
+				console.log("city :" + response )
+				citylist.forEach(function(item){
+					var selectOption = $('<option>'+item+'</option>')
+					$('.hospital-select-city #selectCity').append(selectOption);
+				})
+
+
+			},
+			error: function (exception) {
+				console.log(exception);
+			}
+		});
+
+
+
+
+		//*****shortcut******** */
+		//console.log("hello " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()+ ":" +today.getMilliseconds())
+
+		$.ajax({
+			url: serverName+"api/v1/searchHospitaldetails/"+para+"/meditrip?city="+city,
+			type: 'GET',
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": "Basic "+ basicKey,
+				"x-access-token": xAccessToken
+
+			},
+			beforeSend: function (xhr) {
+				xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+			},
+
+			success: function(response){
+				//console.log(" response: " + response);
+				//$('.tobehidden').hide();
+			//	console.log("hello");
+				var mainDiv = $('.hosp-main');
+				if(response == ""){
+					//console.log("no response");
+					mainDiv.html('<div style="text-align:center;font-weight:bold;font-size:1.4em;">No hospital records in the selected city</div>');
+					$('.pagination').hide();
+				}
+				else{
+					$('.pagination').show();
+				mainDiv.html('');
+				$.each(response, function(index, hospital){
+
+					var myHtml = '';
+
+					var rowDiv = $('.hosp-row');
+
+					if(hospital.Treatment.length > 3){
+						var treatmentArr = hospital.Treatment.slice(0,3);
+						$.each(treatmentArr, function(index, item){
+							if(index !== treatmentArr.length-1){
+								myHtml += item.name + ', ';
+							}
+							else{
+								myHtml += item.name ;
+							}
+						})
+					}
+					else{
+					$.each(hospital.Treatment, function(index, treatment){
+
+
+						if(index !== hospital.Treatment.length-1){
+										myHtml += treatment.name + ', ';
+									}
+									else{
+										myHtml += treatment.name ;
+									}
+
+					})
+
+				}
+					if(index%2 === 0){
+						var htmlStr = $('<div class="row is-flex hosp-row" style="margin-bottom:30px"><div class="col-md-5 test even hosp-'+index+'"'+ 'style="background-color:#fafafa; padding:28px"><p class="test1"><img src='+hospital.hospitalimage+'><a href="#modal-container-SubmitEnquiry" data-toggle="modal"><button type="button" class="btn btn-success btn-rounded btn-sm" style="float:right">Contact</button></a><a href="/hospitals/'+hospital.hospitalName+'"><strong style="font-size:18px;line-height:1.6em;">'+hospital.hospitalName+'</strong></a><br><i class="fa fa-map-marker"  aria-hidden="true"></i>'+' ' + hospital.hospitalContact.City+', '+hospital.hospitalContact.country + '<br><span>Specialities: '+myHtml+'</span></p><div class="margin20"> <a href="/hospitals/'+ hospital.hospitalName+'"style="float:right;font-weight:bold">Learn More...</a></div></div></div>')
+
+						mainDiv.append(htmlStr);
+					}
+					else{
+						var htmlStrr = $('<div class="col-md-5 col-md-offset-1 test odd hosp-'+index+'"'+ 'style="background-color:#fafafa; padding:28px"><p class="test1"><img src='+hospital.hospitalimage+'><a href="#modal-container-SubmitEnquiry" data-toggle="modal"><button type="button" class="btn btn-success btn-rounded btn-sm" style="float:right">Contact</button></a><a href="/hospitals/'+hospital.hospitalName+'"><strong style="font-size:18px;line-height:1.6em;">'+hospital.hospitalName+'</strong></a><br><i class="fa fa-map-marker color=blue" aria-hidden="true"></i>'+' ' +hospital.hospitalContact.City+', '+hospital.hospitalContact.country + '<br><span>Specialities: '+myHtml+'</span></p><div class="margin20"> <a href="/hospitals/'+hospital.hospitalName+'" style="float:right;font-weight:bold">Learn More...</a></div></div>')
+
+						rowDiv.last().append(htmlStrr);
+					}
+
+				})
+				//console.log("hello " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()+ ":" +today.getMilliseconds())
+				// *****************pagination***********************
+				var items = $(".hosp-main .row");
+				//console.log("items: ", items)
+				var numItems = items.length;
+				var perPage = 5;
+				//console.log("numItems, perPage: "+numItems +" " +perPage)
+				items.slice(perPage).hide();
+				if(numItems != 0){
+					$(".pagination").pagination({
+						items: numItems,
+						itemsOnPage: perPage,
+						cssStyle: "dark-theme",
+
+						onPageClick: function(pageNumber) {
+							var showFrom = perPage * (pageNumber - 1);
+							var showTo = showFrom + perPage;
+							items.hide().slice(showFrom, showTo).show();
+						}
+					});
+				}
+				// *****************end of pagination***********************
+			}
+		},
+			error: function (exception) {
+						console.log(exception);
+					}
+		});
+
+	// *******end of shortcut**********/
+
+		$('.searchhosp button').on('click', function(){
+
+				var treatmentSel = $("#selectTreatment").val();
+				console.log("selected treat: "+treatmentSel)
+				var citySel = $('#selectCity').val();
+				console.log("selected city: "+citySel);
+				if(treatmentSel=="" || citySel==""){
+					console.log('un selected!');
+					//alert('select city')
+				}
+				else{
+				hospitalPageCallback(treatmentSel, citySel);
+				}
+
+		})
+
+	}
