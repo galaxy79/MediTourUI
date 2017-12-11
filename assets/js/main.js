@@ -2447,6 +2447,7 @@ function hospitalPageCallback(para,city){
 		$.ajax({
 			url: serverName + "api/v1/getTreamentlist/all/meditrip",
 			type: 'GET',
+			async:false,
 			headers: {
 				"Content-Type": "application/json",
 				"Authorization": "Basic " + basicKey,
@@ -2475,6 +2476,7 @@ function hospitalPageCallback(para,city){
 		$.ajax({
 			url: serverName + "api/v1/getcitylist/meditrip",
 			type: 'GET',
+			async:false,
 			headers: {
 				"Content-Type": "application/json",
 				"Authorization": "Basic " + basicKey,
