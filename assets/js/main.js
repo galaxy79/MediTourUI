@@ -251,6 +251,7 @@ if(window.location.href.indexOf("SearchTreatment")>-1){
 }
 // hospitaldoctors**************
 if (window.location.href.indexOf("hospitaldoctors") > -1) {
+	hospitalPageHtml();
 	hospitalPageCallback("all","");
 }
 // end of hospitaldoctors******************
@@ -2439,75 +2440,98 @@ function getCookie(cname) {
 	return "";
 }
 
-//hospitalPageCallback
-function hospitalPageCallback(para,city){
-	var today = new Date();
+//1hospitalPageCallback
+function hospitalPageHtml(){
+	$.ajax({
+		url: serverName + "api/v1/getTreamentlist/all/meditrip",
+		type: 'GET',
+
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic " + basicKey,
+			"x-access-token": xAccessToken
+
+		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+		},
+		success: function (response) {
+			var treatmentList = response;
+			//Populate Treatment Dropdown
+			console.log("treatment :" + response )
+			treatmentList.forEach(function(item){
+				var selectOption = $('<option>'+item+'</option>')
+				$('.hospital-select #selectTreatment').append(selectOption);
+			})
+
+			$('.selectpicker').selectpicker('render');
+			$('.selectpicker').selectpicker('refresh');
+		},
+		error: function (exception) {
+			console.log(exception);
+		}
+	});
+	//console.log("hello " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()+ ":" +today.getMilliseconds())
+	$.ajax({
+		url: serverName + "api/v1/getcitylist/meditrip",
+		type: 'GET',
+
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Basic " + basicKey,
+			"x-access-token": xAccessToken
+
+		},
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+		},
+		success: function (response) {
+			var citylist = response;
+			//Populate citry name Dropdown
+			console.log("city :" + response )
+			citylist.forEach(function(item){
+				var selectOption = $('<option>'+item+'</option>')
+				$('.hospital-select-city #selectCity').append(selectOption);
+			})
+
+			$('.selectpicker').selectpicker('render');
+			$('.selectpicker').selectpicker('refresh');
+		},
+		error: function (exception) {
+			console.log(exception);
+		}
+	});
+
+	$('.searchhosp button').on('click', function(){
+
+						var treatmentSel = $("#selectTreatment").val();
+						console.log("selected treat: "+treatmentSel)
+						var citySel = $('#selectCity').val();
+						console.log("selected city: "+citySel);
+						if(treatmentSel=="" || citySel==""){
+							//console.log('un selected!');
+							//alert('select city')
+						}
+						else{
+						hospitalPageCallback(treatmentSel, citySel);
+						}
+
+				})
+
+
+}
+
+//2hospitalPageCallback
+function hospitalPageCallback(treatmentName,city){
+	//var today = new Date();
 		// to load tratmentList in selectbox
 		//console.log("hello " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()+ ":" +today.getMilliseconds())
-		$.ajax({
-			url: serverName + "api/v1/getTreamentlist/all/meditrip",
-			type: 'GET',
-			headers: {
-				"Content-Type": "application/json",
-				"Authorization": "Basic " + basicKey,
-				"x-access-token": xAccessToken
-
-			},
-			beforeSend: function (xhr) {
-				xhr.setRequestHeader("Authorization", "Basic " + basicKey);
-			},
-			success: function (response) {
-				var treatmentList = response;
-				//Populate Treatment Dropdown
-				console.log("treatment :" + response )
-				treatmentList.forEach(function(item){
-					var selectOption = $('<option>'+item+'</option>')
-					$('.hospital-select #selectTreatment').append(selectOption);
-				})
-
-
-			},
-			error: function (exception) {
-				console.log(exception);
-			}
-		});
-		//console.log("hello " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()+ ":" +today.getMilliseconds())
-		$.ajax({
-			url: serverName + "api/v1/getcitylist/meditrip",
-			type: 'GET',
-			headers: {
-				"Content-Type": "application/json",
-				"Authorization": "Basic " + basicKey,
-				"x-access-token": xAccessToken
-
-			},
-			beforeSend: function (xhr) {
-				xhr.setRequestHeader("Authorization", "Basic " + basicKey);
-			},
-			success: function (response) {
-				var citylist = response;
-				//Populate citry name Dropdown
-				console.log("city :" + response )
-				citylist.forEach(function(item){
-					var selectOption = $('<option>'+item+'</option>')
-					$('.hospital-select-city #selectCity').append(selectOption);
-				})
-
-
-			},
-			error: function (exception) {
-				console.log(exception);
-			}
-		});
-
-
-
 
 		//*****shortcut******** */
 		//console.log("hello " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()+ ":" +today.getMilliseconds())
 
 		$.ajax({
-			url: serverName+"api/v1/searchHospitaldetails/"+para+"/meditrip?city="+city,
+			url: serverName+"api/v1/searchHospitaldetails/"+treatmentName+"/meditrip?city="+city,
 			type: 'GET',
 			headers: {
 				"Content-Type": "application/json",
@@ -2606,20 +2630,6 @@ function hospitalPageCallback(para,city){
 
 	// *******end of shortcut**********/
 
-		$('.searchhosp button').on('click', function(){
 
-				var treatmentSel = $("#selectTreatment").val();
-				console.log("selected treat: "+treatmentSel)
-				var citySel = $('#selectCity').val();
-				console.log("selected city: "+citySel);
-				if(treatmentSel=="" || citySel==""){
-					console.log('un selected!');
-					//alert('select city')
-				}
-				else{
-				hospitalPageCallback(treatmentSel, citySel);
-				}
-
-		})
 
 	}
