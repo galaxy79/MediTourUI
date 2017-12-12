@@ -2440,13 +2440,13 @@ function getCookie(cname) {
 	return "";
 }
 
+
 //1hospitalPageCallback
 function hospitalPageHtml(){
 	$.ajax({
 		url: serverName + "api/v1/getTreamentlist/all/meditrip",
 		type: 'GET',
-
-		headers: {
+    headers: {
 			"Content-Type": "application/json",
 			"Authorization": "Basic " + basicKey,
 			"x-access-token": xAccessToken
@@ -2464,6 +2464,7 @@ function hospitalPageHtml(){
 				$('.hospital-select #selectTreatment').append(selectOption);
 			})
 
+
 			$('.selectpicker').selectpicker('render');
 			$('.selectpicker').selectpicker('refresh');
 		},
@@ -2475,8 +2476,7 @@ function hospitalPageHtml(){
 	$.ajax({
 		url: serverName + "api/v1/getcitylist/meditrip",
 		type: 'GET',
-
-		headers: {
+    headers: {
 			"Content-Type": "application/json",
 			"Authorization": "Basic " + basicKey,
 			"x-access-token": xAccessToken
