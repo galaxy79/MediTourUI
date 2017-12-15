@@ -2400,10 +2400,8 @@ function medicalVisacallback(){
 				//console.log("countryArr-response: "+ countryArr[1].country);
 
 				countryArr.forEach(function(item){
-						$('.select-country .country-list').append('<option class="'+item.fee + '"' +'data-tokens="'+ item.country+'">' + item.country +'</option>')
+						$('.select-country #countryfeeslist').append('<option class="'+item.fee + '"' +'data-tokens="'+ item.country+'">' + item.country +'</option>')
 				})
-
-				//$('.selectpicker').selectpicker();
 				$('.selectpicker').selectpicker('render');
 				$('.selectpicker').selectpicker('refresh');
 				},
@@ -2505,9 +2503,9 @@ function hospitalPageHtml(){
 	$('.searchhosp button').on('click', function(){
 
 						var treatmentSel = $("#selectTreatment").val();
-						console.log("selected treat: "+treatmentSel)
+						//console.log("selected treat: "+treatmentSel)
 						var citySel = $('#selectCity').val();
-						console.log("selected city: "+citySel);
+						//console.log("selected city: "+citySel);
 						if(treatmentSel=="" || citySel==""){
 							//console.log('un selected!');
 							//alert('select city')
