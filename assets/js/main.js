@@ -2107,7 +2107,7 @@ $('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
 ];
 
 			var optionList = document.getElementById('getQuoteCountry').options;
-			availableCountries.forEach( (option) => optionList.add( new Option(option.text, option.value ) ));
+			availableCountries.forEach( function(option){optionList.add( new Option(option.text, option.value ) )});
 
 $('.responsiveGetQuote').on('click',function(){
 	document.location.href="/SearchTreatment.html";
