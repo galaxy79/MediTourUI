@@ -2132,8 +2132,11 @@ $('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
 
 ];
 
-			var optionList = document.getElementById('getQuoteCountry').options;
-			availableCountries.forEach( function(option){optionList.add( new Option(option.text, option.value ) )});
+			// var optionList = document.getElementById('getQuoteCountry').options;
+			// availableCountries.forEach( function(option,index)
+			// {
+			// 	optionList.add( new Option(option.text, option.value ) )
+			// });
 
 $('.responsiveGetQuote').on('click',function(){
 	document.location.href="/SearchTreatment.html";
