@@ -8,6 +8,7 @@
 var basicKey = "bGliaW46bGliaW4=";
 var xAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiVG9rZW5Ub0F1dGhlbnRpY2F0ZU1lZGlub3ZpdGFVc2VyIiwiaWF0IjoxNTA4MDQ0OTMwfQ.cZ3pCte1guE8KQkjd1KfY_bLJ-gOatJm2xlwyiLGAl4";
 var serverName = "https://www.medinovita.in/";
+// var serverName = "http://localhost:3000/";
 var GLOBAL_VARIABLES = {
 	"Language": "en",
 	"Currency": "dollar"
@@ -1995,11 +1996,12 @@ title:"Laboratory"
 			var latestNewsHtmlString = '';
 
 			latestNewsItems.forEach(function (item, index) {
+				//console.log(item.newsId)
 
-				latestNewsHtmlString += ' <article data-id="' + item.newsId + '" class="entry entry-grid"><div class="entry-media"><figure><a href="single.html"><img src="' + item.imgPath + '" alt="Post image"></a></figure><div class="entry-meta"><span><i class="fa fa-calendar"></i>' + item.postedDate + '</span><a href="#"><i class="fa fa-user"></i> ' +
-					item.postedBy + '</a></div></div><h2 class="entry-title"><i class="fa fa-newspaper-o"></i><a href="single.html">' +
+				latestNewsHtmlString += ' <article data-id="' + item.newsId + '" class="entry entry-grid"><div class="entry-media"><figure><a href="news/' + item.newsId + '/"><img src="' + item.imgPath + '" alt="Post image"></a></figure><div class="entry-meta"><span><i class="fa fa-calendar"></i>' + item.postedDate + '</span><a href="#"><i class="fa fa-user"></i> ' +
+					item.postedBy + '</a></div></div><h2 class="entry-title"><i class="fa fa-newspaper-o"></i><a href="news/' + item.newsId + '/">' +
 					item.postHeading + '</a></h2><div class="entry-content"><p>' +
-					item.postShortContent + '</p><a data-id="' + item.newsId + '" href="#modal-container-LatestNews" class="readmore latestNewsReadmore" data-toggle="modal">Read more<i class="fa fa-angle-right"></i></a></div></article>';
+					item.postShortContent + '</p></div></article>';
 
 			});
 			$('#latestNewsCarousel').html(latestNewsHtmlString);
@@ -2070,7 +2072,7 @@ title:"Laboratory"
 
 			var featuredTreatmentsHtmlString="";
 response.forEach(function(item,index){
-featuredTreatmentsHtmlString+=' <div class="col-sm-4"><div class="text-block hover-bg text-center" style="background-image:url('+ item.img+')"><h3 class="block-title"><a href="#">'+item.title+'</a></h3><p>'+item.shortContent +'</p><a href="#" class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a></div></div>'
+featuredTreatmentsHtmlString+=' <div class="col-sm-4"><div class="text-block hover-bg text-center" style="background-image:url('+ item.img+')"><h3 class="block-title"><a href="#">'+item.title+'</a></h3><p>'+item.shortContent +'</p><a href='+ item.pagePath+' class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a></div></div>'
 });
 $('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
 		},
