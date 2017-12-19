@@ -14218,6 +14218,7 @@ table#t01 th {
   margin-bottom: 25px;
   transition: all 300ms ease-out;
   width: 100%;
+  margin-left: 70px;
 }
 
 .card-media:hover {
