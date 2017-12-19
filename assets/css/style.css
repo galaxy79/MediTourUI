@@ -14218,7 +14218,7 @@ table#t01 th {
   margin-bottom: 25px;
   transition: all 300ms ease-out;
   width: 100%;
-  margin-left: 70px;
+  margin-left: 17px;
 }
 
 .card-media:hover {
@@ -14320,7 +14320,7 @@ table#t01 th {
   height: 100%;
   padding: 12px 15px;
   position: relative;
-  width: 65%;
+  width: 55%;
 }
 
 .card-media-body-top {
