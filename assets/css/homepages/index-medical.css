@@ -148,4 +148,42 @@ width: 100% !important;
 .glyphicons:before {
     margin-right: 5px;
 }
+.ashrightboarder {	
+	padding-right:20px;
+	border-right: 1px solid #ccc;
+}
+.ashtopboarder {	
+	padding-right:20px;
+	border-top: 1px solid #ccc;
+}
+.ashbottomboarder {	
+	padding-right:20px;
+	border-bottom: 1px solid #ccc;
+}
+
+.ashleftboarder {	
+	padding-left:20px;
+	border-left: 1px solid #ccc;
+}
+
+.ashbackgroundwithboarder{
+    background: #F9F9F9;
+    border: 1px solid #E1E1E8;
+    margin: 8px 0;
+    padding: 8px;
+}
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+.equalheight {
+    overflow: hidden; 
+}
+
+.leftalign{
+     margin-left: 2cm;
+}
+
+
 
