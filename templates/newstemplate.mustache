@@ -104,23 +104,23 @@
       <!-- End .page-header -->
       <!-- Template added by Libin -->
       <div class="container" style="padding-left:30px">
-         <div class="row is-flex">
+         <div class="row is-flex" style="margin-top:30px">
             <div class="col-md-7">
               <h2 class="title custom">{{postHeading}}</h2>
                <p>{{postedDate}} : {{newDescription}}</p>
 
             </div>
              <div class="col-md-5 news-style">
-              <div class="heading">
+              <div class="heading" style="margin-top:30px">
                 <h5>Other Medical News</h5>
 
               </div>
               <div class="news" >
             <ul>
             {{#newsdetails}}
-               
+
                <li><p> <a href="/news/{{& newsId}}">{{newsHeading}}</a></p></li>
-               
+
                {{/newsdetails}}
             </ul>
               </div>
