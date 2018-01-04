@@ -90,6 +90,20 @@
       <!-- script for show more and show less -->	  
       <script type="text/javascript" src="/assets/js/pages/showmore.js"></script>
       <!-- script for show more and show less -->
+	  
+	  <script>	  
+	    $( document ).ready(function() {
+		     <!-- adjust the left offset for content div -->
+		    var contentOffset=$("#content_{{firstProcedureName}}")
+			var leftOffset=contentOffset.offset();
+            $('div[id^="content_"]').offset({left:leftOffset.left});
+			
+			 <!-- adjust the left offset for contact div -->
+		    var contactOffset=$("#contact_{{firstProcedureName}}")
+			var leftcontactOffset=contactOffset.offset();
+            $('div[id^="contact_"]').offset({left:leftcontactOffset.left});
+        });	  
+	  </script>
       	  		  
    </head>
    <body>      
@@ -229,22 +243,19 @@
 		        </div>
 			    	<!-- Start : contact container -->
 				<div class="col-sm-2 ashrightboarder ashtopboarder ashbottomboarder" id="contact_{{{procedureNameAttr}}}" >
-				    
-				    <button type="button" class="btn btn-primary" style="width:100%; margin-top: 50%" onclick="location.href = '/contact.html';">
+				    <p><br/><br/><br/><br/></p>
+				    <button type="button" class="btn btn-primary" style="width:100%;" onclick="location.href = '/contact.html';">
 					<span class="glyphicon glyphicon-envelope"></span>&nbsp; &nbsp; Contact Us
 					</button>
 					<p></p>
 					<button type="button" class="btn btn-primary" style="width:100%;" onclick="location.href = '/cost.html';">
 					<span class="glyphicon glyphicon-usd"></span>&nbsp; &nbsp; Get Quote
 					</button>
+					<p><br/><br/><br/><br/></p>
 		        </div>
-				<script language="javascript">								 				
-					var divh = document.getElementById('content_{{{procedureNameAttr}}}').offsetHeight;	
-                    var minusdiv = document.getElementById('description_{{{procedureNameAttr}}}').offsetHeight;										 
-                    document.getElementById('contact_{{{procedureNameAttr}}}').style.height = (+divh - (+minusdiv/2)) + 'px'; 	
-				</script>
-				<!-- End : contact container -->
-				<p>&nbsp;</p>				
+				<div class="col-sm-6">
+                     <p>&nbsp; </p>
+				</div>
 				{{/treatmentList}} <!--array name hold the content values-->
 								
 		      </div>
