@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+=<!DOCTYPE html>
 <html>
    <head>
       <!-- Global site tag (gtag.js) - Google Analytics added by libin -->
@@ -50,6 +50,7 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.min.js"></script>
       <!-- Added for glyphicons -->
       <link rel="stylesheet" href="/assets/css/plugins.min.css">
       <link rel="stylesheet" href="/assets/css/settings.css">
@@ -74,24 +75,12 @@
       <script src="/assets/js/jquery-ui.min.js"></script>
       <!-- boot JS strap file -->
       <!-- main Js file -->
-      <script type="text/javascript" src="/assets/js/jquery.validate.min.js"></script>
-      <!-- SLIDER REVOLUTION 5.0 EXTENSIONS
-         (Load Extensions only on Local File Systems !
-         The following part can be removed on Server for On Demand Loading) -->
-      <script type="text/javascript" src="/assets/js/extensions/revolution.extension.actions.min.js"></script>
-      <script type="text/javascript" src="/assets/js/extensions/revolution.extension.carousel.min.js"></script>
-      <script type="text/javascript" src="/assets/js/extensions/revolution.extension.kenburn.min.js"></script>
-      <script type="text/javascript" src="/assets/js/extensions/revolution.extension.layeranimation.min.js"></script>
-      <script type="text/javascript" src="/assets/js/extensions/revolution.extension.migration.min.js"></script>
-      <script type="text/javascript" src="/assets/js/extensions/revolution.extension.navigation.min.js"></script>
-      <script type="text/javascript" src="/assets/js/extensions/revolution.extension.parallax.min.js"></script>
-      <script type="text/javascript" src="/assets/js/extensions/revolution.extension.slideanims.min.js"></script>
-      <script type="text/javascript" src="/assets/js/extensions/revolution.extension.video.min.js"></script>
+      <script type="text/javascript" src="/assets/js/jquery.validate.min.js"></script>     
       <!-- script for show more and show less -->	  
       <script type="text/javascript" src="/assets/js/pages/showmore.js"></script>
       <!-- script for show more and show less -->
 	  
-	  <script>	  
+	  <script type="text/javascript">	  
 	    $( document ).ready(function() {
 		     <!-- adjust the left offset for content div -->
 		    var contentOffset=$("#content_{{firstProcedureName}}")
@@ -102,7 +91,22 @@
 		    var contactOffset=$("#contact_{{firstProcedureName}}")
 			var leftcontactOffset=contactOffset.offset();
             $('div[id^="contact_"]').offset({left:leftcontactOffset.left});
-        });	  
+        });
+		<!-- jquery to set the height of the contact div -->
+		(function($) {
+			$(window).bind("load", function() {
+				<!--working fine to set height -->
+				var initialHeight = $("#content_{{firstProcedureName}}").outerHeight( true ); <!--add 24 more for actual height in show less  -->	
+				$('div[id^="contact_"]').height((initialHeight-2) + 'px');	                		
+			})
+            
+			<!--onclick event on view more button -->
+			$(".morelink" ).bind( "click", function(e) {					                   
+				var txt = $(e.target).text();
+			});
+			<!--onclick event -->			
+		})(jQuery);
+	    
 	  </script>
       	  		  
    </head>
@@ -250,8 +254,7 @@
 					<p></p>
 					<button type="button" class="btn btn-primary" style="width:100%;" onclick="location.href = '/cost.html';">
 					<span class="glyphicon glyphicon-usd"></span>&nbsp; &nbsp; Get Quote
-					</button>
-					<p><br/><br/><br/><br/></p>
+					</button>					
 		        </div>
 				<div class="col-sm-6">
                      <p>&nbsp; </p>
