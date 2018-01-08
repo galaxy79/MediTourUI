@@ -42,7 +42,7 @@ $.ajax({
 		   countryCodes.forEach(function(value,index){
 				$('#inputSubmitEnquiryISDCode').append($('<option>', {
 			   value: value.dial_code,
-			   text : value.name.substr(0,5) + " (" + value.code+ ") " + value.dial_code
+			   text : value.code + "(" + value.dial_code + ")" 
 		   }));
 	   });
 	},
