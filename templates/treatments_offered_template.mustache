@@ -133,12 +133,13 @@
             </div>
             <!--Start :  Code for department description -->
              <div class="container" style="padding-left:30px;margin-top:20px">
+			 <div class="row">
                <div class="col-sm-8">
-                  <div class="row">
+                  <div class="row-edit">
                      <h2 class="title custom">{{department}}</h2>
                   
                   </div>
-                  <div class="row comment">                    
+                  <div class="row-edit comment">                    
 					 {{{departmentDescription}}}
                   </div>
                   <script language="javascript">
@@ -148,34 +149,19 @@
                       });
                   </script>
                </div>
-            
+			  
+            </div>
+			
               <!-- Start : top container -->
+			 <div class="row">
 		      <div class="col-sm-10" id="top" >
 				<p></p>	
-				<!-- Start : filter container col-sm-offset-1-->
-				<div class="col-sm-2 ashrightboarder ashleftboarder ashtopboarder ashbottomboarder" id="filter" >
-				        <div class="row">
-						    <p></p>
-							<h5 class="display-4"> Refine Search...</h5>
-						</div>
-						{{#treatmentList}} <!--array name hold the filter values-->
-						<div class="row ashbottomboarder">
-                        <p></p>
-                        <div class="col-sm-7">{{procedureName}}</div>
-                        <div class="col-sm-1">
-                           <label class="label-switch switch-primary">
-                           <input type="checkbox" class="switch switch-bootstrap status" name="status" id="status" value="1" checked="checked">
-                           <span class="lable"></span>
-                           </label>	
-                        </div>
-                     </div>
-					 {{/treatmentList}} <!--array name hold the filter values-->
-		        </div>
-				<!-- End : filter container -->
+				
 				
 				<!--Start : content container  -->
 				{{#treatmentList}} <!--array name hold the filter values-->
-				<div class="col-sm-7 col-sm-offset-1 ashrightboarder ashleftboarder ashtopboarder ashbottomboarder"  id="content_{{procedureNameAttr}}" >
+			<div class="row">
+				<div class="col-sm-7 col-sm-offset-1 ashrightboarder ashleftboarder ashtopboarder ashbottomboarder"  id="content_{{procedureNameAttr}}" style="margin-left:16px;" >
 				    
 					<!--Start : Title of treatment  -->
 					<div class="col-sm-12" id="title_{{procedureNameAttr}}" >				       
@@ -260,11 +246,35 @@
 				<div class="col-sm-6">
                      <p>&nbsp; </p>
 				</div>
+			</div>
 				{{/treatmentList}} <!--array name hold the content values-->
 								
 		      </div>
+			   <!-- Start : filter container col-sm-offset-1-->
+			   <p></p>
+				<div class="col-sm-2 ashrightboarder ashleftboarder ashtopboarder ashbottomboarder" id="filter" >
+				        <div class="row">
+						    <p></p>
+							<h5 class="display-4"> Refine Search...</h5>
+						</div>
+						{{#treatmentList}} <!--array name hold the filter values-->
+						<div class="row ashbottomboarder">
+                        <p></p>
+                        <div class="col-sm-7">{{procedureName}}</div>
+                        <div class="col-sm-1">
+                           <label class="label-switch switch-primary">
+                           <input type="checkbox" class="switch switch-bootstrap status" name="status" id="status" value="1" checked="checked">
+                           <span class="lable"></span>
+                           </label>	
+                        </div>
+                     </div>
+					 {{/treatmentList}} <!--array name hold the filter values-->
+		        </div>
+				<!-- End : filter container -->
+			  </div>
 		      <!-- End : top container -->		 
 		   </div>
+		 
            <p></p>
             <div class="mb60"></div>
             <!-- margin -->
