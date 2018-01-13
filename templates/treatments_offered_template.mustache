@@ -1,4 +1,4 @@
-=<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
    <head>
       <!-- Global site tag (gtag.js) - Google Analytics added by libin -->
@@ -31,6 +31,7 @@
          })(window, document, 'script', 'dataLayer', 'GTM-KVPCCNV');
       </script>
       <!-- End Google Tag Manager -->
+      <!-- End Google Tag Manager -->
       <meta charset="utf-8">
       <!-- <meta name="description" content="Medinovita"> -->
       <!--[if IE]> 
@@ -45,12 +46,12 @@
       <META NAME="description" CONTENT="Planning a medical trip to India for affordable treatment?Medinovita connects you with best Doctors and super speciality hospitals in India.Medinovita also assists in travel,visa processing,local transport and Stay along with 24X7 care for patient and attendants.">
       <META NAME="keywords" CONTENT="doctors In India,destination India,health tour,Medical Facility In India,Healthcare tourism in india, Hospitals in India, health tour India,Wellness Tourism, India medical tourism, super speciality hospitals,super speciality hospitals in India, healthcare travel, Best Hospital in India, best hospital india, medical travel, health travel India, Best Doctors in India,Apollo Hospitals, indian health guru,low cost medical treatment in India,low cost medical treatment in Asia,India Healthcare Tourism,health travel India, Affordable treatment in India, Affordable treatment in Asian countries, healthcare tourism company india,Asian medical tour, Hospitals in India,cosmetic surgery in India, best healthcare tourism company,medical tourism India cost, Health Tourism in India,medical travel abroad, medical tourism overseas,medical travel overseas, health tourism,Medical Visa to India,clinics in India,Cheap medical facility,surgery in India,Ayurveda,Ayurveda India,Medinovita,kerala">
       <!-- Google Fonts -->
+      <!-- Google Fonts -->
       <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7COpen+Sans:300,300i,400,400i,600,600i,700,800" rel="stylesheet">
       <!-- Added for glyphicons -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.min.js"></script>
       <!-- Added for glyphicons -->
       <link rel="stylesheet" href="/assets/css/plugins.min.css">
       <link rel="stylesheet" href="/assets/css/settings.css">
@@ -65,52 +66,61 @@
       <link rel="icon" type="image/png" href="/assets/images/icons/favicon.png">
       <!-- Modernizr -->
       <script src="/assets/js/modernizr.js"></script>
-       <script async src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js'></script>  
+      <script async src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js'></script>
       <script src="/assets/customjs/chat.js"></script>
       <script src='https://www.google.com/recaptcha/api.js'></script>
       <!-- <script src="/assets/js/plugins.min.js"></script>   commented as glypicons doesnt work     --> 
       <!-- REVOLUTION JS FILES -->
-      <!--<script type="text/javascript" src="/assets/js/jquery.themepunch.tools.min.js"></script> -->
-      <!--<script type="text/javascript" src="/assets/js/jquery.themepunch.revolution.min.js"></script> -->
+      <script type="text/javascript" src="/assets/js/jquery.themepunch.tools.min.js"></script>
+      <script type="text/javascript" src="/assets/js/jquery.themepunch.revolution.min.js"></script>
       <script src="/assets/js/jquery-ui.min.js"></script>
-      <!-- boot JS strap file -->
-      <!-- main Js file -->
-      <script type="text/javascript" src="/assets/js/jquery.validate.min.js"></script>     
+      <!-- boot JS strap file -->      
+      <!-- SLIDER REVOLUTION 5.0 EXTENSIONS
+         (Load Extensions only on Local File Systems !
+         The following part can be removed on Server for On Demand Loading) -->
+      <script type="text/javascript" src="/assets/js/extensions/revolution.extension.actions.min.js"></script>
+      <script type="text/javascript" src="/assets/js/extensions/revolution.extension.carousel.min.js"></script>
+      <script type="text/javascript" src="/assets/js/extensions/revolution.extension.kenburn.min.js"></script>
+      <script type="text/javascript" src="/assets/js/extensions/revolution.extension.layeranimation.min.js"></script>
+      <script type="text/javascript" src="/assets/js/extensions/revolution.extension.migration.min.js"></script>
+      <script type="text/javascript" src="/assets/js/extensions/revolution.extension.navigation.min.js"></script>
+      <script type="text/javascript" src="/assets/js/extensions/revolution.extension.parallax.min.js"></script>
+      <script type="text/javascript" src="/assets/js/extensions/revolution.extension.slideanims.min.js"></script>
+      <script type="text/javascript" src="/assets/js/extensions/revolution.extension.video.min.js"></script>
       <!-- script for show more and show less -->	  
       <script type="text/javascript" src="/assets/js/pages/showmore.js"></script>
       <!-- script for show more and show less -->
-	  
-	  <script type="text/javascript">	  
-	    $( document ).ready(function() {
-		     <!-- adjust the left offset for content div -->
-		    var contentOffset=$("#content_{{firstProcedureName}}")
-			var leftOffset=contentOffset.offset();
-            $('div[id^="content_"]').offset({left:leftOffset.left});
-			
-			 <!-- adjust the left offset for contact div -->
-		    var contactOffset=$("#contact_{{firstProcedureName}}")
-			var leftcontactOffset=contactOffset.offset();
-            $('div[id^="contact_"]').offset({left:leftcontactOffset.left});
-        });
-		<!-- jquery to set the height of the contact div -->
-		(function($) {
-			$(window).bind("load", function() {
-				<!--working fine to set height -->
-				var initialHeight = $("#content_{{firstProcedureName}}").outerHeight( true ); <!--add 24 more for actual height in show less  -->	
-				$('div[id^="contact_"]').height((initialHeight-2) + 'px');	                		
-			})
-            
-			<!--onclick event on view more button -->
-			$(".morelink" ).bind( "click", function(e) {					                   
-				var txt = $(e.target).text();
-			});
-			<!--onclick event -->			
-		})(jQuery);
-	    
-	  </script>
-      	  		  
+      <script type="text/javascript">	  
+         $( document ).ready(function() {
+			  <!--Apply read more... -->
+			 $(".comment").shorten();
+			 $(".comment-small").shorten({showChars: 140});
+			 <!--Apply expand and collpase -->
+			 setExpandCollpaseAccordion();
+			 
+			 <!--Filter results using refine search -->	
+			 $('.switch-square').on('change', function (event, state) {          
+					  var state= $(this).is(':checked') 
+					  var id=$(this).attr('id') 			  
+					  filterProcedureListAndDisplay(state,id);					
+			 });
+			 <!-- set initial height and width	-->	
+			 setInitialHeightForContainers()
+			 
+         });
+         <!-- jquery to set the height of the contact div -->
+         (function($) {
+         $(window).bind("load", function() {		
+         <!-- set initial height and width	-->		
+                 setInitialHeightForContainers();				
+         })            		
+         <!--onclick event -->
+         
+         })(jQuery);
+         
+      </script>
    </head>
-   <body>      
+   <body>
       <!-- Google Tag Manager (noscript) added by libin-->
       <noscript>
          <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVPCCNV" height="0" width="0" style="display:none;visibility:hidden"></iframe>
@@ -118,172 +128,146 @@
       <!-- End Google Tag Manager (noscript) -->
       <div id="wrapper" >
          <div class="medinovitaHeader"></div>
-      <div id="wrapper">
-         <div class="contact">
-             <div class="page-header larger larger-top  custom " style="background-image:url(//res.cloudinary.com/ddglp4e0g/image/upload/v1510441826/novita/header_oucn1m.jpg)">
-               <div class="container" style="padding-left:30px;">
-                  <h1>Treatments Offered</h1>
-                  <ol class="breadcrumb">
-                     <li><a href="/index.html">Home</a></li>
-                     <li class="active">Treatments Offered</li>
-                     <li class="active">{{department}}</li>
-                  </ol>
-               </div>
-               <!-- End .container -->
-            </div>
-            <!--Start :  Code for department description -->
-             <div class="container" style="padding-left:30px;margin-top:20px">
-			 <div class="row">
-               <div class="col-sm-8">
-                  <div class="row-edit">
-                     <h2 class="title custom">{{department}}</h2>
-                  
+         <div id="wrapper">
+            <div class="contact">
+               <div class="page-header larger larger-top  custom " style="background-image:url(/assets/images/header.jpg)">
+                  <div class="container" style="padding-left:30px;">
+                     <h1>Treatments Offered</h1>
+                     <ol class="breadcrumb">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Treatments Offered</li>
+                        <li class="active">{{department}}</li>
+                     </ol>
                   </div>
-                  <div class="row-edit comment">                    
-					 {{{departmentDescription}}}
-                  </div>
-                  <script language="javascript">
-                     $(document).ready(function() {                  	
-                     	$(".comment").shorten();                  	
-                     	$(".comment-small").shorten({showChars: 140});                  
-                      });
-                  </script>
+                  <!-- End .container -->
                </div>
-			  
-            </div>
-			
-              <!-- Start : top container -->
-			 <div class="row">
-		      <div class="col-sm-10" id="top" >
-				<p></p>	
-				
-				
-				<!--Start : content container  -->
-				{{#treatmentList}} <!--array name hold the filter values-->
-			<div class="row">
-				<div class="col-sm-7 col-sm-offset-1 ashrightboarder ashleftboarder ashtopboarder ashbottomboarder"  id="content_{{procedureNameAttr}}" style="margin-left:16px;" >
-				    
-					<!--Start : Title of treatment  -->
-					<div class="col-sm-12" id="title_{{procedureNameAttr}}" >				       
-					   <p></p>
-                       <h4 class="text-center text-primary">{{procedureName}}</h4>
-				  
-					</div>
-					<!--End : Title of treatment  -->
-					
-					<!--Start : image container  -->
-					<div class="col-sm-1" id="image_{{procedureNameAttr}}">
-					<!--Resolution shud be 272 * 185 else image will overflow  -->
-				          <img src="{{{procedureImagepath}}}"  class="img-fluid" alt="Responsive image">                         				  
-					</div>
-					<!--End : image container  -->
-					
-					<!--Start : cost container  -->
-					<div class="col-sm-5 col-sm-offset-6" id="cost_{{procedureNameAttr}}" >
-					
-				         <div class="row ashbackgroundwithboarder">
-                           <Span >Hospitalization :</Span>
-                           <label  class="text-warning">{{maxHospitalization}} days </label>
-                        </div>
-                        <div class="row ashbackgroundwithboarder">
-                           <Span>Healing Time : </Span>
-                           <label  class="text-warning">&nbsp; {{healingTimeInDays}} days </label>
-                        </div>
-                        <div class="row ashbackgroundwithboarder">
-                           <Span>Cost of procedure :  </Span>
-                           <label  class="text-warning">{{procedureAvarageCost}} </label>						  
-                        </div>						
-						
-						<div class="panel panel-default">  				
-							<div class="panel-heading">
-							   <h4 class="panel-title">
-								  <a data-toggle="collapse" data-parent="#accordion" href="#{{{procedureNameAttr}}}"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;View Hospitals</a>
-							   </h4>
-							</div>
-							
-							<div id="{{{procedureNameAttr}}}" class="panel-collapse collapse">
-							   <div class="panel-body">
-							    {{#hospitalList}}
-								  <div class="row">
-									 <div class="col-md-1 col-sm-offset-1">
-										<a href="/hospitals/{{hospitalName}}" target="_blank">{{hospitalName}},{{city}},{{country}}</a>										
-									 </div>									
-								  </div>								  
-								  <p></p>
-								{{/hospitalList}}  
-								 
-								  <!--End : row  --> 
-							   </div>
-							  <!--End : panel-body  --> 
-							</div>
-							<!--End : panel-collapse collapse  -->
-						</div>	                 						
-						<!--End : Hospital offering treatment  -->
-						<!--************************************************-->
-						
-					</div>
-					<!--End : cost container  -->
-					
-					<!--Start : description container  -->
-					<div class="col-sm-12" id="description_{{{procedureNameAttr}}}" >					
-				         <div class="row comment">					 
-                              {{{treatmentActualDescription}}}
+               <!--Start :  Code for department description -->
+               <div class="container">
+                  <!-- Start : top container -->
+                  <div class="col-sm-10" id="top" >
+                     <div class="row" id="top_desc" >
+                        <div class="col-sm-8">
+                           <div class="row">
+                              <h2>{{department}}</h2>
                            </div>
-					</div>
-				    <!--End : description container  -->				 
-		        </div>
-			    	<!-- Start : contact container -->
-				<div class="col-sm-2 ashrightboarder ashtopboarder ashbottomboarder" id="contact_{{{procedureNameAttr}}}" >
-				    <p><br/><br/><br/><br/></p>
-				    <button type="button" class="btn btn-primary" style="width:100%;" onclick="location.href = '/contact.html';">
-					<span class="glyphicon glyphicon-envelope"></span>&nbsp; &nbsp; Contact Us
-					</button>
-					<p></p>
-					<button type="button" class="btn btn-primary" style="width:100%;" onclick="location.href = '/cost.html';">
-					<span class="glyphicon glyphicon-usd"></span>&nbsp; &nbsp; Get Quote
-					</button>					
-		        </div>
-				<div class="col-sm-6">
-                     <p>&nbsp; </p>
-				</div>
-			</div>
-				{{/treatmentList}} <!--array name hold the content values-->
-								
-		      </div>
-			   <!-- Start : filter container col-sm-offset-1-->
-			   <p></p>
-				<div class="col-sm-2 ashrightboarder ashleftboarder ashtopboarder ashbottomboarder" id="filter" >
-				        <div class="row">
-						    <p></p>
-							<h5 class="display-4"> Refine Search...</h5>
-						</div>
-						{{#treatmentList}} <!--array name hold the filter values-->
-						<div class="row ashbottomboarder">
-                        <p></p>
-                        <div class="col-sm-7">{{procedureName}}</div>
-                        <div class="col-sm-1">
-                           <label class="label-switch switch-primary">
-                           <input type="checkbox" class="switch switch-bootstrap status" name="status" id="status" value="1" checked="checked">
-                           <span class="lable"></span>
-                           </label>	
+                           <div class="row comment">                   				 
+                              {{{departmentDescription}}}
+                           </div>
                         </div>
                      </div>
-					 {{/treatmentList}} <!--array name hold the filter values-->
-		        </div>
-				<!-- End : filter container -->
-			  </div>
-		      <!-- End : top container -->		 
-		   </div>
-		 
-           <p></p>
-            <div class="mb60"></div>
-            <!-- margin -->
+                     <p></p>
+                     <form method="post" action="/treatmentsoffered/Gynic" id="xy123">
+                        <!-- Start : filter container col-sm-offset-1-->
+                        <div class="col-sm-2 ashrightboarder ashleftboarder ashtopboarder ashbottomboarder" id="filter" >
+                           <div class="row">
+                              <p></p>
+                              <h5 class="display-4"> Refine Search...</h5>
+                           </div>
+                           {{#treatmentList}} <!--array name hold the filter values-->
+                           <div class="row ashbottomboarder">
+                              <p></p>
+                              <div class="col-sm-7">{{procedureName}}</div>
+                              <div class="col-sm-1">
+                                 <label class="label-switch switch-primary">
+                                 <input type="checkbox" class="switch-square switch-bootstrap status" name="chk_{{procedureNameAttr}}" id="{{procedureNameAttr}}" value="1" checked="checked">
+                                 <span class="lable"></span>
+                                 </label>	
+                              </div>
+                           </div>
+                           {{/treatmentList}} <!--array name hold the filter values-->
+                        </div>
+                     </form>
+                     <!-- End : filter container -->
+                     <!--Start : content container  -->
+                     {{#treatmentList}} <!--array name hold the filter values-->
+                     <div class="col-sm-7 col-sm-offset-1 ashrightboarder ashleftboarder ashtopboarder ashbottomboarder"  id="content_{{procedureNameAttr}}" >
+                        <!--Start : Title of treatment  -->
+                        <div class="col-sm-12" id="title_{{procedureNameAttr}}" >
+                           <p></p>
+                           <h4 class="text-center text-primary">{{procedureName}}</h4>
+                        </div>
+                        <!--End : Title of treatment  -->
+                        <!--Start : image container  -->
+                        <div class="col-sm-1" id="image_{{procedureNameAttr}}">
+                           <!--Resolution shud be 272 * 185 else image will overflow  -->
+                           <img src="{{{procedureImagepath}}}"  class="img-fluid" alt="Responsive image">                         				  
+                        </div>
+                        <!--End : image container  -->
+                        <!--Start : cost container  -->
+                        <div class="col-sm-5 col-sm-offset-6" id="cost_{{procedureNameAttr}}" >
+                           <div class="row ashbackgroundwithboarder">
+                              <Span >Hospitalization :</Span>
+                              <label  class="text-warning">{{maxHospitalization}} days </label>
+                           </div>
+                           <div class="row ashbackgroundwithboarder">
+                              <Span>Healing Time : </Span>
+                              <label  class="text-warning">&nbsp; {{healingTimeInDays}} days </label>
+                           </div>
+                           <div class="row ashbackgroundwithboarder">
+                              <Span>Cost of procedure :  </Span>
+                              <label  class="text-warning">{{procedureAvarageCost}} </label>						  
+                           </div>
+                           <div class="panel panel-default">
+                              <div class="panel-heading">
+                                 <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#acco_{{{procedureNameAttr}}}"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;View Hospitals</a>
+                                 </h4>
+                              </div>
+                              <div id="acco_{{{procedureNameAttr}}}" class="panel-collapse collapse">
+                                 <div class="panel-body">
+                                    {{#hospitalList}}
+                                    <div class="row">
+                                       <div class="col-md-1 col-sm-offset-1">
+                                          <a href="/hospitals/{{hospitalName}}" target="_blank">{{hospitalName}},{{city}},{{country}}</a>										
+                                       </div>
+                                    </div>
+                                    <p></p>
+                                    {{/hospitalList}}  
+                                    <!--End : row  --> 
+                                 </div>
+                                 <!--End : panel-body  --> 
+                              </div>
+                              <!--End : panel-collapse collapse  -->
+                           </div>
+                           <!--End : Hospital offering treatment  -->
+                           <!--************************************************-->
+                        </div>
+                        <!--End : cost container  -->
+                        <!--Start : description container  -->
+                        <div class="col-sm-12" id="description_{{{procedureNameAttr}}}" >
+                           <div class="row comment">					 
+                              {{{treatmentActualDescription}}}
+                           </div>
+                        </div>
+                        <!--End : description container  -->				 
+                     </div>
+                     <!-- Start : contact container -->
+                     <div class="col-sm-2 ashrightboarder ashtopboarder ashbottomboarder" id="contact_{{{procedureNameAttr}}}" >
+                        <p><br/><br/><br/><br/></p>
+                        <button type="button" class="btn btn-primary" style="width:100%;" onclick="location.href = '/contact.html';">
+                        <span class="glyphicon glyphicon-envelope"></span>&nbsp; &nbsp; Contact Us
+                        </button>
+                        <p></p>
+                        <button type="button" class="btn btn-primary" style="width:100%;" onclick="location.href = '/cost.html';">
+                        <span class="glyphicon glyphicon-usd"></span>&nbsp; &nbsp; Get Quote
+                        </button>					
+                     </div>
+                     <div class="col-sm-6" id="space_{{procedureNameAttr}}">
+                        <p>&nbsp; </p>
+                     </div>
+                     {{/treatmentList}} <!--array name hold the content values-->
+                  </div>
+                  <!-- End : top container -->		 
+               </div>
+               <p></p>
+               <div class="mb60"></div>
+               <!-- margin -->
+            </div>
+            <!-- End .main -->
          </div>
-         <!-- End .main -->
+         <!-- End #wrapper -->
+         <div class="medinovitaFooter"></div>
       </div>
-      <!-- End #wrapper -->
-      <div class="medinovitaFooter"></div>
-      </div> 
       <!-- End #wrapper -->
       <div class="medinovitaModals"></div>
    </body>
