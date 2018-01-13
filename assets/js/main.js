@@ -2665,3 +2665,67 @@ function hospitalPageCallback(treatmentName,city){
 	function openSubmitEnquiry(){
 	$("#modal-container-SubmitEnquiry").modal("show");
 	}
+
+//This function is used to set initial height and left padding in treatments offered page	
+function setInitialHeightForContainers() {
+        //get and set height for all content and contact divs
+        var initialHeight = $('[id^="content_"]').outerHeight( true ); 
+		$('[id^="contact_"]').height((initialHeight-2) + 'px');	
+        //get and set left offset for all content and contact divs
+        var p = $('[id^="content_"]').filter(':visible:first');			   
+		var contentleftOffset = p.offset();
+		var p1 = $('[id^="contact_"]').filter(':visible:first');
+		var contactleftOffset = p1.offset();
+		var filterleftOffset = $('#filter').offset();
+        //set left alignment for all content and contact divs
+		$('[id^="content_"]').offset({left: contentleftOffset.left});	
+		$('[id^="contact_"]').offset({left: contactleftOffset.left});
+        $('#top_desc').offset({left: filterleftOffset.left});		
+	
+}
+//This function is used to filter the treatments based on user selection
+function filterProcedureListAndDisplay(isChecked,id){
+	    //get the offset length of first visible content and contact divs in the screen 
+		var p = $('[id^="content_"]').filter(':visible:first');	        	
+		var contentleftOffset = p.offset();
+		 //reload the page if all elements are de selected by user
+		if(contentleftOffset==null){			
+		   window.location = window.location.href;
+		   return
+        }	
+		var p1 = $('[id^="contact_"]').filter(':visible:first');
+		var contactleftOffset = p1.offset();
+		//hide elements
+		if(!isChecked){
+			$('#content_'+ id).hide();
+			$('#contact_'+ id).hide();
+			$('#space_' + id).hide();
+		}else{
+			//Show hidden elements
+			var isVisible = $('#content_'+ id).is(':visible');
+			if(!isVisible){
+				$('#content_'+ id).show();
+				$('#contact_'+ id).show();
+				$('#space_' + id).show();
+			}
+		}
+		//set left alignment for all content and contact divs
+		$('[id^="content_"]').offset({left: contentleftOffset.left});	
+		$('[id^="contact_"]').offset({left: contactleftOffset.left});	
+}
+//set expand and collapse bootstrap  Accordion
+function setExpandCollpaseAccordion(){
+	
+	 // Add minus icon for collapse element which is open by default
+	 $(".collapse.in").each(function(){
+		$(this).siblings(".panel-heading").find(".glyphicon").addClass("glyphicon-minus").removeClass("glyphicon-plus");
+	 });
+	 
+	 // Toggle plus minus icon on show hide of collapse element
+	 $(".collapse").on('show.bs.collapse', function(){
+		$(this).parent().find(".glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+	 }).on('hide.bs.collapse', function(){
+		$(this).parent().find(".glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+	 });
+	
+}
