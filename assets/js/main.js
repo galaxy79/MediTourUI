@@ -14,44 +14,9 @@ var GLOBAL_VARIABLES = {
 	"Currency": "dollar"
 }
 var countryCodes=[];
-$.ajax({
-	url: serverName+"api/v1/get/countrylist/meditrip",
-	type: 'GET',
-	headers: {
-		"Content-Type": "application/json",
-		"Authorization": "Basic "+ basicKey,
-		"x-access-token": xAccessToken
 
-	},
-	beforeSend: function (xhr) {
-		xhr.setRequestHeader("Authorization", "Basic " + basicKey);
-	},
-	success: function (response) {
-		response.result[0].countrylist.forEach(function(item,index){
-			var locObj={};
-			locObj.name=item.country;
-			locObj.dial_code=item.dial_code;
-			locObj.code=item.code;
-			countryCodes.push(locObj)
-		})
-		$('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
-			$('.modal .modal-body').css('overflow-y', 'auto');
-		   $('.modal .modal-body').css('max-height', $(window).height() *0.9);
-   
-		   })
-		   countryCodes.forEach(function(value,index){
-				$('#inputSubmitEnquiryISDCode').append($('<option>', {
-			   value: value.dial_code,
-			   text : value.code + "(" + value.dial_code + ")" 
-		   }));
-	   });
-	},
-	error: function (exception) {
-		console.log(exception);
-	}
-});
 
- 
+
 var officeAddress = "Kakkanad PO,Kochi, Kerala,India";
 
 var whyIndia = "Because India.";
@@ -224,7 +189,42 @@ $(".medinovitaModals").load("/assets/pages/modals.html",function(){
 
 		$('#modal-container-SubmitEnquiry').modal('toggle');
 	})
+$.ajax({
+	url: serverName+"api/v1/get/countrylist/meditrip",
+	type: 'GET',
+	headers: {
+		"Content-Type": "application/json",
+		"Authorization": "Basic "+ basicKey,
+		"x-access-token": xAccessToken
 
+	},
+	beforeSend: function (xhr) {
+		xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+	},
+	success: function (response) {
+		response.result[0].countrylist.forEach(function(item,index){
+			var locObj={};
+			locObj.name=item.country;
+			locObj.dial_code=item.dial_code;
+			locObj.code=item.code;
+			countryCodes.push(locObj)
+		})
+		$('#modal-container-SubmitEnquiry').on('shown.bs.modal',function(){
+			$('.modal .modal-body').css('overflow-y', 'auto');
+		   $('.modal .modal-body').css('max-height', $(window).height() *0.9);
+
+		   })
+		   countryCodes.forEach(function(value,index){
+				$('#inputSubmitEnquiryISDCode').append($('<option>', {
+			   value: value.dial_code,
+			   text : value.code + "(" + value.dial_code + ")"
+		   }));
+	   });
+	},
+	error: function (exception) {
+		console.log(exception);
+	}
+});
 
 
 	//Fetch search Treatments list
@@ -2666,33 +2666,33 @@ function hospitalPageCallback(treatmentName,city){
 	$("#modal-container-SubmitEnquiry").modal("show");
 	}
 
-//This function is used to set initial height and left padding in treatments offered page	
+//This function is used to set initial height and left padding in treatments offered page
 function setInitialHeightForContainers() {
         //get and set height for all content and contact divs
-        var initialHeight = $('[id^="content_"]').outerHeight( true ); 
-		$('[id^="contact_"]').height((initialHeight-2) + 'px');	
+        var initialHeight = $('[id^="content_"]').outerHeight( true );
+		$('[id^="contact_"]').height((initialHeight-2) + 'px');
         //get and set left offset for all content and contact divs
-        var p = $('[id^="content_"]').filter(':visible:first');			   
+        var p = $('[id^="content_"]').filter(':visible:first');
 		var contentleftOffset = p.offset();
 		var p1 = $('[id^="contact_"]').filter(':visible:first');
 		var contactleftOffset = p1.offset();
 		var filterleftOffset = $('#filter').offset();
         //set left alignment for all content and contact divs
-		$('[id^="content_"]').offset({left: contentleftOffset.left});	
+		$('[id^="content_"]').offset({left: contentleftOffset.left});
 		$('[id^="contact_"]').offset({left: contactleftOffset.left});
-        $('#top_desc').offset({left: filterleftOffset.left});		
-	
+        $('#top_desc').offset({left: filterleftOffset.left});
+
 }
 //This function is used to filter the treatments based on user selection
 function filterProcedureListAndDisplay(isChecked,id){
-	    //get the offset length of first visible content and contact divs in the screen 
-		var p = $('[id^="content_"]').filter(':visible:first');	        	
+	    //get the offset length of first visible content and contact divs in the screen
+		var p = $('[id^="content_"]').filter(':visible:first');
 		var contentleftOffset = p.offset();
 		 //reload the page if all elements are de selected by user
-		if(contentleftOffset==null){			
+		if(contentleftOffset==null){
 		   window.location = window.location.href;
 		   return
-        }	
+        }
 		var p1 = $('[id^="contact_"]').filter(':visible:first');
 		var contactleftOffset = p1.offset();
 		//hide elements
@@ -2710,22 +2710,22 @@ function filterProcedureListAndDisplay(isChecked,id){
 			}
 		}
 		//set left alignment for all content and contact divs
-		$('[id^="content_"]').offset({left: contentleftOffset.left});	
-		$('[id^="contact_"]').offset({left: contactleftOffset.left});	
+		$('[id^="content_"]').offset({left: contentleftOffset.left});
+		$('[id^="contact_"]').offset({left: contactleftOffset.left});
 }
 //set expand and collapse bootstrap  Accordion
 function setExpandCollpaseAccordion(){
-	
+
 	 // Add minus icon for collapse element which is open by default
 	 $(".collapse.in").each(function(){
 		$(this).siblings(".panel-heading").find(".glyphicon").addClass("glyphicon-minus").removeClass("glyphicon-plus");
 	 });
-	 
+
 	 // Toggle plus minus icon on show hide of collapse element
 	 $(".collapse").on('show.bs.collapse', function(){
 		$(this).parent().find(".glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
 	 }).on('hide.bs.collapse', function(){
 		$(this).parent().find(".glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
 	 });
-	
+
 }
