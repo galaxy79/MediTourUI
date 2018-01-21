@@ -180,13 +180,14 @@ $(".medinovitaModals").load("/assets/pages/modals.html",function(){
 		attachment:"N",
 		attachmentName:"null"}),
 			success: function (response) {
-				alert("Thanks for contacting us, we will get back to you soon")
+				alert("Thank you for contacting us, we will get back to you soon")
 			},
 			error: function (exception) {
 				console.log(exception)
 			}
 		});
-
+		document.getElementById('captcha').innerHTML=""
+		document.getElementById("submitEnquiryForm").reset();
 		$('#modal-container-SubmitEnquiry').modal('toggle');
 	})
 $.ajax({
