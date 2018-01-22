@@ -81,6 +81,16 @@ var whyIndia = "Because India.";
 			document.location.href = '/medical-visa-to-india.html';
 		});
 
+		//get quote
+		$('.responsiveGetQuote').on('click', function(){
+			var userInput = $('#getQuoteTreatment').val();
+			console.log("userIn ", userInput);
+			var modifiedUserInput = userInput.replace(/\s+/g, '-').toLowerCase();
+			console.log("mod " + modifiedUserInput)
+			location.href = serverName+ "search/"+modifiedUserInput;
+
+		})
+
 		$('#ourServicesPageMenu').on('click', function () {
 			document.location.href = '/ourservices.html';
 		});
@@ -252,8 +262,9 @@ $.ajax({
 			treatmentList.forEach(function (item, index) {
 				var option = document.createElement("option")
 				option.text = item;
-				option.value = item.substr(0, item.length - 10).trim();
+				option.value = item.replace(/\s+/g, '-').toLowerCase();
 				selectBox.add(option);
+				//console.log(option);
 			});
 
 		},
@@ -2141,10 +2152,10 @@ $('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
 			// 	optionList.add( new Option(option.text, option.value ) )
 			// });
 
-$('.responsiveGetQuote').on('click',function(){
-	document.location.href="/SearchTreatment.html";
-	setCookie("Search-Treatment",$('#getQuoteTreatment').val(),1)
-});
+// $('.responsiveGetQuote').on('click',function(){
+// 	document.location.href="/SearchTreatment.html";
+// 	setCookie("Search-Treatment",$('#getQuoteTreatment').val(),1)
+// });
 
 }
 

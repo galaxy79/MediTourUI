@@ -7701,9 +7701,9 @@ display: none !important;
    /* .responsiveSearchTreatment {
      width: 75%!important;
    } */
-  .responsiveGetQuote{
+  /* .responsiveGetQuote{
        margin-top: -50px;
-  }
+  } */
 
 }
     @media (max-width:541px){
@@ -10388,7 +10388,7 @@ display: none !important;
 .product .product-price-container .old-price {
   color: #0a0909;
   font-size: 13px;
-  
+
 }
 
 .product .product-price-container span {
