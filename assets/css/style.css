@@ -4516,7 +4516,7 @@ display: none !important;
 }
 
 .header-info-boxes .header-info-box {
-  display: inline-block;
+  /* display: inline-block; */
   position: relative;
   padding-left: 40px;
   font-size: 10px;
@@ -5394,13 +5394,13 @@ display: none !important;
   }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+/* @media (min-width: 768px) and (max-width: 991px) {
   .header.header2 .navbar-collapse {
     display: block;
     float: left;
     width: 100%;
   }
-}
+} */
 
 .header.header2 .dropdown.header-dropdown .dropdown-menu {
   border-color: #f0f0f6;
@@ -14501,4 +14501,41 @@ div.margin20{
     margin-top: 6px;
 
   }
+}
+
+
+/*header.html */
+
+@media (min-width: 768px) and (max-width: 991px){
+  #holidayPageMenu, #contactPageMenu{
+    display: none;
+  }
+}
+@media (max-width: 880px){
+  .customerCare{
+    display: none;
+  }
+}
+
+@media (min-width: 881px){
+  .customerCare{
+    display: inline-block;
+  }
+}
+
+@media (max-width: 744px){
+  .whatsapp{
+    display: none;
+  }
+}
+@media (min-width: 745px){
+  .whatsapp{
+    display: inline-block;
+  }
+}
+.hot-menu{
+  display: inline-block;
+}
+.enquiry{
+  display: inline-block;
 }
