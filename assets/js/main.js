@@ -8,7 +8,7 @@
 var basicKey = "bGliaW46bGliaW4=";
 var xAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiVG9rZW5Ub0F1dGhlbnRpY2F0ZU1lZGlub3ZpdGFVc2VyIiwiaWF0IjoxNTA4MDQ0OTMwfQ.cZ3pCte1guE8KQkjd1KfY_bLJ-gOatJm2xlwyiLGAl4";
 var serverName = "https://www.medinovita.in/";
-//var serverName = "http://localhost:1337/";
+// var serverName = "http://localhost:3000/";
 var GLOBAL_VARIABLES = {
 	"Language": "en",
 	"Currency": "dollar"
@@ -43,7 +43,6 @@ var whyIndia = "Because India.";
     }(this));
   };
   // END Function replace Native Alert
-
 (function ($) {
 	"use strict";
 	$(".medinovitaHeader").load("/assets/pages/header.html",function(){				
@@ -193,13 +192,14 @@ $(".medinovitaModals").load("/assets/pages/modals.html",function(){
 		attachment:"N",
 		attachmentName:"null"}),
 			success: function (response) {
-				alert("Thanks for contacting us, we will get back to you soon")
+				alert("Thank you for contacting us, we will get back to you soon")
 			},
 			error: function (exception) {
 				console.log(exception)
 			}
 		});
-
+		document.getElementById('captcha').innerHTML=""
+		document.getElementById("submitEnquiryForm").reset();
 		$('#modal-container-SubmitEnquiry').modal('toggle');
 	})
 $.ajax({
@@ -264,8 +264,9 @@ $.ajax({
 			treatmentList.forEach(function (item, index) {
 				var option = document.createElement("option")
 				option.text = item;
-				option.value = item.substr(0, item.length - 10).trim();
+				option.value = item.replace(/\s+/g, '-').toLowerCase();
 				selectBox.add(option);
+				//console.log(option);
 			});
 
 		},
@@ -2109,11 +2110,20 @@ title:"Laboratory"
 		},
 		success: function (response) {
 
-			var featuredTreatmentsHtmlString="";
+			var featuredTreatmentsHtmlStringOne="";
+			var featuredTreatmentsHtmlStringTwo="";
 response.forEach(function(item,index){
-featuredTreatmentsHtmlString+=' <div class="col-sm-4"><div class="text-block hover-bg text-center" style="background-image:url('+ item.img+')"><h3 class="block-title"><a href="#">'+item.title+'</a></h3><p>'+item.shortContent +'</p><a href='+ item.pagePath+' class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a></div></div>'
+	if(index <= 2){
+		featuredTreatmentsHtmlStringOne+=' <div class="col-sm-4"><div class="text-block hover-bg text-center" style="background-image:url('+ item.img+')"><h3 class="block-title"><a href="#">'+item.title+'</a></h3><p>'+item.shortContent +'</p><a href='+ item.pagePath+' class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a></div></div>'
+	}
+
+else if(index > 2){
+	featuredTreatmentsHtmlStringTwo+=' <div class="col-sm-4"><div class="text-block hover-bg text-center" style="background-image:url('+ item.img+')"><h3 class="block-title"><a href="#">'+item.title+'</a></h3><p>'+item.shortContent +'</p><a href='+ item.pagePath+' class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a></div></div>'
+}
+
 });
-$('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
+$('#featuredTreatmentsSection1').html(featuredTreatmentsHtmlStringOne);
+$('#featuredTreatmentsSection2').html(featuredTreatmentsHtmlStringTwo);
 		},
 		error: function (exception) {
 			console.log(exception);
@@ -2153,10 +2163,10 @@ $('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
 			// 	optionList.add( new Option(option.text, option.value ) )
 			// });
 
-$('.responsiveGetQuote').on('click',function(){
-	document.location.href="/SearchTreatment.html";
-	setCookie("Search-Treatment",$('#getQuoteTreatment').val(),1)
-});
+// $('.responsiveGetQuote').on('click',function(){
+// 	document.location.href="/SearchTreatment.html";
+// 	setCookie("Search-Treatment",$('#getQuoteTreatment').val(),1)
+// });
 
 }
 
