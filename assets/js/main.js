@@ -7,8 +7,8 @@
 
 var basicKey = "bGliaW46bGliaW4=";
 var xAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiVG9rZW5Ub0F1dGhlbnRpY2F0ZU1lZGlub3ZpdGFVc2VyIiwiaWF0IjoxNTA4MDQ0OTMwfQ.cZ3pCte1guE8KQkjd1KfY_bLJ-gOatJm2xlwyiLGAl4";
-var serverName = "https://www.medinovita.in/";
-// var serverName = "http://localhost:3000/";
+//var serverName = "https://www.medinovita.in/";
+var serverName = "http://localhost:1337/";
 var GLOBAL_VARIABLES = {
 	"Language": "en",
 	"Currency": "dollar"
@@ -44,13 +44,33 @@ var whyIndia = "Because India.";
   };
   // END Function replace Native Alert
 
-
-
-
-
 (function ($) {
 	"use strict";
-	$(".medinovitaHeader").load("/assets/pages/header.html",function(){
+	$(".medinovitaHeader").load("/assets/pages/header.html",function(){				
+		$.ajax({
+				url: serverName+"api/v1/get/distinctdepartments/meditrip",
+				type: 'GET',
+				headers: {
+					"Content-Type": "application/json",
+					"Authorization": "Basic "+ basicKey,
+					"x-access-token": xAccessToken
+
+				},
+				beforeSend: function (xhr) {					
+					xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+				},
+				success: function (response) {	
+					var display = JSON.parse(JSON.stringify(response));					
+					$.each(display, function(i) {
+						var value=display[i].department						
+						var li= $('<li class="dropdown"><a onclick=window.location=' + "'/treatmentsoffered/" + value + "'" + '  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">' + value + '</a></li>')
+					    $('#treatmentsOfferedUL').append(li);
+					});									
+				},
+				error: function (exception) {
+					console.log(exception);
+				}
+		})
 		$('#costPageMenu').on('click',function(){
 			document.location.href='/cost.html';
 		})
@@ -66,30 +86,13 @@ var whyIndia = "Because India.";
 		$('#homeMenu').on('click',function(){
 			document.location.href = '/index.html';
 			//homepageCallback();
-		})
-		$('#treatmentsOfferedUL li a').on('click', function (e) {
-			e.preventDefault();
-			var id = $(this).attr('id');
-
-			setCookie("treatmentPage", id,1);
-			document.location.href = '/treatmentsOffered.html';
-		})
-
+		})		
+		
 		$('#medicalVisaPageMenu').on('click', function () {
 
 
 			document.location.href = '/medical-visa-to-india.html';
 		});
-
-		//get quote
-		$('.responsiveGetQuote').on('click', function(){
-			var userInput = $('#getQuoteTreatment').val();
-			console.log("userIn ", userInput);
-			var modifiedUserInput = userInput.replace(/\s+/g, '-').toLowerCase();
-			console.log("mod " + modifiedUserInput)
-			location.href = serverName+ "search/"+modifiedUserInput;
-
-		})
 
 		$('#ourServicesPageMenu').on('click', function () {
 			document.location.href = '/ourservices.html';
@@ -190,14 +193,13 @@ $(".medinovitaModals").load("/assets/pages/modals.html",function(){
 		attachment:"N",
 		attachmentName:"null"}),
 			success: function (response) {
-				alert("Thank you for contacting us, we will get back to you soon")
+				alert("Thanks for contacting us, we will get back to you soon")
 			},
 			error: function (exception) {
 				console.log(exception)
 			}
 		});
-		document.getElementById('captcha').innerHTML=""
-		document.getElementById("submitEnquiryForm").reset();
+
 		$('#modal-container-SubmitEnquiry').modal('toggle');
 	})
 $.ajax({
@@ -262,9 +264,8 @@ $.ajax({
 			treatmentList.forEach(function (item, index) {
 				var option = document.createElement("option")
 				option.text = item;
-				option.value = item.replace(/\s+/g, '-').toLowerCase();
+				option.value = item.substr(0, item.length - 10).trim();
 				selectBox.add(option);
-				//console.log(option);
 			});
 
 		},
@@ -2108,20 +2109,11 @@ title:"Laboratory"
 		},
 		success: function (response) {
 
-			var featuredTreatmentsHtmlStringOne="";
-			var featuredTreatmentsHtmlStringTwo="";
+			var featuredTreatmentsHtmlString="";
 response.forEach(function(item,index){
-	if(index <= 2){
-		featuredTreatmentsHtmlStringOne+=' <div class="col-sm-4"><div class="text-block hover-bg text-center" style="background-image:url('+ item.img+')"><h3 class="block-title"><a href="#">'+item.title+'</a></h3><p>'+item.shortContent +'</p><a href='+ item.pagePath+' class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a></div></div>'
-	}
-
-else if(index > 2){
-	featuredTreatmentsHtmlStringTwo+=' <div class="col-sm-4"><div class="text-block hover-bg text-center" style="background-image:url('+ item.img+')"><h3 class="block-title"><a href="#">'+item.title+'</a></h3><p>'+item.shortContent +'</p><a href='+ item.pagePath+' class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a></div></div>'
-}
-
+featuredTreatmentsHtmlString+=' <div class="col-sm-4"><div class="text-block hover-bg text-center" style="background-image:url('+ item.img+')"><h3 class="block-title"><a href="#">'+item.title+'</a></h3><p>'+item.shortContent +'</p><a href='+ item.pagePath+' class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a></div></div>'
 });
-$('#featuredTreatmentsSection1').html(featuredTreatmentsHtmlStringOne);
-$('#featuredTreatmentsSection2').html(featuredTreatmentsHtmlStringTwo);
+$('#featuredTreatmentsSection').html(featuredTreatmentsHtmlString);
 		},
 		error: function (exception) {
 			console.log(exception);
@@ -2161,10 +2153,10 @@ $('#featuredTreatmentsSection2').html(featuredTreatmentsHtmlStringTwo);
 			// 	optionList.add( new Option(option.text, option.value ) )
 			// });
 
-// $('.responsiveGetQuote').on('click',function(){
-// 	document.location.href="/SearchTreatment.html";
-// 	setCookie("Search-Treatment",$('#getQuoteTreatment').val(),1)
-// });
+$('.responsiveGetQuote').on('click',function(){
+	document.location.href="/SearchTreatment.html";
+	setCookie("Search-Treatment",$('#getQuoteTreatment').val(),1)
+});
 
 }
 
