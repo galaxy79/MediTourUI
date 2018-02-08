@@ -62,8 +62,11 @@
          <script src="https://code.jquery.com/jquery-3.1.1.js"></script>	 
          <script src="/assets/js/pages/showmore.js"></script>
 		 <script src="/assets/customjs/chat.js"></script>
+		 <script src="/assets/js/pages/pagination.js"></script>
+		 <script src="/assets/js/pages/userdefined.js"></script>
 		<script>
 			(function ($) {
+			    <!-- Start  : Document ready -->
 				$(document).ready(function() {
 					$(".product-content").shorten({showChars: 235});
                     $("input[type='checkbox']").on('change', function(){  
@@ -85,9 +88,15 @@
 						$('#filterform').submit();
                        
 			        });						
-				});                		
+				}); 
+                 <!-- End  : Document ready -->	
 			})(jQuery);	
-		</script>	 
+		</script>
+        <script>
+			$(function () { 				
+				load({{procedureCount}});
+			}); 
+		</script>		
     </head>
     <body>	  
         <div id="wrapper"> 
@@ -127,10 +136,10 @@
                                     <div class="filter-container filter-show">
                                         <label>Show:</label>
                                         <select class="form-control input-sm">
-                                            <option value="10">5</option>
-                                            <option value="15">10</option>
-                                            <option value="20">15</option>
-                                            <option value="25">20</option>
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="30">30</option>
+                                            <option value="all">ALL</option>
                                         </select>
                                     </div><!-- End .filter-show -->
                                 </div><!-- End .left -->
@@ -189,19 +198,9 @@
                                 </div><!-- end .Row -->
                             </div><!-- End .product -->
                             {{/treatmentList}} 
-                            <nav class="pagination-container">
-                                <label>Showing: 1-4 of 16</label>
-                                <ul class="pagination">
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li>
-                                        <a href="#" aria-label="Next">
-                                            <span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
-                                        </a>
-                                    </li>
-                                </ul>
+							<!-- Pagination container -->
+                            <nav class="pagination-container" id="tablePaging">
+                                <label>Showing: 1-4 of 16</label>                               
                             </nav>
                         </div><!-- End .col-md-9 -->
                         
