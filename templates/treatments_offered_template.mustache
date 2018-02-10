@@ -62,13 +62,41 @@
          <script src="https://code.jquery.com/jquery-3.1.1.js"></script>	 
          <script src="/assets/js/pages/showmore.js"></script>
 		 <script src="/assets/customjs/chat.js"></script>
+		 <script src="/assets/js/pages/pagination.js"></script>
+		 <script src="/assets/js/pages/userdefined.js"></script>
 		<script>
 			(function ($) {
+			    <!-- Start  : Document ready -->
 				$(document).ready(function() {
 					$(".product-content").shorten({showChars: 235});
-				});
+                    $("input[type='checkbox']").on('change', function(){  
+					    var nameattr=$(this).attr('name')
+						if(nameattr==='hospitalname'){
+						   $("input[name='procedure']").removeAttr('checked'); 
+						    $("input[name='city']").removeAttr('checked');						
+						}
+						
+						if(nameattr==='procedure'){
+						    $("input[name='hospitalname']").removeAttr('checked'); 
+						    $("input[name='city']").removeAttr('checked');				
+						}
+						
+						if(nameattr==='city'){
+						    $("input[name='hospitalname']").removeAttr('checked'); 
+						    $("input[name='procedure']").removeAttr('checked'); 							
+						}     
+						$('#filterform').submit();
+                       
+			        });						
+				}); 
+                 <!-- End  : Document ready -->	
 			})(jQuery);	
-		</script>	 
+		</script>
+        <script>
+			$(function () { 				
+				load({{procedureCount}});
+			}); 
+		</script>		
     </head>
     <body>	  
         <div id="wrapper"> 
@@ -108,10 +136,10 @@
                                     <div class="filter-container filter-show">
                                         <label>Show:</label>
                                         <select class="form-control input-sm">
-                                            <option value="10">5</option>
-                                            <option value="15">10</option>
-                                            <option value="20">15</option>
-                                            <option value="25">20</option>
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="30">30</option>
+                                            <option value="all">ALL</option>
                                         </select>
                                     </div><!-- End .filter-show -->
                                 </div><!-- End .left -->
@@ -132,7 +160,7 @@
                                         </div><!-- End .product-top -->
                                     </div><!-- End .col-md-4 -->
                                     <div class="col-md-8 col-sm-7">
-                                        <h3 class="product-title comment"><a href="#">Bone Grafting</a></h3>	
+                                        <h3 class="product-title comment"><a href="/procedure/{{procedureName}}">{{procedureName}}</a></h3>	
                                         <div class="product-content">
                                             {{{treatmentActualDescription}}}                                                        
 										</div><!-- End .product-content -->										
@@ -170,24 +198,14 @@
                                 </div><!-- end .Row -->
                             </div><!-- End .product -->
                             {{/treatmentList}} 
-                            <nav class="pagination-container">
-                                <label>Showing: 1-4 of 16</label>
-                                <ul class="pagination">
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li>
-                                        <a href="#" aria-label="Next">
-                                            <span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
-                                        </a>
-                                    </li>
-                                </ul>
+							<!-- Pagination container -->
+                            <nav class="pagination-container" id="tablePaging">
+                                <label>Showing: 1-4 of 16</label>                               
                             </nav>
                         </div><!-- End .col-md-9 -->
-
+                        
+						<form action="/treatments/{{department}}" method="post" name="filterform" id="filterform">
                         <aside class="col-md-3 sidebar shop-sidebar">
-
                             <div class="widget">
                                 <div class="filter-group-widget">
                                     <div class="panel-group" role="tablist" aria-multiselectable="true">
@@ -203,17 +221,17 @@
                                             <div id="procedureFilter" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="procedureFilter-header">
                                                 <div class="panel-body">
                                                     <ul class="filter-brand-list">
-													   {{#treatmentList}}
+													   {{#distProcedure}}
                                                        <div class="checkbox">
 															<label class="custom-checkbox-wrapper">
 																<span class="custom-checkbox-container">
-																	<input type="checkbox" name="{{{procedureNameAttr}}}" value="{{procedureName}}" checked>
+																	<input type="checkbox" name="procedure" value="{{procedureName}}" checked>
 																	<span class="custom-checkbox-icon"></span>
 																</span>
 															    <span>{{procedureName}}</span>																
 															</label>															
 														</div><!-- End .checkbox -->
-                                                        {{/treatmentList}}														
+                                                        {{/distProcedure}}														
                                                     </ul>
                                                 </div><!-- End .panel-body -->
                                             </div><!-- End .panel-collapse -->
@@ -230,15 +248,17 @@
                                             <div id="brandFilter" class="panel-collapse collapse" role="tabpanel" aria-labelledby="brandFilter-header">
                                                 <div class="panel-body">
                                                     <ul class="filter-brand-list">
+													    {{#distHospitalList}}
                                                         <div class="checkbox">
 															<label class="custom-checkbox-wrapper">
 																<span class="custom-checkbox-container">
-																	<input type="checkbox" name="jeans" value="jeans">
+																	<input type="checkbox" name="hospitalname" value="{{hospitalName}}" >
 																	<span class="custom-checkbox-icon"></span>
 																</span>
-															    <span>KIMS,Trivandrum</span>
+															    <span>{{hospitalName}}</span>
 															</label>															
-														</div><!-- End .checkbox -->														
+														</div><!-- End .checkbox -->
+                                                        {{/distHospitalList}}														
                                                     </ul>
                                                 </div><!-- End .panel-body -->
                                             </div><!-- End .panel-collapse -->
@@ -246,7 +266,7 @@
 										<div class="panel panel-custom">
                                             <div class="panel-heading" role="tab" id="cityFilter-header">
                                                 <h4 class="panel-title">
-                                                    <a data-toggle="collapse" href="#cityFilter" aria-expanded="true" aria-controls="cityFilter">
+                                                    <a data-toggle="collapse" href="#cityFilter" aria-expanded="true" aria-controls="cityFilter" >
                                                         City Filter
                                                         <span class="panel-icon"></span>
                                                     </a>
@@ -255,54 +275,29 @@
                                             <div id="cityFilter" class="panel-collapse collapse" role="tabpanel" aria-labelledby="cityFilter-header">
                                                 <div class="panel-body">
                                                     <ul class="filter-brand-list">
+													  {{#distCityList}}
                                                        <div class="checkbox">
 															<label class="custom-checkbox-wrapper">
 																<span class="custom-checkbox-container">
-																	<input type="checkbox" name="jeans" value="jeans">
+																	<input type="checkbox" name="city" value="{{city}}">
 																	<span class="custom-checkbox-icon"></span>
 																</span>
-															    <span>Kochi</span>																
+															    <span>{{city}}</span>																
 															</label>															
-														</div><!-- End .checkbox -->														
+														</div><!-- End .checkbox -->
+                                                        {{/distCityList}}														
                                                     </ul>
                                                 </div><!-- End .panel-body -->
                                             </div><!-- End .panel-collapse -->
-                                        </div><!-- End .panel -->
-                                        <div class="panel panel-custom">
-                                            <div class="panel-heading" role="tab" id="priceFilter-header">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" href="#priceFilter" aria-expanded="true" aria-controls="priceFilter">
-                                                        Price Filter
-                                                        <span class="panel-icon"></span>
-                                                    </a>
-                                                </h4>
-                                            </div><!-- End .panel-heading -->																					
-                                            <div id="priceFilter" class="panel-collapse collapse" role="tabpanel" aria-labelledby="priceFilter-header">
-                                                <div class="panel-body">
-                                                    <div class="filter-price">
-                                                        <div id="price-slider"></div><!-- End #price-slider -->
-                                                        <div id="filter-range-details" class="row">
-                                                            <div class="col-xs-6">
-                                                                <div class="filter-price-label">from</div>
-                                                                <input type="text" id="price-range-low" class="form-control input-sm" placeholder="Min">
-                                                            </div>
-                                                            <div class="col-xs-6">
-                                                                <div class="filter-price-label">to</div>
-                                                                <input type="text" id="price-range-high" class="form-control input-sm" placeholder="Max">
-                                                            </div>
-                                                        </div><!-- End #filter-range-details -->
-                                                        <div class="filter-price-action">
-                                                            <a href="#" class="btn btn-custom btn-sm">Filter</a>
-                                                            <a href="#" class="btn btn-black btn-sm">Reset</a>
-                                                        </div><!-- End #filter-price-action -->
-                                                    </div><!-- End .filter-price -->
-                                                </div><!-- End .panel-body -->
-                                            </div><!-- End .panel-collapse -->
-                                        </div><!-- End .panel -->                                                                                
+                                        </div><!-- End .panel -->                                                                                                                      
                                     </div><!-- End .panel-group -->
                                 </div><!-- End .filter-widget -->
+								<div class="filter-price-action">                                                            
+									<a href="/treatmentsoffered/{{department}}" class="btn btn-black btn-sm">Clear All Filters</a>
+								</div><!-- End #filter-price-action -->
                             </div><!-- End .widget -->
                         </aside>
+						</form>
                     </div><!-- End .row -->
                 </div><!-- End .container -->
             </div><!-- End .main -->

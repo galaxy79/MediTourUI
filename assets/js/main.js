@@ -43,14 +43,33 @@ var whyIndia = "Because India.";
     }(this));
   };
   // END Function replace Native Alert
-
-
-
-
-
 (function ($) {
 	"use strict";
-	$(".medinovitaHeader").load("/assets/pages/header.html",function(){
+	$(".medinovitaHeader").load("/assets/pages/header.html",function(){				
+		$.ajax({
+				url: serverName+"api/v1/get/distinctdepartments/meditrip",
+				type: 'GET',
+				headers: {
+					"Content-Type": "application/json",
+					"Authorization": "Basic "+ basicKey,
+					"x-access-token": xAccessToken
+
+				},
+				beforeSend: function (xhr) {					
+					xhr.setRequestHeader("Authorization", "Basic " + basicKey);
+				},
+				success: function (response) {	
+					var display = JSON.parse(JSON.stringify(response));					
+					$.each(display, function(i) {
+						var value=display[i].department						
+						var li= $('<li class="dropdown"><a onclick=window.location=' + "'/treatmentsoffered/" + value + "'" + '  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">' + value + '</a></li>')
+					    $('#treatmentsOfferedUL').append(li);
+					});									
+				},
+				error: function (exception) {
+					console.log(exception);
+				}
+		})
 		$('#costPageMenu').on('click',function(){
 			document.location.href='/cost.html';
 		})
@@ -66,21 +85,13 @@ var whyIndia = "Because India.";
 		$('#homeMenu').on('click',function(){
 			document.location.href = '/index.html';
 			//homepageCallback();
-		})
-		$('#treatmentsOfferedUL li a').on('click', function (e) {
-			e.preventDefault();
-			var id = $(this).attr('id');
-
-			setCookie("treatmentPage", id,1);
-			document.location.href = '/treatmentsOffered.html';
-		})
-
+		})		
+		
 		$('#medicalVisaPageMenu').on('click', function () {
 
 
 			document.location.href = '/medical-visa-to-india.html';
 		});
-
 
 		$('#ourServicesPageMenu').on('click', function () {
 			document.location.href = '/ourservices.html';
