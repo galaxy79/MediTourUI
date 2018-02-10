@@ -81,15 +81,6 @@ var whyIndia = "Because India.";
 			document.location.href = '/medical-visa-to-india.html';
 		});
 
-		//get quote
-		$('.responsiveGetQuote').on('click', function(){
-			var userInput = $('#getQuoteTreatment').val();
-			console.log("userIn ", userInput);
-			var modifiedUserInput = userInput.replace(/\s+/g, '-').toLowerCase();
-			console.log("mod " + modifiedUserInput)
-			location.href = serverName+ "search/"+modifiedUserInput;
-
-		})
 
 		$('#ourServicesPageMenu').on('click', function () {
 			document.location.href = '/ourservices.html';
@@ -100,6 +91,17 @@ var whyIndia = "Because India.";
 		$('#hospitalsPageMenu').on('click', function () {
 			document.location.href = '/hospitaldoctors.html';
 		});
+
+		//get quote
+		$('.responsiveGetQuote').on('click', function(){
+			var userInput = $('#getQuoteTreatment').val();
+			console.log("userIn ", userInput);
+			var modifiedUserInput = userInput.replace(/\s+/g, '-').toLowerCase();
+			console.log("mod " + modifiedUserInput)
+			location.href = serverName+ "search/"+modifiedUserInput;
+
+		})
+
 
 	});
 $(".medinovitaFooter").load("/assets/pages/footer.html",function(){
@@ -2215,7 +2217,7 @@ function costCallback(data) {
 				countryArr.push({"country": item.country, "fee": item.fee});
 			 // console.log("my country " + item.country)
 		})
-		console.log("countryArr-response: "+ countryArr[1].country);
+		//console.log("countryArr-response: "+ countryArr[1].country);
 
 		countryArr.forEach(function(item){
 				$('.treatment-select #costcountry').append('<option class="costcountry" data-tokens="'+ item.country+'">' + item.country +'</option>')
