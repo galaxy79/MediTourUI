@@ -2112,11 +2112,11 @@ title:"Laboratory"
 			var featuredTreatmentsHtmlStringTwo="";
 response.forEach(function(item,index){
 	if(index <= 2){
-		featuredTreatmentsHtmlStringOne+=' <div class="col-sm-4"><div class="text-block hover-bg text-center" style="background-image:url('+ item.img+')"><h3 class="block-title"><a href="#">'+item.title+'</a></h3><p>'+item.shortContent +'</p><a href='+ item.pagePath+' class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a></div></div>'
+		featuredTreatmentsHtmlStringOne+=' <div class="col-sm-4"><div class="text-block hover-bg text-center" style="background-image:url('+ item.img+')"><h3 class="block-title"><a href="#">'+item.title+'</a></h3><p>'+item.shortContent +'</p><div class="index'+index+'"><a href='+ item.pagePath+' class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a></div></div></div>'
 	}
 
 else if(index > 2){
-	featuredTreatmentsHtmlStringTwo+=' <div class="col-sm-4"><div class="text-block hover-bg text-center" style="background-image:url('+ item.img+')"><h3 class="block-title"><a href="#">'+item.title+'</a></h3><p>'+item.shortContent +'</p><a href='+ item.pagePath+' class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a></div></div>'
+	featuredTreatmentsHtmlStringTwo+=' <div class="col-sm-4"><div class="text-block hover-bg text-center" style="background-image:url('+ item.img+')"><h3 class="block-title"><a href="#">'+item.title+'</a></h3><p>'+item.shortContent +'</p><div class="index'+index+'"><a href='+ item.pagePath+' class="readmore custom2">ReadMore <i class="fa fa-angle-right"></i></a></div></div></div>'
 }
 
 });
@@ -2138,7 +2138,7 @@ $('#featuredTreatmentsSection2').html(featuredTreatmentsHtmlStringTwo);
 
 //Populate latest news modal
 	$(document).on("click", ".latestNewsReadmore", function () {
-		debugger;
+		//debugger;
 		var newsID = $(this).data('id');
 		$("#modal-container-LatestNews #myModalLabel").text(newsID);
 		$("#modal-container-LatestNews .modal-body").text("Modal Content");
@@ -2188,7 +2188,8 @@ function costCallback(data) {
 		},
 		success: function (response) {
 			response[0].treatmentNames.forEach(function(item,index){
-				$('#treatmentCostDropdown').append("<li><a href = '#'>"+item["procedureName"]+"</a></li>")
+				//$('#treatmentCostDropdown').append("<li><a href = '#'>"+item["procedureName"]+"</a></li>")
+				$('.treatment-select #costSelectTreatment').append('<option class= costtreatmentselect data-tokens="'+ item["procedureName"]+'">' + item["procedureName"] +'</option>')
 			})
 
 
@@ -2197,6 +2198,36 @@ function costCallback(data) {
 			console.log(exception);
 		}
 	})
+
+	$.ajax({
+		url: serverName + "api/v1/get/evisacountries/all/meditrip",
+		type: 'GET',
+		headers: {
+				"Content-Type": "application/json",
+				"Authorization": "Basic " + basicKey,
+				"x-access-token": xAccessToken
+
+		},
+		success: function(response){
+			 // console.log("visa-response: "+ response);
+				var countryArr = [];
+		response.forEach(function(item){
+				countryArr.push({"country": item.country, "fee": item.fee});
+			 // console.log("my country " + item.country)
+		})
+		console.log("countryArr-response: "+ countryArr[1].country);
+
+		countryArr.forEach(function(item){
+				$('.treatment-select #costcountry').append('<option class="costcountry" data-tokens="'+ item.country+'">' + item.country +'</option>')
+
+		})
+
+		},
+		error: function (exception) {
+				console.log(exception);
+		}
+});
+
 
 	$.ajax({
 		url: serverName + "api/v1/get/holidayPackage/meditrip",
@@ -2212,7 +2243,8 @@ function costCallback(data) {
 		},
 		success: function (response) {
 			response.result.forEach(function(item,index){
-				$('#holidayPackageDropdown').append("<li><a href = '#'>"+item["packageShortName"]+"</a></li>")
+				// $('#holidayPackageDropdown').append("<li><a href = '#'>"+item["packageShortName"]+"</a></li>")
+				$('.treatment-select #holidayPackageDropdown').append('<option class="costholidaypackage" data-tokens="'+ item["packageShortName"]+'">' + item["packageShortName"] +'</option>')
 			})
 			$("#treatmentCostDropdown li a").on('click',function(){
 				// remove previously added selectedLi

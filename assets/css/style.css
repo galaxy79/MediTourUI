@@ -14539,3 +14539,22 @@ div.margin20{
 .enquiry{
   display: inline-block;
 }
+
+/*featuredTreatments*/
+@media (min-width: 768px) and (max-width: 1199px){
+  .index2{
+    padding-top: 19px;
+  }
+  .index5{
+    padding-top: 22px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1430px){
+  .tohide{
+    display: none;
+  }
+}
+#aboutContent{
+  line-height: 1.5em;
+}
