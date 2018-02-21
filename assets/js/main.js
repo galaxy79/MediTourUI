@@ -14,13 +14,8 @@ var GLOBAL_VARIABLES = {
 	"Currency": "dollar"
 }
 var countryCodes=[];
-
-
-
-var officeAddress = "Kakkanad PO,Kochi, Kerala,India";
-
-var whyIndia = "Because India.";
-
+var officeAddress = "";
+var whyIndia = "";
 //Global Methods
 // Function replace Native Alert
   window.alert = function (msg) {
@@ -173,15 +168,15 @@ $(".medinovitaModals").load("/assets/pages/modals.html",function(){
 	$('#submitEnquiryForm').on('submit',function(e){
 		e.preventDefault();
 		var formData=$(this).serializeArray();
-		var v = grecaptcha.getResponse();
-		if (v.length == 0) {
-			document.getElementById('captcha').innerHTML = "Please verify that you are not a robot";
-			return false;
-		}
-		else {
-			document.getElementById('captcha').innerHTML = "Verification completed";
+		// var v = grecaptcha.getResponse();
+		// if (v.length == 0) {
+		// 	document.getElementById('captcha').innerHTML = "Please verify that you are not a robot";
+		// 	return false;
+		// }
+		// else {
+		// 	document.getElementById('captcha').innerHTML = "Verification completed";
 
-		}
+		// }
 	$.ajax({
 			url: serverName+"api/v1/submit/enquiry/meditrip",
 			type: 'POST',
@@ -209,7 +204,7 @@ $(".medinovitaModals").load("/assets/pages/modals.html",function(){
 				console.log(exception)
 			}
 		});
-		document.getElementById('captcha').innerHTML=""
+		//document.getElementById('captcha').innerHTML=""
 		document.getElementById("submitEnquiryForm").reset();
 		$('#modal-container-SubmitEnquiry').modal('toggle');
 	})
@@ -241,7 +236,7 @@ $.ajax({
 		   countryCodes.forEach(function(value,index){
 				$('#inputSubmitEnquiryISDCode').append($('<option>', {
 			   value: value.dial_code,
-			   text : value.code + "(" + value.dial_code + ")"
+			   text : value.name + " (" + value.dial_code + ")"
 		   }));
 	   });
 	},
