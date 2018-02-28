@@ -1,10 +1,3 @@
-/* ================================================
------------------ Simple Main.js ------------- */
-//Global Variables
-
-
-
-
 var basicKey = "bGliaW46bGliaW4=";
 var xAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiVG9rZW5Ub0F1dGhlbnRpY2F0ZU1lZGlub3ZpdGFVc2VyIiwiaWF0IjoxNTA4MDQ0OTMwfQ.cZ3pCte1guE8KQkjd1KfY_bLJ-gOatJm2xlwyiLGAl4";
 var serverName = "https://www.medinovita.in/";
@@ -14,13 +7,8 @@ var GLOBAL_VARIABLES = {
 	"Currency": "dollar"
 }
 var countryCodes=[];
-
-
-
-var officeAddress = "Kakkanad PO,Kochi, Kerala,India";
-
-var whyIndia = "Because India.";
-
+var officeAddress = "";
+var whyIndia = "";
 //Global Methods
 // Function replace Native Alert
   window.alert = function (msg) {
@@ -216,8 +204,9 @@ $(".medinovitaModals").load("/assets/pages/modals.html",function(){
 			}
 		});
 		//document.getElementById('captcha').innerHTML=""
-		// document.getElementById("submitEnquiryForm").reset();
-		// $('#modal-container-SubmitEnquiry').modal('toggle');
+
+		document.getElementById("submitEnquiryForm").reset();
+		$('#modal-container-SubmitEnquiry').modal('toggle');
 
 	})
 $.ajax({
@@ -248,7 +237,7 @@ $.ajax({
 		   countryCodes.forEach(function(value,index){
 				$('#inputSubmitEnquiryISDCode').append($('<option>', {
 			   value: value.dial_code,
-			   text : value.code + "(" + value.dial_code + ")"
+			   text : value.name + " (" + value.dial_code + ")"
 		   }));
 	   });
 	},
