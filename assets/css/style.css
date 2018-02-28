@@ -3202,7 +3202,7 @@ label.error {
 }
 
 .text-block .block-icon {
-  dispay: inline-block;
+  display: inline-block;
   width: 48px;
   height: 48px;
   text-align: center;
@@ -13412,9 +13412,9 @@ width: 300px;
 
 @media (min-width: 1200px)
 {
-.container {
+/* .container {
     width: 1300px;
-}
+} */
 }
 @media (max-width: 400px)
 {
@@ -14039,7 +14039,7 @@ table#t01{
   margin-top: 16px;
 }
 table, th, td {
-  border: 1px solid black;
+  border: 1px solid #CCCCCC;
   border-collapse: collapse;
 }
 table th{
@@ -14558,3 +14558,174 @@ div.margin20{
 /* #aboutContent{
   line-height: 1.5em;
 } */
+ @media (min-width: 1200px){
+
+.myCont {
+    width: 1170px;
+}
+}
+
+@media (min-width: 768px){
+  .myCost{
+    margin-left: 110px;
+    padding: 10px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1199px){
+  .cost-estimate{
+    margin-left: -11px;
+  }
+  .cost-btn{
+
+    margin-left: 176px;
+  }
+}
+@media (min-width: 1200px){
+  .cost-estimate{
+    margin-left: -111px;
+  }
+}
+@media (min-width: 768px){
+  .cost-checkbox{
+
+    margin-top:20px;
+  }
+  .cost-btn{
+
+    margin-left:176px
+  }
+}
+@media (max-width: 751px){
+  .cost-btn{
+    float: left;
+    margin-top:20px;
+  }
+  .cost-checkbox{
+    padding-left: 0px;
+  }
+}
+@media (min-width: 992px){
+  .cost-btn{
+    margin-top: 40px;
+  }
+}
+ @media (min-width: 768px) and (max-width: 991px){
+  .cost-btn{
+    margin-top: -80px;
+  }
+}
+@media (max-width: 991px){
+  .addMargin{
+    margin-top: 10px;
+  }
+}
+@media (min-width:767px) and (max-width: 991px){
+
+  .styling{
+    margin-left: 200px;
+  }
+  .styling-checkbox{
+    margin-left: 158px;
+  }
+}
+
+@media (min-width: 992px){
+  .costButton{
+   float: right;
+  }
+  .styling-checkbox{
+    margin-left: -10px;
+  }
+}
+@media (max-width: 991px){
+  .costButton{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+/* .container-table{
+  width: 80%;
+} */
+@media (max-width: 767px){
+  .container-table{
+    width: 80%;
+  }
+}
+.topdoctorshospital{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.topdoctorshospital .media{
+  min-width: 0;
+  margin: 5px;
+}
+.topdoctorshospital img{
+  width: 200px;
+  max-width: 100%;
+  max-height: 200px;
+}
+.container-table {
+  background-color: #f9f9f9;
+  border: none;
+}
+
+/*table*/
+table{
+  border: 1px solid #CCCCCC;
+}
+
+.cost-table>tbody>tr.info>td, .cost-table>tbody>tr.info>th, .cost-table>tbody>tr>td.info, .cost-table>tbody>tr>th.info, .cost-table>tfoot>tr.info>td, .cost-table>tfoot>tr.info>th, .cost-table>tfoot>tr>td.info, .cost-table>tfoot>tr>th.info, .cost-table>thead>tr.info>td, .cost-table>thead>tr.info>th, .cost-table>thead>tr>td.info, .cost-table>thead>tr>th.info{
+  background-color: #fff;
+}
+
+.cost-table tbody > tr.info > td:first-child {
+  background-color: #fff;
+}
+
+.cost-table thead > tr > th{
+  color: #433f3f;
+  background-color: #fff;
+
+}
+.cost-table thead > tr{
+  border-top: none;
+}
+/* .table-section,.img-section,.detail-section,.contact-section{
+  cursor: pointer;
+} */
+.table-section:hover,.detail-section:hover,.img-section:hover{
+  box-shadow: 5px 5px 6px 6px #aaaaaa;
+}
+/* box-shadow: 5px 5px 6px #aaaaaa; */
+.contact-section{
+  border: none;
+  border-radius: 46px;
+}
+.contact-div{
+  padding: 1px;
+}
+.table-section,.img-section, .detail-section{
+  border-radius: 10px;
+}
+.costhead{
+  text-align: center;
+}
+/*hospitals and doctors page*/
+.test{
+  border-radius: 10px;
+}
+.test:hover{
+  box-shadow: 5px 5px 6px 6px #aaaaaa;
+}
+/*modals.html*/
+.modal-enquiry{
+  text-align: center;
+  font-weight:bold;
+  font-size: 16px;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 2px 2px 2px #ccc;
+}

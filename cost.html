@@ -6,12 +6,10 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107905104-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
     function gtag() {
       dataLayer.push(arguments);
     }
     gtag('js', new Date());
-
     gtag('config', 'UA-107905104-1');
   </script>
   <!-- Google Tag Manager added by libin-->
@@ -117,96 +115,92 @@
     </div>
     <!-- End .page-header -->
     <!-- Table for selection -->
-    <div class="container container-table" style="margin-top:20px;">
-      <div class="top-buffermore col-md-12" >
-        <div class="col-sm-3">
+    <div class="container container-table" style="margin-top: 20px; border-radius: 10px; box-shadow: 2px 2px 6px #aaaaaa;">
+      <div class="row styling">
+         <div class="top-buffermore col-md-12" >
+           <div class="col-md-3">
+             <div class="treatment-select">
+                  <div class="inspire"><span style="font-weight:600">Treatment</span></div><div class="treatment-select"> </div>
+                <select id="costSelectTreatment" class="selectpicker " data-live-search="true" data-width="auto" data-dropup-auto="false"
+                  standard title="Select Treatment..." >
 
 
-          <div class="treatment-select">
-              <div class="inspire"><span style="font-weight:600">Treatment</span></div><div class="treatment-select"> </div>
-            <select id="costSelectTreatment" class="selectpicker " data-live-search="true" data-width="auto" data-dropup-auto="false"
-              standard title="Select Treatment...">
+                </select>
+              </div>
+           </div>
 
+           <div class="col-md-3">
+              <div class="treatment-select">
+                  <div class="inspire"><span style="font-weight:600">No. of Travellers</span></div><div class="treatment-select"> </div>
+                <select id="bystanderDropdown" class="selectpicker " data-live-search="true" data-width="auto" data-dropup-auto="false" standard
+                  title="Select No. of Travellers...">
 
-            </select>
-          </div>
-        </div>
-        <div class="col-sm-3">
+                  <option class="costbystanderid" data-tokens="1">1</option>
+                  <option class="costbystanderid" data-tokens="2">2</option>
+                  <option class="costbystanderid" data-tokens="3">3</option>
+                  <option class="costbystanderid" data-tokens="4">4</option>
+                </select>
+              </div>
+           </div>
 
-          <div class="treatment-select">
-              <div class="inspire"><span style="font-weight:600">No. of Travellers</span></div><div class="treatment-select"> </div>
-            <select id="bystanderDropdown" class="selectpicker " data-live-search="true" data-width="auto" data-dropup-auto="false" standard
-              title="Select No. of Travellers...">
-
-              <option class="costbystanderid" data-tokens="1">1</option>
-              <option class="costbystanderid" data-tokens="2">2</option>
-              <option class="costbystanderid" data-tokens="3">3</option>
-              <option class="costbystanderid" data-tokens="4">4</option>
-            </select>
-          </div>
-
-        </div>
-
-
-        <div class="col-sm-3">
-          <div class="treatment-select">
-              <div class="inspire"><span style="font-weight:600">Your Country</span></div><div class="treatment-select"> </div>
-            <select id="costcountry" class="selectpicker " data-live-search="true" data-width="auto" data-dropup-auto="false" standard
-              title="Select Country...">
+           <div class="col-md-3">
+             <div class="treatment-select">
+                  <div class="inspire"><span style="font-weight:600">Your Country</span></div><div class="treatment-select"> </div>
+                <select id="costcountry" class="selectpicker " data-live-search="true" data-width="auto" data-dropup-auto="false" standard
+                  title="Select Country...">
 
 
 
-            </select>
-          </div>
-        </div>
-        <div class="col-sm-3">
+                </select>
+              </div>
+           </div>
 
-          <div class="treatment-select">
-              <div class="inspire"><span style="font-weight:600">Holiday Package</span></div><div class="treatment-select"> </div>
-            <select id="holidayPackageDropdown" class="selectpicker " data-live-search="true" data-width="auto" data-dropup-auto="false"
-              standard title="Select Holiday Package...">
+           <div class="col-md-3">
 
-
-            </select>
-          </div>
+              <div class="treatment-select">
+                  <div class="inspire"><span style="font-weight:600">Holiday Package</span></div><div class="treatment-select"> </div>
+                <select id="holidayPackageDropdown" class="selectpicker " data-live-search="true" data-width="auto" data-dropup-auto="false"
+                  standard title="Select Holiday Package...">
 
 
-        </div>
+                </select>
+              </div>
+           </div>
+         </div>
       </div>
 
-      <div class="col-md-9 top-bufferless">
-
-        <div class="col-sm-12">
-          <!-- <label class="checkbox-inline">
-            <input type="checkbox" value="" disabled>Airline
-          </label> -->
-          <label class="checkbox-inline">
-            <input type="checkbox" value="" unchecked enabled>VISA
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" value="" checked enabled>Hotel
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" value="" checked enabled>Conveyance
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" value="" checked enabled>Food
-          </label>
-          <!-- <label class="checkbox-inline">
-            <input type="checkbox" value="" checked disabled>Treatment
-          </label> -->
-          <label class="checkbox-inline">
-            <input type="checkbox" value="" unchecked disabled>Holiday
-          </label>
-        </div>
+      <div class="row styling-checkbox">
+          <div class="col-sm-12 top-bufferless">
+              <!-- <label class="checkbox-inline">
+                <input type="checkbox" value="" disabled>Airline
+              </label> -->
+              <label class="checkbox-inline" style="margin-left:10px;" >
+                <input type="checkbox" value="" unchecked enabled>VISA
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" value="" checked enabled>Hotel
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" value="" checked enabled>Conveyance
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" value="" checked enabled>Food
+              </label>
+              <!-- <label class="checkbox-inline">
+                <input type="checkbox" value="" checked disabled>Treatment
+              </label> -->
+              <label class="checkbox-inline">
+                <input type="checkbox" value="" unchecked disabled>Holiday
+              </label>
+          </div>
       </div>
-      <!-- Table for selection -->
-      <div class="col-sm-3">
-          <p></p>
-        <a href="#" id="getCostDetails" title="Click to submit enquiry">
-          <button class="btn btn-success pull-right" style="margin-right: 15px"> Get Cost Estimate</button>
 
-        </a>
+      <div class="costButton">
+
+            <a href="#" id="getCostDetails" title="Click to submit enquiry">
+              <button class="btn btn-success"> Get Cost Estimate</button>
+
+            </a>
       </div>
     </div>
     <br/>
