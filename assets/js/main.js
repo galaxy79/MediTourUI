@@ -1,10 +1,3 @@
-/* ================================================
------------------ Simple Main.js ------------- */
-//Global Variables
-
-
-
-
 var basicKey = "bGliaW46bGliaW4=";
 var xAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiVG9rZW5Ub0F1dGhlbnRpY2F0ZU1lZGlub3ZpdGFVc2VyIiwiaWF0IjoxNTA4MDQ0OTMwfQ.cZ3pCte1guE8KQkjd1KfY_bLJ-gOatJm2xlwyiLGAl4";
 var serverName = "https://www.medinovita.in/";
@@ -40,7 +33,7 @@ var whyIndia = "";
   // END Function replace Native Alert
 (function ($) {
 	"use strict";
-	$(".medinovitaHeader").load("/assets/pages/header.html",function(){				
+	$(".medinovitaHeader").load("/assets/pages/header.html",function(){
 		$.ajax({
 				url: serverName+"api/v1/get/distinctdepartments/meditrip",
 				type: 'GET',
@@ -50,16 +43,16 @@ var whyIndia = "";
 					"x-access-token": xAccessToken
 
 				},
-				beforeSend: function (xhr) {					
+				beforeSend: function (xhr) {
 					xhr.setRequestHeader("Authorization", "Basic " + basicKey);
 				},
-				success: function (response) {	
-					var display = JSON.parse(JSON.stringify(response));					
+				success: function (response) {
+					var display = JSON.parse(JSON.stringify(response));
 					$.each(display, function(i) {
-						var value=display[i].department						
+						var value=display[i].department
 						var li= $('<li class="dropdown"><a onclick=window.location=' + "'/treatmentsoffered/" + value + "'" + '  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">' + value + '</a></li>')
 					    $('#treatmentsOfferedUL').append(li);
-					});									
+					});
 				},
 				error: function (exception) {
 					console.log(exception);
@@ -80,8 +73,8 @@ var whyIndia = "";
 		$('#homeMenu').on('click',function(){
 			document.location.href = '/index.html';
 			//homepageCallback();
-		})		
-		
+		})
+
 		$('#medicalVisaPageMenu').on('click', function () {
 
 
@@ -186,27 +179,35 @@ $(".medinovitaModals").load("/assets/pages/modals.html",function(){
 				"x-access-token": xAccessToken
 			},
 			beforeSend: function (xhr) {
+
 				xhr.setRequestHeader("Authorization", "Basic " + basicKey);
 			},
 			data:JSON.stringify({emailID:formData[1].value,
-		userFullName:formData[0].value,
-		isdCode:formData[2].value,
-		primaryPhonenumber:formData[3].value,
-		procedureName:formData[4].value,
-		commuMedium:"English",
-		caseDescription:formData[5].value,
-		attachment:"N",
-		attachmentName:"null"}),
+				userFullName:formData[0].value,
+				isdCode:formData[2].value,
+				primaryPhonenumber:formData[3].value,
+				procedureName:formData[4].value,
+				commuMedium:"English",
+				caseDescription:formData[5].value,
+				attachment:"N",
+				attachmentName:"null"}),
 			success: function (response) {
-				alert("Thank you for contacting us, we will get back to you soon")
+
+				$('.modal-enquiry').css('background-color', '#ccc').html('Your enquiry is received. We will get in touch with you.');
+				$('div').on('click', function(){
+					document.getElementById("submitEnquiryForm").css('display', 'none');
+
+				})
 			},
 			error: function (exception) {
-				console.log(exception)
+				console.log("exception",exception);
 			}
 		});
 		//document.getElementById('captcha').innerHTML=""
+
 		document.getElementById("submitEnquiryForm").reset();
 		$('#modal-container-SubmitEnquiry').modal('toggle');
+
 	})
 $.ajax({
 	url: serverName+"api/v1/get/countrylist/meditrip",
@@ -2197,9 +2198,14 @@ function costCallback(data) {
 		success: function (response) {
 			response[0].treatmentNames.forEach(function(item,index){
 				//$('#treatmentCostDropdown').append("<li><a href = '#'>"+item["procedureName"]+"</a></li>")
-				$('.treatment-select #costSelectTreatment').append('<option class= costtreatmentselect data-tokens="'+ item["procedureName"]+'">' + item["procedureName"] +'</option>')
-			})
 
+				var selectOption = $('<option>'+item["procedureName"]+'</option>')
+				$('.treatment-select #costSelectTreatment').append(selectOption);
+
+				// $('.treatment-select #costSelectTreatment').append('<option class= costtreatmentselect data-tokens="'+ item["procedureName"]+'">' + item["procedureName"] +'</option>')
+			})
+			$('.selectpicker').selectpicker('render');
+			$('.selectpicker').selectpicker('refresh');
 
 		},
 		error: function (exception) {
@@ -2226,9 +2232,15 @@ function costCallback(data) {
 		//console.log("countryArr-response: "+ countryArr[1].country);
 
 		countryArr.forEach(function(item){
-				$('.treatment-select #costcountry').append('<option class="costcountry" data-tokens="'+ item.country+'">' + item.country +'</option>')
+
+			var selectOption = $('<option>'+item.country+'</option>')
+				$('.treatment-select #costcountry').append(selectOption);
+
+				// $('.treatment-select #costcountry').append('<option class="costcountry" data-tokens="'+ item.country+'">' + item.country +'</option>')
 
 		})
+		$('.selectpicker').selectpicker('render');
+				$('.selectpicker').selectpicker('refresh');
 
 		},
 		error: function (exception) {
@@ -2238,7 +2250,7 @@ function costCallback(data) {
 
 
 	$.ajax({
-		url: serverName + "api/v1/get/holidayPackage/meditrip",
+		url: serverName + "api/get/holidayPackage/meditrip",
 		type: 'GET',
 		headers: {
 			"Content-Type": "application/json",
@@ -2251,38 +2263,44 @@ function costCallback(data) {
 		},
 		success: function (response) {
 			response.result.forEach(function(item,index){
-				// $('#holidayPackageDropdown').append("<li><a href = '#'>"+item["packageShortName"]+"</a></li>")
-				$('.treatment-select #holidayPackageDropdown').append('<option class="costholidaypackage" data-tokens="'+ item["packageShortName"]+'">' + item["packageShortName"] +'</option>')
+
+				var selectOption = $('<option>'+item["packageShortName"]+'</option>')
+				$('.treatment-select #holidayPackageDropdown').append(selectOption);
+
+
+				// $('.treatment-select #holidayPackageDropdown').append('<option class="costholidaypackage" data-tokens="'+ item["packageShortName"]+'">' + item["packageShortName"] +'</option>')
 			})
-			$("#treatmentCostDropdown li a").on('click',function(){
-				// remove previously added selectedLi
-				$('.selectedLi').removeClass('selectedLi');
-				// add class `selectedLi`
-				$(this).addClass('selectedLi');
-				var selText = $(this).text();///User selected value...****
-				$(this).parent().parent().prev().html(selText+' <span class="caret"></span>');
+			$('.selectpicker').selectpicker('render');
+				$('.selectpicker').selectpicker('refresh');
+		// 	$("#treatmentCostDropdown li a").on('click',function(){
+		// 		// remove previously added selectedLi
+		// 		$('.selectedLi').removeClass('selectedLi');
+		// 		// add class `selectedLi`
+		// 		$(this).addClass('selectedLi');
+		// 		var selText = $(this).text();///User selected value...****
+		// 		$(this).parent().parent().prev().html(selText+' <span class="caret"></span>');
 
-		  });
+		//   });
 
-		  $("#bystanderDropdown li a").click(function(){
-			// remove previously added selectedLi
-			$('.selectedBystanderLi').removeClass('selectedBystanderLi');
-			// add class `selectedLi`
-			$(this).addClass('selectedBystanderLi');
-			var selText = $(this).text();
-			$(this).parent().parent().prev().html(selText+' <span class="caret"></span>');
+		//   $("#bystanderDropdown li a").click(function(){
+		// 	// remove previously added selectedLi
+		// 	$('.selectedBystanderLi').removeClass('selectedBystanderLi');
+		// 	// add class `selectedLi`
+		// 	$(this).addClass('selectedBystanderLi');
+		// 	var selText = $(this).text();
+		// 	$(this).parent().parent().prev().html(selText+' <span class="caret"></span>');
 
 
-		});
-		$("#holidayPackageDropdown li a").on('click',function(){
-			// remove previously added selectedLi
-			$('.selectedpackageLi').removeClass('selectedpackageLi');
-			// add class `selectedLi`
-			$(this).addClass('selectedpackageLi');
-			var selText = $(this).text();
-			$(this).parent().parent().prev().html(selText+' <span class="caret"></span>');
+		// });
+		// $("#holidayPackageDropdown li a").on('click',function(){
+		// 	// remove previously added selectedLi
+		// 	$('.selectedpackageLi').removeClass('selectedpackageLi');
+		// 	// add class `selectedLi`
+		// 	$(this).addClass('selectedpackageLi');
+		// 	var selText = $(this).text();
+		// 	$(this).parent().parent().prev().html(selText+' <span class="caret"></span>');
 
-		});
+		// });
 
 		},
 		error: function (exception) {
@@ -2340,16 +2358,20 @@ function costCallback(data) {
 				}
 			});
 
+
+
 			$('#getCostDetails').on('click',function(e){
-				var procedurName=$('#treatmentCostDropdown li a.selectedLi').text();
+				var procedurName=$('#costSelectTreatment').val();
 
-				var bystandercount=$('#bystanderDropdown li a.selectedBystanderLi').text();
+				var bystandercount=$('#bystanderDropdown').val();
 
-				var holidayPackage=$('#holidayPackageDropdown li a.selectedpackageLi').text();
+				var holidayPackage=$("#holidayPackageDropdown").val();
+
+				var countryName=$("#costcountry").val();
 
 
 $.ajax({
-	url: serverName + "api/v1/get/cost/meditrip?procedurename="+ procedurName+"&bystandercount="+ bystandercount+"&holidaypackage="+holidayPackage+"&hotelrate=3 star&vehicletype=sedan&countryName=Albania",
+	url: serverName + "api/v1/get/cost/meditrip?procedurename="+ procedurName+"&bystandercount="+ bystandercount+"&holidaypackage="+holidayPackage+"&hotelrate=3 star&vehicletype=sedan&countryName="+ countryName,
 	type: 'GET',
 	headers: {
 		"Content-Type": "application/json",
@@ -2361,6 +2383,7 @@ $.ajax({
 		xhr.setRequestHeader("Authorization", "Basic " + basicKey);
 	},
 	success: function (response) {
+		console.log(response);
 		$('#costTemplateDiv').html(response);
 	},
 	error: function (exception) {
@@ -2678,12 +2701,12 @@ function hospitalPageCallback(treatmentName,city){
 
 				}
 					if(index%2 === 0){
-						var htmlStr = $('<div class="row is-flex hosp-row" style="margin-bottom:30px"><div class="col-md-5 test even hosp-'+index+'"'+ 'style="background-color:#fafafa; padding:28px"><p class="test1"><img src='+hospital.hospitalimage+'><a href="#modal-container-SubmitEnquiry" data-toggle="modal"><button type="button" class="btn btn-success btn-rounded btn-sm" style="float:right">Contact</button></a><a href="/hospitals/'+hospital.hospitalName+'"><strong style="font-size:18px;line-height:1.6em;">'+hospital.hospitalName+'</strong></a><br><i class="fa fa-map-marker"  aria-hidden="true"></i>'+' ' + hospital.hospitalContact.City+', '+hospital.hospitalContact.country + '<br><span>Specialities: '+myHtml+'</span></p><div class="margin20"> <a href="/hospitals/'+ hospital.hospitalName+'"style="float:right;font-weight:bold">Learn More...</a></div></div></div>')
+						var htmlStr = $('<div class="row is-flex hosp-row" style="margin-bottom:30px"><div class="col-md-5 test even hosp-'+index+'"'+ 'style="background-color:#f9f9f9; padding:28px"><p class="test1"><img src='+hospital.hospitalimage+'><a href="#modal-container-SubmitEnquiry" data-toggle="modal"><button type="button" class="btn btn-success btn-rounded btn-sm" style="float:right">Contact</button></a><a href="/hospitals/'+hospital.hospitalName+'"><strong style="font-size:18px;line-height:1.6em;">'+hospital.hospitalName+'</strong></a><br><i class="fa fa-map-marker"  aria-hidden="true"></i>'+' ' + hospital.hospitalContact.City+', '+hospital.hospitalContact.country + '<br><span>Specialities: '+myHtml+'</span></p><div class="margin20"> <a href="/hospitals/'+ hospital.hospitalName+'"style="float:right;font-weight:bold">Learn More...</a></div></div></div>')
 
 						mainDiv.append(htmlStr);
 					}
 					else{
-						var htmlStrr = $('<div class="col-md-5 col-md-offset-1 test odd hosp-'+index+'"'+ 'style="background-color:#fafafa; padding:28px"><p class="test1"><img src='+hospital.hospitalimage+'><a href="#modal-container-SubmitEnquiry" data-toggle="modal"><button type="button" class="btn btn-success btn-rounded btn-sm" style="float:right">Contact</button></a><a href="/hospitals/'+hospital.hospitalName+'"><strong style="font-size:18px;line-height:1.6em;">'+hospital.hospitalName+'</strong></a><br><i class="fa fa-map-marker color=blue" aria-hidden="true"></i>'+' ' +hospital.hospitalContact.City+', '+hospital.hospitalContact.country + '<br><span>Specialities: '+myHtml+'</span></p><div class="margin20"> <a href="/hospitals/'+hospital.hospitalName+'" style="float:right;font-weight:bold">Learn More...</a></div></div>')
+						var htmlStrr = $('<div class="col-md-5 col-md-offset-1 test odd hosp-'+index+'"'+ 'style="background-color:#f9f9f9; padding:28px"><p class="test1"><img src='+hospital.hospitalimage+'><a href="#modal-container-SubmitEnquiry" data-toggle="modal"><button type="button" class="btn btn-success btn-rounded btn-sm" style="float:right">Contact</button></a><a href="/hospitals/'+hospital.hospitalName+'"><strong style="font-size:18px;line-height:1.6em;">'+hospital.hospitalName+'</strong></a><br><i class="fa fa-map-marker color=blue" aria-hidden="true"></i>'+' ' +hospital.hospitalContact.City+', '+hospital.hospitalContact.country + '<br><span>Specialities: '+myHtml+'</span></p><div class="margin20"> <a href="/hospitals/'+hospital.hospitalName+'" style="float:right;font-weight:bold">Learn More...</a></div></div>')
 
 						rowDiv.last().append(htmlStrr);
 					}
