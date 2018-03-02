@@ -208,10 +208,6 @@ $('.medinovitaModals').load('/assets/pages/modals.html', function(){
 				// $('.modal-enquiry').css('background-color', '#ccc').html('Your enquiry is received. We will get in touch with you.');
 			}
 		});
-		//document.getElementById('captcha').innerHTML=""
-
-		document.getElementById('submitEnquiryForm').reset();
-		$('#modal-container-SubmitEnquiry').modal('toggle');
 
 	})
 $.ajax({
