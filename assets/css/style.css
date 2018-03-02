@@ -14725,7 +14725,7 @@ table{
   text-align: center;
   font-weight:bold;
   font-size: 16px;
-  border-radius: 10px;
+  border-radius: 0px;
   padding: 20px;
-  box-shadow: 2px 2px 2px #ccc;
+  box-shadow: 2px 2px 2px #fff;
 }

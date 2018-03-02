@@ -8,7 +8,7 @@
 var basicKey = "bGliaW46bGliaW4=";
 var xAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiVG9rZW5Ub0F1dGhlbnRpY2F0ZU1lZGlub3ZpdGFVc2VyIiwiaWF0IjoxNTA4MDQ0OTMwfQ.cZ3pCte1guE8KQkjd1KfY_bLJ-gOatJm2xlwyiLGAl4";
 var serverName = "https://www.medinovita.in/";
-// var serverName = "http://localhost:3000/";
+ //var serverName = "http://localhost:3000/";
 var GLOBAL_VARIABLES = {
 	"Language": "en",
 	"Currency": "dollar"
@@ -17,9 +17,9 @@ var countryCodes=[];
 
 
 
-var officeAddress = "Kakkanad PO,Kochi, Kerala,India";
+var officeAddress = "";
 
-var whyIndia = "Because India.";
+var whyIndia = "";
 
 //Global Methods
 // Function replace Native Alert
@@ -204,15 +204,25 @@ $(".medinovitaModals").load("/assets/pages/modals.html",function(){
 				attachment:"N",
 				attachmentName:"null"}),
 			success: function (response) {
+				//console.log('res: ', response)
 
-				$('.modal-enquiry').css('background-color', '#ccc').html('Your enquiry is received. We will get in touch with you.');
-				$('div').on('click', function(){
-					document.getElementById("submitEnquiryForm").css('display', 'none');
+				 //$('.modalerrormessage').innerHTML="Error uploading the file"
 
-				})
+				document.getElementById("submitEnquiryForm").reset();
+				setTimeout(function() {
+					$('#messageModal').modal('show');
+				 }, 300);
+
+				setTimeout(function() {
+					$('#modal-container-SubmitEnquiry').modal('toggle');
+				 }, 209);
+
+
 			},
 			error: function (exception) {
 				console.log("exception",exception);
+				$('.modalerrormessage').html("Error : " + exception);
+				// $('.modal-enquiry').css('background-color', '#ccc').html('Your enquiry is received. We will get in touch with you.');
 			}
 		});
 		//document.getElementById('captcha').innerHTML=""
