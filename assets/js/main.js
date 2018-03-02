@@ -1,10 +1,10 @@
 var basicKey = 'bGliaW46bGliaW4=';
 var xAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiVG9rZW5Ub0F1dGhlbnRpY2F0ZU1lZGlub3ZpdGFVc2VyIiwiaWF0IjoxNTA4MDQ0OTMwfQ.cZ3pCte1guE8KQkjd1KfY_bLJ-gOatJm2xlwyiLGAl4';
 var serverName = 'https://www.medinovita.in/';
- //var serverName = "http://localhost:3000/";
+//var serverName = 'http://localhost:3000/';
 var GLOBAL_VARIABLES = {
 	Language: 'en',
-	'Currency': 'dollar'
+	Currency: 'dollar'
 }
 var countryCodes = [];
 var officeAddress = '';
@@ -131,7 +131,7 @@ $.ajax({
 	type: 'GET',
 	headers: {
 		'Content-Type': 'application/json',
-		'Authorization': 'Basic ' + basicKey,
+		Authorization: 'Basic ' + basicKey,
 		'x-access-token': xAccessToken
 	},
 	beforeSend: function (xhr) {
@@ -190,18 +190,15 @@ $('.medinovitaModals').load('/assets/pages/modals.html', function(){
 				attachment: 'N',
 				attachmentName: 'null'}),
 			success: function (response) {
-				//console.log('res: ', response)
-
-				 //$('.modalerrormessage').innerHTML="Error uploading the file"
 
 				document.getElementById('submitEnquiryForm').reset();
 				setTimeout(function() {
-					$('#messageModal').modal('show');
-				 }, 300);
-
-				setTimeout(function() {
 					$('#modal-container-SubmitEnquiry').modal('toggle');
 				 }, 209);
+
+				setTimeout(function() {
+					$('#messageModal').modal('show');
+				 }, 300);
 
 
 			},
@@ -261,7 +258,7 @@ $.ajax({
 		type: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
-			'Authorization': 'Basic ' + basicKey,
+			Authorization: 'Basic ' + basicKey,
 			'x-access-token': xAccessToken
 
 		},
@@ -1792,7 +1789,7 @@ type: 'post',
 url: serverName + 'api/v1/post/contactus/meditrip',
 headers: {
 'Content-Type': 'application/json',
-'Authorization': 'Basic ' + basicKey,
+Authorization: 'Basic ' + basicKey,
 'x-access-token': xAccessToken
 
 },
@@ -1904,13 +1901,13 @@ title: 'Laboratory'
 
 			imgPath: '/assets/images/blog/index-medical/post1.jpg',
 
-			'postedDate': '17 Jan, 2016',
+			postedDate: '17 Jan, 2016',
 
-			'postedBy': 'Admin',
+			postedBy: 'Admin',
 
 			postHeading: 'Lorem ipsum dolor sit ametli elits.',
 
-			'postShortContent': 'Molestiae neque doloremque, voluptatum nostrum praesentium esse fugiat sus siel. Deserunt praesentium archite.',
+			postShortContent: 'Molestiae neque doloremque, voluptatum nostrum praesentium esse fugiat sus siel. Deserunt praesentium archite.',
 
 
 		},
@@ -1920,18 +1917,18 @@ title: 'Laboratory'
 
 			imgPath: '/assets/images/blog/index-medical/post2.jpg',
 
-			'postedDate': '17 Jan, 2016',
+			postedDate: '17 Jan, 2016',
 
-			'postedBy': 'Admin',
+			postedBy: 'Admin',
 
-			'postHeading': 'Lorem ipsum dolor sit ametli elits.',
+			postHeading: 'Lorem ipsum dolor sit ametli elits.',
 
-			'postShortContent': 'Molestiae neque doloremque, voluptatum nostrum praesentium esse fugiat sus siel. Deserunt praesentium archite.',
+			postShortContent: 'Molestiae neque doloremque, voluptatum nostrum praesentium esse fugiat sus siel. Deserunt praesentium archite.',
 
 		},
 
 		{
-			'newsId': '2',
+			newsId: '2',
 
 			imgPath: '/assets/images/blog/index-medical/post3.jpg',
 
@@ -1996,7 +1993,7 @@ title: 'Laboratory'
 		type: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
-			'Authorization': 'Basic ' + basicKey,
+			Authorization: 'Basic ' + basicKey,
 			'x-access-token': xAccessToken
 
 		},
@@ -2023,7 +2020,7 @@ title: 'Laboratory'
 		type: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
-			'Authorization': 'Basic ' + basicKey,
+			Authorization: 'Basic ' + basicKey,
 			'x-access-token': xAccessToken
 
 		},
@@ -2104,7 +2101,7 @@ title: 'Laboratory'
 		type: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
-			'Authorization': 'Basic ' + basicKey,
+			Authorization: 'Basic ' + basicKey,
 			'x-access-token': xAccessToken
 
 		},
@@ -2149,8 +2146,8 @@ $('#featuredTreatmentsSection2').html(featuredTreatmentsHtmlStringTwo);
 	//Country Dropdown
 	var availableCountries = [
   {
-    'text': 'India',
-    'value': 'India'
+    text: 'India',
+    value: 'India'
   }
 
 ];
@@ -2179,7 +2176,7 @@ function costCallback(data) {
 		type: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
-			'Authorization': 'Basic ' + basicKey,
+			Authorization: 'Basic ' + basicKey,
 			'x-access-token': xAccessToken
 
 		},
@@ -2217,7 +2214,7 @@ function costCallback(data) {
 			 // console.log("visa-response: "+ response);
 				var countryArr = [];
 		response.forEach(function(item){
-				countryArr.push({'country': item.country, 'fee': item.fee});
+				countryArr.push({country: item.country, fee: item.fee});
 			 // console.log("my country " + item.country)
 		})
 		//console.log("countryArr-response: "+ countryArr[1].country);
@@ -2245,7 +2242,7 @@ function costCallback(data) {
 		type: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
-			'Authorization': 'Basic ' + basicKey,
+			Authorization: 'Basic ' + basicKey,
 			'x-access-token': xAccessToken
 
 		},
@@ -2408,7 +2405,7 @@ function treatmentsOfferedCallback(id) {
 		type: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
-			'Authorization': 'Basic ' + basicKey,
+			Authorization: 'Basic ' + basicKey,
 			'x-access-token': xAccessToken
 
 		},
@@ -2550,7 +2547,7 @@ function hospitalPageHtml(){
 		type: 'GET',
     headers: {
 			'Content-Type': 'application/json',
-			'Authorization': 'Basic ' + basicKey,
+			Authorization: 'Basic ' + basicKey,
 			'x-access-token': xAccessToken
 
 		},
@@ -2637,7 +2634,7 @@ function hospitalPageCallback(treatmentName, city){
 			type: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
-				'Authorization': 'Basic ' + basicKey,
+				Authorization: 'Basic ' + basicKey,
 				'x-access-token': xAccessToken
 
 			},
@@ -2772,7 +2769,7 @@ function filterProcedureListAndDisplay(isChecked, id){
 			$('#content_' + id).hide();
 			$('#contact_' + id).hide();
 			$('#space_' + id).hide();
-		} else{
+		} else {
 			//Show hidden elements
 			var isVisible = $('#content_' + id).is(':visible');
 			if (!isVisible){
