@@ -14540,7 +14540,7 @@ div.margin20{
   display: inline-block;
 }
 
-/*featuredTreatments*/
+/*mainjs-Get Featured Treatment*/
 @media (min-width: 768px) and (max-width: 1199px){
   .index2{
     padding-top: 19px;
@@ -14549,22 +14549,49 @@ div.margin20{
     padding-top: 22px;
   }
 }
-
-@media (min-width: 1200px) and (max-width: 1430px){
-  .tohide{
-    display: none;
-  }
+/*INDEX.HTML*/
+.carousel-inner{
+  overflow: visible !important;
 }
-/* #aboutContent{
-  line-height: 1.5em;
-} */
- @media (min-width: 1200px){
 
-.myCont {
+@media (min-width: 1200px) and (max-width: 1412px){
+  .myCont {
     width: 1170px;
 }
+  .index2{
+    padding-top: 19px;
+  }
+  .index5{
+    padding-top: 21px;
+  }
 }
 
+ @media (min-width: 1413px){
+
+.myCont {
+    width: 1300px;
+}
+}
+/*bootstrap select*/
+@media (min-width: 579px){
+  .responsiveSearchTreatment .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){
+    width:50%;
+  }
+}
+@media  (max-width: 578px){
+  .responsiveSearchTreatment .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){
+    width:100%;
+    margin-left: 14px;
+  }
+}
+.responsiveSearchTreatment .btn-info.active,
+.responsiveSearchTreatment .btn-info:active,
+.responsiveSearchTreatment .btn-info:hover, .open>.dropdown-toggle.btn-info{
+  background-color: white;
+    border-color: orange;
+}
+
+/*COST.HTML-UNUSED*/
 @media (min-width: 768px){
   .myCost{
     margin-left: 110px;
@@ -14728,4 +14755,17 @@ table{
   border-radius: 0px;
   padding: 20px;
   box-shadow: 2px 2px 2px #fff;
+}
+.btn-info {
+  color: black;
+  background-color: #fff;
+  border-color: #0d47a1;
+  height: 50px
+}
+.quote-list button.bs-placeholder[role='button']>span{
+  color:black;
+}
+.btn-info:hover {
+  background-color: white;
+
 }

@@ -92,14 +92,20 @@ var whyIndia = '';
 		});
 
 		//get quote
-		$('.responsiveGetQuote').on('click', function(){
-			var userInput = $('#getQuoteTreatment').val();
-			console.log('userIn ', userInput);
-			var modifiedUserInput = userInput.replace(/\s+/g, '-').toLowerCase();
-			console.log('mod ' + modifiedUserInput)
-			location.href = serverName + 'search/' + modifiedUserInput;
+		// $('.responsiveGetQuote').on('click', function(){
+		// 	var userInput = $('#getQuoteTreatment').val();
+		// 	console.log('userIn ', userInput);
+		// 	var modifiedUserInput = userInput.replace(/\s+/g, '-').toLowerCase();
+		// 	console.log('mod ' + modifiedUserInput)
+		// 	location.href = serverName + 'search/' + modifiedUserInput;
 
-		})
+		// })
+
+		$('#getQuoteTreatment').on('change', function(){
+			var treatmentSelected = $('option:selected', this).val();
+			var modifiedUserInput = treatmentSelected.replace(/\s+/g, '-').toLowerCase();
+			location.href = serverName + 'search/' + modifiedUserInput;
+			});
 
 
 	});
@@ -124,7 +130,6 @@ $.ajax({
 		console.log(exception);
 	}
 });
-
 
 $.ajax({
 	url: serverName + 'api/v1/get/homepagedetails/meditrip',
@@ -249,39 +254,73 @@ $.ajax({
 
 
 	//Fetch search Treatments list
-	$.ajax({
-		url: serverName + 'api/v1/getTreamentlist/all/meditrip',
-		type: 'GET',
-		headers: {
-			'Content-Type': 'application/json',
-			Authorization: 'Basic ' + basicKey,
-			'x-access-token': xAccessToken
+	// $.ajax({
+	// 	url: serverName + 'api/v1/getTreamentlist/all/meditrip',
+	// 	type: 'GET',
+	// 	headers: {
+	// 		'Content-Type': 'application/json',
+	// 		Authorization: 'Basic ' + basicKey,
+	// 		'x-access-token': xAccessToken
 
-		},
-		beforeSend: function (xhr) {
-			xhr.setRequestHeader('Authorization', 'Basic ' + basicKey);
-		},
-		success: function (response) {
-			var treatmentList = response;
-			//Populate Treatment Dropdown
-			$('#getQuoteTreatment').autocomplete({
-				source: treatmentList
-			});
+	// 	},
+	// 	beforeSend: function (xhr) {
+	// 		xhr.setRequestHeader('Authorization', 'Basic ' + basicKey);
+	// 	},
+	// 	success: function (response) {
+	// 		console.log('list: ', response)
+	// 		var treatmentList = response;
+	// 		//Populate Treatment Dropdown
+	// 		$('#getQuoteTreatment').autocomplete({
+	// 			source: treatmentList
+	// 		});
 
-			var selectBox = document.getElementById('selectSubmitEnquiryProcedure');
-			treatmentList.forEach(function (item, index) {
-				var option = document.createElement('option')
-				option.text = item;
-				option.value = item.replace(/\s+/g, '-').toLowerCase();
-				selectBox.add(option);
-				//console.log(option);
-			});
+	// 		var selectBox = document.getElementById('selectSubmitEnquiryProcedure');
+	// 		treatmentList.forEach(function (item, index) {
+	// 			var option = document.createElement('option')
+	// 			option.text = item;
+	// 			option.value = item.replace(/\s+/g, '-').toLowerCase();
+	// 			selectBox.add(option);
+	// 			//console.log(option);
+	// 		});
 
-		},
-		error: function (exception) {
-			console.log(exception);
-		}
-	});
+	// 	},
+	// 	error: function (exception) {
+	// 		console.log(exception);
+	// 	}
+	// });
+//alter//
+$.ajax({
+	url: serverName + 'api/v1/getTreamentlist/all/meditrip',
+	type: 'GET',
+	headers: {
+		'Content-Type': 'application/json',
+		Authorization: 'Basic ' + basicKey,
+		'x-access-token': xAccessToken
+
+	},
+	beforeSend: function (xhr) {
+		xhr.setRequestHeader('Authorization', 'Basic ' + basicKey);
+	},
+	success: function (response) {
+		console.log('list: ', response)
+		var treatmentList = response;
+		treatmentList.forEach(function(item, index){
+			$('#getQuoteTreatment').append('<option class="' + item + '"' + 'data-tokens="' + item + '">' + item + '</option>')
+	})
+	$('#getQuoteTreatment').selectpicker('render');
+	 $('#getQuoteTreatment').selectpicker('refresh');
+
+
+
+		//Populate Treatment Dropdown
+
+
+	},
+	error: function (exception) {
+		console.log(exception);
+	}
+});
+
 
 if (window.location.href.indexOf('index') > -1 || window.location.href == 'https://www.medinovita.in/'){
 	homepageCallback();
@@ -2188,8 +2227,8 @@ function costCallback(data) {
 
 				// $('.treatment-select #costSelectTreatment').append('<option class= costtreatmentselect data-tokens="'+ item["procedureName"]+'">' + item["procedureName"] +'</option>')
 			})
-			$('.selectpicker').selectpicker('render');
-			$('.selectpicker').selectpicker('refresh');
+			$('#costSelectTreatment').selectpicker('render');
+			$('#costSelectTreatment').selectpicker('refresh');
 
 		},
 		error: function (exception) {
@@ -2223,8 +2262,8 @@ function costCallback(data) {
 				// $('.treatment-select #costcountry').append('<option class="costcountry" data-tokens="'+ item.country+'">' + item.country +'</option>')
 
 		})
-		$('.selectpicker').selectpicker('render');
-				$('.selectpicker').selectpicker('refresh');
+		$('#costcountry').selectpicker('render');
+				$('#costcountry').selectpicker('refresh');
 
 		},
 		error: function (exception) {
@@ -2254,8 +2293,8 @@ function costCallback(data) {
 
 				// $('.treatment-select #holidayPackageDropdown').append('<option class="costholidaypackage" data-tokens="'+ item["packageShortName"]+'">' + item["packageShortName"] +'</option>')
 			})
-			$('.selectpicker').selectpicker('render');
-				$('.selectpicker').selectpicker('refresh');
+			$('#holidayPackageDropdown').selectpicker('render');
+				$('#holidayPackageDropdown').selectpicker('refresh');
 		// 	$("#treatmentCostDropdown li a").on('click',function(){
 		// 		// remove previously added selectedLi
 		// 		$('.selectedLi').removeClass('selectedLi');
@@ -2499,8 +2538,8 @@ function medicalVisacallback(){
 				countryArr.forEach(function(item){
 						$('.select-country #countryfeeslist').append('<option class="' + item.fee + '"' + 'data-tokens="' + item.country + '">' + item.country + '</option>')
 				})
-				$('.selectpicker').selectpicker('render');
-				$('.selectpicker').selectpicker('refresh');
+				$('#countryfeeslist').selectpicker('render');
+				 $('#countryfeeslist').selectpicker('refresh');
 				},
 				error: function (exception) {
 						console.log(exception);
@@ -2560,8 +2599,8 @@ function hospitalPageHtml(){
 			})
 
 
-			$('.selectpicker').selectpicker('render');
-			$('.selectpicker').selectpicker('refresh');
+			$('#selectTreatment').selectpicker('render');
+			$('#selectTreatment').selectpicker('refresh');
 		},
 		error: function (exception) {
 			console.log(exception);
@@ -2589,8 +2628,8 @@ function hospitalPageHtml(){
 				$('.hospital-select-city #selectCity').append(selectOption);
 			})
 
-			$('.selectpicker').selectpicker('render');
-			$('.selectpicker').selectpicker('refresh');
+			$('#selectCity').selectpicker('render');
+			$('#selectCity').selectpicker('refresh');
 		},
 		error: function (exception) {
 			console.log(exception);
