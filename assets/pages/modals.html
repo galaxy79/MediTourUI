@@ -59,14 +59,29 @@
 						Details of Treatment Expected <span style="color:#f44336">*</span>
 					</label>
                     <textarea rows="1" cols="1" class="form-control" id="textAreaSubmitEnquiryDetails" name="EnquiryDetails" required></textarea>
-
+                    <link rel="stylesheet" type="text/css" href="/assets/css/homepages/bootstrap-custom.css" />
+                    <span class="red-star">★ Only Word,PDF,image file types having less than 5MB size is allowed.Use Cntrl for uploading multiple files</span>
                     <!-- <div class="g-recaptcha" style="text-align: -webkit-center" data-sitekey="6LeeoTIUAAAAAEoOCxql1f7HNTIfUNlSc19Sbd-f" data-callback="correctCaptcha"></div>
                     <span id="captcha" style="margin-left:100px;color:red" /> -->
 				</div>
+				<!-- Bootstrap Upload Control - START -->
+                <link rel="stylesheet" type="text/css" href="/assets/css/font-awesome/css/font-awesome.min.css" />               	
+				<script src="/assets/js/jquery.min.js"></script>
+				<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+				<div style="display: flex;">
+                   <!-- <form method="post" enctype="multipart/form-data">  -->                  				
+					<div class="col-md-11">						
+							<input type="file" id="files" name="files" multiple="multiple" /> 
+                            <span style="color:#FF0000; font-weight:bold;" id="uploadmsg"></span>							
+					</div>					
+					<div class="col-md-1"></div>
+					<!-- </form> -->
+				</div>				
+				<!-- Bootstrap Upload Control - END -->
 				<div class="modalerrormessage" style="color: #f44336"></div>
-				 <div class="form-group modal-enquiry">
-				<button type="submit" class="btn btn-success">
-					Submit
+				 <div class="form-group" style="text-align: center">				 
+				<button id="filesubmit" type="submit" class="btn btn-success">
+					Submit Enquiry
 				</button>
 				 </div>
 			</form>
