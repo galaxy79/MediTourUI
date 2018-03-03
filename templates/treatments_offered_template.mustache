@@ -6,12 +6,12 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107905104-1"></script>
       <script>
          window.dataLayer = window.dataLayer || [];
-         
+
          function gtag() {
              dataLayer.push(arguments);
          }
          gtag('js', new Date());
-         
+
          gtag('config', 'UA-107905104-1');
       </script>
       <!-- Google Tag Manager added by libin-->
@@ -34,21 +34,20 @@
       <!-- End Google Tag Manager -->
         <meta charset="utf-8">
         <title>{{title}}</title>
-        <meta name="description" content="Multipurpose and creative template">
 
         <!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <![endif]-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
+
 		<!-- Below lines added by libin -->
       <link rel="canonical" href="https://www.medinovita.in/" />
       <link rel="shortlink" href="https://www.medinovita.in/" />
       <title>{{title}}</title>
-      <meta property="og:description" content="Planning a medical trip to India for affordable treatment?Medinovita connects you with best Doctors and super speciality hospitals in India.Medinovita also assists in travel,visa processing,local transport and Stay along with 24X7 care for patient and attendants">
-      <META NAME="description" CONTENT="Planning a medical trip to India for affordable treatment?Medinovita connects you with best Doctors and super speciality hospitals in India.Medinovita also assists in travel,visa processing,local transport and Stay along with 24X7 care for patient and attendants.">
-      <META NAME="keywords" CONTENT="doctors In India,destination India,health tour,Medical Facility In India,Healthcare tourism in india, Hospitals in India, health tour India,Wellness Tourism, India medical tourism, super speciality hospitals,super speciality hospitals in India, healthcare travel, Best Hospital in India, best hospital india, medical travel, health travel India, Best Doctors in India,Apollo Hospitals, indian health guru,low cost medical treatment in India,low cost medical treatment in Asia,India Healthcare Tourism,health travel India, Affordable treatment in India, Affordable treatment in Asian countries, healthcare tourism company india,Asian medical tour, Hospitals in India,cosmetic surgery in India, best healthcare tourism company,medical tourism India cost, Health Tourism in India,medical travel abroad, medical tourism overseas,medical travel overseas, health tourism,Medical Visa to India,clinics in India,Cheap medical facility,surgery in India,Ayurveda,Ayurveda India,Medinovita,kerala">
+      <meta property="og:description" content="{{department}} treatments in India with hospital and cost details associated with the various procedures.Medinovita works with best hospitals in India to provide affordable care for you.">
+      <meta NAME="description" CONTENT="{{department}} treatments in India with hospital and cost details associated with the various procedures.Medinovita works with best hospitals in India to provide affordable care for you.">
+      <META NAME="keywords" CONTENT="best hospitals In India,treatments in ayurveda, affordable cost treatment,Health Tourism in India,medical travel abroad, medical tourism overseas,medical travel overseas, health tourism,Medical Visa to India,clinics in India,Cheap medical facility,surgery in India,Ayurveda,Ayurveda India,Medinovita,kerala">
 
         <!-- Google Fonts -->
-        <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700%7COpen+Sans:300,300i,400,400i,600,600i,700,800" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Montserrat:400,700%7COpen+Sans:300,300i,400,400i,600,600i,700,800" rel="stylesheet">
 
         <link rel="stylesheet" href="/assets/css/plugins.min.css">
         <link rel="stylesheet" href="/assets/css/style.css">
@@ -59,50 +58,51 @@
         <!-- Modernizr -->
         <script src="/assets/js/modernizr.js"></script>
 		 <!-- script for show more and show less -->
-         <script src="https://code.jquery.com/jquery-3.1.1.js"></script>	 
+         <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
          <script src="/assets/js/pages/showmore.js"></script>
 		 <script src="/assets/customjs/chat.js"></script>
 		 <script src="/assets/js/pages/pagination.js"></script>
 		 <script src="/assets/js/pages/userdefined.js"></script>
+         <script src="/assets/js/jquery-ui.min.js"></script>
 		<script>
 			(function ($) {
 			    <!-- Start  : Document ready -->
 				$(document).ready(function() {
 					$(".product-content").shorten({showChars: 235});
-                    $("input[type='checkbox']").on('change', function(){  
+                    $("input[type='checkbox']").on('change', function(){
 					    var nameattr=$(this).attr('name')
 						if(nameattr==='hospitalname'){
-						   $("input[name='procedure']").removeAttr('checked'); 
-						    $("input[name='city']").removeAttr('checked');						
+						   $("input[name='procedure']").removeAttr('checked');
+						    $("input[name='city']").removeAttr('checked');
 						}
-						
+
 						if(nameattr==='procedure'){
-						    $("input[name='hospitalname']").removeAttr('checked'); 
-						    $("input[name='city']").removeAttr('checked');				
+						    $("input[name='hospitalname']").removeAttr('checked');
+						    $("input[name='city']").removeAttr('checked');
 						}
-						
+
 						if(nameattr==='city'){
-						    $("input[name='hospitalname']").removeAttr('checked'); 
-						    $("input[name='procedure']").removeAttr('checked'); 							
-						}     
+						    $("input[name='hospitalname']").removeAttr('checked');
+						    $("input[name='procedure']").removeAttr('checked');
+						}
 						$('#filterform').submit();
-                       
-			        });						
-				}); 
-                 <!-- End  : Document ready -->	
-			})(jQuery);	
+
+			        });
+				});
+                 <!-- End  : Document ready -->
+			})(jQuery);
 		</script>
         <script>
-			$(function () { 				
+			$(function () {
 				load({{procedureCount}});
-			}); 
-		</script>		
+			});
+		</script>
     </head>
-    <body>	  
-        <div id="wrapper"> 
-            <div class="medinovitaHeader"></div>		
+    <body>
+        <div id="wrapper">
+            <div class="medinovitaHeader"></div>
             <div class="main">
-                <div class="page-header larger parallax custom" style="background-image:url(/assets/images/header.jpg)">
+               <div class="page-header larger larger-top  custom "style="background-image:url(//res.cloudinary.com/ddglp4e0g/image/upload/v1510441826/novita/header_oucn1m.jpg)">
                     <div class="container">
                         <h1>Treatments Offered - {{department}}</h1>
                         <ol class="breadcrumb">
@@ -115,7 +115,7 @@
 
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-md-9" style="margin-top: 40px;">
                             <div class="category-filter-row">
                                 <div class="right">
                                     <span class="cat-product-count">Total Procedures: {{procedureCount}}</span>
@@ -144,26 +144,26 @@
                                     </div><!-- End .filter-show -->
                                 </div><!-- End .left -->
                             </div><!-- End .category-filter-row -->
-						   {{#treatmentList}} 
+						   {{#treatmentList}}
                             <div class="product product-list">
                                 <div class="row">
                                     <div class="col-md-4 col-sm-5">
                                         <div class="product-top">
-                                            <span class="label popular">Popular</span>
+                                            <!-- <span class="label popular">Popular</span> -->
                                             <figure>
-                                                <a href="#" title="Bone Grafting">
+                                                <a href="#" title="{{procedureName}}">
                                                     <img src="{{{procedureImagepath}}}" alt="Product image" class="product-image">
                                                     <img src="{{{procedureImagepath}}}" alt="Product image" class="image-hover">
                                                 </a>
                                             </figure>
-                                            <a href="#" class="btn product-add-btn">View Details</a>
+
                                         </div><!-- End .product-top -->
                                     </div><!-- End .col-md-4 -->
                                     <div class="col-md-8 col-sm-7">
-                                        <h3 class="product-title comment"><a href="/procedure/{{procedureName}}">{{procedureName}}</a></h3>	
+                                        <h3 class="product-title comment"><a href="/procedure/{{procedureName}}">{{procedureName}}</a></h3>
                                         <div class="product-content">
-                                            {{{treatmentActualDescription}}}                                                        
-										</div><!-- End .product-content -->										
+                                            {{{treatmentActualDescription}}}
+										</div><!-- End .product-content -->
 										<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 										<div class="panel panel-default">
 											<div class="panel-heading" role="tab" id="heading_{{{procedureNameAttr}}}">
@@ -177,33 +177,33 @@
 												<div class="panel-body">
 													<ul class="fa-ul">
 													    {{#hospitalList}}
-														   <li><a href="/hospitals/{{hospitalName}}"><i class="fa-li fa fa-chain"></i>{{hospitalName}},{{city}},{{country}}</a></li>	
-                                                        {{/hospitalList}}														
+														   <li><a href="/hospitals/{{hospitalName}}"><i class="fa-li fa fa-chain"></i>{{hospitalName}},{{city}},{{country}}</a></li>
+                                                        {{/hospitalList}}
 													</ul>
 												</div><!-- End .panel-body -->
 											</div><!-- End .panel-collapse -->
 										</div><!-- End .panel -->
-									  </div> <!-- End #accordion -->								
-                                       
+									  </div> <!-- End #accordion -->
+
                                         <div class="product-price-container">
                                             <!-- <span class="old-price">$99.00</span> -->
                                             <span class="product-price">Starts from : {{procedureAvarageCost}}</span>
                                         </div><!-- End .product-price-container -->
 										<div class="product-price-container">
-                                            <p></p>										
-											<a href="/contact.html" class="btn btn-blue">Contact Us</a>
-											<a href="/cost.html" class="btn btn-green">Get Quote</a>																										
+                                            <p></p>
+											<a href="#modal-container-SubmitEnquiry" data-toggle="modal"><button type="button" class="btn btn-blue btn-rounded" >Contact Us</button></a>
+											<a href="/cost.html" class="btn btn-green btn-rounded">Get Quote</a>
 										</div><!-- End .product-price-container -->
                                     </div><!-- End .col-md-8 -->
                                 </div><!-- end .Row -->
                             </div><!-- End .product -->
-                            {{/treatmentList}} 
+                            {{/treatmentList}}
 							<!-- Pagination container -->
                             <nav class="pagination-container" id="tablePaging">
-                                <label>Showing: 1-4 of 16</label>                               
+                                <label>Showing: 1-4 of 16</label>
                             </nav>
                         </div><!-- End .col-md-9 -->
-                        
+
 						<form action="/treatments/{{department}}" method="post" name="filterform" id="filterform">
                         <aside class="col-md-3 sidebar shop-sidebar">
                             <div class="widget">
@@ -228,10 +228,10 @@
 																	<input type="checkbox" name="procedure" value="{{procedureName}}" checked>
 																	<span class="custom-checkbox-icon"></span>
 																</span>
-															    <span>{{procedureName}}</span>																
-															</label>															
+															    <span>{{procedureName}}</span>
+															</label>
 														</div><!-- End .checkbox -->
-                                                        {{/distProcedure}}														
+                                                        {{/distProcedure}}
                                                     </ul>
                                                 </div><!-- End .panel-body -->
                                             </div><!-- End .panel-collapse -->
@@ -244,7 +244,7 @@
                                                         <span class="panel-icon"></span>
                                                     </a>
                                                 </h4>
-                                            </div><!-- End .panel-heading -->											
+                                            </div><!-- End .panel-heading -->
                                             <div id="brandFilter" class="panel-collapse collapse" role="tabpanel" aria-labelledby="brandFilter-header">
                                                 <div class="panel-body">
                                                     <ul class="filter-brand-list">
@@ -256,9 +256,9 @@
 																	<span class="custom-checkbox-icon"></span>
 																</span>
 															    <span>{{hospitalName}}</span>
-															</label>															
+															</label>
 														</div><!-- End .checkbox -->
-                                                        {{/distHospitalList}}														
+                                                        {{/distHospitalList}}
                                                     </ul>
                                                 </div><!-- End .panel-body -->
                                             </div><!-- End .panel-collapse -->
@@ -282,17 +282,17 @@
 																	<input type="checkbox" name="city" value="{{city}}">
 																	<span class="custom-checkbox-icon"></span>
 																</span>
-															    <span>{{city}}</span>																
-															</label>															
+															    <span>{{city}}</span>
+															</label>
 														</div><!-- End .checkbox -->
-                                                        {{/distCityList}}														
+                                                        {{/distCityList}}
                                                     </ul>
                                                 </div><!-- End .panel-body -->
                                             </div><!-- End .panel-collapse -->
-                                        </div><!-- End .panel -->                                                                                                                      
+                                        </div><!-- End .panel -->
                                     </div><!-- End .panel-group -->
                                 </div><!-- End .filter-widget -->
-								<div class="filter-price-action">                                                            
+								<div class="filter-price-action">
 									<a href="/treatmentsoffered/{{department}}" class="btn btn-black btn-sm">Clear All Filters</a>
 								</div><!-- End #filter-price-action -->
                             </div><!-- End .widget -->
@@ -302,6 +302,7 @@
                 </div><!-- End .container -->
             </div><!-- End .main -->
             <div class="medinovitaFooter"></div>
+             <div class="medinovitaModals"></div>
         </div><!-- End #wrapper -->
         <a id="scroll-top" href="#top" title="Scroll top"><i class="fa fa-angle-up"></i></a>
         <!-- End -->
