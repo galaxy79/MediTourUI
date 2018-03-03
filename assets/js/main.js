@@ -319,7 +319,7 @@ window.alert = function (msg) {
 					$('#getQuoteTreatment').append('<option class="' + item + '"' + 'data-tokens="' + item + '">' + item + '</option>')
 				})
 			var elementExists = document.getElementById("getQuoteTreatment");
-			If(elementExists){
+			if (elementExists){
 				$('#getQuoteTreatment').selectpicker('render');
 				$('#getQuoteTreatment').selectpicker('refresh');
          }
