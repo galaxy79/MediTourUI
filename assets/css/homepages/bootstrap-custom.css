@@ -12,8 +12,12 @@
   float:none;
 }
 
+/* red asterick */
+.red-star {
+    color: red;
+}
 
-/* new switch    */
+/* new switch */
 
 .switch{
   opacity: 0;
