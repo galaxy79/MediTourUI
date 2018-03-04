@@ -59,28 +59,32 @@
 						Details of Treatment Expected <span style="color:#f44336">*</span>
 					</label>
                     <textarea rows="1" cols="1" class="form-control" id="textAreaSubmitEnquiryDetails" name="EnquiryDetails" required></textarea>
-                    <link rel="stylesheet" type="text/css" href="/assets/css/homepages/bootstrap-custom.css" />
-                    <span class="red-star">★ Only Word,PDF,image file types having less than 5MB size is allowed.Use Cntrl for uploading multiple files</span>
+                    <!-- <link rel="stylesheet" type="text/css" href="/assets/css/homepages/bootstrap-custom.css" /> -->
+                    <!-- <span class="red-star">★ Only Word,PDF,image file types having less than 5MB size is allowed.Use Cntrl for uploading multiple files</span> -->
                     <!-- <div class="g-recaptcha" style="text-align: -webkit-center" data-sitekey="6LeeoTIUAAAAAEoOCxql1f7HNTIfUNlSc19Sbd-f" data-callback="correctCaptcha"></div>
                     <span id="captcha" style="margin-left:100px;color:red" /> -->
 				</div>
 				<!-- Bootstrap Upload Control - START -->
-                <link rel="stylesheet" type="text/css" href="/assets/css/font-awesome/css/font-awesome.min.css" />               	
-				<script src="/assets/js/jquery.min.js"></script>
-				<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+                <!-- <link rel="stylesheet" type="text/css" href="/assets/css/font-awesome/css/font-awesome.min.css" /> -->
+				<!-- <script src="/assets/js/jquery.min.js"></script>
+				<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script> -->
 				<div style="display: flex;">
-                   <!-- <form method="post" enctype="multipart/form-data">  -->                  				
-					<div class="col-md-11">						
-							<input type="file" id="files" name="files" multiple="multiple" /> 
-                            <span style="color:#FF0000; font-weight:bold;" id="uploadmsg"></span>							
-					</div>					
+                   <!-- <form method="post" enctype="multipart/form-data">  -->
+					<div class="col-md-11">
+
+							<input type="file" id="files" name="files" multiple="multiple" />
+							<span style="color:#212121;font-size:12px"><i>(Max file size less than <strong>5mb</strong>.File formats supported <strong>doc,docx,pdf,png,jpg,jpeg</strong>)</i></span>
+							<div>
+														<span style="color:#FF0000; font-weight:bold;" id="uploadmsg"></span>
+													</div>
+					</div>
 					<div class="col-md-1"></div>
 					<!-- </form> -->
-				</div>				
+				</div>
 				<!-- Bootstrap Upload Control - END -->
-				
+
 				<div class="modalerrormessage" style="color: #f44336"></div>
-				 <div class="form-group" style="text-align: center">				 
+				 <div class="form-group" style="text-align: center">
 				<button id="filesubmit" type="submit" class="btn btn-success">
 					Submit Enquiry
 				</button>
@@ -91,40 +95,10 @@
         </div>
 
     </div>
+	</div>
 
-</div>
-<!-- <div class="modal fade" id="modal-container-145337" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								×
-							</button>
-							<h4 class="modal-title" id="myModalLabel">
-								Modal title
-							</h4>
-						</div>
-						<div class="modal-body">
-							...
-						</div>
-						<div class="modal-footer">
-
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button>
-							<button type="button" class="btn btn-primary">
-								Save changes
-							</button>
-						</div>
-					</div>
-
-				</div>
-
-			</div> -->
-
-
-			<div class="modal fade" id="messageModal" role="dialog">
+	<!-- Modal for confirmation of the enquiry submission-->
+<div class="modal fade" id="messageModal" role="dialog">
 				<div class="modal-dialog">
 
 				  <!-- Modal content-->
