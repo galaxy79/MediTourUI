@@ -89,7 +89,7 @@
                             <div class="product product-list">
 
                                     {{#hospitaldetails}}
-                                <div class="row">
+                                <div class="row treatment-hospdetails">
                                     <div class="col-md-4 col-sm-5">
                                         <div class="product-top">
 
@@ -132,8 +132,8 @@
                                              </div><!-- End .product-content -->
                                              <div class="product-price-container">
                                                 <p></p>
-                                                <span class="old-price">{{treatmentname}} cost from </span>
-                                                 <span class="product-price"> &#x20b9; {{costLowerBound}}</span>
+                                                <span class="old-price"><strong>{{treatmentname}}</strong></span>
+                                                <p><span class="old-price">COST FROM</span> <span class="product-price"> &#x20b9;{{costLowerBound}}</span></p>
 
                                             </div><!-- End .product-price-container -->
                                     </div><!-- End .col-md-8 -->
@@ -199,6 +199,10 @@
                                                     </ul>
                                                 </div><!-- End .panel-body -->
                                             </div><!-- End .panel-collapse -->
+                                            <div class="filter-price-action">
+                                                            <!-- <a href="#" class="btn btn-custom btn-sm">Filter</a>-->
+                                                            <a href="/search/{{& treatmenturlname}}" class="btn btn-black btn-sm">Clear All Filters</a>
+                                            </div>
                                         </div><!-- End .panel -->
                                     </div><!-- End .panel-group -->
                                 </div><!-- End .filter-widget -->
