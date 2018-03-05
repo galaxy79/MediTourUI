@@ -173,22 +173,22 @@ window.alert = function (msg) {
 			// 	document.getElementById('captcha').innerHTML = "Verification completed";
 
 			// }
-			
+
 		//Added by libin for s3 file upload
 			var attachmentFlag="N";
 			var attachmentNames='';
-				
+
 			var files = $('#files').get(0).files;
 			var fileSize=(files.length)
-			var formFileData = new FormData();	
+			var formFileData = new FormData();
 			if (fileSize >= 5) {
 				$(this).find("#uploadmsg").text("Only 5 files are allowed at a time");
-				$(this).find("#files").val('')			
+				$(this).find("#files").val('')
 				return  false;
-			}		
+			}
 			if (fileSize >= 1) {
-				var validExt = ".png,.jpeg,.jpg,.pdf,.doc,.docx";	
-				attachmentFlag="Y"			
+				var validExt = ".png,.jpeg,.jpg,.pdf,.doc,.docx";
+				attachmentFlag="Y"
 				// Append the files to the formData.
 				for (var i=0; i < fileSize; i++) {
 					var file = files[i];
@@ -196,44 +196,44 @@ window.alert = function (msg) {
 					attachmentNames = attachmentNames+ filePath + ",";
 					var getFileExt = filePath.substring(filePath.lastIndexOf('.') + 1).toLowerCase();
 					formFileData.append('files', file, file.name);
-					
+
 					// file size and extension validation
 					if (file.size*0.000001>5){
 						$(this).find("#files").val('')
-						$(this).find("#uploadmsg").text("Please upload files having size less than 5MB"); 
-						$(this).find("#uploadmsg").focus();						
+						$(this).find("#uploadmsg").text("Please upload files having size less than 5MB");
+						$(this).find("#uploadmsg").focus();
 						return  false;
 					}else if(validExt.indexOf(getFileExt)<0 ) {
 						$(this).find("#files").val('')
-						$(this).find("#uploadmsg").text("Please upload only allowed file types "+ validExt); 
-						$(this).find("#uploadmsg").focus();					
+						$(this).find("#uploadmsg").text("Please upload only allowed file types "+ validExt);
+						$(this).find("#uploadmsg").focus();
 						return  false;
 					}
 				}
 				//give focus to submit button
-				$(this).find("#filesubmit").focus();	
-				
+				$(this).find("#filesubmit").focus();
+
 				$.ajax({
 					url: serverName+ 'cloud/upload',
 					data: formFileData,
 					type: 'POST',
-					contentType: false, 
-					processData: false, 
-					async: false, //add this				
+					contentType: false,
+					processData: false,
+					async: false, //add this
 					success: function(response) {
-						console.log("success")					
-						$(this).find("#uploadmsg").text("File upload is success");						
+						console.log("success")
+						$(this).find("#uploadmsg").text("File upload is success");
 					},
-					error: function(exception) {					
+					error: function(exception) {
 						$(this).find("#uploadmsg").text("File upload is failed");
 						console.log("exception")
 					},
-				});	
+				});
 				$(this).find("#files").val('')
 				$(this).find("#uploadmsg").css('color', 'green');
-				$(this).find("#uploadmsg").text(("Files have been uploaded successfully"));			
+				$(this).find("#uploadmsg").text(("Files have been uploaded successfully"));
 			}
-			
+
 			$.ajax({
 				url: serverName + 'api/v1/submit/enquiry/meditrip',
 				type: 'POST',
@@ -2764,12 +2764,13 @@ function hospitalPageCallback(treatmentName, city) {
 						})
 
 					}
+					var modifiedhosname = hospital.hospitalName.replace(/\s+/g, '-').toLowerCase();
 					if (index % 2 === 0) {
-						var htmlStr = $('<div class="row is-flex hosp-row" style="margin-bottom:30px"><div class="col-md-5 test even hosp-' + index + '"' + 'style="background-color:#f9f9f9; padding:28px"><p class="test1"><img src=' + hospital.hospitalimage + '><a href="#modal-container-SubmitEnquiry" data-toggle="modal"><button type="button" class="btn btn-success btn-rounded btn-sm" style="float:right">Contact</button></a><a href="/hospitals/' + hospital.hospitalName + '"><strong style="font-size:18px;line-height:1.6em;">' + hospital.hospitalName + '</strong></a><br><i class="fa fa-map-marker"  aria-hidden="true"></i>' + ' ' + hospital.hospitalContact.City + ', ' + hospital.hospitalContact.country + '<br><span>Specialities: ' + myHtml + '</span></p><div class="margin20"> <a href="/hospitals/' + hospital.hospitalName + '"style="float:right;font-weight:bold">Learn More...</a></div></div></div>')
+						var htmlStr = $('<div class="row is-flex hosp-row" style="margin-bottom:30px"><div class="col-md-5 test even hosp-' + index + '"' + 'style="background-color:#f9f9f9; padding:28px"><p class="test1"><img src=' + hospital.hospitalimage + '><a href="#modal-container-SubmitEnquiry" data-toggle="modal"><button type="button" class="btn btn-success btn-rounded btn-sm" style="float:right">Contact</button></a><a href="/hospitals/' + modifiedhosname + '"><strong style="font-size:18px;line-height:1.6em;">' + hospital.hospitalName + '</strong></a><br><i class="fa fa-map-marker"  aria-hidden="true"></i>' + ' ' + hospital.hospitalContact.City + ', ' + hospital.hospitalContact.country + '<br><span>Specialities: ' + myHtml + '</span></p><div class="margin20"> <a href="/hospitals/' + hospital.hospitalName + '"style="float:right;font-weight:bold">Learn More...</a></div></div></div>')
 
 						mainDiv.append(htmlStr);
 					} else {
-						var htmlStrr = $('<div class="col-md-5 col-md-offset-1 test odd hosp-' + index + '"' + 'style="background-color:#f9f9f9; padding:28px"><p class="test1"><img src=' + hospital.hospitalimage + '><a href="#modal-container-SubmitEnquiry" data-toggle="modal"><button type="button" class="btn btn-success btn-rounded btn-sm" style="float:right">Contact</button></a><a href="/hospitals/' + hospital.hospitalName + '"><strong style="font-size:18px;line-height:1.6em;">' + hospital.hospitalName + '</strong></a><br><i class="fa fa-map-marker color=blue" aria-hidden="true"></i>' + ' ' + hospital.hospitalContact.City + ', ' + hospital.hospitalContact.country + '<br><span>Specialities: ' + myHtml + '</span></p><div class="margin20"> <a href="/hospitals/' + hospital.hospitalName + '" style="float:right;font-weight:bold">Learn More...</a></div></div>')
+						var htmlStrr = $('<div class="col-md-5 col-md-offset-1 test odd hosp-' + index + '"' + 'style="background-color:#f9f9f9; padding:28px"><p class="test1"><img src=' + hospital.hospitalimage + '><a href="#modal-container-SubmitEnquiry" data-toggle="modal"><button type="button" class="btn btn-success btn-rounded btn-sm" style="float:right">Contact</button></a><a href="/hospitals/' + modifiedhosname + '"><strong style="font-size:18px;line-height:1.6em;">' + hospital.hospitalName + '</strong></a><br><i class="fa fa-map-marker color=blue" aria-hidden="true"></i>' + ' ' + hospital.hospitalContact.City + ', ' + hospital.hospitalContact.country + '<br><span>Specialities: ' + myHtml + '</span></p><div class="margin20"> <a href="/hospitals/' + hospital.hospitalName + '" style="float:right;font-weight:bold">Learn More...</a></div></div>')
 
 						rowDiv.last().append(htmlStrr);
 					}
