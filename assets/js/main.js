@@ -2887,3 +2887,84 @@ function setExpandCollpaseAccordion() {
 	});
 
 }
+
+$('#questionnaire-form').on('submit', function (e) {	
+	e.preventDefault();
+    $.ajax({
+			url: serverName+ 'api/v1/post/questionnaire',
+			data: $("#questionnaire-form").serialize(),
+			type: 'POST',			
+			success: function(response) {				
+				$('#messageModal').modal('show');
+				document.getElementById("questionnaire-form").reset();				
+		        $(this).find("#uploadmsg").css('color', 'green');
+				$(this).find("#uploadmsg").text("Submitted form successfully");
+			},
+			error: function(exception) {			
+		        $(this).find("#uploadmsg").css('color', 'red');
+				$(this).find("#uploadmsg").text("Failed to submit the questionannire");								
+			},
+		});
+		
+		var attachmentFlag="N";
+		var attachmentNames='';
+
+		var files = $('#files').get(0).files;
+		var fileSize=(files.length)
+		var formFileData = new FormData();
+		
+		if (fileSize >= 1) {
+			var validExt = ".png,.jpeg,.jpg,.pdf,.doc,.docx";
+			attachmentFlag="Y"
+			if (fileSize >= 5) {
+			$(this).find("#uploadmsg").text("Only 5 files are allowed at a time");
+			$(this).find("#files").val('')
+			return  false;
+		}
+		// Append the files to the formData.
+		for (var i=0; i < fileSize; i++) {
+			var file = files[i];
+			var filePath=file.name
+			attachmentNames = attachmentNames+ filePath + ",";
+			var getFileExt = filePath.substring(filePath.lastIndexOf('.') + 1).toLowerCase();
+			formFileData.append('files', file, file.name);
+
+			// file size and extension validation
+			if (file.size*0.000001>5){
+				$(this).find("#files").val('')
+				$(this).find("#uploadmsg").text("Please upload files having size less than 5MB");
+				$(this).find("#uploadmsg").focus();
+				return  false;
+			}else if(validExt.indexOf(getFileExt)<0 ) {
+				$(this).find("#files").val('')
+				$(this).find("#uploadmsg").text("Please upload only allowed file types "+ validExt);
+				$(this).find("#uploadmsg").focus();
+				return  false;
+			}
+		}
+		//give focus to submit button
+		$(this).find("#filesubmit").focus();
+
+		$.ajax({
+			url: serverName+ 'cloud/upload',
+			data: formFileData,
+			type: 'POST',
+			contentType: false,
+			processData: false,
+			async: false, //add this
+			success: function(response) {
+				$(this).find("#files").val('')
+				console.log("File upload success")				
+			},
+			error: function(exception) {
+				$(this).find("#uploadmsg").text("File upload is failed");
+				console.log("upload exception")
+				$(this).find("#files").val('')
+				$(this).find("#uploadmsg").css('color', 'red');
+				$(this).find("#uploadmsg").text(("File upload failed,but rest of the details were submitted successfully"));
+			},
+		});
+		$(this).find("#files").val('')
+	}
+})
+
